@@ -280,7 +280,7 @@
             fetchData() {
                 this.loading = true;
                 let locale = this.$route.params.locale? this.$route.params.locale: 'en';
-                axios.get(route('api.news.find', {news: this.$route.params.newsId }))
+               window.axios.get(route('api.news.find', {news: this.$route.params.newsId }))
                     .then((response) => {
                         this.loading = false;
                         this.modelForm = response.data.data;
@@ -290,7 +290,7 @@
             fetchTags() {
                 this.loading = true;
 
-                axios.get(route('api.tags.index' ))
+               window.axios.get(route('api.tags.index' ))
                     .then((response) => {
                         this.loading = false;
                         this.listTag = response.data;
@@ -312,7 +312,7 @@
 
                 };
 
-                axios.get(route('api.category.index', _.merge(properties, {})))
+               window.axios.get(route('api.category.index', _.merge(properties, {})))
                     .then((response) => {
 
                         this.categoryArr = response.data.data;

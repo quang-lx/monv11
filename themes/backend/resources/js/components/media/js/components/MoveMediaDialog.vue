@@ -76,7 +76,7 @@
             },
             fetchFolders() {
                 this.selectIsLoading = true;
-                axios.get(route('api.media.folders.all-nestable'))
+               window.axios.get(route('api.media.folders.all-nestable'))
                     .then((response) => {
                         this.options = _.merge(response.data, { 0: 'Root' });
                         this.selectIsLoading = false;

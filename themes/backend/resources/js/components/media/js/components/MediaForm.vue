@@ -35,7 +35,7 @@
                                      v-text="form.errors.first( 'description')"></div>
                             </el-form-item>
 
-                            
+
                             <el-form-item>
                                 <el-button type="primary" @click="onSubmit()" :loading="loading">
                                     {{ $t('mon.save') }}
@@ -89,7 +89,7 @@
         methods: {
             fetchMedia() {
                 this.loading = true;
-                axios.get(route('api.media.find', { file: this.$route.params.mediaId }))
+               window.axios.get(route('api.media.find', { file: this.$route.params.mediaId }))
                     .then((response) => {
                         this.loading = false;
                         this.media = response.data.data;

@@ -44,7 +44,7 @@
                 const data = new FormData();
                 data.append('parent_id', this.parentId);
                 data.append('file', event.file);
-                axios.post(route('api.media.store'), data)
+               window.axios.post(route('api.media.store'), data)
                     .then((response) => {
                         this.$events.emit('fileWasUploaded', response);
                         this.fileIsUploading = false;

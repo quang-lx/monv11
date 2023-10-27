@@ -159,7 +159,7 @@
 
       fetchData() {
         this.loading = true;
-        axios.get(route('api.permissions.find', {permission: this.$route.params.permissionId}))
+       window.axios.get(route('api.permissions.find', {permission: this.$route.params.permissionId}))
         .then((response) => {
           this.loading = false;
           this.modelForm = response.data.data;

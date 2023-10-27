@@ -229,7 +229,7 @@
                 if (this.$route.params.categoryId !== undefined) {
                     this.loading = true;
                     routeUri = route('api.category.find', {category: this.$route.params.categoryId});
-                    axios.get(routeUri)
+                   window.axios.get(routeUri)
                       .then((response) => {
                           this.loading = false;
                           this.modelForm = response.data.data;

@@ -187,7 +187,7 @@
 
                 };
 
-                axios.get(route('api.news.index', _.merge(properties, customProperties)))
+               window.axios.get(route('api.news.index', _.merge(properties, customProperties)))
                     .then((response) => {
                         this.tableIsLoading = false;
                         this.data = response.data.data;
