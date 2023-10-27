@@ -1,0 +1,12 @@
+<?php
+
+namespace Modules\Mon\Entities;
+
+use Illuminate\Database\Eloquent\Model;
+
+class $CLASS_NAME$ extends Model
+{
+
+    protected $table = '$LOWERCASE_MODULE_NAME$__$PLURAL_LOWERCASE_CLASS_NAME$';
+    protected $fillable = [];
+}
