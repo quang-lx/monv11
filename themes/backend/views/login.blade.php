@@ -23,9 +23,11 @@
     <link href="{{ asset('themes/backend/vendor/admin-lte/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}"
         rel="stylesheet">
     <style>
+        .login-page {
+            justify-content: normal;
+        }
+
         body {
-            display: grid;
-            place-items: center;
             font-family: "Nunito", sans-serif;
             height: 100vh;
             background: url({{ url('images/backgroud.png') }});
@@ -40,6 +42,10 @@
             display: flex;
             flex-direction: column;
             height: 100%;
+        }
+
+        .login-box {
+            width: 750px;
         }
 
         input {
@@ -69,7 +75,7 @@
             width: 750px;
             max-width: 100%;
             min-height: 550px;
-            top: 100px
+            top: 80px;
         }
 
         .form {
@@ -83,7 +89,7 @@
             width: 50%;
             z-index: 2;
             opacity: 1;
-            padding: 55px
+            padding: 55px;
         }
 
         .overlay-container {
@@ -97,6 +103,16 @@
             border-radius: 16px 0px 0px 16px;
             background: linear-gradient(29deg, #1976CC 0%, #0FABCD 105.26%);
 
+        }
+
+        .overlay {
+            color: #fff;
+            position: relative;
+            left: -100%;
+            height: 100%;
+            width: 200%;
+            transform: translateX(0);
+            transition: transform 0.6s ease-in-out;
         }
 
         .overlay-pannel {
@@ -163,12 +179,13 @@
             bottom: 10px;
             left: 50%;
             transform: translate(-50%, -50%);
+            line-height: 1;
         }
 
         .contact p {
             letter-spacing: 0.08px;
             margin: 0px;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 600
         }
 
@@ -176,7 +193,21 @@
             letter-spacing: 0.08px;
             margin: 0px;
             font-weight: 500;
-            font-size: 14px;
+            font-size: 13px;
+        }
+
+        .license {
+            text-align: center;
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #fff;
+            font-size: 13px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            letter-spacing: 0.08px;
         }
 
         /* social container */
@@ -190,49 +221,52 @@
 </head>
 
 <body class="hold-transition login-page">
-
-    <div class="container" id="container">
-        <!-- sign Up form section end-->
-        <div class="overlay-container">
-            <div class="overlay">
-                <div class="overlay-pannel overlay-right">
-                    <img src="{{ asset('images/image2.svg') }}" alt="" srcset="">
+    <div class="login-box">
+        <div class="container" id="container">
+            <!-- sign Up form section end-->
+            <div class="overlay-container">
+                <div class="overlay">
+                    <div class="overlay-pannel overlay-right">
+                        <img src="{{ asset('images/image2.svg') }}" alt="" srcset="">
+                    </div>
                 </div>
             </div>
-        </div>
-        <!-- sign in form section start-->
-        <div class="form sign_in">
-            <form method="POST" action="{{ route('login') }}">
-                @csrf
-                <img src="{{ asset('images/image3.svg') }}" alt="" width="101" height="30"
-                    srcset="">
-                <h1>Đăng nhập</h1>
-                <div class="account">
-                    <p>Tên đăng nhập</p>
-                    <input type="string" name="username" placeholder="Tài khoản">
-                </div>
-                @if ($errors->has('username'))
-                    <span class="invalid-feedback" role="alert" style="display: block">
-                        <strong>{{ $errors->first('username') }}</strong>
-                    </span>
-                @endif
-                <input type="password" name="password" placeholder="Mật khẩu">
-                @if ($errors->has('password'))
-                    <span class="invalid-feedback" role="alert" style="display: block">
-                        <strong>{{ $errors->first('password') }}</strong>
-                    </span>
-                @endif
-                <button type="submit">Đăng nhập</button>
+            <!-- sign in form section start-->
+            <div class="form sign_in">
+                <form method="POST" action="{{ route('login') }}">
+                    @csrf
+                    <img src="{{ asset('images/image3.svg') }}" alt="" width="101" height="30"
+                        srcset="">
+                    <h1>Đăng nhập</h1>
+                    <div class="account">
+                        <p>Tên đăng nhập</p>
+                        <input type="string" name="username" placeholder="Tài khoản">
+                    </div>
+                    @if ($errors->has('username'))
+                        <span class="invalid-feedback" role="alert" style="display: block">
+                            <strong>{{ $errors->first('username') }}</strong>
+                        </span>
+                    @endif
+                    <input type="password" name="password" placeholder="Mật khẩu">
+                    @if ($errors->has('password'))
+                        <span class="invalid-feedback" role="alert" style="display: block">
+                            <strong>{{ $errors->first('password') }}</strong>
+                        </span>
+                    @endif
+                    <button type="submit">Đăng nhập</button>
 
-                <div class="contact">
-                    <p>CHĂM SÓC KHÁCH HÀNG</p>
-                    <span>Hotline: 18008000 Nhánh 4</span>
-                </div>
-            </form>
-        </div>
+                    <div class="contact">
+                        <p>CHĂM SÓC KHÁCH HÀNG</p>
+                        <span>Hotline: 18008000 Nhánh 4</span>
+                    </div>
+                </form>
+            </div>
 
+        </div>
     </div>
-
+    <p class="license">
+        2017© Bản quyền thuộc Tập đoàn Công nghiệp Viễn thông Quân Đội
+    </p>
     <script src="{{ asset('themes/backend/vendor/admin-lte/plugins/jquery/jquery.min.js') }}"></script>
 
     <script src="{{ asset('themes/backend/vendor/admin-lte/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
