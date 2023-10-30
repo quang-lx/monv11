@@ -16,13 +16,13 @@ mix.copyDirectory('resources/images', 'assets/images');
  * Copy node module
  */
 
- // mix.copyDirectory('node_modules/admin-lte', 'assets/vendor/admin-lte');
- // mix.copyDirectory('resources/vendor/font-awesome', 'assets/vendor/font-awesome');
- // mix.copyDirectory('node_modules/bootstrap', 'assets/vendor/bootstrap');
- // mix.copyDirectory('resources/js/library/jquery-ui', 'assets/vendor/jquery-ui');
- // mix.copyDirectory('node_modules/font-awesome/fonts', '../../public/fonts/vendor/font-awesome');
- // mix.copyDirectory('node_modules/element-ui/lib/theme-chalk/fonts', '../../public/fonts/vendor/element-ui/lib/theme-chalk');
- // mix.copyDirectory('resources/js/library/tinymce4.7.5', 'assets/vendor/tinymce');
+//  mix.copyDirectory('node_modules/admin-lte', 'assets/vendor/admin-lte');
+//  mix.copyDirectory('resources/vendor/font-awesome', 'assets/vendor/font-awesome');
+//  mix.copyDirectory('node_modules/bootstrap', 'assets/vendor/bootstrap');
+//  mix.copyDirectory('resources/js/library/jquery-ui', 'assets/vendor/jquery-ui');
+//  mix.copyDirectory('node_modules/font-awesome/fonts', '../../public/fonts/vendor/font-awesome');
+//  mix.copyDirectory('node_modules/element-ui/lib/theme-chalk/fonts', '../../public/fonts/vendor/element-ui/lib/theme-chalk');
+//  mix.copyDirectory('resources/js/library/tinymce4.7.5', 'assets/vendor/tinymce');
 
 
 /**
