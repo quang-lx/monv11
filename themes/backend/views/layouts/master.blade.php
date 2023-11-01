@@ -49,7 +49,7 @@
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
     @routes
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini">
 <div class="wrapper" id="app">
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -82,7 +82,7 @@
 
 
     </div>
-    @include('backend::partials.footer')
+    {{-- @include('backend::partials.footer') --}}
 
 </div><!-- ./wrapper -->
 <script>
