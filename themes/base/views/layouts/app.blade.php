@@ -8,7 +8,6 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="user-api-token" content="{{ !empty($user) ? $user->getFirstTokenKey() : '' }}">
     <meta name="current-locale" content="{{ app()->getLocale() }}">
-    {!! SEO::generate() !!}
     <script>
       var user = null;
       @if(!empty($user))

@@ -156,7 +156,7 @@
                                               ></div>
                                             <div v-if="modelForm.is_new">
                                               <div class="mb-4">
-                                                <el-form-item :label="$t('user.label.password')" 
+                                                <el-form-item :label="$t('user.label.password')"
                                                               :class="{'el-form-item is-error': form.errors.has('password') }">
                                                     <el-input v-model="modelForm.password"
                                                               autocomplete="off"
@@ -338,7 +338,7 @@
         if (this.$route.params.userId !== undefined) {
           this.loading = true;
           routeUri = route('api.users.find', {user: this.$route.params.userId});
-          axios.get(routeUri)
+         window.axios.get(routeUri)
           .then((response) => {
             this.loading = false;
             this.modelForm = response.data.data;
@@ -350,7 +350,7 @@
       },
 
       fetchRoles() {
-        axios.get(route('api.roles.all', {module: 'admin', per_page: 1000}))
+       window.axios.get(route('api.roles.all', {module: 'admin', per_page: 1000}))
         .then((response) => {
           this.roles = response.data.data;
         });

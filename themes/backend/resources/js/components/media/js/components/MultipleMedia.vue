@@ -108,7 +108,7 @@
                 this.$emit('fileUnselected', { id, zone: this.zone });
             },
             fetchMedia() {
-                axios.get(route('api.media.get-by-zone-and-entity', {
+               window.axios.get(route('api.media.get-by-zone-and-entity', {
                     zone: this.zone,
                     entity: this.entity,
                     entity_id: this.entityId,

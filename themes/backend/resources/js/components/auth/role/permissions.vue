@@ -165,7 +165,7 @@
                     in_role: (this.type === 'add')? 0: 1
                 };
 
-                axios.get(route('api.permissions.index', _.merge(properties, customProperties)))
+               window.axios.get(route('api.permissions.index', _.merge(properties, customProperties)))
                     .then((response) => {
                         this.tableIsLoading = false;
                         this.tableIsLoading = false;
@@ -206,7 +206,7 @@
                 if (this.checkedPermissions.length) {
                     const route = this.getRoute(type)
                     let checkedIds = this.checkedPermissions.map(permission => permission.name);
-                    axios.post(route,{permissions: checkedIds})
+                   window.axios.post(route,{permissions: checkedIds})
                         .then((response) => {
 
                             this.$message({

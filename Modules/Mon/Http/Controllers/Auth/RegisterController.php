@@ -48,7 +48,6 @@ class RegisterController extends WebController
      */
     public function showRegistrationForm()
     {
-        $this->seo()->setTitle(__('Register'));
         return $this->view('auth.register');
     }
 

@@ -1,6 +1,6 @@
 
 window._ = require('lodash');
-import router from 'vue-router';
+import axios from 'axios';
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -20,7 +20,7 @@ import router from 'vue-router';
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-window.axios = require('axios');
+window.axios = axios.create();
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 window.axios.interceptors.response.use(function (response) {
@@ -28,7 +28,7 @@ window.axios.interceptors.response.use(function (response) {
 }, function (error) {
     console.log(error.response)
     if (error.response.status === 401) {
-      //  window.location.href = '/logout'; //relative to domain
+       window.location.href = '/logout'; //relative to domain
     }
     return Promise.reject(error)
 })
@@ -39,9 +39,10 @@ window.axios.interceptors.response.use(function (response) {
  */
 
 let token = document.head.querySelector('meta[name="csrf-token"]');
-
+console.log(token.content);
 if (token) {
     window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+
 } else {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }

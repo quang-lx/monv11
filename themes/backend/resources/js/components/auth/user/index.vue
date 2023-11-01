@@ -132,7 +132,7 @@
                     search: this.searchQuery,
                 };
 
-                axios.get(route('api.users.index', _.merge(properties, customProperties)))
+               window.axios.get(route('api.users.index', _.merge(properties, customProperties)))
                     .then((response) => {
                         this.tableIsLoading = false;
                         this.tableIsLoading = false;

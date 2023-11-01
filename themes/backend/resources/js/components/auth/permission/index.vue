@@ -158,7 +158,7 @@ export default {
         search: this.searchQuery,
       };
 
-      axios
+        window.axios
         .get(
           route("api.permissions.index", _.merge(properties, customProperties))
         )

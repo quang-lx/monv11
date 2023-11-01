@@ -24,7 +24,7 @@
                     confirmButtonClass: 'el-button--danger',
                 }).then(() => {
                     const vm = this;
-                    axios.delete(this.scope.row.urls.delete_url)
+                   window.axios.delete(this.scope.row.urls.delete_url)
                         .then((response) => {
                             if (response.data.errors === false) {
                                 vm.$message({

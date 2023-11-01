@@ -106,6 +106,7 @@
 </script>
 
 {!! \Modules\Mon\Support\Facades\Theme::js('vendor/admin-lte/plugins/bootstrap/js/bootstrap.bundle.min.js') !!}
+{!! \Modules\Mon\Support\Facades\Theme::js('vendor/admin-lte/plugins/moment/moment.min.js') !!}
 {!! \Modules\Mon\Support\Facades\Theme::js('vendor/admin-lte/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') !!}
 {!! \Modules\Mon\Support\Facades\Theme::js('vendor/admin-lte/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') !!}
 {!! \Modules\Mon\Support\Facades\Theme::js('vendor/admin-lte/dist/js/adminlte.min.js') !!}

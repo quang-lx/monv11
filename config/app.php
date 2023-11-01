@@ -171,6 +171,7 @@ return [
         'Maatwebsite\Sidebar\SidebarServiceProvider',
         Intervention\Image\ImageServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
+        PHPOpenSourceSaver\JWTAuth\Providers\LaravelServiceProvider::class,
 
 
     ])->toArray(),

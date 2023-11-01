@@ -149,7 +149,6 @@ class LoginController extends WebController
      */
     public function showLoginForm()
     {
-        $this->seo()->setTitle(__('Login'));
         return $this->view('auth.login');
     }
     /**
@@ -159,7 +158,6 @@ class LoginController extends WebController
      */
     public function showAdminLoginForm()
     {
-        $this->seo()->setTitle(__('Login'));
         return view('backend::login');
     }
 }

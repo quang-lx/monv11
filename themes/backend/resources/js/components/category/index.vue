@@ -170,7 +170,7 @@
                     status: this.filter.status,
                 };
 
-                axios.get(route('api.category.index', _.merge(properties, customProperties)))
+               window.axios.get(route('api.category.index', _.merge(properties, customProperties)))
                     .then((response) => {
                         this.tableIsLoading = false;
                         this.tableIsLoading = false;

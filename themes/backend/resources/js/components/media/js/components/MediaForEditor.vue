@@ -232,7 +232,7 @@
                     search: this.searchQuery,
                     folder_id: this.folderId,
                 };
-                 axios.get(route('api.media.all-vue', _.merge(properties, customProperties)))
+                window.axios.get(route('api.media.all-vue', _.merge(properties, customProperties)))
                     .then((response) => {
                         this.tableIsLoading = false;
                         this.data = response.data.data;
@@ -261,7 +261,7 @@
                     ];
                     return;
                 }
-                axios.get(route('api.media.folders.breadcrumb', { folder: folderId }))
+               window.axios.get(route('api.media.folders.breadcrumb', { folder: folderId }))
                     .then((response) => {
                         this.folderBreadcrumb = response.data;
                     });
@@ -329,7 +329,7 @@
                 })
                     .then(() => {
                         this.filesAreDeleting = true;
-                        axios.post(route('api.media.batch-destroy'), {
+                       window.axios.post(route('api.media.batch-destroy'), {
                             files: this.selectedMedia,
                         })
                             .then((response) => {

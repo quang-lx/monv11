@@ -274,7 +274,7 @@
                 if (this.$route.params.userId !== undefined) {
                     this.loading = true;
                     routeUri = route('api.users.find', {user: this.$route.params.userId});
-                    axios.get(routeUri)
+                   window.axios.get(routeUri)
                         .then((response) => {
                             this.loading = false;
                             this.modelForm = response.data.data;
@@ -286,7 +286,7 @@
             },
 
             fetchRoles() {
-                axios.get(route('api.roles.all'))
+               window.axios.get(route('api.roles.all'))
                     .then((response) => {
                         this.roles = response.data.data;
                     });
