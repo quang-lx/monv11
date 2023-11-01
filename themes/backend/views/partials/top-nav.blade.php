@@ -2,7 +2,7 @@
     <li class="nav-item dropdown">
         <div class="d-flex">
             <div class="image">
-                <img src="{{ URL::asset('/themes/backend/images/avatar.svg') }}" class="img-circle elevation-2" alt="User Image" width="35">
+                <img src="{{ URL::asset('/images/image4.png') }}" class="img-circle elevation-2" alt="User Image" width="40" height="40">
             </div>
             <div class="info">
                 <a class="nav-link" data-toggle="dropdown" href="#"><span>{{ $currentUser->name }}</span> </a>

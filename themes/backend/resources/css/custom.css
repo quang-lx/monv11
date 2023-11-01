@@ -301,3 +301,18 @@ aside .sidebar{
     right: 1rem;
     top: 1rem;
 }
+
+label:not(.form-check-label):not(.custom-file-label) {
+    color: #999;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+body:not(.layout-fixed) .main-sidebar {
+    height: inherit;
+    min-height: 0;
+    position: absolute;
+    top: 0;
+}
