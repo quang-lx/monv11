@@ -30,7 +30,7 @@ return [
     'news' => 'Tin tức',
 
 
-    'voucher' => 'Voucher',
+    'home' => 'Trang chủ',
     'packages' => 'Gói cước',
     'customers' => 'Khách hàng',
 

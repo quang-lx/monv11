@@ -21,6 +21,16 @@ class UserSidebarExtender extends AbstractAdminSidebar
 
         $menu->group('system administration', function (Group $group) {
             $group->hideHeading(true);
+            $group->item(trans('backend::sidebar.home'), function (Item $item) {
+                $item->icon('fas fa-warehouse');
+                $item->weight(10);
+                $item->authorize(
+                    $this->auth->hasAccess('admin.dashboard.index')
+                );
+                $item->route('admin.dashboard.index');
+                $item->isActiveWhen('/admin');
+
+            });
             $group->item(trans('backend::sidebar.system administration'), function (Item $item) {
                 $item->icon('fas fa-lock');
                 $item->weight(10);

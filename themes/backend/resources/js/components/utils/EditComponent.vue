@@ -1,10 +1,7 @@
 <template>
-    <el-button
-            size="mini"
-            :disabled="disabled"
-            @click.prevent="goToEditPage()">
-        <i class="far fa-edit"></i>
-    </el-button>
+
+    <i class="far fa-edit" :disabled="disabled"
+       @click.prevent="goToEditPage()" style = "cursor:pointer"></i>
 </template>
 
 <script>
