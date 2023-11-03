@@ -24,7 +24,7 @@
                 <div class="row justify-content-end mb-2">
 
                     <div class="col-md-4   ">
-                        <el-input prefix-icon="el-icon-search" @keyup.native="performSearch" placeholder="Nhập ID, tiêu đề, người tạo"
+                        <el-input suffix-icon="el-icon-search" @keyup.native="performSearch" placeholder="Nhập ID, tiêu đề, người tạo"
                                   v-model="searchQuery">
                         </el-input>
                     </div>
@@ -41,7 +41,7 @@
                                     <ul class="nav nav-pills ml-auto">
                                         <li class="nav-item">
                                             <router-link :to="{name: 'admin.news.create'}">
-                                                <el-button type="primary"  size="small"   class="btn btn-flat">
+                                                <el-button type="primary"  class="btn btn-flat btn-primary">
                                                     {{ $t('news.label.create_news') }}
                                                 </el-button>
                                             </router-link>

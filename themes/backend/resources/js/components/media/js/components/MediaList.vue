@@ -33,7 +33,7 @@
 
                     </div>
                     <div class="offset-md-2 col-md-4 float-right">
-                        <el-input prefix-icon="el-icon-search" @keyup.native="performSearch"
+                        <el-input suffix-icon="el-icon-search" @keyup.native="performSearch"
                                   v-model="searchQuery">
                         </el-input>
                     </div>

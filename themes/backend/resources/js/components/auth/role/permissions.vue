@@ -7,7 +7,7 @@
             <div class="card-tools">
                 <ul class="nav nav-pills ml-auto">
                     <li class="nav-item">
-                        <el-button type="primary" size="small"    class="btn btn-flat" @click="storePermission('add')">
+                        <el-button type="primary" size="small"    class="btn btn-flat btn-primary" @click="storePermission('add')">
                             {{ $t('role.label.assign') }}
                         </el-button>
                     </li>
@@ -47,7 +47,7 @@
                             </el-select>
                         </div>
                         <div class=" col-sm-6">
-                            <el-input prefix-icon="el-icon-search" @keyup.native="performSearch"
+                            <el-input suffix-icon="el-icon-search" @keyup.native="performSearch"
                                       v-model="searchQuery">
                             </el-input>
                         </div>

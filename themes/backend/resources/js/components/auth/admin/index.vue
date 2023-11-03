@@ -23,14 +23,14 @@
             <div class="container-fluid">
                 <div class="row justify-content-between mb-2">
                     <div class="col-md-4   ">
-                        <el-input prefix-icon="el-icon-search" @keyup.native="performSearch" placeholder="Nhập ID, Tên, Tài khoản, Email"
+                        <el-input suffix-icon="el-icon-search" @keyup.native="performSearch" placeholder="Nhập ID, Tên, Tài khoản, Email"
                                   v-model="searchQuery">
                         </el-input>
                     </div>
                     <div class="col-md-4">
                         <router-link :to="{name: 'admin.admins.create'}" class="float-sm-right">
-                            <el-button type="primary"  size="small"   class="btn btn-flat">
-                                <i class="el-icon-plus"></i>{{ $t('user.label.create_admin') }}
+                            <el-button type="primary" class="btn btn-flat  btn-primary">
+                               {{ $t('user.label.create_admin') }}
                             </el-button>
                         </router-link>
                     </div>

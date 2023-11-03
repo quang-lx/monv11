@@ -316,3 +316,68 @@ body:not(.layout-fixed) .main-sidebar {
     position: absolute;
     top: 0;
 }
+
+.btn-primary{
+    border-radius: 4px !important;
+    background: #6589FF !important;
+    color: var(--rest-text-icon-default-foreground-3, #FFF) !important;
+    font-size: 14px !important;
+    font-style: normal !important;
+    font-weight: 500 !important;
+}
+
+.btn-cancel{
+    border-radius: 4px !important;
+    border: 1px solid #ECECF2 !important;
+    color: var(--rest-text-icon-default-foreground, #242424) !important;
+    font-size: 14px !important;
+    font-style: normal !important;
+    font-weight: 500 !important;
+}
+
+.info>.dropdown-menu{
+    border-radius: 12px;
+    padding: 16px;
+    gap: 10px;
+}
+
+.info>.dropdown-menu .account h3{
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px; 
+    color: var(--basic-8, #2F363D);
+}
+
+.info>.dropdown-menu .account p{
+    color: var(--basic-4, #A0A4A8);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px;
+}
+
+.info>.dropdown-menu p{
+    color: var(--basic-8, #2F363D);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px;
+}
+
+.langauge .btn-group{
+    border: 0.2px solid #52575C;
+    border-radius: 4px;
+}
+.langauge .btn-group label{
+    display: flex;
+    padding: 4px 8px;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+}
+
+.langauge .btn-group .active{
+    border: 1px solid var(--common-5, #0381FE);
+}
+

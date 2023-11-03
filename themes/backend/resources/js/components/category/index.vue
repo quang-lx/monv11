@@ -33,7 +33,7 @@
                         </el-radio-group>
                     </div>
                     <div class="col-md-4   ">
-                        <el-input prefix-icon="el-icon-search" @keyup.native="performSearch" placeholder="Nhập tiêu đề"
+                        <el-input suffix-icon="el-icon-search" @keyup.native="performSearch" placeholder="Nhập tiêu đề"
                                   v-model="searchQuery">
                         </el-input>
                     </div>
@@ -50,7 +50,7 @@
                                     <ul class="nav nav-pills ml-auto">
                                         <li class="nav-item">
                                             <router-link :to="{name: 'admin.category.create'}">
-                                                <el-button type="primary"  size="small"   class="btn btn-flat">
+                                                <el-button type="primary"  class="btn btn-flat btn-primary">
                                                     {{ $t('category.label.create_category') }}
                                                 </el-button>
                                             </router-link>

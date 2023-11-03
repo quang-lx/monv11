@@ -22,7 +22,7 @@
                         <div class="tool-bar el-row" style="padding-bottom: 20px;">
 
                             <div class="search el-col el-col-5">
-                                <el-input prefix-icon="el-icon-search" @keyup.native="performSearch" v-model="searchQuery">
+                                <el-input suffix-icon="el-icon-search" @keyup.native="performSearch" v-model="searchQuery">
                                 </el-input>
                             </div>
                         </div>

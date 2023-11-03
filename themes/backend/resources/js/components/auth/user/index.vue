@@ -23,7 +23,7 @@
             <div class="container-fluid">
                 <div class="row justify-content-end mb-2">
                     <div class="col-md-4   ">
-                        <el-input prefix-icon="el-icon-search" @keyup.native="performSearch" placeholder="Nhập ID, Tên, Tài khoản, Email"
+                        <el-input suffix-icon="el-icon-search" @keyup.native="performSearch" placeholder="Nhập ID, Tên, Tài khoản, Email"
                                   v-model="searchQuery">
                         </el-input>
                     </div>
@@ -40,7 +40,7 @@
                                     <ul class="nav nav-pills ml-auto">
                                         <li class="nav-item">
                                             <router-link :to="{name: 'admin.users.create'}">
-                                                <el-button type="primary"  size="small"   class="btn btn-flat">
+                                                <el-button type="primary"  class="btn btn-flat btn-primary">
                                                     {{ $t('user.label.create_user') }}
                                                 </el-button>
                                             </router-link>

@@ -23,14 +23,13 @@
             <div class="container-fluid">
                 <div class="row justify-content-between mb-2">
                     <div class="col-md-4   ">
-                        <el-input prefix-icon="el-icon-search" @keyup.native="performSearch" placeholder="Tìm kiếm"
+                        <el-input suffix-icon="el-icon-search" @keyup.native="performSearch" placeholder="Tìm kiếm"
                                   v-model="searchQuery">
                         </el-input>
                     </div>
                     <div class="col-md-4">
                         <router-link :to="{name: 'admin.roles.create'}" class="float-sm-right">
-                            <el-button type="primary" size="small" class="btn ">
-                                <i class="el-icon-plus"></i>
+                            <el-button type="primary" class="btn btn-primary">
                                 {{ $t('role.label.create_role') }}
                             </el-button>
                         </router-link>

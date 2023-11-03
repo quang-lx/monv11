@@ -1,7 +1,7 @@
 <?php
 return [
     'label' => [
-        'profile' => 'Profile'
+        'profile' => 'Thông tin tài khoản'
     ],
 
 

@@ -78,11 +78,11 @@
                             </div><!-- /.card-body -->
                             <div class="card-footer d-flex justify-content-end ">
                                 <el-button type="primary" @click="onSubmit()" size="small" :loading="loading"
-                                           class="btn btn-flat ">
+                                           class="btn btn-flat  btn-primary">
                                     {{ $t('mon.button.save') }}
                                 </el-button>
 
-                                <el-button class="btn btn-flat pull-right" size="small" @click="onCancel()">{{
+                                <el-button class="btn btn-flat pull-right  btn-cancel" size="small" @click="onCancel()">{{
                                     $t('mon.button.cancel') }}
                                 </el-button>
                             </div>
