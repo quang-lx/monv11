@@ -23,16 +23,18 @@
             <div class="container-fluid">
                 <div class="row justify-content-between mb-2">
                     <div class="col-md-4   ">
-                        <el-input suffix-icon="el-icon-search" @keyup.native="performSearch" placeholder="Tìm kiếm"
-                                  v-model="searchQuery">
-                        </el-input>
+                        <router-link :to="{name: 'admin.roles.create'}" class="float-sm-left">
+                            <i class="el-icon-plus"></i>
+
+                                {{ $t('role.label.create_role') }}
+
+                        </router-link>
                     </div>
                     <div class="col-md-4">
-                        <router-link :to="{name: 'admin.roles.create'}" class="float-sm-right">
-                            <el-button type="primary" class="btn btn-primary">
-                                {{ $t('role.label.create_role') }}
-                            </el-button>
-                        </router-link>
+
+                        <el-input suffix-icon="el-icon-search" @keyup.native="performSearch" placeholder="Tìm kiếm"   size="medium"
+                                  v-model="searchQuery">
+                        </el-input>
                     </div>
                 </div>
                 <div class="row">
@@ -54,7 +56,7 @@
                                             ref="dataTable"
                                             v-loading.body="tableIsLoading"
                                             @sort-change="handleSortChange">
-                                        <el-table-column prop="id" :label="$t('role.label.id')" width="75"
+                                        <el-table-column prop="id" :label="$t('common.stt')" width="75"  type="index"
                                                          sortable="custom">
 
                                         </el-table-column>
@@ -65,12 +67,12 @@
 
                                         </el-table-column>
 
-                                        <el-table-column prop="updated_at" :label="$t('role.label.updated_at')"
+                                        <el-table-column prop="updated_at" :label="$t('role.label.created_at')"
                                                          sortable="custom">
 
                                         </el-table-column>
 
-                                        <el-table-column prop="actions" width="130">
+                                        <el-table-column prop="actions" width="80">
                                             <template slot-scope="scope">
                                                 <edit-button
                                                         :to="{name: 'admin.roles.edit', params: {roleId: scope.row.id}}"></edit-button>

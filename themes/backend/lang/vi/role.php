@@ -2,14 +2,14 @@
 return [
     'label' => [
         'id' => 'ID',
-        'name' => 'Tên nhóm',
+        'name' => 'Tên vai trò',
         'description' => 'Mô tả',
         'guard_name' => 'Guard name',
         'created_at' => 'Ngày tạo',
         'updated_at' => 'Ngày cập nhật',
         'create_role' => 'Thêm mới',
         'update_role' => 'Cập nhật',
-        'roles' => 'Nhóm quyền',
+        'roles' => 'Danh sách vai trò',
         'permissions' => 'Danh sách chức năng',
         'list_permissions' => 'Danh sách chức năng',
         'selected_permissions' => 'Chức năng đã chọn',

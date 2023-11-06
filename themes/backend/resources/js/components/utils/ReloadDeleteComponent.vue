@@ -1,5 +1,5 @@
 <template>
-     <i class="far  fa-trash-alt" @click="deleteRow" style = "cursor:pointer; padding-left: 8px"></i>
+     <i class="el-icon-delete" @click="deleteRow" style = "cursor:pointer; padding-left: 8px"></i>
 
 </template>
 

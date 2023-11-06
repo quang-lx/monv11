@@ -1,4 +1,6 @@
 const mix = require('laravel-mix');
+const WebpackShellPluginNext = require('webpack-shell-plugin-next');
+
 const themeInfo = require('./theme.json');
 mix.js(['resources/js/vueinit.js'], 'assets/js/vueinit.js').vue({ version: 2 });
 mix.copy('resources/js/library/jquery.min.js', 'assets/js/jquery.min.js');
@@ -38,7 +40,9 @@ mix.webpackConfig({
         '.css',
         '.scss'
       ]},
-    // plugins: [
-    //     new WebpackShellPlugin({onBuildExit: ['php ../../artisan theme:publish ' + themeInfo.code]}),
-    // ],
+    plugins: [
+        new WebpackShellPluginNext({
+            onBuildExit: {scripts: ['php ../../artisan theme:publish ' + themeInfo.code]}
+        }),
+    ],
 });

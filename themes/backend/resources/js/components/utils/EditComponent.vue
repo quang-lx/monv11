@@ -1,7 +1,8 @@
 <template>
-
-    <i class="far fa-edit" :disabled="disabled"
+    <i class="el-icon-edit" :disabled="disabled"
        @click.prevent="goToEditPage()" style = "cursor:pointer"></i>
+
+
 </template>
 
 <script>

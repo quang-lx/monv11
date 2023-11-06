@@ -9,6 +9,25 @@ export default {
                 "sign in": "Sign in"
             }
         },
+        "media": {
+            "label": {
+                "media": "Media",
+                "choose_file": "Choose file",
+                "created_at": "Created at",
+                "filename": "Filename",
+                "move": "Move",
+                "upload file": "Upload file",
+                "title": "Title",
+                "description": "Description"
+            },
+            "folders": {
+                "create_resource": "Create folder",
+                "folder_name": "Folder name"
+            },
+            "insert": "Insert image",
+            "remove_media": "Remove media",
+            "Browse": "Browse"
+        },
         "mon": {
             "button": {
                 "save": "Save",
@@ -31,32 +50,26 @@ export default {
                 "permission_denied": "Permission denied...."
             }
         },
-        "user": {
+        "permission": {
             "label": {
                 "id": "ID",
-                "email": "Email",
                 "name": "Name",
-                "phone": "Phone",
+                "guard_name": "Guard name",
                 "created_at": "Created at",
                 "updated_at": "Updated at",
-                "password_confirmation": "Password confirmation",
-                "password": "Password",
-                "create_user": "Create User",
-                "update_user": "Update User",
-                "users": "Users",
-                "roles": "Roles",
-                "change_password": "Change password"
-            },
-            "tabs": {
-                "data": "Info",
-                "roles": "Roles",
-                "new_password": "New password"
+                "create_permission": "Create Permission",
+                "update_permission": "Update Permission",
+                "permissions": "Permissions"
             },
             "message": {
-                "create success": "Create User Success.",
-                "update success": "Update User Success.",
-                "delete success": "Delete User Success.",
-                "change password success": "Change password success."
+                "create success": "Create Permission Success.",
+                "update success": "Update Permission Success.",
+                "delete success": "Delete Permission Success."
+            }
+        },
+        "profile": {
+            "label": {
+                "profile": "Profile"
             }
         },
         "role": {
@@ -88,49 +101,6 @@ export default {
             "allow all": "Allow all",
             "deny all": "Deny all"
         },
-        "profile": {
-            "label": {
-                "profile": "Profile"
-            }
-        },
-        "media": {
-            "label": {
-                "media": "Media",
-                "choose_file": "Choose file",
-                "created_at": "Created at",
-                "filename": "Filename",
-                "move": "Move",
-                "upload file": "Upload file",
-                "title": "Title",
-                "description": "Description"
-            },
-            "folders": {
-                "create_resource": "Create folder",
-                "folder_name": "Folder name"
-            },
-            "insert": "Insert image",
-            "remove_media": "Remove media",
-            "Browse": "Browse"
-        },
-        "permission": {
-            "label": {
-                "id": "ID",
-                "name": "Name",
-                "guard_name": "Guard name",
-                "created_at": "Thời gian tạo",
-                "updated_at": "Thời gian cập nhật",
-                "create_permission": "Tạo quyền",
-                "update_permission": "Cập nhật quyền",
-                "permissions": "Quyền",
-                "title": "Tiêu đề",
-                "group_name": "Nhóm"
-            },
-            "message": {
-                "create success": "Tạo quyền thành công.",
-                "update success": "Cập nhật quyền thành công.",
-                "delete success": "Xoá quyền thành công."
-            }
-        },
         "sidebar": {
             "system administration": "System administration",
             "roles and permission": "Roles and permission",
@@ -147,37 +117,44 @@ export default {
             "constructor": "Constructor",
             "resource": "Resource",
             "partner": "Partner"
+        },
+        "user": {
+            "label": {
+                "id": "ID",
+                "email": "Email",
+                "name": "Name",
+                "phone": "Phone",
+                "created_at": "Created at",
+                "updated_at": "Updated at",
+                "password_confirmation": "Password confirmation",
+                "password": "Password",
+                "create_user": "Create User",
+                "update_user": "Update User",
+                "users": "Users",
+                "roles": "Roles",
+                "change_password": "Change password"
+            },
+            "tabs": {
+                "data": "Info",
+                "roles": "Roles",
+                "new_password": "New password"
+            },
+            "message": {
+                "create success": "Create User Success.",
+                "update success": "Update User Success.",
+                "delete success": "Delete User Success.",
+                "change password success": "Change password success."
+            }
         }
     },
     "vi": {
-        "news": {
+        "auth": {
+            "failed": "These credentials do not match our records.",
+            "throttle": "Too many login attempts. Please try again in {seconds} seconds.",
             "label": {
-                "news": "Tin tức",
-                "category": "Danh mục",
-                "category_id": "Danh mục",
-                "id": "ID",
-                "title": "Tiêu đề",
-                "slug": "Đường dẫn",
-                "description": "Mô tả ngắn",
-                "content": "Nội dung",
-                "status": "Trạng thái",
-                "author": "Tác giả",
-                "from_source": "Nguồn tin",
-                "create_news": "Tạo tin tức",
-                "update_news": "Cập nhật",
-                "tags": "Thẻ tag",
-                "flag_hot": "Mục hot",
-                "flag_featured": "Mục tiêu biểu",
-                "flag_most_read": "Mục đọc nhiều nhất",
-                "flag_video": "Mục video",
-                "meta_keywords": "Thẻ mô tả từ khóa",
-                "meta_title": "Thẻ mô tả tiêu đề",
-                "meta_description": "Thẻ tóm tắt nội dung"
-            },
-            "message": {
-                "create success": "Tạo tin tức thành công.",
-                "update success": "Cập nhật tin tức thành công.",
-                "delete success": "Xóa tin tức thành công."
+                "sign in to start your session": "Đăng nhập để bắt đầu phiên của bạn",
+                "remember me": "Nhớ tài khoản",
+                "sign in": "Đăng nhập"
             }
         },
         "category": {
@@ -200,154 +177,9 @@ export default {
                 "delete success": "Xóa Chuyên mục  thành công."
             }
         },
-        "auth": {
-            "failed": "These credentials do not match our records.",
-            "throttle": "Too many login attempts. Please try again in {seconds} seconds.",
-            "label": {
-                "sign in to start your session": "Đăng nhập để bắt đầu phiên của bạn",
-                "remember me": "Nhớ tài khoản",
-                "sign in": "Đăng nhập"
-            }
-        },
-        "mon": {
-            "button": {
-                "save": "Lưu",
-                "create": "Tạo",
-                "cancel": "Hủy",
-                "delete": "Xóa",
-                "close": "Đóng"
-            },
-            "all": "Tất cả",
-            "confirm": "Xác nhận",
-            "delete cancelled": "Bỏ qua",
-            "cancel": {
-                "Are you sure to cancel?": "Bạn có chắc chắn muốn hủy không",
-                "Yes": "Đồng ý",
-                "No": "Không"
-            },
-            "error": {
-                "Title": "Lỗi",
-                "Message": "Có lỗi xảy ra."
-            },
-            "modal": {
-                "confirmation-message": "Bạn có chắc chắn muốn xóa bản ghi này không?",
-                "title": "Xác nhận"
-            },
-            "breadcrumb": {
-                "home": "Trang chủ"
-            },
-            "message": {
-                "permission_denied": "Không có quyền truy cập...."
-            }
-        },
-        "user": {
-            "label": {
-                "id": "ID",
-                "image": "Ảnh",
-                "username": "Tên đăng nhập",
-                "email": "Email",
-                "name": "Tên",
-                "phone": "Số điện thoại",
-                "status": "Trạng thái",
-                "created_at": "Ngày tạo",
-                "updated_at": "Ngày cập nhật",
-                "password_confirmation": "Xác nhận mật khẩu",
-                "password": "Mật khẩu",
-                "password_new": "Mật khẩu mới",
-                "password_confirmation_new": "Nhập lại mật khẩu mới",
-                "create_user": "Tạo người dùng",
-                "update_user": "Cập nhật",
-                "create_admin": "THÊM TÀI KHOẢN",
-                "update_admin": "Sửa tài khoản",
-                "users": "Tài khoản",
-                "roles": "Nhóm quyền",
-                "change_password": "Đổi mật khẩu",
-                "admins": "Quản lý tài khoản CMS"
-            },
-            "tabs": {
-                "data": "Thông tin chung",
-                "roles": "Nhóm quyền",
-                "new_password": "Mật khẩu mới"
-            },
-            "message": {
-                "create success": "Tạo tài khoản thành công.",
-                "update success": "Cập nhật tài khoản thành công.",
-                "delete success": "Xóa tài khoản thành công.",
-                "change password success": "Đổi mật khẩu thành công.",
-                "not allow self delete": "Không cho phép xóa tài khoản bạn đang đăng nhập."
-            }
-        },
-        "role": {
-            "label": {
-                "id": "ID",
-                "name": "Tên nhóm",
-                "description": "Mô tả",
-                "guard_name": "Guard name",
-                "created_at": "Ngày tạo",
-                "updated_at": "Ngày cập nhật",
-                "create_role": "Thêm mới",
-                "update_role": "Cập nhật",
-                "roles": "Nhóm quyền",
-                "permissions": "Danh sách chức năng",
-                "list_permissions": "Danh sách chức năng",
-                "selected_permissions": "Chức năng đã chọn",
-                "information": "Thông tin nhóm quyền",
-                "assign": "Gán",
-                "remove": "Hủy"
-            },
-            "message": {
-                "create success": "Thêm mới nhóm quyền thành công.",
-                "update success": "Cập nhật nhóm quyền thành công.",
-                "delete success": "Xóa nhóm quyền thành công.",
-                "add permissions success": "Gán chức năng thành công",
-                "remove permissions success": "Bỏ chức năng thành công"
-            },
-            "allow": "Chọn",
-            "deny": "Từ chối",
-            "allow all": "Chọn tất cả",
-            "deny all": "Từ chối tất cả"
-        },
-        "packages": {
-            "label": {
-                "packages": "Gói cước",
-                "id": "ID",
-                "name": "Tên",
-                "period_time": "Số tháng",
-                "price": "Số tiền",
-                "status": "Trạng thái",
-                "create_packages": "Tạo gói cước ",
-                "update_packages": "Cập nhật"
-            },
-            "message": {
-                "create success": "Tạo gói cước  thành công.",
-                "update success": "Cập nhật gói cước  thành công.",
-                "delete success": "Xóa gói cước  thành công."
-            }
-        },
-        "profile": {
-            "label": {
-                "profile": "Profile"
-            }
-        },
-        "voucher": {
-            "label": {
-                "voucher": "Voucher",
-                "id": "ID",
-                "name": "Tên",
-                "type": "Loại",
-                "status": "Trạng thái",
-                "amount": "Số lượng",
-                "range_time": "Thời gian",
-                "start_time": "Thời gian bắt đầu",
-                "end_time": "Thời gian kết thúc",
-                "create_voucher": "Tạo Voucher ",
-                "update_voucher": "Cập nhật"
-            },
-            "message": {
-                "create success": "Tạo Voucher  thành công.",
-                "update success": "Cập nhật Voucher  thành công.",
-                "delete success": "Xóa Voucher  thành công."
-            }
+        "common": {
+            "stt": "STT",
+            "action": "Hành động"
         },
         "customers": {
             "label": {
@@ -397,6 +229,84 @@ export default {
             "remove_media": "Remove media",
             "Browse": "Chọn file"
         },
+        "mon": {
+            "button": {
+                "save": "Lưu",
+                "create": "Tạo",
+                "cancel": "Hủy",
+                "delete": "Xóa",
+                "close": "Đóng"
+            },
+            "all": "Tất cả",
+            "confirm": "Xác nhận",
+            "delete cancelled": "Bỏ qua",
+            "cancel": {
+                "Are you sure to cancel?": "Bạn có chắc chắn muốn hủy không",
+                "Yes": "Đồng ý",
+                "No": "Không"
+            },
+            "error": {
+                "Title": "Lỗi",
+                "Message": "Có lỗi xảy ra."
+            },
+            "modal": {
+                "confirmation-message": "Bạn có chắc chắn muốn xóa bản ghi này không?",
+                "title": "Xác nhận"
+            },
+            "breadcrumb": {
+                "home": "Trang chủ"
+            },
+            "message": {
+                "permission_denied": "Không có quyền truy cập...."
+            }
+        },
+        "news": {
+            "label": {
+                "news": "Tin tức",
+                "category": "Danh mục",
+                "category_id": "Danh mục",
+                "id": "ID",
+                "title": "Tiêu đề",
+                "slug": "Đường dẫn",
+                "description": "Mô tả ngắn",
+                "content": "Nội dung",
+                "status": "Trạng thái",
+                "author": "Tác giả",
+                "from_source": "Nguồn tin",
+                "create_news": "Tạo tin tức",
+                "update_news": "Cập nhật",
+                "tags": "Thẻ tag",
+                "flag_hot": "Mục hot",
+                "flag_featured": "Mục tiêu biểu",
+                "flag_most_read": "Mục đọc nhiều nhất",
+                "flag_video": "Mục video",
+                "meta_keywords": "Thẻ mô tả từ khóa",
+                "meta_title": "Thẻ mô tả tiêu đề",
+                "meta_description": "Thẻ tóm tắt nội dung"
+            },
+            "message": {
+                "create success": "Tạo tin tức thành công.",
+                "update success": "Cập nhật tin tức thành công.",
+                "delete success": "Xóa tin tức thành công."
+            }
+        },
+        "packages": {
+            "label": {
+                "packages": "Gói cước",
+                "id": "ID",
+                "name": "Tên",
+                "period_time": "Số tháng",
+                "price": "Số tiền",
+                "status": "Trạng thái",
+                "create_packages": "Tạo gói cước ",
+                "update_packages": "Cập nhật"
+            },
+            "message": {
+                "create success": "Tạo gói cước  thành công.",
+                "update success": "Cập nhật gói cước  thành công.",
+                "delete success": "Xóa gói cước  thành công."
+            }
+        },
         "permission": {
             "label": {
                 "id": "ID",
@@ -428,6 +338,41 @@ export default {
                 "users": "Người dùng"
             }
         },
+        "profile": {
+            "label": {
+                "profile": "Thông tin tài khoản"
+            }
+        },
+        "role": {
+            "label": {
+                "id": "ID",
+                "name": "Tên vai trò",
+                "description": "Mô tả",
+                "guard_name": "Guard name",
+                "created_at": "Ngày tạo",
+                "updated_at": "Ngày cập nhật",
+                "create_role": "Thêm mới",
+                "update_role": "Cập nhật",
+                "roles": "Danh sách vai trò",
+                "permissions": "Danh sách chức năng",
+                "list_permissions": "Danh sách chức năng",
+                "selected_permissions": "Chức năng đã chọn",
+                "information": "Thông tin nhóm quyền",
+                "assign": "Gán",
+                "remove": "Hủy"
+            },
+            "message": {
+                "create success": "Thêm mới nhóm quyền thành công.",
+                "update success": "Cập nhật nhóm quyền thành công.",
+                "delete success": "Xóa nhóm quyền thành công.",
+                "add permissions success": "Gán chức năng thành công",
+                "remove permissions success": "Bỏ chức năng thành công"
+            },
+            "allow": "Chọn",
+            "deny": "Từ chối",
+            "allow all": "Chọn tất cả",
+            "deny all": "Từ chối tất cả"
+        },
         "sidebar": {
             "system administration": "Quản trị",
             "roles and permission": "Roles and permission",
@@ -439,9 +384,66 @@ export default {
             "media": "Media",
             "category": "Danh mục",
             "news": "Tin tức",
-            "voucher": "Voucher",
+            "home": "Trang chủ",
             "packages": "Gói cước",
             "customers": "Khách hàng"
+        },
+        "user": {
+            "label": {
+                "id": "ID",
+                "image": "Ảnh",
+                "username": "Tên đăng nhập",
+                "email": "Email",
+                "name": "Tên",
+                "phone": "Số điện thoại",
+                "status": "Trạng thái",
+                "created_at": "Ngày tạo",
+                "updated_at": "Ngày cập nhật",
+                "password_confirmation": "Xác nhận mật khẩu",
+                "password": "Mật khẩu",
+                "password_new": "Mật khẩu mới",
+                "password_confirmation_new": "Nhập lại mật khẩu mới",
+                "create_user": "Tạo người dùng",
+                "update_user": "Cập nhật",
+                "create_admin": "THÊM TÀI KHOẢN",
+                "update_admin": "Sửa tài khoản",
+                "users": "Tài khoản",
+                "roles": "Nhóm quyền",
+                "change_password": "Đổi mật khẩu",
+                "admins": "Quản lý tài khoản CMS"
+            },
+            "tabs": {
+                "data": "Thông tin chung",
+                "roles": "Nhóm quyền",
+                "new_password": "Mật khẩu mới"
+            },
+            "message": {
+                "create success": "Tạo tài khoản thành công.",
+                "update success": "Cập nhật tài khoản thành công.",
+                "delete success": "Xóa tài khoản thành công.",
+                "change password success": "Đổi mật khẩu thành công.",
+                "not allow self delete": "Không cho phép xóa tài khoản bạn đang đăng nhập."
+            }
+        },
+        "voucher": {
+            "label": {
+                "voucher": "Voucher",
+                "id": "ID",
+                "name": "Tên",
+                "type": "Loại",
+                "status": "Trạng thái",
+                "amount": "Số lượng",
+                "range_time": "Thời gian",
+                "start_time": "Thời gian bắt đầu",
+                "end_time": "Thời gian kết thúc",
+                "create_voucher": "Tạo Voucher ",
+                "update_voucher": "Cập nhật"
+            },
+            "message": {
+                "create success": "Tạo Voucher  thành công.",
+                "update success": "Cập nhật Voucher  thành công.",
+                "delete success": "Xóa Voucher  thành công."
+            }
         }
     }
 }
