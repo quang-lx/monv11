@@ -7,7 +7,7 @@ return [
         'guard_name' => 'Guard name',
         'created_at' => 'Ngày tạo',
         'updated_at' => 'Ngày cập nhật',
-        'create_role' => 'Thêm mới',
+        'create_role' => 'Thêm mới vai trò',
         'update_role' => 'Cập nhật',
         'roles' => 'Danh sách vai trò',
         'permissions' => 'Danh sách chức năng',
@@ -16,6 +16,10 @@ return [
         'information' => 'Thông tin nhóm quyền',
         'assign' => 'Gán',
         'remove' => 'Hủy',
+        'tab user' => 'Thông tin người dùng',
+        'group name' => 'Mục phân quyền',
+        'function' => 'Chức năng',
+        'select all' => 'Chọn tất cả chức năng'
     ],
     'message' => [
         'create success' => 'Thêm mới nhóm quyền thành công.',

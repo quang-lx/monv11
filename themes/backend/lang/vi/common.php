@@ -2,6 +2,7 @@
 return [
 
     'stt' => 'STT',
-    'action' => 'Hành động'
+    'action' => 'Hành động',
+    'info' => 'Thông tin chung'
 
 ];

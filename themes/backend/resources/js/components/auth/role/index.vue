@@ -4,14 +4,10 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-12">
-                        <el-breadcrumb separator="/">
-                            <el-breadcrumb-item>
-                                <a href="/admin">{{ $t('mon.breadcrumb.home') }}</a>
-                            </el-breadcrumb-item>
-                            <el-breadcrumb-item>{{ $t('role.label.roles') }}
-                            </el-breadcrumb-item>
+                        <h4>{{ $t('role.label.roles') }}</h4>
+                        <el-divider></el-divider>
 
-                        </el-breadcrumb>
+
                     </div>
 
                 </div>
@@ -26,13 +22,14 @@
                         <router-link :to="{name: 'admin.roles.create'}" class="float-sm-left">
                             <i class="el-icon-plus"></i>
 
-                                {{ $t('role.label.create_role') }}
+                            {{ $t('role.label.create_role') }}
 
                         </router-link>
                     </div>
                     <div class="col-md-4">
 
-                        <el-input suffix-icon="el-icon-search" @keyup.native="performSearch" placeholder="Tìm kiếm"   size="medium"
+                        <el-input suffix-icon="el-icon-search" @keyup.native="performSearch" placeholder="Tìm kiếm"
+                                  size="medium"
                                   v-model="searchQuery">
                         </el-input>
                     </div>
@@ -40,30 +37,26 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                            <div class="card-header ui-sortable-handle" style="cursor: move;">
-                                <h3 class="card-title">
-                                    {{ $t('role.label.roles') }}
-                                </h3>
 
-                            </div><!-- /.card-header -->
                             <div class="card-body">
                                 <div class="sc-table">
 
                                     <el-table
-                                            :data="data"
-                                            stripe
-                                            style="width: 100%"
-                                            ref="dataTable"
-                                            v-loading.body="tableIsLoading"
-                                            @sort-change="handleSortChange">
-                                        <el-table-column prop="id" :label="$t('common.stt')" width="75"  type="index"
+                                        :data="data"
+                                        stripe
+                                        style="width: 100%"
+                                        ref="dataTable"
+                                        v-loading.body="tableIsLoading"
+                                        @sort-change="handleSortChange">
+                                        <el-table-column prop="id" :label="$t('common.stt')" width="75" type="index"
                                                          sortable="custom">
 
                                         </el-table-column>
                                         <el-table-column prop="name" :label="$t('role.label.name')" sortable="custom">
 
                                         </el-table-column>
-                                        <el-table-column prop="description" :label="$t('role.label.description')" sortable="custom">
+                                        <el-table-column prop="description" :label="$t('role.label.description')"
+                                                         sortable="custom">
 
                                         </el-table-column>
 
@@ -75,8 +68,10 @@
                                         <el-table-column prop="actions" width="80">
                                             <template slot-scope="scope">
                                                 <edit-button
-                                                        :to="{name: 'admin.roles.edit', params: {roleId: scope.row.id}}"></edit-button>
-                                                <reload-delete-button :scope="scope" :rows="data" @delete-done="queryServer"  v-if="scope.row.name != 'cms_login'"></reload-delete-button>
+                                                    :to="{name: 'admin.roles.edit', params: {roleId: scope.row.id}}"></edit-button>
+                                                <reload-delete-button :scope="scope" :rows="data"
+                                                                      @delete-done="queryServer"
+                                                                      v-if="scope.row.name != 'cms_login'"></reload-delete-button>
 
                                             </template>
                                         </el-table-column>
@@ -133,7 +128,7 @@
                     search: this.searchQuery,
                 };
 
-               window.axios.get(route('api.roles.index', _.merge(properties, customProperties)))
+                window.axios.get(route('api.roles.index', _.merge(properties, customProperties)))
                     .then((response) => {
                         this.tableIsLoading = false;
                         this.tableIsLoading = false;

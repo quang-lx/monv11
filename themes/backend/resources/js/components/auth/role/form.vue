@@ -3,16 +3,28 @@
         <div class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
-                    <div class="col-12">
-                        <el-breadcrumb separator="/">
-                            <el-breadcrumb-item>
-                                <a href="/admin">{{ $t('mon.breadcrumb.home') }}</a>
-                            </el-breadcrumb-item>
-                            <el-breadcrumb-item :to="{name: 'admin.roles.index'}">{{ $t('role.label.roles') }}
-                            </el-breadcrumb-item>
-                            <el-breadcrumb-item>{{ $t('role.label.create_role') }}
-                            </el-breadcrumb-item>
-                        </el-breadcrumb>
+                    <div class="col-md-6">
+                        <div class="float-left">
+                            <el-breadcrumb separator="">
+                                <el-breadcrumb-item :to="{name: 'admin.roles.index'}"><i class="el-icon-arrow-left"></i>
+                                </el-breadcrumb-item>
+                                <el-breadcrumb-item> {{ $t(pageTitle) }}
+                                </el-breadcrumb-item>
+                            </el-breadcrumb>
+                        </div>
+
+                    </div>
+                    <div class="col-md-6">
+                        <div class="float-right">
+                            <el-button class="btn btn-flat  btn-cancel " size="small"
+                                       @click="onCancel()">
+                                {{ $t('mon.button.cancel') }}
+                            </el-button>
+                            <el-button type="primary" @click="onSubmit()" size="small"
+                                       :loading="loading" class="btn btn-flat  btn-primary">
+                                {{ $t('mon.button.save') }}
+                            </el-button>
+                        </div>
 
                     </div>
 
@@ -29,40 +41,37 @@
                         <div class="card">
                             <div class="card-header ui-sortable-handle" style="cursor: move;">
                                 <h3 class="card-title">
-                                    {{ $t(pageTitle) }}
+                                    {{ $t('common.info') }}
                                 </h3>
                                 <div class="card-tools">
-                                    <el-button type="primary" @click="onSubmit()" size="small"
-                                               :loading="loading" class="btn btn-flat  btn-primary">
-                                        {{ $t('mon.button.save') }}
-                                    </el-button>
-                                    <el-button class="btn btn-flat  btn-cancel" size="small"
-                                               @click="onCancel()">
-                                        {{ $t('mon.button.cancel') }}
-                                    </el-button>
+
                                 </div>
                             </div><!-- /.card-header -->
                             <div class="card-body">
-                                <el-tabs>
-                                    <el-tab-pane>
-                                        <span slot="label">{{ $t('role.label.information')}}</span>
-                                        <el-form ref="form" :model="modelForm" label-width="200px" label-position="left"
+                                <el-form ref="form" :model="modelForm"   label-position="top"
                                                  v-loading.body="loading"
                                         >
                                             <div class="row">
-                                                <div class="col-md-10">
+                                                <div class="col-md-6">
 
                                                     <el-form-item :label="$t('permission.label.name')"
                                                                   :class="{'el-form-item is-error': form.errors.has( 'name') }">
                                                         <el-input v-model="modelForm.name"
+                                                                  size="medium"
                                                                   @focus="form.errors.clear('name')"></el-input>
                                                         <div class="el-form-item__error"
                                                              v-if="form.errors.has('name')"
                                                              v-text="form.errors.first('name')"></div>
                                                     </el-form-item>
+
+
+                                                </div>
+                                                <div class="col-12">
                                                     <el-form-item :label="$t('role.label.description')"
                                                                   :class="{'el-form-item is-error': form.errors.has( 'description') }">
-                                                        <el-input v-model="modelForm.description"></el-input>
+                                                        <el-input v-model="modelForm.description" type="textarea"
+                                                                  show-word-limit
+                                                                  :autosize="{ minRows: 2, maxRows: 10}" maxlength="200"></el-input>
                                                         <div class="el-form-item__error"
                                                              v-if="form.errors.has('description')"
                                                              v-text="form.errors.first('description')"></div>
@@ -70,29 +79,31 @@
                                                 </div>
                                             </div>
                                         </el-form>
-                                    </el-tab-pane>
-                                    <el-tab-pane  >
-                                        <span slot="label">{{ $t('role.label.permissions')}}</span>
-                                        <div class="row" style="padding: 10px">
-                                            <div class="col-12">
-                                                <role-permission v-model="modelForm.permissions"
-                                                                 :current-permissions="modelForm.permissions"/>
-                                            </div>
 
-                                        </div>
-                                    </el-tab-pane>
-                                </el-tabs>
+                                        <role-permission v-model="modelForm.permissions"
+                                                                 :current-permissions="modelForm.permissions"/>
+
                             </div><!-- /.card-body -->
-                            <div class="card-footer d-flex justify-content-end ">
-                                <el-button type="primary" @click="onSubmit()" size="small"
-                                           :loading="loading" class="btn btn-flat  btn-primary">
-                                    {{ $t('mon.button.save') }}
-                                </el-button>
-                                <el-button class="btn btn-flat  btn-cancel" size="small"
-                                           @click="onCancel()">
-                                    {{ $t('mon.button.cancel') }}
-                                </el-button>
-                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header ui-sortable-handle" style="cursor: move;">
+                                <h3 class="card-title">
+                                    {{ $t('role.label.tab user') }}
+                                </h3>
+                                <div class="card-tools">
+
+                                </div>
+                            </div><!-- /.card-header -->
+                            <div class="card-body">
+
+
+                            </div><!-- /.card-body -->
+
                         </div>
                     </div>
                 </div>
@@ -182,7 +193,7 @@
                 } else {
                     routeUri = route('api.roles.find-new');
                 }
-               window.axios.get(routeUri)
+                window.axios.get(routeUri)
                     .then((response) => {
                         this.loading = false;
                         this.modelForm = response.data.data;

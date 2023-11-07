@@ -1,24 +1,39 @@
 <template>
 
 <div>
-    <div class="row bg-light mb-2"  v-for="(group, index) in groupPermissions" :key="'g-' + index" >
-        <div class="col-md-3 d-flex align-items-center">{{group[0]? group[0].group_name: ''}}</div>
-        <div class="col-md-9 d-flex flex-row">
-            <div class="  p-2  pr-5"  v-for="(permission, pIndex) in group" :key="'p-'+pIndex">
-                <label class="control-label text-center"  >{{permission.title}}</label><br>
-                <el-switch
-                    v-model="permissions[permission.name]"
-                    active-color="#13ce66"
-                    :active-value="1"
-                    :inactive-value="0"
-                    inactive-color="#ff4949">
-                </el-switch>
+    <el-checkbox v-model="is_select_all" @change="handleCheckAllChange">{{$t('role.label.select all')}}</el-checkbox>
 
-            </div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">{{$t('common.stt')}}</th>
+            <th scope="col">{{$t('role.label.group name')}}</th>
+            <th scope="col" class="text-center">{{$t('role.label.function')}}</th>
 
+        </tr>
+        </thead>
+        <tbody>
 
-        </div>
-    </div>
+        <tr  v-for="(group, index, stt) in groupPermissions" :key="'g-' + index">
+            <td scope="row" style="padding:0.25rem !important">{{stt+1}}</td>
+            <td style="padding:0.25rem !important">{{group[0]? group[0].group_name: ''}}</td>
+            <td class=" d-flex flex-row" style="padding:0.25rem !important">
+                <div class="  pr-5"  v-for="(permission, pIndex) in group" :key="'p-'+pIndex">
+                    <label class="control-label text-center"  >{{permission.title}}</label><br>
+                    <el-switch
+                        v-model="permissions[permission.name]"
+                        active-color="#4B67E2"
+                        :active-value="1"
+                        :inactive-value="0"
+                        inactive-color="#C8E1FF">
+                    </el-switch>
+
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
 
 </div>
 
@@ -34,6 +49,8 @@
         },
         data() {
             return {
+                is_select_all: false,
+                count_index: 0,
                 groupPermissions: [],
 
                 links: {},
@@ -54,6 +71,12 @@
             };
         },
         methods: {
+            handleCheckAllChange(val) {
+                let checked = val? 1: 0;
+                for (const [key, value] of Object.entries(this.permissions)) {
+                    this.permissions[key] = checked
+                }
+            },
             queryServer(customProperties) {
 
                 const properties = {
