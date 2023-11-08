@@ -1,6 +1,7 @@
 <?php
 namespace Modules\Mon\Repositories\Eloquent;
 
+use Illuminate\Support\Facades\DB;
 use \Modules\Mon\Repositories\Eloquent\BaseRepository;
 use Modules\Mon\Repositories\RoleRepository as RoleInterface;
 use Illuminate\Http\Request;
@@ -11,18 +12,24 @@ class RoleRepository extends BaseRepository implements RoleInterface {
     public function create($data)
     {
         $permissions= $data['permissions'];
+        $list_user_id= $data['users'];
         unset($data['permissions']);
+        unset($data['users']);
         $model = $this->model->create($data);
         $model->syncPermissions($this->parsePermission($permissions));
+        $this->syncRoleUser($model,$list_user_id);
         return $model;
     }
 
     public function update($model, $data)
     {
         $permissions= $data['permissions'];
+        $list_user_id= $data['users'];
         unset($data['permissions']);
+        unset($data['users']);
         $model->update($data);
 		$model->syncPermissions($this->parsePermission($permissions));
+        $this->syncRoleUser($model,$list_user_id);
         return $model;
     }
 
@@ -83,4 +90,12 @@ class RoleRepository extends BaseRepository implements RoleInterface {
 		}
     	return $result;
 	}
+
+    /**
+     * @param $role_model Role
+     * @param $user_ids
+     */
+	public function syncRoleUser($role_model, $user_ids) {
+        $role_model->users()->sync($user_ids);
+    }
 }

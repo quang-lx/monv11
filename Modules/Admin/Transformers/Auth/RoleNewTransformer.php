@@ -24,6 +24,7 @@ class RoleNewTransformer extends JsonResource
             'created_at' => optional($this->created_at)->format('d-m-Y'),
             'updated_at' => optional($this->updated_at)->format('d-m-Y'),
             'permissions' => $this->getPermissions(),
+            'users' => [],
 
         ];
 

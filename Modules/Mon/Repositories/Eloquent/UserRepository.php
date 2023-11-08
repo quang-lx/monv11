@@ -130,8 +130,12 @@ class UserRepository extends BaseRepository implements UserInterface
                     ->orWhere('username', 'LIKE', "%{$keyword}%");
             });
         }
-        $type = $request->get('type', User::TYPE_USER);
-        $query->where('type', $type);
+        $exclude_ids = $request->get('exclude_ids', null);
+        if ($exclude_ids && is_array($exclude_ids) && count($exclude_ids)> 0) {
+            $query->whereNotIn('id', $exclude_ids);
+        }
+//        $type = $request->get('type', User::TYPE_USER);
+//        $query->where('type', $type);
 
 
         if ($request->get('name') !== null) {
@@ -171,4 +175,5 @@ class UserRepository extends BaseRepository implements UserInterface
         }
         return $query->paginate($request->get('per_page', 10));
     }
+
 }

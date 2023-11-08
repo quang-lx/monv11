@@ -180,7 +180,10 @@ export default {
         "common": {
             "stt": "STT",
             "action": "Hành động",
-            "info": "Thông tin chung"
+            "info": "Thông tin chung",
+            "add": "Thêm mới",
+            "cancel": "Huỷ",
+            "search": "Tìm kiếm"
         },
         "customers": {
             "label": {
@@ -364,7 +367,10 @@ export default {
                 "tab user": "Thông tin người dùng",
                 "group name": "Mục phân quyền",
                 "function": "Chức năng",
-                "select all": "Chọn tất cả chức năng"
+                "select all": "Chọn tất cả chức năng",
+                "list users": "Thông tin người dùng",
+                "add user title": "Thêm người dùng",
+                "user": "Người dùng"
             },
             "message": {
                 "create success": "Thêm mới nhóm quyền thành công.",
@@ -397,7 +403,7 @@ export default {
             "label": {
                 "id": "ID",
                 "image": "Ảnh",
-                "username": "Tên đăng nhập",
+                "username": "Tài khoản",
                 "email": "Email",
                 "name": "Tên",
                 "phone": "Số điện thoại",

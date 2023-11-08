@@ -43,7 +43,7 @@ class RoleController extends ApiController
 
     public function store(CreateRoleRequest $request)
     {
-        $role = $this->roleRepository->create($request->only('name', 'guard_name', 'permissions','description'));
+        $role = $this->roleRepository->create($request->only('name', 'guard_name', 'permissions','description', 'users'));
 
         return response()->json([
             'errors' => false,
@@ -62,7 +62,7 @@ class RoleController extends ApiController
 	}
     public function update(Role $role, UpdateRoleRequest $request)
     {
-        $role = $this->roleRepository->update($role, $request->only('name', 'guard_name', 'permissions', 'description'));
+        $role = $this->roleRepository->update($role, $request->only('name', 'guard_name', 'permissions', 'description', 'users'));
 
         return response()->json([
             'errors' => false,

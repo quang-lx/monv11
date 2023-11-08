@@ -3,7 +3,7 @@ return [
     'label' => [
         'id' => 'ID',
         'image' => 'Ảnh',
-        'username' => 'Tên đăng nhập',
+        'username' => 'Tài khoản',
         'email' => 'Email',
         'name' => 'Tên',
         'phone' => 'Số điện thoại',

@@ -19,7 +19,10 @@ return [
         'tab user' => 'Thông tin người dùng',
         'group name' => 'Mục phân quyền',
         'function' => 'Chức năng',
-        'select all' => 'Chọn tất cả chức năng'
+        'select all' => 'Chọn tất cả chức năng',
+        'list users' => 'Thông tin người dùng',
+        'add user title' => 'Thêm người dùng',
+        'user' => 'Người dùng'
     ],
     'message' => [
         'create success' => 'Thêm mới nhóm quyền thành công.',

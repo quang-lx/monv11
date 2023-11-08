@@ -39,15 +39,16 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                            <div class="card-header ui-sortable-handle" style="cursor: move;">
-                                <h3 class="card-title">
-                                    {{ $t('common.info') }}
-                                </h3>
-                                <div class="card-tools">
 
-                                </div>
-                            </div><!-- /.card-header -->
                             <div class="card-body">
+                                <div class="row mb-2">
+                                    <div class="col-12">
+                                        <h5>
+                                            {{ $t('common.info') }}
+                                        </h5>
+
+                                    </div>
+                                </div>
                                 <el-form ref="form" :model="modelForm"   label-position="top"
                                                  v-loading.body="loading"
                                         >
@@ -80,8 +81,7 @@
                                             </div>
                                         </el-form>
 
-                                        <role-permission v-model="modelForm.permissions"
-                                                                 :current-permissions="modelForm.permissions"/>
+                                        <role-permission   :current-permissions="modelForm.permissions" @update-permissions="onUpdatePermission" v-if = "load_done"/>
 
                             </div><!-- /.card-body -->
 
@@ -91,17 +91,10 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                            <div class="card-header ui-sortable-handle" style="cursor: move;">
-                                <h3 class="card-title">
-                                    {{ $t('role.label.tab user') }}
-                                </h3>
-                                <div class="card-tools">
 
-                                </div>
-                            </div><!-- /.card-header -->
                             <div class="card-body">
 
-
+                                <role-user   :current_role_id="roleId"  @update-users="onUpdateUser"/>
                             </div><!-- /.card-body -->
 
                         </div>
@@ -115,9 +108,9 @@
 </template>
 
 <script>
-    import axios from 'axios';
     import Form from 'form-backend-validation';
     import RolePermission from './role-permissions';
+    import RoleUser from './role-users';
 
     export default {
         props: {
@@ -125,18 +118,21 @@
             pageTitle: {default: null, String},
         },
         components: {
-            RolePermission
+            RolePermission,
+            RoleUser
         },
         data() {
             return {
                 form: new Form(),
                 loading: false,
+                load_done: false,
                 modelForm: {
                     id: '',
                     name: '',
                     description: '',
                     guard_name: 'web',
                     permissions: {},
+                    users: [],
 
                 },
                 permissions: [],
@@ -148,7 +144,9 @@
         },
         methods: {
             onSubmit() {
-                this.form = new Form(_.merge(this.modelForm));
+                let params = _.merge(this.modelForm);
+                params.users = params.users.map(item => {return item.id});
+                this.form = new Form(params);
                 this.loading = true;
 
                 this.form.post(this.getRoute())
@@ -196,7 +194,9 @@
                 window.axios.get(routeUri)
                     .then((response) => {
                         this.loading = false;
+
                         this.modelForm = response.data.data;
+                        this.load_done = true;
                     });
             },
 
@@ -211,8 +211,13 @@
             },
             reloadAddTable() {
                 this.$refs.addTable.reloadData();
+            },
+            onUpdatePermission(permissions) {
+                this.modelForm.permissions = permissions
+            },
+            onUpdateUser(users) {
+                this.modelForm.users = users
             }
-
 
         },
         created() {

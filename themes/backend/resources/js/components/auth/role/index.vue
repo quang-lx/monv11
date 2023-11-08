@@ -48,7 +48,7 @@
                                         ref="dataTable"
                                         v-loading.body="tableIsLoading"
                                         @sort-change="handleSortChange">
-                                        <el-table-column prop="id" :label="$t('common.stt')" width="75" type="index"
+                                        <el-table-column   :label="$t('common.stt')" width="75" type="index"
                                                          sortable="custom">
 
                                         </el-table-column>

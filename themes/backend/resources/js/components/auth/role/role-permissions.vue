@@ -66,7 +66,7 @@
                     }
                 ],
                 guard_name: '',
-                permissions: {}
+                permissions: this.currentPermissions
 
             };
         },
@@ -96,22 +96,13 @@
                 this.tableIsLoading = true;
                 this.queryServer({});
             },
-            changeState(group, state) {
-                _.forEach(group, (permission, key) => {
-                    this.permissions[permission.name] = state;
-                });
-            },
-            triggerEvent(permission_name, state) {
-                this.$emit('input', this.permissions);
-            }
+
 
 
         },
         watch: {
-            currentPermissions() {
-                if (this.currentPermissions !== null) {
-                    this.permissions = this.currentPermissions;
-                }
+            permissions: function() {
+                this.$emit("update-permissions", this.permissions) ;
             },
         },
         mounted() {
