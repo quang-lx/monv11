@@ -55,8 +55,10 @@ class GenerateAdminPermission extends Command
 				    $permission->group = $tokens[$tokenCount-2];
 				    $permission->group_name = $tokens[$tokenCount-2];
 			    }
-			    if (isset($tokens[$tokenCount-1])) {
-				    $permission->title = $tokens[$tokenCount-1];
+			    if (!$permission->title && isset($tokens[$tokenCount-1])) {
+			        $action = $tokens[$tokenCount-1];
+
+				    $permission->title = $this->getActionName($action);
 			    }
 			    $permission->module = 'admin';
 			    $permission->save();
@@ -65,6 +67,24 @@ class GenerateAdminPermission extends Command
 	    }
 
 
+    }
+    public function getActionName($action) {
+        $action_name = $action;
+        switch($action) {
+            case 'create':
+                $action_name = 'Thêm';
+                break;
+            case 'edit':
+                $action_name = 'Sửa';
+                break;
+            case 'delete':
+                $action_name = 'Xoá';
+                break;
+            case 'index':
+                $action_name = 'Xem';
+                break;
+        }
+        return $action_name;
     }
 
     /**

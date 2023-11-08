@@ -1,16 +1,13 @@
 <template>
     <div>
         <div class="content-header">
-            <div class="container-fluid">
-                <div class="row mb-2">
+                <div class="row ">
                     <div class="col-12">
                         <h4>{{ $t('role.label.roles') }}</h4>
-                        <el-divider></el-divider>
-
+                         <hr>
 
                     </div>
 
-                </div>
             </div>
         </div>
 
@@ -70,6 +67,8 @@
                                                 <edit-button
                                                     :to="{name: 'admin.roles.edit', params: {roleId: scope.row.id}}"></edit-button>
                                                 <reload-delete-button :scope="scope" :rows="data"
+                                                                      message-confirm="Vai trò sẽ bị xoá hoàn toàn khỏi hệ thống, bạn có chắc chắn xoá vai trò này?"
+                                                                      title="Xoá vai trò"
                                                                       @delete-done="queryServer"
                                                                       v-if="scope.row.name != 'cms_login'"></reload-delete-button>
 

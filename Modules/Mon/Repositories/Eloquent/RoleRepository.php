@@ -74,6 +74,7 @@ class RoleRepository extends BaseRepository implements RoleInterface {
         if ($request->get('name') !== null) {
             $query->where('name', '=', $request->get('name'));
         }
+        $query->orderByDesc('created_at');
 
         return $query->paginate($request->get('per_page', 10));
     }

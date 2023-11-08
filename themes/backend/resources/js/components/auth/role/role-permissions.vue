@@ -6,8 +6,8 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th scope="col">{{$t('common.stt')}}</th>
-            <th scope="col">{{$t('role.label.group name')}}</th>
+            <th scope="col" class="text-center">{{$t('common.stt')}}</th>
+            <th scope="col" class="text-center">{{$t('role.label.group name')}}</th>
             <th scope="col" class="text-center">{{$t('role.label.function')}}</th>
 
         </tr>
@@ -15,8 +15,8 @@
         <tbody>
 
         <tr  v-for="(group, index, stt) in groupPermissions" :key="'g-' + index">
-            <td scope="row" style="padding:0.25rem !important">{{stt+1}}</td>
-            <td style="padding:0.25rem !important">{{group[0]? group[0].group_name: ''}}</td>
+            <td scope="row" style="padding:0.25rem !important" class="text-center">{{stt+1}}</td>
+            <td style="padding:0.25rem !important" class="text-center">{{group[0]? group[0].group_name: ''}}</td>
             <td class=" d-flex flex-row" style="padding:0.25rem !important">
                 <div class="  pr-5"  v-for="(permission, pIndex) in group" :key="'p-'+pIndex">
                     <label class="control-label text-center"  >{{permission.title}}</label><br>

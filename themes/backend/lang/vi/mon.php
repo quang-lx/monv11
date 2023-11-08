@@ -4,6 +4,8 @@ return [
         'save' => 'Lưu',
         'create' => 'Tạo',
         'cancel' => 'Hủy',
+        'deleteBtn' => 'Xóa',
+        'cancelBtn' => 'Ở lại',
         'delete' => 'Xóa',
         'close' => 'Đóng',
 

@@ -31,7 +31,7 @@ class CreateRoleRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'Tên chức năng là bắt buộc',
+            'name.required' => 'Tên vai trò là bắt buộc',
 
         ];
     }

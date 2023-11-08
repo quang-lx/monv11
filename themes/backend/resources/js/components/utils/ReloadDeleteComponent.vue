@@ -9,6 +9,9 @@
             rows: { default: null },
             scope: { default: null },
             messageConfirm: { default: null },
+            title: {default: null},
+            confirmBtn:  {default: null},
+            cancelBtn:  {default: null},
         },
         data() {
             return {
@@ -19,8 +22,8 @@
         methods: {
             deleteRow(event) {
                 this.$confirm(this.deleteMessage, this.deleteTitle, {
-                    confirmButtonText: this.$t('mon.button.delete'),
-                    cancelButtonText: this.$t('mon.button.cancel'),
+                    confirmButtonText: this.confirmBtn? this.confirmBtn:  this.$t('mon.button.deleteBtn'),
+                    cancelButtonText:this.cancelBtn? this.cancelBtn:  this.$t('mon.button.cancelBtn'),
                     type: 'warning',
                     confirmButtonClass: 'el-button--danger',
                 }).then(() => {
@@ -44,16 +47,13 @@
                             });
                         });
                 }).catch(() => {
-                    this.$message({
-                        type: 'info',
-                        message: this.$t('mon.delete cancelled'),
-                    });
+
                 });
             },
         },
         mounted() {
             this.deleteMessage = this.messageConfirm? this.messageConfirm:this.$t('mon.modal.confirmation-message');
-            this.deleteTitle = this.$t('mon.modal.title');
+            this.deleteTitle = this.title? this.title: this.$t('mon.modal.title');
         },
     };
 </script>
