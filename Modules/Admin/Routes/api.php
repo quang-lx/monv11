@@ -177,4 +177,32 @@ Route::middleware('auth:api')->prefix('/danh-muc')->group(function (){
 });
 
 
+Route::middleware('auth:api')->prefix('/departments')->group(function (){
+    Route::get('/tree', [
+        'as' => 'api.department.tree',
+        'uses' => 'Department\DepartmentController@tree',
+    ]);
+    Route::get('/', [
+        'as' => 'api.department.index',
+        'uses' => 'Department\DepartmentController@index',
+    ]);
+    Route::post('/{department}/edit', [
+            'as' => 'api.department.update',
+            'uses' => 'Department\DepartmentController@update',
+        ]);
+   Route::get('/{department}', [
+              'as' => 'api.department.find',
+              'uses' => 'Department\DepartmentController@find',
+          ]);
+    Route::post('/', [
+        'as' => 'api.department.store',
+        'uses' => 'Department\DepartmentController@store',
+    ]);
+
+    Route::delete('/{department}', [
+        'as' => 'api.department.destroy',
+        'uses' => 'Department\DepartmentController@destroy',
+    ]);
+});
 // append
+

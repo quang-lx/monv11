@@ -185,25 +185,15 @@ export default {
             "cancel": "Huỷ",
             "search": "Tìm kiếm"
         },
-        "customers": {
+        "department": {
             "label": {
                 "id": "ID",
-                "customers": "Khách hàng",
-                "name": "Tên",
-                "username": "Tài khoản",
-                "email": "Email",
-                "password": "Mật khẩu",
-                "password_new": "Mật khẩu mới",
-                "status": "Trạng thái",
-                "phone": "Số điện thoại",
-                "create_customers": "Tạo tài khoản",
-                "update_customers": "Cập nhật"
+                "name": "Tên"
             },
             "message": {
-                "create success": "Tạo tài khoản thành công.",
-                "update success": "Cập nhật tài khoản thành công.",
-                "delete success": "Xóa tài khoản thành công.",
-                "reset_password success": "Đổi mật khẩu thành công"
+                "create success": "Tạo nhóm mới thành công.",
+                "update success": "Cập nhật nhóm thành công.",
+                "delete success": "Xóa nhóm thành công."
             }
         },
         "media": {
@@ -387,11 +377,11 @@ export default {
             "deny all": "Từ chối tất cả"
         },
         "sidebar": {
-            "system administration": "Quản trị",
+            "system administration": "Quản trị chung",
             "roles and permission": "Roles and permission",
             "admins": "Tài khoản quản trị",
             "users": "Người dùng",
-            "roles": "Nhóm quyền",
+            "roles": "Vai trò",
             "permissions": "Chức năng",
             "index": "Danh sách",
             "media": "Media",

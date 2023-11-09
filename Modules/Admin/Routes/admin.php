@@ -143,5 +143,49 @@ Route::group(['prefix' => '/danh-muc'], function ( ) {
 });
 
 
+Route::group(['prefix' => '/department'], function ( ) {
+
+    Route::get('/', [
+        'as' => 'admin.department.index',
+        'uses' => 'Department\DepartmentController@index',
+        'middleware' => 'permission:admin.department.index'
+    ]);
+    Route::get('create', [
+        'as' => 'admin.department.create',
+        'uses' => 'Department\DepartmentController@create',
+        'middleware' => 'permission:admin.department.create'
+    ]);
+
+    Route::get('{department}/edit', [
+        'as' => 'admin.department.edit',
+        'uses' => 'Department\DepartmentController@edit',
+        'middleware' => 'permission:admin.department.edit'
+    ]);
+
+
+});
+Route::group(['prefix' => '/department'], function ( ) {
+
+    Route::get('/', [
+        'as' => 'admin.department.index',
+        'uses' => 'Department\DepartmentController@index',
+        'middleware' => 'permission:admin.department.index'
+    ]);
+    Route::get('create', [
+        'as' => 'admin.department.create',
+        'uses' => 'Department\DepartmentController@create',
+        'middleware' => 'permission:admin.department.create'
+    ]);
+
+    Route::get('{department}/edit', [
+        'as' => 'admin.department.edit',
+        'uses' => 'Department\DepartmentController@edit',
+        'middleware' => 'permission:admin.department.edit'
+    ]);
+
+
+});
 // append
+
+
 

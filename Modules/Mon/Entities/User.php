@@ -22,7 +22,7 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject {
 	 */
 	protected $fillable = [
 		'name', 'email', 'password', 'email_verified_at', 'activated', 'last_login', 'type', 'username','status', 'phone',
-        'fcm_token','lat','lng'
+        'birth_day','department_id','sex', 'expired_at', 'identification'
 	];
 
 	/**
@@ -47,22 +47,12 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject {
 		return $this->hasOne(Profile::class, 'user_id', 'id');
 	}
 
-	/**
-	 * Ứng dụng, tài khoản social được kết nối
-	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
-	 */
-	public function connectedAccounts() {
-		return $this->hasMany(ConnectedAccount::class, 'user_id', 'id');
-	}
-
-	/**
-	 * Các thông tin đã đc xác thực của tài khoản
-	 *
-	 * @return \Illuminate\Database\Eloquent\Relations\HasOne
-	 */
-	public function verifiedInformation() {
-		return $this->hasOne(VerifiedInformation::class, 'user_id', 'id');
-	}
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function department() {
+        return $this->belongsTo(Department::class, 'department_id');
+    }
 
 	public function getFirstToken() {
 		return $this->tokens()->first();

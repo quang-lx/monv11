@@ -15,11 +15,11 @@ return [
 
 
 
-    'system administration' => 'Quản trị',
+    'system administration' => 'Quản trị chung',
     'roles and permission' => 'Roles and permission',
     'admins' => 'Tài khoản quản trị',
     'users' => 'Người dùng',
-    'roles' => 'Nhóm quyền',
+    'roles' => 'Vai trò',
     'permissions' => 'Chức năng',
     'index' => 'Danh sách',
     // general setting

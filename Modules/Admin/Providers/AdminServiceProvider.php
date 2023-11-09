@@ -131,7 +131,23 @@ class AdminServiceProvider extends ServiceProvider
             }
         );
 
+        $this->app->bind(
+            'Modules\Admin\Repositories\DepartmentRepository',
+            function () {
+                $repository = new \Modules\Admin\Repositories\Eloquent\EloquentDepartmentRepository(new \Modules\Mon\Entities\Department());
+                return $repository;
+            }
+        );
+        $this->app->bind(
+            'Modules\Admin\Repositories\DepartmentRepository',
+            function () {
+                $repository = new \Modules\Admin\Repositories\Eloquent\EloquentDepartmentRepository(new \Modules\Mon\Entities\Department());
+                return $repository;
+            }
+        );
 // add bindings
+
+
 
 
 

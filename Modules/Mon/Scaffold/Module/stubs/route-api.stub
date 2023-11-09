@@ -1,0 +1,25 @@
+Route::middleware('auth:api')->prefix('/$PLURAL_LOWERCASE_CLASS_NAME$')->group(function (){
+
+    Route::get('/', [
+        'as' => 'api.$LOWERCASE_CLASS_NAME$.index',
+        'uses' => '$CLASS_NAME$\$CLASS_NAME$Controller@index',
+    ]);
+    Route::post('/{$LOWERCASE_CLASS_NAME$}/edit', [
+            'as' => 'api.$LOWERCASE_CLASS_NAME$.update',
+            'uses' => '$CLASS_NAME$\$CLASS_NAME$Controller@update',
+        ]);
+   Route::get('/{$LOWERCASE_CLASS_NAME$}', [
+              'as' => 'api.$LOWERCASE_CLASS_NAME$.find',
+              'uses' => '$CLASS_NAME$\$CLASS_NAME$Controller@find',
+          ]);
+    Route::post('/', [
+        'as' => 'api.$LOWERCASE_CLASS_NAME$.store',
+        'uses' => '$CLASS_NAME$\$CLASS_NAME$Controller@store',
+    ]);
+
+    Route::delete('/{$LOWERCASE_CLASS_NAME$}', [
+        'as' => 'api.$LOWERCASE_CLASS_NAME$.destroy',
+        'uses' => '$CLASS_NAME$\$CLASS_NAME$Controller@destroy',
+    ]);
+});
+// append
