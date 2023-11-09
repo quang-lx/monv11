@@ -1,20 +1,13 @@
 <template>
     <div>
         <div class="content-header">
-            <div class="container-fluid">
-                <div class="row mb-2">
-                    <div class="col-12">
-                        <el-breadcrumb separator="/">
-                            <el-breadcrumb-item>
-                                <a href="/admin">{{ $t('mon.breadcrumb.home') }}</a>
-                            </el-breadcrumb-item>
-                            <el-breadcrumb-item  >{{ $t('user.label.admins') }}
-                            </el-breadcrumb-item>
-
-                        </el-breadcrumb>
-                    </div>
+            <div class="row ">
+                <div class="col-12">
+                    <h4>{{ $t('user.label.users') }}</h4>
+                    <hr>
 
                 </div>
+
             </div>
         </div>
 
@@ -23,27 +16,63 @@
             <div class="container-fluid">
                 <div class="row justify-content-between mb-2">
                     <div class="col-md-4   ">
-                        <el-input suffix-icon="el-icon-search" @keyup.native="performSearch" placeholder="Nhập ID, Tên, Tài khoản, Email"
-                                  v-model="searchQuery">
-                        </el-input>
+                        <router-link :to="{name: 'admin.users.create'}" class="float-sm-left">
+                            <i class="el-icon-plus"></i>
+
+                            {{ $t('role.label.create_role') }}
+
+                        </router-link>
                     </div>
                     <div class="col-md-4">
-                        <router-link :to="{name: 'admin.admins.create'}" class="float-sm-right">
-                            <el-button type="primary" class="btn btn-flat  btn-primary">
-                               {{ $t('user.label.create_admin') }}
-                            </el-button>
-                        </router-link>
+
+                        <el-input suffix-icon="el-icon-search" @keyup.native="performSearch" placeholder="Tìm kiếm"
+                                  size="medium"
+                                  v-model="searchQuery">
+                        </el-input>
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col-md-3">
                         <div class="card">
                             <div class="card-header ui-sortable-handle" style="cursor: move;">
                                 <h3 class="card-title">
-                                    {{ $t('user.label.admins') }}
+                                    {{ $t('department.label.title') }}
                                 </h3>
+                                <div class="card-tools">
+                                    <ul class="nav nav-pills ml-auto">
+                                        <li class="nav-item">
+                                            <i class="el-icon-plus" style="cursor:pointer" @click="showAddDepartment = true"></i>
+                                            <i class="el-icon-edit"  style="cursor:pointer"  @click="showEditDepartment = true"></i>
+
+                                            <i class="el-icon-delete"  style="cursor:pointer"  @click="confirmDeleteDepartment"></i>
+                                        </li>
+
+                                    </ul>
+                                </div>
                             </div><!-- /.card-header -->
+                            <div class="card-body">
+                                <el-input
+                                    placeholder="Tìm kiếm"
+                                    size="mini"
+                                    v-model="filterDepartment">
+                                </el-input>
+
+                                <el-tree
+                                    class="filter-tree"
+                                    :data="departmentTreeData"
+                                    :props="treeProps"
+                                    default-expand-all
+                                    :filter-node-method="filterNode"
+                                    @node-click="handleNodeClick"
+                                    ref="tree">
+                                </el-tree>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="card">
+
                             <div class="card-body">
                                 <div class="sc-table">
 
@@ -111,25 +140,143 @@
             </div>
         </section>
 
+        <el-dialog
+            width="30%"
+            :show-close="false"
+            :title="$t('department.label.add department')"
+            :destroy-on-close="true"
+            :visible.sync="showAddDepartment">
+
+
+            <el-form ref="addDepartmentForm"
+                     :model="addModel"
+                     label-position="top"
+                     v-loading.body="loadingAdd"
+            >
+                <el-form-item label=""
+                              :class="{'el-form-item is-error': addForm.errors.has('name') }">
+                    <el-input v-model="addModel.name"  size="medium"></el-input>
+                    <div class="el-form-item__error"
+                         v-if="addForm.errors.has('name')"
+                         v-text="addForm.errors.first('name')"></div>
+                </el-form-item>
+
+            </el-form>
+
+            <div class="d-flex justify-content-end">
+                <el-button size="small"  @click="showAddDepartment = false">{{$t('common.cancel')}}</el-button>
+                <el-button size="small" type="primary" @click="confirmAddDepartment">{{$t('common.add')}}</el-button>
+              </div>
+        </el-dialog>
+
     </div>
 </template>
 
 <script>
     import axios from 'axios';
+    import Form from "form-backend-validation";
 
     export default {
 
         data() {
             return {
+                addForm: new Form(),
+                parent_selected: null,
+                addModel: {
+                    name: '',
+                    parent_id: '',
+
+
+                },
+                loadingAdd: false,
+                treeProps: {
+                    children: 'children',
+                    label: 'label'
+                },
                 data: [],
-
+                showAddDepartment: false,
+                showEditDepartment: false,
                 columnsSearch: [],
+                departmentTreeData: [],
+                departmentLoading: false,
+                filterDepartment: '',
                 listFilterColumn: [],
-
 
             };
         },
         methods: {
+
+            handleNodeClick(data, checked, indeterminate) {
+                this.parent_selected = data.id
+            },
+            confirmDeleteDepartment() {
+                if( this.parent_selected) {
+                    this.$confirm('Thành viên trong nhóm sẽ chuyển về nhóm “Chưa xếp nhóm”', 'Bạn có chắc chắn xóa nhóm này?', {
+                        confirmButtonText: 'Xoá',
+                        cancelButtonText: 'Huỷ',
+                        type: 'warning'
+                    }).then(() => {
+                        this.deleteDepartment()
+
+                    }).catch(() => {
+
+                    });
+                }
+            },
+            deleteDepartment() {
+                window.axios.delete(route('api.department.destroy', {department: this.parent_selected}) )
+                    .then((response) => {
+                        if (response.data.errors === false) {
+                            vm.$message({
+                                type: 'success',
+                                message: response.data.message,
+                            });
+                            this.getDepartmentList({})
+
+                        }else {
+                            vm.$message({
+                                type: 'error',
+                                message: response.data.message,
+                            });
+                        }
+                    })
+                    .catch((error) => {
+                        vm.$message({
+                            type: 'error',
+                            message: error.data.message,
+                        });
+                    });
+            },
+            confirmAddDepartment() {
+                let params = _.merge(this.addModel);
+                params.parent_id = this.parent_selected;
+                this.form = new Form(params);
+                this.loading = true;
+
+                this.form.post(this.getRouteCreateDepartment())
+                    .then((response) => {
+                        this.loading = false;
+                        this.$message({
+                            type: 'success',
+                            message: response.message,
+                        });
+                        this.showAddDepartment = false;
+                        this.addModel.name = '';
+                        this.$message({
+                            type: 'success',
+                            message: 'Tạo nhóm mới thành công'
+                        });
+                        this.getDepartmentList({})
+                    })
+                    .catch((error) => {
+
+                        this.loading = false;
+                        this.$notify.error({
+                            title: this.$t('mon.error.Title'),
+                            message: this.getSubmitError(this.form.errors),
+                        });
+                    });
+            },
             queryServer(customProperties) {
 
                 const properties = {
@@ -151,12 +298,34 @@
                         this.order_meta.order_by = properties.order_by;
                         this.order_meta.order = properties.order;
                     });
-            }
+            },
+            getDepartmentList(customProperties) {
+
+                const properties = {
+
+                };
+                this.departmentLoading = true;
+                window.axios.get(route('api.department.tree', _.merge(properties, customProperties)))
+                    .then((response) => {
+                        console.log(response)
+                        this.departmentLoading = false;
+                        this.departmentTreeData = response.data;
+
+                    });
+            },
+            filterNode(value, data) {
+                if (!value) return true;
+                return data.label.indexOf(value) !== -1;
+            },
+            getRouteCreateDepartment() {
+                return route('api.department.store');
+            },
 
 
         },
         mounted() {
             this.fetchData();
+            this.getDepartmentList({});
 
         },
         created() {

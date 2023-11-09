@@ -29,7 +29,7 @@ class DepartmentController extends ApiController
 
     public function tree(Request $request)
     {
-        return $this->departmentRepository->getAllTree($request);
+        return $this->departmentRepository->getAllTree();
     }
     public function index(Request $request)
     {

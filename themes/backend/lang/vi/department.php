@@ -4,6 +4,8 @@ return [
         'id' => 'ID',
 
         'name' => 'Tên',
+        'title' => 'Nhóm',
+        'add department' => 'Tạo nhóm mới'
 
 
     ],

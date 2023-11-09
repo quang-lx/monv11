@@ -188,7 +188,9 @@ export default {
         "department": {
             "label": {
                 "id": "ID",
-                "name": "Tên"
+                "name": "Tên",
+                "title": "Nhóm",
+                "add department": "Tạo nhóm mới"
             },
             "message": {
                 "create success": "Tạo nhóm mới thành công.",

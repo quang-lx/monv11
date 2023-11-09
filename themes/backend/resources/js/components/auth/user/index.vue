@@ -1,54 +1,81 @@
 <template>
     <div>
-        <div class="content-header">
-            <div class="container-fluid">
-                <div class="row mb-2">
-                    <div class="col-12">
-                        <el-breadcrumb separator="/">
-                            <el-breadcrumb-item>
-                                <a href="/admin">{{ $t('mon.breadcrumb.home') }}</a>
-                            </el-breadcrumb-item>
-                            <el-breadcrumb-item  >{{ $t('user.label.users') }}
-                            </el-breadcrumb-item>
 
-                        </el-breadcrumb>
-                    </div>
+        <div class="content-header">
+            <div class="row ">
+                <div class="col-12">
+                    <h4>{{ $t('user.label.users') }}</h4>
+                    <hr>
 
                 </div>
+
             </div>
         </div>
+
 
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
-                <div class="row justify-content-end mb-2">
+
+                <div class="row justify-content-between mb-2">
                     <div class="col-md-4   ">
-                        <el-input suffix-icon="el-icon-search" @keyup.native="performSearch" placeholder="Nhập ID, Tên, Tài khoản, Email"
+                        <router-link :to="{name: 'admin.users.create'}" class="float-sm-left">
+                            <i class="el-icon-plus"></i>
+
+                            {{ $t('role.label.create_role') }}
+
+                        </router-link>
+                    </div>
+                    <div class="col-md-4">
+
+                        <el-input suffix-icon="el-icon-search" @keyup.native="performSearch" placeholder="Tìm kiếm"
+                                  size="medium"
                                   v-model="searchQuery">
                         </el-input>
                     </div>
                 </div>
 
+
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col-md-3">
                         <div class="card">
                             <div class="card-header ui-sortable-handle" style="cursor: move;">
                                 <h3 class="card-title">
-                                    {{ $t('user.label.users') }}
+                                    {{ $t('department.label.title') }}
                                 </h3>
                                 <div class="card-tools">
                                     <ul class="nav nav-pills ml-auto">
                                         <li class="nav-item">
-                                            <router-link :to="{name: 'admin.users.create'}">
-                                                <el-button type="primary"  class="btn btn-flat btn-primary">
-                                                    {{ $t('user.label.create_user') }}
-                                                </el-button>
-                                            </router-link>
+                                            <i class="el-icon-plus"></i>
+                                            <i class="el-icon-edit"></i>
+
+                                            <i class="el-icon-delete"></i>
                                         </li>
 
                                     </ul>
                                 </div>
                             </div><!-- /.card-header -->
+                            <div class="card-body">
+                                <el-input
+                                    placeholder="Tìm kiếm"
+                                    size="medium"
+                                    v-model="filterDepartment">
+                                </el-input>
+
+                                <el-tree
+                                    class="filter-tree"
+                                    :data="departmentTreeData"
+                                    :props="treeProps"
+                                    default-expand-all
+                                    :filter-node-method="filterNode"
+                                    ref="tree">
+                                </el-tree>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="card">
+
                             <div class="card-body">
                                 <div class="sc-table">
 
@@ -113,9 +140,16 @@
 
         data() {
             return {
+                treeProps: {
+                    children: 'children',
+                    label: 'label'
+                },
                 data: [],
 
                 columnsSearch: [],
+                departmentTreeData: [],
+                departmentLoading: false,
+                filterDepartment: '',
                 listFilterColumn: [],
 
 
@@ -142,11 +176,30 @@
                         this.order_meta.order_by = properties.order_by;
                         this.order_meta.order = properties.order;
                     });
+            },
+            getDepartmentList(customProperties) {
+
+                const properties = {
+
+                };
+                this.departmentLoading = true;
+                window.axios.get(route('api.department.tree', _.merge(properties, customProperties)))
+                    .then((response) => {
+                        console.log(response)
+                        this.departmentLoading = false;
+                        this.departmentTreeData = response.data;
+
+                    });
+            },
+            filterNode(value, data) {
+                if (!value) return true;
+                return data.label.indexOf(value) !== -1;
             }
 
         },
         mounted() {
             this.fetchData();
+            this.getDepartmentList({});
 
         },
     }
