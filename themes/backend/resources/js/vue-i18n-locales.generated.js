@@ -190,7 +190,8 @@ export default {
                 "id": "ID",
                 "name": "Tên",
                 "title": "Nhóm",
-                "add department": "Tạo nhóm mới"
+                "add department": "Tạo nhóm mới",
+                "edit department": "Đổi tên nhóm"
             },
             "message": {
                 "create success": "Tạo nhóm mới thành công.",

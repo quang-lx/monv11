@@ -42,10 +42,10 @@
                                 <div class="card-tools">
                                     <ul class="nav nav-pills ml-auto">
                                         <li class="nav-item">
-                                            <i class="el-icon-plus" style="cursor:pointer" @click="showAddDepartment = true"></i>
-                                            <i class="el-icon-edit"  style="cursor:pointer"  @click="showEditDepartment = true"></i>
+                                            <i class="el-icon-plus"    style="cursor:pointer" @click="showAddDepartment = true"></i>
+                                            <i class="el-icon-edit" v-bind:class="{ disabled: !parent_selected }"  style="cursor:pointer"  @click="showEditDepartment = true"></i>
 
-                                            <i class="el-icon-delete"  style="cursor:pointer"  @click="confirmDeleteDepartment"></i>
+                                            <i class="el-icon-delete" v-bind:class="{ disabled: !parent_selected }"   style="cursor:pointer"  @click="confirmDeleteDepartment"></i>
                                         </li>
 
                                     </ul>
@@ -53,6 +53,7 @@
                             </div><!-- /.card-header -->
                             <div class="card-body">
                                 <el-input
+                                    class="mb-2"
                                     placeholder="Tìm kiếm"
                                     size="mini"
                                     v-model="filterDepartment">
@@ -168,6 +169,34 @@
                 <el-button size="small" type="primary" @click="confirmAddDepartment">{{$t('common.add')}}</el-button>
               </div>
         </el-dialog>
+        <el-dialog
+            width="30%"
+            :show-close="false"
+            :title="$t('department.label.edit department')"
+            :destroy-on-close="true"
+            :visible.sync="showEditDepartment">
+
+
+            <el-form ref="addDepartmentForm"
+                     :model="editModel"
+                     label-position="top"
+                     v-loading.body="loadingEdit"
+            >
+                <el-form-item label=""
+                              :class="{'el-form-item is-error': editForm.errors.has('name') }">
+                    <el-input v-model="editModel.name"  size="medium"></el-input>
+                    <div class="el-form-item__error"
+                         v-if="editForm.errors.has('name')"
+                         v-text="editForm.errors.first('name')"></div>
+                </el-form-item>
+
+            </el-form>
+
+            <div class="d-flex justify-content-end">
+                <el-button size="small"  @click="showEditDepartment = false">{{$t('common.cancel')}}</el-button>
+                <el-button size="small" type="primary" @click="confirmEditDepartment">Sửa</el-button>
+            </div>
+        </el-dialog>
 
     </div>
 </template>
@@ -181,6 +210,7 @@
         data() {
             return {
                 addForm: new Form(),
+                editForm: new Form(),
                 parent_selected: null,
                 addModel: {
                     name: '',
@@ -188,7 +218,14 @@
 
 
                 },
+                editModel: {
+                    id: '',
+                    name: '',
+
+
+                },
                 loadingAdd: false,
+                loadingEdit: false,
                 treeProps: {
                     children: 'children',
                     label: 'label'
@@ -208,6 +245,8 @@
 
             handleNodeClick(data, checked, indeterminate) {
                 this.parent_selected = data.id
+                this.editModel.id = data.id
+                this.editModel.name = data.label
             },
             confirmDeleteDepartment() {
                 if( this.parent_selected) {
@@ -227,21 +266,21 @@
                 window.axios.delete(route('api.department.destroy', {department: this.parent_selected}) )
                     .then((response) => {
                         if (response.data.errors === false) {
-                            vm.$message({
+                            this.$notify({
                                 type: 'success',
                                 message: response.data.message,
                             });
                             this.getDepartmentList({})
 
                         }else {
-                            vm.$message({
+                            this.$notify({
                                 type: 'error',
                                 message: response.data.message,
                             });
                         }
                     })
                     .catch((error) => {
-                        vm.$message({
+                        this.$notify({
                             type: 'error',
                             message: error.data.message,
                         });
@@ -251,26 +290,52 @@
                 let params = _.merge(this.addModel);
                 params.parent_id = this.parent_selected;
                 this.form = new Form(params);
-                this.loading = true;
+                this.loadingAdd = true;
 
                 this.form.post(this.getRouteCreateDepartment())
                     .then((response) => {
-                        this.loading = false;
-                        this.$message({
+                        this.loadingAdd = false;
+                        this.$notify({
                             type: 'success',
                             message: response.message,
                         });
                         this.showAddDepartment = false;
                         this.addModel.name = '';
-                        this.$message({
-                            type: 'success',
-                            message: 'Tạo nhóm mới thành công'
-                        });
+
                         this.getDepartmentList({})
                     })
                     .catch((error) => {
 
-                        this.loading = false;
+                        this.loadingAdd = false;
+                        this.$notify.error({
+                            title: this.$t('mon.error.Title'),
+                            message: this.getSubmitError(this.form.errors),
+                        });
+                    });
+            },
+            confirmEditDepartment() {
+                if(!this.editModel.id) {
+                    return
+                }
+                let params = _.merge(this.editModel);
+                 this.form = new Form(params);
+                this.loadingEdit = true;
+
+                this.form.post(this.getRouteEditDepartment())
+                    .then((response) => {
+                        this.loadingEdit = false;
+                        this.$notify({
+                            type: 'success',
+                            message: response.message,
+                        });
+
+                        this.showEditDepartment = false;
+
+                        this.getDepartmentList({})
+                    })
+                    .catch((error) => {
+
+                        this.loadingEdit = false;
                         this.$notify.error({
                             title: this.$t('mon.error.Title'),
                             message: this.getSubmitError(this.form.errors),
@@ -321,6 +386,10 @@
                 return route('api.department.store');
             },
 
+            getRouteEditDepartment() {
+                return  route('api.department.update', {department: this.editModel.id});
+            },
+
 
         },
         mounted() {
@@ -330,7 +399,7 @@
         },
         created() {
             if (this.$route.query.msg) {
-                this.$message({
+                this.$notify({
                     type: 'success',
                     message: this.$route.query.msg
                 });
@@ -341,5 +410,9 @@
 </script>
 
 <style scoped>
+    .disabled {
+        pointer-events:none;
+
+    }
 
 </style>
