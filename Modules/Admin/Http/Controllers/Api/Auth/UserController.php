@@ -3,6 +3,7 @@
 namespace Modules\Admin\Http\Controllers\Api\Auth;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Modules\Admin\Http\Requests\User\ChangePasswordRequest;
 use Modules\Admin\Http\Requests\User\CreateUserRequest;
 use Modules\Admin\Http\Requests\User\UpdateUserRequest;
@@ -43,19 +44,16 @@ class UserController extends ApiController
 
     public function store(CreateUserRequest $request)
     {
-        $username = $request->get('username');
+
         $data = $request->all();
-        if($request->get('type') == User::TYPE_USER) {
-            $usernameFormatted = validate_isdn($username);
-            $data['username'] = $usernameFormatted;
-        }
+
 
         $data['sms_verified_at'] = now();
         $data['finish_reg'] = 1;
+        $data['password'] = env('DEFAULT_PASSWORD', '123456aA@');
 
         $user = $this->userRepository->createWithRoles($data, $request->get('roles') );
-        $data['user_id'] = $user->id;
-        $this->profileRepository->create($data);
+
         return response()->json([
             'errors' => false,
             'message' => trans('backend::user.message.create success'),
@@ -69,23 +67,10 @@ class UserController extends ApiController
 
     public function update(User $user, UpdateUserRequest $request)
     {
-        $username = $request->get('username');
-        $usernameFormatted = validate_isdn($username);
         $data = $request->all();
 
-        if ($user->type == User::TYPE_USER) {
-            $data['username'] = $usernameFormatted;
-        }
-
         $this->userRepository->updateAndSyncRoles($user, $data, $request->get('roles'));
-        $profile = $user->profile()->first();
 
-        if ($profile) {
-            $this->profileRepository->update($profile, $data);
-        } else {
-            $data['user_id'] = $user->id;
-            $this->profileRepository->create($data);
-        }
         return response()->json([
             'errors' => false,
             'message' => trans('backend::user.message.update success'),

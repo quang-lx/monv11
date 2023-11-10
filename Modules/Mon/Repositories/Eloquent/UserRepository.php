@@ -2,6 +2,8 @@
 
 namespace Modules\Mon\Repositories\Eloquent;
 
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Modules\Mon\Repositories\UserRepository as UserInterface;
 use Modules\Mon\Events\UserWasCreated;
@@ -10,6 +12,7 @@ use Modules\Mon\Events\UserWasUpdated;
 use Modules\Mon\Entities\User;
 use Illuminate\Http\Request;
 use Ramsey\Uuid\Uuid;
+use Spatie\Permission\Guard;
 
 class UserRepository extends BaseRepository implements UserInterface
 {
@@ -52,18 +55,24 @@ class UserRepository extends BaseRepository implements UserInterface
      */
     public function createWithRoles($data, $roles)
     {
-        $this->checkForNewPassword($data);
+        $user = null;
+        DB::transaction(function () use (&$user, $data, $roles){
+            $this->checkForNewPassword($data);
 
-        $user = $this->model->create((array)$data);
-        event(new UserWasCreated($user, $data));
-        if (!empty($roles)) {
-            $user->assignRole($roles);
-        }
+            $user = $this->model->create((array)$data);
+            event(new UserWasCreated($user, $data));
+            if (!empty($roles)) {
+                Config::set('auth.defaults.guard', 'web');
+                $user->assignRole($roles);
+            }
+        });
+
+
 
         return $user;
     }
     /**
-     * @param $userId
+     * @param $model User
      * @param $data
      * @param $roles
      * @internal param $user
@@ -71,14 +80,18 @@ class UserRepository extends BaseRepository implements UserInterface
      */
     public function updateAndSyncRoles($model, $data, $roles)
     {
-        unset($data['password']);
-        $model->update($data);
+        DB::transaction(function () use (&$model, $data, $roles){
+            unset($data['password']);
+            $model->update($data);
 
-        event(new UserWasUpdated($model, $data));
+            event(new UserWasUpdated($model, $data));
 
-        if (!empty($roles)) {
-            $model->syncRoles($roles);
-        }
+            if (!empty($roles)) {
+                Config::set('auth.defaults.guard', 'web');
+                $model->syncRoles($roles);
+            }
+        });
+
         return $model;
     }
     /**
