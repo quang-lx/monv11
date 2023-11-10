@@ -11,12 +11,7 @@ class CreateUserRequest extends FormRequest
 {
     protected function prepareForValidation(): void
     {
-        $userType =$this->request->get('type');
-        if ($userType == User::TYPE_USER) {
-            $username =$this->request->get('username');
-            $usernameFormatted = validate_isdn($username);
-            $this->merge(['username' => $usernameFormatted]);
-        }
+
     }
     public function rules()
     {
@@ -26,18 +21,9 @@ class CreateUserRequest extends FormRequest
 
 
             'name' => 'required',
-            'email' => 'required|unique:users|email',
-            'password' => 'required|min:6|regex:/^((?!.*[\s])(?=.*[a-zA-Z])(?=.*\d))/',
-            'password_confirmation' => 'required|same:password'
+            'email' => 'unique:users|email',
         ];
 
-        if ($userType == User::TYPE_USER) {
-            $rules['username'] = ['required','unique:users', 'regex:/^[0-9]+$/'];
-        }else {
-            $rules['username'] = ['required',"unique:users,username",'regex:/^[\w-]*$/'];
-            $rules['phone'] = ['required',"unique:users,phone", 'regex:/^[0-9]+$/'];
-
-        }
         return $rules;
     }
 
