@@ -13,6 +13,7 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject {
 	use Notifiable, HasRoles, SoftDeletes;
 	const TYPE_ADMIN = 1;
 	const TYPE_USER = 2;
+
     protected   $guard_name = ['api', 'web'];
 	protected $table = 'users';
 	/**

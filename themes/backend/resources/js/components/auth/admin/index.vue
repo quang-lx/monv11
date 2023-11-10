@@ -16,7 +16,7 @@
             <div class="container-fluid">
                 <div class="row justify-content-between mb-2">
                     <div class="col-md-4   ">
-                        <router-link :to="{name: 'admin.users.create'}" class="float-sm-left">
+                        <router-link :to="{name: 'admin.admins.create'}" class="float-sm-left">
                             <i class="el-icon-plus"></i>
 
                             {{ $t('role.label.create_role') }}

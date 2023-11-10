@@ -26,4 +26,29 @@ class EloquentDepartmentRepository extends BaseRepository implements DepartmentR
         }
         return $data;
     }
+    public function getAllHierarchy($parent_id = null) {
+        $data = [];
+        $query = $this->newQueryBuilder();
+        if ($parent_id) {
+            $query->where('parent_id', $parent_id);
+        } else {
+            $query->whereNull('parent_id');
+        }
+        $departments = $query->get();
+        foreach ($departments as $department) {
+            $name = $department->name;
+            if ($department->parent_id) {
+                $name = '---'.$name;
+            }
+            $row = [
+                'id' => $department->id,
+                'name' => $name
+
+            ];
+            $data[] = $row;
+            $data = array_merge($data, $this->getAllHierarchy($department->id));
+
+        }
+        return $data;
+    }
 }

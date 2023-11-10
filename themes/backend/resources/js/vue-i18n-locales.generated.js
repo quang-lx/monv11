@@ -416,7 +416,14 @@ export default {
                 "users": "Tài khoản",
                 "roles": "Nhóm quyền",
                 "change_password": "Đổi mật khẩu",
-                "admins": "Quản lý tài khoản CMS"
+                "admins": "Quản lý tài khoản CMS",
+                "select department": "Chọn đơn vị",
+                "select sex": "Chọn giới tính",
+                "sex": "Giới tính",
+                "department_id": "Đơn vị",
+                "identification": "Giấy tờ tuỳ thân",
+                "birth_day": "Năm sinh",
+                "expired_at": "Thời gian hiệu lực của tài khoản"
             },
             "tabs": {
                 "data": "Thông tin chung",

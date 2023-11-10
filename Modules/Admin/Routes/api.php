@@ -182,6 +182,10 @@ Route::middleware('auth:api')->prefix('/departments')->group(function (){
         'as' => 'api.department.tree',
         'uses' => 'Department\DepartmentController@tree',
     ]);
+    Route::get('/hierarchy', [
+        'as' => 'api.department.hierarchy',
+        'uses' => 'Department\DepartmentController@getAllHierarchy',
+    ]);
     Route::get('/', [
         'as' => 'api.department.index',
         'uses' => 'Department\DepartmentController@index',

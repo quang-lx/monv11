@@ -31,6 +31,10 @@ class DepartmentController extends ApiController
     {
         return $this->departmentRepository->getAllTree();
     }
+    public function getAllHierarchy(Request $request)
+    {
+        return $this->departmentRepository->getAllHierarchy();
+    }
     public function index(Request $request)
     {
         return DepartmentTransformer::collection($this->departmentRepository->serverPagingFor($request));
