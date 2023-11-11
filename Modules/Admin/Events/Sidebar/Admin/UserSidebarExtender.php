@@ -32,20 +32,20 @@ class UserSidebarExtender extends AbstractAdminSidebar
 
             });
             $group->item(trans('backend::sidebar.system administration'), function (Item $item) {
-                $item->icon('fas fa-lock');
+                $item->icon('fas fa-cog');
                 $item->weight(10);
                 $item->authorize(
                     $this->auth->hasAccess('admin.admins.index')
                 );
-                $item->item(trans('backend::sidebar.permissions'), function (Item $item) {
-
-                    $item->weight(0);
-
-                    $item->route('admin.permissions.index');
-                    $item->authorize(
-                        $this->auth->hasAccess('admin.permissions.index')
-                    );
-                });
+//                $item->item(trans('backend::sidebar.permissions'), function (Item $item) {
+//
+//                    $item->weight(0);
+//
+//                    $item->route('admin.permissions.index');
+//                    $item->authorize(
+//                        $this->auth->hasAccess('admin.permissions.index')
+//                    );
+//                });
                 $item->item(trans('backend::sidebar.roles'), function (Item $item) {
 
                     $item->weight(0);
@@ -63,26 +63,6 @@ class UserSidebarExtender extends AbstractAdminSidebar
                     $item->route('admin.admins.index');
                     $item->authorize(
                         $this->auth->hasAccess('admin.admins.index')
-                    );
-                });
-
-            });
-
-
-
-            $group->item(trans('backend::sidebar.news'), function (Item $item) {
-                $item->icon('fas fa-newspaper');
-                $item->weight(10);
-                $item->authorize(
-                    $this->auth->hasAccess('admin.category.index')
-                );
-                $item->item(trans('backend::sidebar.category'), function (Item $item) {
-
-                    $item->weight(0);
-
-                    $item->route('admin.category.index');
-                    $item->authorize(
-                        $this->auth->hasAccess('admin.category.index')
                     );
                 });
 

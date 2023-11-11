@@ -17,9 +17,9 @@ return [
 
     'system administration' => 'Quản trị chung',
     'roles and permission' => 'Roles and permission',
-    'admins' => 'Tài khoản quản trị',
+    'admins' => 'Quản lý tài khoản',
     'users' => 'Người dùng',
-    'roles' => 'Vai trò',
+    'roles' => 'Quản lý vai trò tài khoản',
     'permissions' => 'Chức năng',
     'index' => 'Danh sách',
     // general setting

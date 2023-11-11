@@ -170,14 +170,24 @@
                                         <div class="col-md-4">
                                             <el-form-item :label="$t('user.label.username')"
                                                           :class="{'el-form-item is-error': form.errors.has('username') }">
-                                                <el-input v-model="modelForm.username" :disabled="!modelForm.is_new"
-                                                          size="small"
-                                                          autocomplete="off"></el-input>
+                                                <div class="row">
+                                                    <div class="col-sm-9">
+                                                        <el-input v-model="modelForm.username" :disabled="!modelForm.is_new"
+                                                                  size="small"
+                                                                  autocomplete="off"></el-input>
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                        <el-button type="primary" plain @click="onResetPassword" size="small" :loading="loadingPassword" v-if="!modelForm.is_new">Reset mật khẩu</el-button>
+
+                                                    </div>
+                                                </div>
+
                                                 <div class="el-form-item__error"
                                                      v-if="form.errors.has('username')"
                                                      v-text="form.errors.first('username')"></div>
                                             </el-form-item>
                                         </div>
+
                                         <div class="col-12">
                                             <h6 class="mb-2">Vai trò quản trị</h6>
                                             <el-table
@@ -215,42 +225,6 @@
             </div>
         </section>
 
-
-        <el-dialog
-            :title="($t('user.label.change_password') + ': ' + modelForm.username)"
-            :visible.sync="changePassDialogVisible"
-            width="30%"
-            center>
-            <el-form ref="changepassForm"
-                     :model="modelForm"
-                     label-width="200px"
-                     label-position="left"
-                     v-loading.body="loadingPassword"
-            >
-                <el-form-item :label="$t('user.label.password_new')" style="margin-bottom:30px"
-                              :class="{'el-form-item is-error': changepassForm.errors.has('password') }">
-                    <el-input v-model="modelForm.password" autocomplete="off"
-                              type="password"></el-input>
-                    <div class="el-form-item__error"
-                         v-if="changepassForm.errors.has('password')"
-                         v-text="changepassForm.errors.first('password')"></div>
-                </el-form-item>
-                <el-form-item :label="$t('user.label.password_confirmation_new')"
-                              :class="{'el-form-item is-error': changepassForm.errors.has('password_confirmation') }">
-                    <el-input v-model="modelForm.password_confirmation" autocomplete="off"
-                              type="password"></el-input>
-                    <div class="el-form-item__error"
-                         v-if="changepassForm.errors.has('password_confirmation')"
-                         v-text="changepassForm.errors.first('password_confirmation')"></div>
-                </el-form-item>
-            </el-form>
-
-            <span slot="footer" class="dialog-footer">
-                                        <el-button @click="changePassDialogVisible = false">  {{$t('mon.button.cancel') }}</el-button>
-                                        <el-button type="primary"
-                                                   @click="changePassword"> {{ $t('mon.button.save') }}</el-button>
-                                      </span>
-        </el-dialog>
 
     </div>
 
@@ -339,21 +313,17 @@
                         });
                     });
             },
-            changePassword() {
-                this.changepassForm = new Form({
-                    password: this.modelForm.password,
-                    password_confirmation: this.modelForm.password_confirmation
-                });
+            onResetPassword() {
+                this.changepassForm = new Form();
                 this.loadingPassword = true;
 
-                this.changepassForm.post(route('api.users.change-password', {user: this.$route.params.userId}))
+                this.changepassForm.post(route('api.users.reset-password', {user: this.$route.params.userId}))
                     .then((response) => {
                         this.loadingPassword = false;
                         this.$message({
                             type: 'success',
                             message: response.message,
                         });
-                        this.changePassDialogVisible = false;
                     })
                     .catch((error) => {
                         this.loadingPassword = false;

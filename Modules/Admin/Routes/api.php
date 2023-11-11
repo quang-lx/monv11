@@ -138,6 +138,11 @@ Route::middleware('auth:api')->prefix('auth')->group(function (){
         'uses' => 'Auth\UserController@changePassword',
 
     ]);
+    Route::post('users/{user}/reset-password', [
+        'as' => 'api.users.reset-password',
+        'uses' => 'Auth\UserController@resetPassword',
+
+    ]);
 
 
 

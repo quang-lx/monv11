@@ -45,6 +45,7 @@ return [
         'delete success' => 'Xóa tài khoản thành công.',
         'change password success' => 'Đổi mật khẩu thành công.',
         'not allow self delete' => 'Không cho phép xóa tài khoản bạn đang đăng nhập.',
+        'reset password success' => 'Reset mật khẩu thành công.',
     ]
 
 ];

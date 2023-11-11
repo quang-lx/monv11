@@ -8,4 +8,5 @@ interface UserRepository extends BaseRepository {
     public function createWithRoles($data, $roles);
     public function updateAndSyncRoles($model, $data, $roles);
     public function changePassword($user,$data);
+    public function resetPassword($user,$data);
 }

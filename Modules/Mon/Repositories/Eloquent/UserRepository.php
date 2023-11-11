@@ -47,6 +47,14 @@ class UserRepository extends BaseRepository implements UserInterface
         return $model;
     }
 
+    public function resetPassword($model, $data) {
+        $data = [];
+        $data['password'] = env('DEFAULT_PASSWORD', '123456aA@');
+        $data['password'] = Hash::make($data['password']);
+        $model->update($data);
+        return $model;
+    }
+
     /**
      * Create a user and assign roles to it
      * @param  array $data

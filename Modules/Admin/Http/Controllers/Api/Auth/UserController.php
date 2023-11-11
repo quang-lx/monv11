@@ -111,4 +111,15 @@ class UserController extends ApiController
             'message' => trans('backend::user.message.change password success'),
         ]);
     }
+    public function resetPassword(User $user, Request $request)
+    {
+        $data = $request->all();
+
+        $this->userRepository->resetPassword($user, $request->all());
+
+        return response()->json([
+            'errors' => false,
+            'message' => trans('backend::user.message.reset password success'),
+        ]);
+    }
 }
