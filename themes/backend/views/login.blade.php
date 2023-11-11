@@ -14,14 +14,14 @@
     <meta name="current-locale" content="{{ app()->getLocale() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover">
     <!-- Font Awesome -->
-    <link href="{{ asset('themes/backend/vendor/admin-lte/plugins/fontawesome-free/css/all.min.css') }}"
-        rel="stylesheet">
+    {!! \Modules\Mon\Support\Facades\Theme::css('vendor/admin-lte/plugins/fontawesome-free/css/all.min.css') !!}
+
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
-    <link href="{{ asset('themes/backend/vendor/admin-lte/dist/css/adminlte.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('themes/backend/vendor/admin-lte/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}"
-        rel="stylesheet">
+    {!! \Modules\Mon\Support\Facades\Theme::css('vendor/admin-lte/dist/css/adminlte.min.css') !!}
+    {!! \Modules\Mon\Support\Facades\Theme::css('vendor/admin-lte/plugins/icheck-bootstrap/icheck-bootstrap.min.css') !!}
+
     <style>
         .login-page {
             justify-content: normal;
@@ -267,10 +267,10 @@
     <p class="license">
         2017© Bản quyền thuộc Tập đoàn Công nghiệp Viễn thông Quân Đội
     </p>
-    <script src="{{ asset('themes/backend/vendor/admin-lte/plugins/jquery/jquery.min.js') }}"></script>
+    {!! \Modules\Mon\Support\Facades\Theme::js('vendor/admin-lte/plugins/jquery/jquery.min.js') !!}
+    {!! \Modules\Mon\Support\Facades\Theme::js('vendor/admin-lte/plugins/bootstrap/js/bootstrap.bundle.min.js') !!}
+    {!! \Modules\Mon\Support\Facades\Theme::js('vendor/admin-lte/dist/js/adminlte.min.js') !!}
 
-    <script src="{{ asset('themes/backend/vendor/admin-lte/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('themes/backend/vendor/admin-lte/dist/js/adminlte.min.js') }}"></script>
     @section('scripts')
     @show
     @stack('js-stack')
