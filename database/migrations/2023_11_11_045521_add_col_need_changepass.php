@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->smallInteger('need_change_password')->default(0)->nullable();
+            $table->smallInteger('need_change_password')->default(1)->nullable();
         });
     }
 
