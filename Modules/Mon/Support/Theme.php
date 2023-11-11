@@ -6,7 +6,13 @@ class Theme {
     public function url($path)
     {
         $theme = $this->currentTheme();
-        return asset("themes/$theme/$path");
+        $dev_suffix = env('DEV_SUFFIX', null);
+        $full_path = '';
+        if ($dev_suffix) {
+            $full_path = $dev_suffix. '/';
+        }
+        $full_path .= "themes/$theme/$path";
+        return asset($full_path);
     }
 
     /**

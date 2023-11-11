@@ -105,7 +105,11 @@
                                             <template slot-scope="scope">
                                                 <edit-button
                                                         :to="{name: 'admin.admins.edit', params: {userId: scope.row.id}}"></edit-button>
-                                                <reload-delete-button :scope="scope" :rows="data" @delete-done="queryServer"></reload-delete-button>
+                                                <reload-delete-button :scope="scope"
+                                                                      message-confirm="Các thông tin này sẽ bị xóa và không thể hoàn tác."
+                                                                      title="XÓA NHÂN VIÊN?"
+                                                                      :rows="data"
+                                                                      @delete-done="queryServer"></reload-delete-button>
                                             </template>
                                         </el-table-column>
                                     </el-table>
