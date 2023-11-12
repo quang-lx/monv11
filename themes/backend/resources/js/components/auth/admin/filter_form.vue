@@ -52,6 +52,7 @@
                                 size="small"
                                 v-model="search_data.time_range"
                                 type="daterange"
+                                value-format="yyyy-MM-dd"
                                 range-separator="-"
                                 :start-placeholder="$t('user.label.from date')"
                                 :end-placeholder="$t('user.label.to date')">

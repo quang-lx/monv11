@@ -180,10 +180,10 @@ class UserRepository extends BaseRepository implements UserInterface
 
             $query->where('created_by', $created_by);
         }
- $time_range = $request->get('time_range');
+        $time_range = $request->get('time_range');
         if ($time_range !== null) {
 
-
+            $query->whereBetween('created_at', $time_range);
         }
 
         if ($request->get('name') !== null) {
