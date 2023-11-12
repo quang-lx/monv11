@@ -12,7 +12,7 @@ use Modules\Mon\Http\Controllers\WebController;
 use Modules\Mon\Repositories\UserRepository;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
-
+use Modules\Mon\Http\Requests\User\LoginRequest;
 
 class LoginController extends WebController
 {
@@ -162,12 +162,12 @@ class LoginController extends WebController
         return view('backend::login');
     }
 
-    public function login(Request $request)
+    public function login(LoginRequest $request)
     {
         $credentials = $request->only('username', 'password');
         $user = User::where('username', $request->input('username'))->first();
         if (!$user) {
-            return back()->withErrors(['username' => 'Tên người dùng hoặc mật khẩu không chính xác.'])->withInput();
+            return back()->withErrors(['username' => 'Tài khoản hoặc mật khẩu không đúng.'])->withInput();
         }
         $currentDateTime = Carbon::now();
         if ($user->retry_time && Carbon::parse($user->retry_time)->gt($currentDateTime)) {
@@ -190,7 +190,7 @@ class LoginController extends WebController
             $user->enter_wrong_password = $user->enter_wrong_password + 1;
         }
         $user->save();
-        return back()->withErrors(['username' => 'Tên người dùng hoặc mật khẩu không chính xác.'])->withInput();
+        return back()->withErrors(['username' => 'Tài khoản hoặc mật khẩu không đúng.'])->withInput();
 
     }
 }
