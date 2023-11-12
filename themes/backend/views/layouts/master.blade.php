@@ -118,5 +118,16 @@
 @section('scripts')
 @show
 @stack('js-stack')
+
+<script>
+    $(document).ready(function() {
+        $(".show-hide-pass").click(function() {
+            let element = $(this).parent($('.formPassword')).find('input')
+            console.log(element)
+            element.attr('type') == 'password' ? element.attr('type', 'string') : element.attr('type',
+                'password')
+        })
+    })
+</script>
 </body>
 </html>

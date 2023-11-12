@@ -127,6 +127,12 @@ Route::middleware('auth:api')->prefix('auth')->group(function (){
         'uses' => 'Auth\UserController@update',
 
     ]);
+
+    Route::get('users/profile/get', [
+        'as' => 'api.users.profile',
+        'uses' => 'Auth\UserController@profile',
+    ]);
+
     Route::post('users', [
         'as' => 'api.users.store',
         'uses' => 'Auth\UserController@store',

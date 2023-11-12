@@ -24,13 +24,6 @@ Route::get('/', [
 
 ])->middleware('permission:admin.dashboard.index');
 
-Route::group(['prefix' =>'/profile'], function (){
-    Route::get('edit', [
-        'as' => 'admin.profile.edit',
-        'uses' => 'HomeController@index',
-
-    ])->middleware('permission:admin.profile.edit');
-});
 
 Route::group(['prefix' =>'/auth'], function (){
     Route::group(['prefix' => 'quan-tri'], function () {
@@ -65,6 +58,7 @@ Route::group(['prefix' =>'/auth'], function (){
         'as' => 'admin.users.edit',
         'uses' => 'Auth\UserController@edit',
     ])->middleware('permission:admin.users.edit');
+
     // permission
     Route::get('/permissions', [
         'as' => 'admin.permissions.index',
@@ -170,6 +164,14 @@ Route::group(['prefix' => '/department'], function ( ) {
 
 
 });
+Route::group(['prefix' =>'/profile'], function (){
+    Route::get('edit', [
+        'as' => 'admin.profile.edit',
+        'uses' => 'Auth\UserController@profile',
+        'middleware' => 'permission:admin.profile.edit'
+    ]);
+});
+
 Route::group(['prefix' => '/department'], function ( ) {
 
     Route::get('/', [
@@ -188,8 +190,7 @@ Route::group(['prefix' => '/department'], function ( ) {
         'uses' => 'Department\DepartmentController@edit',
         'middleware' => 'permission:admin.department.edit'
     ]);
-
-
+    
 });
 // append
 

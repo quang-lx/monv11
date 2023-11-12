@@ -20,7 +20,7 @@
                     <div class="mt-4 mb-3 d-flex align-items-center">
                         <img class="mr-3" src="{{ URL::asset('/images/user.svg') }}" alt="">
 
-                        <a href="{{ route('admin.users.edit', ['user' => $currentUser->id]) }}">
+                        <a href="{{ route('admin.profile.edit')}}">
                             <p>
                                 {{ trans('backend::profile.label.profile') }}
                             </p>

@@ -14,6 +14,9 @@ import AdminForm from './../components/auth/admin/form.vue';
 import CategoryList from './../components/category/index.vue';
 import CategoryForm from './../components/category/form.vue';
 
+import ProfileForm from './../components/auth/profile/form.vue';
+
+
 const currentLocale = '/' + window.MonCMS.currentLocale;
 
 export default [
@@ -108,6 +111,15 @@ export default [
         component: CategoryForm,
         props: {
             pageTitle: 'category.label.update_category',
+        },
+    },
+
+    {
+        path: '/admin/profile/edit',
+        name: 'admin.profile.edit',
+        component: ProfileForm,
+        props: {
+            pageTitle: 'user.label.profile',
         },
     },
 

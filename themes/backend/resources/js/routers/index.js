@@ -32,6 +32,7 @@ function makeBaseUrl() {
 
 router.beforeEach((to, from, next) => {
     const routeName = to.name;
+    console.log(routeName)
     if (_.find(permissions, function(permission) { return permission.name === routeName })) {
         next();
     } else {

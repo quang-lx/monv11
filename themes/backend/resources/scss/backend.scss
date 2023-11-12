@@ -6,58 +6,102 @@ $brand-primary: #6589FF;
 
 $fa-css-prefix: el-icon-fa;
 @import "~font-awesome/scss/font-awesome";
-[class^="el-icon-fa"], [class*=" el-icon-fa"] {
+
+[class^="el-icon-fa"],
+[class*=" el-icon-fa"] {
   display: inline-block;
-  font: normal normal normal 14px/1 FontAwesome!important;
+  font: normal normal normal 14px/1 FontAwesome !important;
   font-size: inherit;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-};
+}
+
+;
+
 .content-wrapper {
   .content {
     padding: 0 .5rem;
   }
 }
+
 .el-tab-pane {
   padding-top: 12px;
 }
+
 .vue-video-center {
   background: gray !important;
 }
+
 .el-form-item label {
-    margin-bottom: 0 !important;
+  margin-bottom: 0 !important;
 }
 
 .f-action {
-    color: #616161 !important;
-    font-family: Roboto !important;
-    font-size: 14px !important;
-    font-style: normal !important;
-    font-weight: 400 !important;
-    line-height: normal !important;
+  color: #616161 !important;
+  font-family: Roboto !important;
+  font-size: 14px !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  line-height: normal !important;
 }
+
 .f-breadcrumb {
-    color: #242424 !important;
-    font-family: Roboto !important;
-    font-size: 18px !important;
-    font-style: normal !important;
-    font-weight: 700 !important;
-    line-height: 20px !important;
+  color: #242424 !important;
+  font-family: Roboto !important;
+  font-size: 18px !important;
+  font-style: normal !important;
+  font-weight: 700 !important;
+  line-height: 20px !important;
 }
+
 aside .sidebar {
-    margin-top: 5px !important;
+  margin-top: 5px !important;
 }
+
 .f-pointer {
-    cursor:pointer;
+  cursor: pointer;
 }
 
 .card-body {
-    padding: 12px !important;
+  padding: 12px !important;
 }
+
 .el-dialog__header {
-    padding: 12px !important;
+  padding: 12px !important;
 }
+
 .el-dialog__body {
-    padding: 12px !important;
+  padding: 12px !important;
+}
+
+.el-form .el-form-item__label {
+  color: var(--gray-9, #2F3748) !important;
+
+  /* Body/14/Regular */
+  font-family: Roboto;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400 !important;
+  line-height: 22px;
+  /* 157.143% */
+}
+
+.el-form .el-input__inner {
+  display: flex;
+  height: 48px !important;
+  padding: 4px 12px !important;
+  border-radius: 4px !important;
+  border: 1px solid var(--basic-0, #F6F6F6) !important;
+  background: var(--common-2, #FAFAFA) !important;
+}
+
+.popup-change-pass .el-dialog__header{
+  padding: 0px !important;
+}
+.popup-change-pass .el-dialog__body{
+  padding: 40px !important;
+}
+.popup-change-pass .el-dialog{
+  border-radius: 16px;
 }

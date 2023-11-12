@@ -65,6 +65,11 @@ class UserController extends ApiController
         return new  UserFullTransformer($user);
     }
 
+    public function profile()
+    {
+        return new UserFullTransformer(auth()->user());
+    }
+
     public function update(User $user, UpdateUserRequest $request)
     {
         $data = $request->all();

@@ -3,18 +3,19 @@ return [
     'label' => [
         'id' => 'ID',
         'image' => 'Ảnh',
-        'username' => 'Tài khoản',
+        'username' => 'Tên đăng khoản',
         'email' => 'Email',
-        'name' => 'Tên',
+        'name' => 'Họ và tên',
         'phone' => 'Số điện thoại',
         'status' => 'Trạng thái',
         'created_at' => 'Thời gian tạo',
         'updated_at' => 'Ngày cập nhật',
-        'password_confirmation' => 'Xác nhận mật khẩu',
+        'password_confirmation' => 'Xác nhận mật khẩu mới',
         'password' => 'Mật khẩu',
         'password_new' => 'Mật khẩu mới',
         'password_confirmation_new' => 'Nhập lại mật khẩu mới',
         'create_user' => 'Thêm mới',
+        'password_old' => 'Mật khẩu cũ',
 
         'update_user' => 'Cập nhật',
         'create_admin' => 'THÊM TÀI KHOẢN',
@@ -38,7 +39,8 @@ return [
         'time range' => 'Thời gian tạo',
         'from date' => 'Từ ngày',
         'to date' => 'Đến ngày',
-
+        'save_pass' => 'Lưu mật khẩu',
+        'profile' => 'Thông tin cá nhân',
 
     ],
     'tabs' => [

@@ -23,4 +23,9 @@ class UserController extends AdminController
         return $this->view('admin::auth.user.edit');
     }
 
+    public function profile()
+    {
+        return $this->view('admin::auth.user.profile');
+    }
+
 }

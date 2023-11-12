@@ -3,6 +3,7 @@
 namespace Modules\Admin\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Hash;
 
 class ChangePasswordRequest extends FormRequest
 {
@@ -15,8 +16,9 @@ class ChangePasswordRequest extends FormRequest
     {
         $user = $this->route()->parameter('user');
         $rules = [
-            'password' => 'required|min:6|regex:/^((?!.*[\s])(?=.*[a-zA-Z])(?=.*\d))/' ,
-            'password_confirmation' => 'required|same:password'
+            'password_old' => 'required',
+            'password_new' => 'required|min:6|regex:/^((?!.*[\s])(?=.*[a-zA-Z])(?=.*\d))/' ,
+            'password_confirmation' => 'required|same:password_new'
         ];
         return $rules;
     }
@@ -33,13 +35,30 @@ class ChangePasswordRequest extends FormRequest
     public function messages()
     {
         return [
-            'password.required' => 'Mật khẩu là bắt buộc',
-            'password.regex' => 'Mật khẩu phải bao gồm ký tự chữ và số, không được chứa dấu cách',
-            'password.confirmed' => 'Xác nhận mật khẩu không đúng',
+            'password_new.required' => 'Mật khẩu mới là bắt buộc',
+            'password_old.required' => 'Mật khẩu cũ là bắt buộc',
+            'password_new.min' => 'Mật khẩu tối thiểu 8 ký tự',
+
+            'password_new.regex' => 'Mật khẩu phải bao gồm ký tự chữ và số, không được chứa dấu cách',
             'password_confirmation.same' => 'Xác nhận mật khẩu không đúng',
             'password_confirmation.required' => 'Mật khẩu nhập lại là bắt buộc',
-            'password.min' => 'Mật khẩu tối thiểu 6 ký tự'
 
         ];
+    }
+
+  
+
+    public function withValidator($validator)
+    {
+        $user = $this->route()->parameter('user');
+
+        $validator->after(function ($validator) use ($user) {
+            $passwordOld = $this->input('password_old');
+
+            // Kiểm tra xem password_old có khớp với password của user hay không
+            if (!Hash::check($passwordOld, $user->password)) {
+                $validator->errors()->add('password_old', 'Mật khẩu cũ không đúng.');
+            }
+        });
     }
 }

@@ -36,21 +36,23 @@ class UserRepository extends BaseRepository implements UserInterface
 
     public function destroy($model)
     {
-        $model->username= sprintf('deleted_%d_%s',date('YmdHis'),$model->username);
-        $model->email= sprintf('deleted_%d_%s',date('YmdHis'),$model->email);
+        $model->username = sprintf('deleted_%d_%s', date('YmdHis'), $model->username);
+        $model->email = sprintf('deleted_%d_%s', date('YmdHis'), $model->email);
         $model->save();
         event(new UserWasDeleting($model));
         return $model->delete();
     }
 
 
-    public function changePassword($model, $data) {
-        $this->checkForNewPassword($data);
-        $model->update($data);
+    public function changePassword($model, $data)
+    {
+        $model->password = Hash::make($data['password_new']);
+        $model->save();
         return $model;
     }
 
-    public function resetPassword($model, $data) {
+    public function resetPassword($model, $data)
+    {
         $data = [];
         $data['password'] = env('DEFAULT_PASSWORD', '123456aA@');
         $data['password'] = Hash::make($data['password']);
@@ -68,10 +70,10 @@ class UserRepository extends BaseRepository implements UserInterface
     {
         $data['created_by'] = Auth::user()->id;
         $user = null;
-        DB::transaction(function () use (&$user, $data, $roles){
+        DB::transaction(function () use (&$user, $data, $roles) {
             $this->checkForNewPassword($data);
 
-            $user = $this->model->create((array)$data);
+            $user = $this->model->create((array) $data);
             event(new UserWasCreated($user, $data));
             if (!empty($roles)) {
                 Config::set('auth.defaults.guard', 'web');
@@ -92,7 +94,7 @@ class UserRepository extends BaseRepository implements UserInterface
      */
     public function updateAndSyncRoles($model, $data, $roles)
     {
-        DB::transaction(function () use (&$model, $data, $roles){
+        DB::transaction(function () use (&$model, $data, $roles) {
             unset($data['password']);
             $model->update($data);
 
@@ -156,7 +158,7 @@ class UserRepository extends BaseRepository implements UserInterface
             });
         }
         $exclude_ids = $request->get('exclude_ids', null);
-        if ($exclude_ids && is_array($exclude_ids) && count($exclude_ids)> 0) {
+        if ($exclude_ids && is_array($exclude_ids) && count($exclude_ids) > 0) {
             $query->whereNotIn('id', $exclude_ids);
         }
 
@@ -164,10 +166,10 @@ class UserRepository extends BaseRepository implements UserInterface
         $status = $request->get('status');
         if ($status == User::STATUS_ACTIVE) {
 
-            $query->where('expired_at','>=', Carbon::now());
-        }elseif ($status == User::STATUS_INACTIVE) {
+            $query->where('expired_at', '>=', Carbon::now());
+        } elseif ($status == User::STATUS_INACTIVE) {
 
-            $query->where('expired_at','<', Carbon::now());
+            $query->where('expired_at', '<', Carbon::now());
         }
 
         $sex = $request->get('sex');
