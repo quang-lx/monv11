@@ -2,12 +2,22 @@
 
 namespace Modules\Mon\Entities;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
+
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Carbon;
 use Spatie\Permission\Traits\HasRoles;
 use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
+
+/**
+ * Class User
+ * @property  $sex
+ * @property  $expired_at
+ * @package Modules\Mon\Entities
+ */
 
 class User extends Authenticatable implements MustVerifyEmail, JWTSubject {
 	use Notifiable, HasRoles, SoftDeletes;
@@ -16,6 +26,9 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject {
 
 	const STATUS_ACTIVE = 1;
 	const STATUS_INACTIVE = 2;
+
+	const MALE = 'nam';
+	const FEMALE = 'nam';
 
     protected   $guard_name = ['api', 'web'];
 	protected $table = 'users';
@@ -28,6 +41,7 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject {
 		'name', 'email', 'password', 'email_verified_at', 'activated', 'last_login', 'type', 'username','status', 'phone',
         'birth_day','department_id','sex', 'expired_at', 'identification', 'need_change_password', 'created_by'
 	];
+    protected $appends = ['sex_text', 'status_text'];
 
 	/**
 	 * The attributes that should be hidden for arrays.
@@ -37,6 +51,19 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject {
 	protected $hidden = [
 		'password', 'remember_token',
 	];
+
+    protected function sexText(): Attribute
+    {
+        return new Attribute(
+            get: fn () => $this->sex == self::MALE? 'Nam': 'Nữ'
+        );
+    }
+    protected function statusText(): Attribute
+    {
+        return new Attribute(
+            get: fn () => $this->expired_at && Carbon::createFromFormat('Y-m-d', $this->expired_at)->gt(Carbon::now()) ? 'Hoạt động': 'Không hoạt động'
+        );
+    }
 
 	public function tokens() {
 		return $this->hasMany(UserToken::class, 'user_id', 'id');
