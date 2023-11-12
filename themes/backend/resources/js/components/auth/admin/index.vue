@@ -101,7 +101,7 @@
                                         </el-table-column>
 
 
-                                        <el-table-column prop="updated_at" :label="$t('user.label.updated_at')" sortable="custom">
+                                        <el-table-column prop="created_at" :label="$t('user.label.created_at')" sortable="custom">
 
                                         </el-table-column>
 

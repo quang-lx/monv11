@@ -1,3 +1,6 @@
+$--color-primary: #6589FF;
+
+$brand-primary: #6589FF;
 // Element UI
 @import "~element-ui/lib/theme-chalk/index.css";
 
@@ -47,4 +50,14 @@ aside .sidebar {
 }
 .f-pointer {
     cursor:pointer;
+}
+
+.card-body {
+    padding: 12px !important;
+}
+.el-dialog__header {
+    padding: 12px !important;
+}
+.el-dialog__body {
+    padding: 12px !important;
 }

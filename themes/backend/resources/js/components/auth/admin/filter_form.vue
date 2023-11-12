@@ -61,7 +61,7 @@
                     </div>
                     <div class="col-sm-6">
                         <el-form-item :label="$t('user.label.created by')" >
-                            <el-select v-model="search_data.status" size="small"
+                            <el-select v-model="search_data.created_by" size="small"
                                        :placeholder="$t('user.label.select created by')"
                                        filterable style="width: 100% !important">
                                 <el-option

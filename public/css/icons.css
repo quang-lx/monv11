@@ -8,3 +8,24 @@
     align-items: center;
     flex-shrink: 0;
 }
+
+.f-menu-item {
+
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px; /* 114.286% */
+}
+.f-menu-item-icon {
+    display: flex;
+    width: 20px;
+    height: 20px;
+    padding: 1.667px 2.083px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+.card-body {
+    padding: 12px !important;
+}

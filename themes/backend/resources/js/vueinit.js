@@ -5,12 +5,14 @@ window._ = require('lodash');
 import Vue from 'vue';
 import VueI18n from 'vue-i18n';
 import ElementUI from 'element-ui';
+
 import DataTables from 'vue-data-tables';
 import VueEvents from 'vue-events';
 import locale from 'element-ui/lib/locale/lang/vi';
  import 'element-ui/lib/theme-chalk/index.css'
 import Locale from './vue-i18n-locales.generated';
 import router from './routers';
+import '../scss/_variables.scss'
 
 import ReloadDeleteComponent from './components/utils/ReloadDeleteComponent.vue';
 import DeleteComponent from './components/utils/DeleteComponent.vue';
