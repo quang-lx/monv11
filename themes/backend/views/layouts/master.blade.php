@@ -24,6 +24,8 @@
     {!! \Modules\Mon\Support\Facades\Theme::css('vendor/admin-lte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') !!}
 
     {!! \Modules\Mon\Support\Facades\Theme::css('css/app.css') !!}
+    <link rel="stylesheet" href="{{url('css/icons.css')}}">
+
     @include('backend::partials.globals')
     @section('styles')
     @show

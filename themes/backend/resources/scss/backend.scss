@@ -25,3 +25,26 @@ $fa-css-prefix: el-icon-fa;
 .el-form-item label {
     margin-bottom: 0 !important;
 }
+
+.f-action {
+    color: #616161 !important;
+    font-family: Roboto !important;
+    font-size: 14px !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    line-height: normal !important;
+}
+.f-breadcrumb {
+    color: #242424 !important;
+    font-family: Roboto !important;
+    font-size: 18px !important;
+    font-style: normal !important;
+    font-weight: 700 !important;
+    line-height: 20px !important;
+}
+aside .sidebar {
+    margin-top: 5px !important;
+}
+.f-pointer {
+    cursor:pointer;
+}

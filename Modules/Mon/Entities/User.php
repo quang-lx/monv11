@@ -14,6 +14,9 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject {
 	const TYPE_ADMIN = 1;
 	const TYPE_USER = 2;
 
+	const STATUS_ACTIVE = 1;
+	const STATUS_INACTIVE = 2;
+
     protected   $guard_name = ['api', 'web'];
 	protected $table = 'users';
 	/**
@@ -23,7 +26,7 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject {
 	 */
 	protected $fillable = [
 		'name', 'email', 'password', 'email_verified_at', 'activated', 'last_login', 'type', 'username','status', 'phone',
-        'birth_day','department_id','sex', 'expired_at', 'identification', 'need_change_password'
+        'birth_day','department_id','sex', 'expired_at', 'identification', 'need_change_password', 'created_by'
 	];
 
 	/**
@@ -53,6 +56,12 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject {
      */
     public function department() {
         return $this->belongsTo(Department::class, 'department_id');
+    }
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function createdBy() {
+        return $this->belongsTo(User::class, 'created_by');
     }
 
 	public function getFirstToken() {

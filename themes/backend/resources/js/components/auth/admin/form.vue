@@ -9,7 +9,9 @@
                                 <el-breadcrumb-item :to="{name: 'admin.admins.index'}"><i
                                     class="el-icon-arrow-left"></i>
                                 </el-breadcrumb-item>
-                                <el-breadcrumb-item> {{ $t(pageTitle) }}
+                                <el-breadcrumb-item>
+                                    <span class="f-breadcrumb">{{ $t(pageTitle) }}</span>
+
                                 </el-breadcrumb-item>
                             </el-breadcrumb>
                         </div>

@@ -183,7 +183,9 @@ export default {
             "info": "Thông tin chung",
             "add": "Thêm mới",
             "cancel": "Huỷ",
-            "search": "Tìm kiếm"
+            "search": "Tìm kiếm",
+            "default": "Mặc định",
+            "apply": "Áp dụng"
         },
         "department": {
             "label": {
@@ -382,9 +384,9 @@ export default {
         "sidebar": {
             "system administration": "Quản trị chung",
             "roles and permission": "Roles and permission",
-            "admins": "Tài khoản quản trị",
+            "admins": "Quản lý tài khoản",
             "users": "Người dùng",
-            "roles": "Vai trò",
+            "roles": "Quản lý vai trò tài khoản",
             "permissions": "Chức năng",
             "index": "Danh sách",
             "media": "Media",
@@ -403,13 +405,13 @@ export default {
                 "name": "Tên",
                 "phone": "Số điện thoại",
                 "status": "Trạng thái",
-                "created_at": "Ngày tạo",
+                "created_at": "Thời gian tạo",
                 "updated_at": "Ngày cập nhật",
                 "password_confirmation": "Xác nhận mật khẩu",
                 "password": "Mật khẩu",
                 "password_new": "Mật khẩu mới",
                 "password_confirmation_new": "Nhập lại mật khẩu mới",
-                "create_user": "Tạo người dùng",
+                "create_user": "Thêm mới",
                 "update_user": "Cập nhật",
                 "create_admin": "THÊM TÀI KHOẢN",
                 "update_admin": "Sửa tài khoản",
@@ -423,7 +425,14 @@ export default {
                 "department_id": "Đơn vị",
                 "identification": "Giấy tờ tuỳ thân",
                 "birth_day": "Năm sinh",
-                "expired_at": "Thời gian hiệu lực của tài khoản"
+                "expired_at": "Thời gian hiệu lực của tài khoản",
+                "filter title": "Lọc danh sách nhân viên",
+                "created by": "Người tạo",
+                "select status": "Chọn trạng thái",
+                "select created by": "Chọn tài khoản tạo",
+                "time range": "Thời gian tạo",
+                "from date": "Từ ngày",
+                "to date": "Đến ngày"
             },
             "tabs": {
                 "data": "Thông tin chung",
@@ -435,7 +444,8 @@ export default {
                 "update success": "Cập nhật tài khoản thành công.",
                 "delete success": "Xóa tài khoản thành công.",
                 "change password success": "Đổi mật khẩu thành công.",
-                "not allow self delete": "Không cho phép xóa tài khoản bạn đang đăng nhập."
+                "not allow self delete": "Không cho phép xóa tài khoản bạn đang đăng nhập.",
+                "reset password success": "Reset mật khẩu thành công."
             }
         },
         "voucher": {

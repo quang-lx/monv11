@@ -3,7 +3,7 @@
         <div class="content-header">
             <div class="row ">
                 <div class="col-12">
-                    <h4>{{ $t('user.label.users') }}</h4>
+                    <span class="f-breadcrumb">{{ $t('user.label.users') }}</span>
                     <hr>
 
                 </div>
@@ -16,12 +16,16 @@
             <div class="container-fluid">
                 <div class="row justify-content-between mb-2">
                     <div class="col-md-4   ">
-                        <router-link :to="{name: 'admin.admins.create'}" class="float-sm-left">
+                        <router-link :to="{name: 'admin.admins.create'}" class="f-action ">
                             <i class="el-icon-plus"></i>
 
-                            {{ $t('role.label.create_role') }}
+                            {{ $t('user.label.create_user') }}
 
                         </router-link>
+                        <span class="f-action pl-4 f-pointer" @click="show_filter = true">
+                            <inline-svg src="/images/filter.svg"  /> Bộ lọc
+
+                        </span>
                     </div>
                     <div class="col-md-4">
 
@@ -201,18 +205,25 @@
                 <el-button size="small" type="primary" @click="confirmEditDepartment">Sửa</el-button>
             </div>
         </el-dialog>
+        <filter-form :show_filter = "show_filter" @on-filter="onFilterUser"></filter-form>
 
     </div>
 </template>
 
 <script>
-    import axios from 'axios';
+    import FilterForm from './filter_form';
+    import InlineSvg from 'vue-inline-svg';
+
     import Form from "form-backend-validation";
 
     export default {
-
+        components: {
+            FilterForm,
+            InlineSvg
+        },
         data() {
             return {
+                show_filter: false,
                 addForm: new Form(),
                 editForm: new Form(),
                 parent_selected: null,
@@ -346,6 +357,9 @@
                         });
                     });
             },
+            onFilterUser(filter_data) {
+                this.queryServer(filter_data)
+            },
             queryServer(customProperties) {
 
                 const properties = {
@@ -366,6 +380,7 @@
                         this.links = response.data.links;
                         this.order_meta.order_by = properties.order_by;
                         this.order_meta.order = properties.order;
+                        this.show_filter = false;
                     });
             },
             getDepartmentList(customProperties) {

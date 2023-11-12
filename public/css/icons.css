@@ -1,0 +1,10 @@
+.f-icon-setting:before {
+    content: url("/images/setting.svg");
+    display: flex;
+    width: 20px;
+    height: 20px;
+    padding: 1.898px 2.445px 2.083px 2.732px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}

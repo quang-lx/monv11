@@ -2,6 +2,8 @@
 
 namespace Modules\Mon\Repositories\Eloquent;
 
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -19,6 +21,7 @@ class UserRepository extends BaseRepository implements UserInterface
 
     public function create($data)
     {
+        $data['created_by'] = Auth::user()->id;
         $user = $this->model->create($data);
         event(new UserWasCreated($user, $data));
         return $user;
@@ -63,6 +66,7 @@ class UserRepository extends BaseRepository implements UserInterface
      */
     public function createWithRoles($data, $roles)
     {
+        $data['created_by'] = Auth::user()->id;
         $user = null;
         DB::transaction(function () use (&$user, $data, $roles){
             $this->checkForNewPassword($data);
@@ -155,9 +159,32 @@ class UserRepository extends BaseRepository implements UserInterface
         if ($exclude_ids && is_array($exclude_ids) && count($exclude_ids)> 0) {
             $query->whereNotIn('id', $exclude_ids);
         }
-//        $type = $request->get('type', User::TYPE_USER);
-//        $query->where('type', $type);
 
+        // advance filter
+        $status = $request->get('status');
+        if ($status == User::STATUS_ACTIVE) {
+
+            $query->where('expired_at','>=', Carbon::now());
+        }elseif ($status == User::STATUS_INACTIVE) {
+
+            $query->where('expired_at','<', Carbon::now());
+        }
+
+        $sex = $request->get('sex');
+        if ($sex !== null) {
+
+            $query->where('sex', $sex);
+        }
+        $created_by = $request->get('created_by');
+        if ($created_by !== null) {
+
+            $query->where('created_by', $created_by);
+        }
+ $time_range = $request->get('time_range');
+        if ($time_range !== null) {
+
+
+        }
 
         if ($request->get('name') !== null) {
             $name = $request->get('name');

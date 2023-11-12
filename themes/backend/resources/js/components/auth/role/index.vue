@@ -3,7 +3,7 @@
         <div class="content-header">
                 <div class="row ">
                     <div class="col-12">
-                        <h4>{{ $t('role.label.roles') }}</h4>
+                         <span class="f-breadcrumb">{{ $t('role.label.roles') }}</span>
                          <hr>
 
                     </div>
@@ -16,7 +16,7 @@
             <div class="container-fluid">
                 <div class="row justify-content-between mb-2">
                     <div class="col-md-4   ">
-                        <router-link :to="{name: 'admin.roles.create'}" class="float-sm-left">
+                        <router-link :to="{name: 'admin.roles.create'}" class="f-action  float-sm-left">
                             <i class="el-icon-plus"></i>
 
                             {{ $t('role.label.create_role') }}
