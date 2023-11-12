@@ -35,8 +35,8 @@ class ChangePasswordRequest extends FormRequest
         return [
             'password.required' => 'Mật khẩu là bắt buộc',
             'password.regex' => 'Mật khẩu phải bao gồm ký tự chữ và số, không được chứa dấu cách',
-            'password.confirmed' => 'Xác nhận mật khẩu không đúng',
-            'password_confirmation.same' => 'Xác nhận mật khẩu không đúng',
+            'password.confirmed' => 'Mật khẩu không trùng khớp',
+            'password_confirmation.same' => 'Mật khẩu không trùng khớp',
             'password_confirmation.required' => 'Mật khẩu nhập lại là bắt buộc',
             'password.min' => 'Mật khẩu tối thiểu 6 ký tự'
 
