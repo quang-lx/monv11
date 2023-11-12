@@ -12,6 +12,12 @@
 */
 use Illuminate\Support\Facades\Route;
 
+Route::get('need-change-password', [
+    'as' => 'admin.need_change_password',
+    'uses' => 'HomeController@showNeedChangePasswrod',
+
+]);
+
 Route::get('/', [
     'as' => 'admin.dashboard.index',
     'uses' => 'HomeController@index',

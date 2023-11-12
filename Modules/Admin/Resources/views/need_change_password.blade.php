@@ -139,14 +139,13 @@
         }
 
         .sign_in h1 {
-            color: #262B2E;
-            font-size: 20px;
+            color: rgba(0, 0, 0, 0.80);
+            font-family: Roboto;
+            font-size: 16px;
             font-style: normal;
-            font-weight: 600;
-            line-height: normal;
-            letter-spacing: 0.26px;
-            margin-top: 49px;
-            margin-bottom: 65px;
+            font-weight: 500;
+            line-height: 24px;
+            /* 150% */
         }
 
         .sign_in button {
@@ -167,9 +166,9 @@
             color: var(--TextColor_pri, #3B4850);
             position: absolute;
             left: 18px;
-            top: 0px;
+            top: 1px;
             background-color: #fff;
-            font-size: 15px;
+            font-size: 13px;
             font-style: normal;
             font-weight: 600;
             line-height: normal;
@@ -214,7 +213,48 @@
             letter-spacing: 0.08px;
         }
 
-        input {
+        .arrow {
+            display: flex;
+            width: 32px;
+            height: 32px;
+            padding: 6px;
+            justify-content: center;
+            align-items: center;
+            border-radius: 6px;
+            border: 1px solid var(--blue-3, #79B8FF);
+            background: var(--blue-20, #E3F2FD);
+            margin-right: 16px
+        }
+
+        .logout {
+            margin-top: 49px;
+            margin-bottom: 32px
+        }
+
+        .formPassword {
+            margin-bottom: 16px;
+            position: relative;
+        }
+
+        .formPassword img {
+            position: absolute;
+            right: 12px;
+            top: 45px;
+        }
+
+        .formPassword label {
+            color: var(--gray-9, #2F3748);
+            /* Body/14/Regular */
+            font-family: Roboto;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 400 !important;
+            line-height: 20px;
+            /* 142.857% */
+            margin-bottom: 0px
+        }
+
+        .formPassword input {
             margin: 0px display: flex;
             height: 48px;
             padding: 4px 12px;
@@ -224,16 +264,6 @@
             border-radius: 4px;
             border: 1px solid var(--gray-1, #D1DAEB);
             background: var(--common-1, #FFF);
-        }
-
-        .formPassword {
-            position: relative;
-        }
-
-        .formPassword img {
-            position: absolute;
-            right: 12px;
-            top: 22px;
         }
 
         /* social container */
@@ -247,6 +277,7 @@
 </head>
 
 <body class="hold-transition login-page">
+    {{-- {{dd($errors->first())}} --}}
     <div class="login-box">
         <div class="container" id="container">
             <!-- sign Up form section end-->
@@ -259,23 +290,30 @@
             </div>
             <!-- sign in form section start-->
             <div class="form sign_in">
-                <form method="POST" action="{{ route('login') }}">
+                <form method="POST" action="{{ route('change-password') }}">
                     @csrf
                     <img src="{{ asset('images/image3.svg') }}" alt="" width="118" height="35"
                         srcset="">
-                    <h1>Đăng nhập</h1>
-                    <div class="account">
-                        <p>Tên đăng nhập</p>
-                        <input type="string" name="username" placeholder="Tài khoản">
-                    </div>
+                    <h1 class="d-flex align-items-center logout">
+                        <a class="arrow" href="{{ route('logout') }}" role="button">
+                            <img src="{{ asset('images/arrow-left.svg') }}" alt="" srcset="">
+                        </a>
 
+                        Hãy đổi mật khẩu để sử dụng tính năng
+                    </h1>
                     <div class="formPassword">
-                        <input type="password" name="password" placeholder="Mật khẩu">
+                        <label>Mật khẩu mới <span class="text-danger">*</span></label>
+                        <input type="password" name="password" placeholder="Thiết lập mật khẩu sau lần đầu đăng nhập">
                         <img role="button" class="show-hide-pass" src="{{ asset('images/eye.svg') }}" alt=""
                             srcset="">
                     </div>
-
-                    <button type="submit">Đăng nhập</button>
+                    <div class="formPassword">
+                        <label>Xác nhận mật khẩu mới <span class="text-danger">*</span></label>
+                        <input type="password" name="password_confirmation" placeholder="Nhập lại mật khẩu">
+                        <img role="button" class="show-hide-pass" src="{{ asset('images/eye.svg') }}" alt=""
+                            srcset="">
+                    </div>
+                    <button type="submit">Lưu</button>
 
                     <div class="contact">
                         <p>CHĂM SÓC KHÁCH HÀNG</p>
@@ -290,13 +328,17 @@
         2017© Bản quyền thuộc Tập đoàn Công nghiệp Viễn thông Quân Đội
     </p>
     {!! \Modules\Mon\Support\Facades\Theme::js('vendor/admin-lte/plugins/jquery/jquery.min.js') !!}
+    {!! \Modules\Mon\Support\Facades\Theme::js('vendor/admin-lte/plugins/toastr/toastr.min.js') !!}
     {!! \Modules\Mon\Support\Facades\Theme::js('vendor/admin-lte/plugins/bootstrap/js/bootstrap.bundle.min.js') !!}
     {!! \Modules\Mon\Support\Facades\Theme::js('vendor/admin-lte/dist/js/adminlte.min.js') !!}
-    {!! \Modules\Mon\Support\Facades\Theme::js('vendor/admin-lte/plugins/toastr/toastr.min.js') !!}
 
     @section('scripts')
     @show
+
     @stack('js-stack')
+
+    {{-- @if (session('success')) --}}
+
 
     @if (session('success'))
         <script>
@@ -323,6 +365,12 @@
             })
         })
     </script>
+
+
+
+
+    {{-- @endif --}}
+
 </body>
 
 </html>

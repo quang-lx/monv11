@@ -2,6 +2,8 @@
 
 namespace Modules\Mon\Http\Controllers\Auth;
 
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -89,7 +91,7 @@ class LoginController extends WebController
         if (!$user) {
             $email = $fbUser->getEmail();
             if (!$email) {
-                $email = $fbUser->getId().'@webgiasu.net';
+                $email = $fbUser->getId() . '@webgiasu.net';
             }
             $data = [
                 'facebook_id' => $fbUser->getId(),
@@ -114,13 +116,12 @@ class LoginController extends WebController
      */
     protected function authenticated(Request $request, $user)
     {
+        $token = auth('api')->login($user);
 
-		$token = auth('api')->login($user);
+        $request->session()->put('jwt_token', $token);
+        app(UserRepository::class)->update($user, ['last_login' => date('Y-m-d H:i:s')]);
 
-		$request->session()->put('jwt_token', $token);
-		app(UserRepository::class)->update($user, ['last_login' => date('Y-m-d H:i:s')]);
-
-		return redirect()->intended($this->redirectPath());
+        return redirect()->intended($this->redirectPath());
     }
 
     /**
@@ -131,12 +132,12 @@ class LoginController extends WebController
      */
     protected function loggedOut(Request $request)
     {
-        if($request->isXmlHttpRequest()) {
+        if ($request->isXmlHttpRequest()) {
             return response()->json(['msg' => 'Logout successful!']);
         }
         $previousPath = url()->previous();
 
-        if (in_array('admin',explode('/', $previousPath))) {
+        if (in_array('admin', explode('/', $previousPath))) {
             return redirect($previousPath)->withSuccess(__('Logout successful!'));
         }
         return redirect()->route('home')->withSuccess(__('Logout successful!'));
@@ -159,5 +160,37 @@ class LoginController extends WebController
     public function showAdminLoginForm()
     {
         return view('backend::login');
+    }
+
+    public function login(Request $request)
+    {
+        $credentials = $request->only('username', 'password');
+        $user = User::where('username', $request->input('username'))->first();
+        if (!$user) {
+            return back()->withErrors(['username' => 'Tên người dùng hoặc mật khẩu không chính xác.'])->withInput();
+        }
+        $currentDateTime = Carbon::now();
+        if ($user->retry_time && Carbon::parse($user->retry_time)->gt($currentDateTime)) {
+            return back()->withErrors(['username' => 'Tài khoản tạm thời bị khoá do nhập sai quá 5 lần. Vui lòng thử lại sau 15 phút.'])->withInput();
+        }
+
+        if (auth()->attempt($credentials)) {
+            $user->enter_wrong_password = 0;
+            $user->retry_time = null;
+            $user->save();
+            return $this->authenticated($request, auth()->user())
+                ?: redirect()->intended($this->redirectTo);
+        }
+
+        if ($user->enter_wrong_password == 5) {
+            $extendedTime = $currentDateTime->addMinutes(15);
+            $user->retry_time = $extendedTime;
+            $user->enter_wrong_password = 0;
+        } else {
+            $user->enter_wrong_password = $user->enter_wrong_password + 1;
+        }
+        $user->save();
+        return back()->withErrors(['username' => 'Tên người dùng hoặc mật khẩu không chính xác.'])->withInput();
+
     }
 }

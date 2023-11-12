@@ -18,4 +18,10 @@ class HomeController extends AdminController
         return $this->view('admin::index');
     }
 
+    public function showNeedChangePasswrod()
+    {
+        return $this->view('admin::need_change_password');
+
+    }
+
 }

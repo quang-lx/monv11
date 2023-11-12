@@ -11,12 +11,16 @@
 |
 */
 
+use Illuminate\Support\Facades\Route;
+
 Route::get('/', 'MonController@index')->name('home');
 // Authentication Routes...
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::get('login/admin', 'Auth\LoginController@showAdminLoginForm')->name('login.admin');
 Route::post('login', 'Auth\LoginController@login')->name('login.submit');
 Route::any('logout', 'Auth\LoginController@logout')->name('logout');
+
+Route::post('password/change', 'Auth\UserController@changePassword')->name('change-password');
 
 // Registration Routes...
 if (config('user.account.register')) {

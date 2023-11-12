@@ -4,6 +4,7 @@ namespace Modules\Mon\Http\Middleware;
 
 use Closure;
 use Modules\Mon\Auth\Contracts\Authentication;
+use Illuminate\Support\Facades\Route;
 
 class Admin
 {
@@ -20,12 +21,18 @@ class Admin
         /** @var Authentication $auth */
         $auth = app(Authentication::class);
         if (!$auth->check()) {
-            return redirect()->guest(route('admin.login'))->withErrors('Vui lòng đăng nhập');
+            return redirect()->guest(route('admin.login'));
         }
         if (!$auth->user()->hasRole('cms_login')) {
             $auth->logout();
             return redirect()->guest(route('admin.login'))->withErrors(['username' => 'Vui lòng đăng nhâp bằng tài khoản quản trị!']);
         }
+        $routeName = Route::currentRouteName();
+
+        if ($auth->user()->need_change_password ==1 && $routeName !== 'admin.need_change_password' ) {
+            return redirect()->route('admin.need_change_password');       
+        }
+
         return $next($request);
     }
 }
