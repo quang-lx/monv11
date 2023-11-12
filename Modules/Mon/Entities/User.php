@@ -61,7 +61,7 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject {
     protected function statusText(): Attribute
     {
         return new Attribute(
-            get: fn () => $this->expired_at && Carbon::createFromFormat('Y-m-d', $this->expired_at)->gt(Carbon::now()) ? 'Hoạt động': 'Không hoạt động'
+            get: fn () => $this->expired_at && Carbon::createFromFormat('Y-m-d H:i:s', $this->expired_at)->gt(Carbon::now()) ? 'Hoạt động': 'Không hoạt động'
         );
     }
 
