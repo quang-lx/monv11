@@ -22,8 +22,8 @@ class UserTransformer extends JsonResource
 	        'department_id' => $this->department_id,
 	        'identification' => $this->identification,
             'roles' => $this->roles,
-            'birth_day' => optional($this->birth_day)->format('d-m-Y'),
-            'created_at' => optional($this->created_at)->format('d-m-Y'),
+            'birth_day' => optional($this->birth_day)->format('d/m/Y'),
+            'created_at' => optional($this->created_at)->format('H:i d/m/Y'),
             'updated_at' =>optional($this->updated_at)->format('H:i d/m/Y'),
             'createdBy' => new UserTransformer($this->createdBy),
             'urls' => [
