@@ -1,6 +1,7 @@
 <?php
 namespace Modules\Admin\Transformers\Auth;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Modules\Admin\Transformers\DepartmentTransformer;
 
 
 class UserTransformer extends JsonResource

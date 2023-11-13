@@ -1,6 +1,7 @@
 <?php
 namespace Modules\Admin\Transformers\Auth;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Modules\Admin\Transformers\DepartmentTransformer;
 
 
 class UserFullTransformer extends JsonResource
@@ -23,6 +24,8 @@ class UserFullTransformer extends JsonResource
             'expired_at' => optional($this->expired_at)->format('Y-m-d'),
             'birth_day' => optional($this->birth_day)->format('Y-m-d'),
             'department_id' => $this->department_id,
+            'department' => $this->department? new DepartmentTransformer($this->department): [],
+
             'identification' => $this->identification,
             'thumbnail' => $this->thumbnail,
             'created_at' => optional($this->created_at)->format('H:i d/m/Y'),

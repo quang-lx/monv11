@@ -71,9 +71,6 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject {
         );
     }
 
-	public function tokens() {
-		return $this->hasMany(UserToken::class, 'user_id', 'id');
-	}
 
 	/**
 	 * Lấy thông tin profile
