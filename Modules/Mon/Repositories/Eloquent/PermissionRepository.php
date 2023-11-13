@@ -12,6 +12,7 @@ class PermissionRepository extends BaseRepository implements PermissionRepositor
         if ($relations) {
             $query = $query->with($relations);
         }
+        $query->where('is_show', 1);
 
         if ($request->get('search') !== null) {
             $keyword = $request->get('search');
@@ -66,6 +67,7 @@ class PermissionRepository extends BaseRepository implements PermissionRepositor
 		if ($relations) {
 			$query = $query->with($relations);
 		}
+        $query->where('is_show', 1);
 
 		if ($request->get('search') !== null) {
 			$keyword = $request->get('search');
