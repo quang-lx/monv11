@@ -62,6 +62,18 @@ class PermissionRepository extends BaseRepository implements PermissionRepositor
 		}
 		return $groups;
 	}
+    public function serverPagingForGroupArray(Request $request, $relations = null)
+    {
+        $groups = $this->serverPagingForGroup($request,$relations );
+         $groups_arr = [];
+        foreach ($groups as $group_name => $permission) {
+            $groups_arr[] = [
+                'group_name' => $group_name,
+                'permissions'=> $permission
+            ];
+        }
+        return $groups_arr;
+    }
 	public function getAllPermission(Request $request, $relations) {
 		$query = $this->newQueryBuilder();
 		if ($relations) {

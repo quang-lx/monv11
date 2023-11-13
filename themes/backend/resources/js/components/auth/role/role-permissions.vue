@@ -3,36 +3,46 @@
 <div>
     <el-checkbox v-model="is_select_all" @change="handleCheckAllChange">{{$t('role.label.select all')}}</el-checkbox>
 
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th scope="col" class="text-center">{{$t('common.stt')}}</th>
-            <th scope="col" class="text-center">{{$t('role.label.group name')}}</th>
-            <th scope="col" class="text-center">{{$t('role.label.function')}}</th>
 
-        </tr>
-        </thead>
-        <tbody>
 
-        <tr  v-for="(group, index, stt) in groupPermissions" :key="'g-' + index">
-            <td scope="row" style="padding:0.25rem !important" class="text-center">{{stt+1}}</td>
-            <td style="padding:0.25rem !important" class="text-center">{{group[0]? group[0].group_name: ''}}</td>
-            <td class=" d-flex flex-row" style="padding:0.25rem !important">
-                <div class="  pr-5"  v-for="(permission, pIndex) in group" :key="'p-'+pIndex">
-                    <label class="control-label text-center"  >{{permission.title}}</label><br>
-                    <el-switch
-                        v-model="permissions[permission.name]"
-                        active-color="#4B67E2"
-                        :active-value="1"
-                        :inactive-value="0"
-                        inactive-color="#C8E1FF">
-                    </el-switch>
+    <el-table
+        ref="permissionTable"
+        :data="groupPermissions"
+        style="width: 100%" >
+        <el-table-column   :label="$t('common.stt')" width="75" type="index"
+                           sortable="custom">
 
+        </el-table-column>
+
+        <el-table-column
+            property="group_name"
+            :label="$t('role.label.group name')">
+            <template slot-scope="scope">
+                <span>{{scope.row.group_name}}</span>
+            </template>
+        </el-table-column>
+        <el-table-column
+
+            :label="$t('role.label.function')"
+        >
+            <template slot-scope="scope">
+                <div class="d-flex flex-row">
+                    <div class="  pr-5"  v-for="(permission, pIndex) in scope.row.permissions" :key="'p-'+pIndex">
+                        <label class="control-label text-center"  >{{permission.title}}</label><br>
+                        <el-switch
+                            v-model="permissions[permission.name]"
+                            active-color="#4B67E2"
+                            :active-value="1"
+                            :inactive-value="0"
+                            inactive-color="#C8E1FF">
+                        </el-switch>
+
+                    </div>
                 </div>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+
+            </template>
+        </el-table-column>
+    </el-table>
 
 
 </div>
@@ -85,7 +95,7 @@
                     in_role: (this.type === 'add')? 0: 1
                 };
 
-               window.axios.get(route('api.permissions.all-by-group', _.merge({}, customProperties)))
+               window.axios.get(route('api.permissions.all-by-group-array', _.merge({}, customProperties)))
                     .then((response) => {
 
                         this.groupPermissions = response.data;

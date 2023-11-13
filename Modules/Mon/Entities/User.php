@@ -16,6 +16,7 @@ use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
  * Class User
  * @property  $sex
  * @property  $expired_at
+ * @property  $active_at
  * @package Modules\Mon\Entities
  */
 
@@ -39,10 +40,15 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject {
 	 */
 	protected $fillable = [
 		'name', 'email', 'password', 'email_verified_at', 'activated', 'last_login', 'type', 'username','status', 'phone',
-        'birth_day','department_id','sex', 'expired_at', 'identification', 'need_change_password', 'created_by'
+        'birth_day','department_id','sex','active_at', 'expired_at', 'identification', 'need_change_password', 'created_by'
 	];
     protected $appends = ['sex_text', 'status_text'];
 
+    protected $casts = [
+        'active_at' => 'datetime:Y-m-d',
+        'expired_at' => 'datetime:Y-m-d',
+        'birth_day' => 'datetime:Y-m-d',
+    ];
 	/**
 	 * The attributes that should be hidden for arrays.
 	 *

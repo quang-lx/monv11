@@ -88,9 +88,7 @@
                                             ref="dataTable"
                                             v-loading.body="tableIsLoading"
                                             @sort-change="handleSortChange">
-                                        <el-table-column prop="id" :label="$t('user.label.id')" width="75" sortable="custom" fixed>
 
-                                        </el-table-column>
                                         <el-table-column prop="username" fixed :label="$t('user.label.username')" width="150" sortable="custom"> </el-table-column>
 
                                         <el-table-column prop="name" :label="$t('user.label.name')" width="250" sortable="custom">
@@ -128,7 +126,7 @@
                                             </template>
                                         </el-table-column>
 
-                                        <el-table-column prop="actions"  width="130">
+                                        <el-table-column prop="actions"  width="130" fixed>
                                             <template slot-scope="scope">
                                                 <edit-button
                                                         :to="{name: 'admin.admins.edit', params: {userId: scope.row.id}}"></edit-button>

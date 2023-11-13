@@ -144,6 +144,64 @@
                                         </div>
 
                                     </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <el-form-item :label="$t('user.label.birth_day')"
+                                                          :class="{'el-form-item is-error': form.errors.has('birth_day') }">
+
+                                                <el-date-picker
+                                                    v-model="modelForm.birth_day"
+                                                    type="date"
+                                                    style="width: 100%"
+                                                    size="small"
+                                                    format="dd/MM/yyyy"
+                                                    value-format="yyyy-MM-dd"
+                                                    placeholder="Chọn năm sinh">
+                                                </el-date-picker>
+                                                <div class="el-form-item__error"
+                                                     v-if="form.errors.has('birth_day')"
+                                                     v-text="form.errors.first('birth_day')"></div>
+                                            </el-form-item>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <el-form-item label="Thời gian hiệu lực của tài khoản"
+                                                          :class="{'el-form-item is-error': form.errors.has('active_at') }">
+                                                <div class="row">
+                                                    <div class="col-md-6 d-flex">
+                                                        <span class="mr-2">Từ</span>
+                                                        <el-date-picker
+                                                            v-model="modelForm.active_at"
+                                                            type="date"
+                                                            style="width: 80%"
+                                                            size="small"
+                                                            format="dd/MM/yyyy"
+                                                            value-format="yyyy-MM-dd"
+                                                            placeholder="dd/mm/yyyy">
+                                                    </el-date-picker>
+                                                    </div>
+                                                    <div class="col-md-6 d-flex">
+                                                        <span class="mr-2">Đến</span>
+                                                        <el-date-picker
+                                                            v-model="modelForm.expired_at"
+                                                            type="date"
+                                                            style="width: 80%"
+                                                            size="small"
+                                                            format="dd/MM/yyyy"
+                                                            value-format="yyyy-MM-dd"
+                                                            placeholder="dd/mm/yyyy">
+                                                        </el-date-picker>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="el-form-item__error"
+                                                     v-if="form.errors.has('active_at')"
+                                                     v-text="form.errors.first('active_at')"></div>
+                                            </el-form-item>
+                                        </div>
+
+
+                                    </div>
 
 
                                 </el-form>
@@ -256,6 +314,9 @@
                     phone: '',
                     email: '',
                     identification: '',
+                    active_at: '',
+                    expired_at: '',
+                    birth_day: '',
                     department_id: null,
                     roles: [],
                     is_new: false,

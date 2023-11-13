@@ -17,6 +17,11 @@ Route::middleware('auth:api')->get('/admin', function (Request $request) {
     return $request->user();
 });
 Route::middleware('auth:api')->prefix('auth')->group(function (){
+    Route::get('/permissions/all-by-group-array', [
+        'as' => 'api.permissions.all-by-group-array',
+        'uses' => 'Auth\PermissionController@allByGroupArray',
+
+    ]);
 	Route::get('/permissions/all-by-group', [
 		'as' => 'api.permissions.all-by-group',
 		'uses' => 'Auth\PermissionController@allByGroup',

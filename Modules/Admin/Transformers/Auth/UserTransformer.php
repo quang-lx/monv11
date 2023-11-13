@@ -23,6 +23,8 @@ class UserTransformer extends JsonResource
 	        'identification' => $this->identification,
             'roles' => $this->roles,
             'birth_day' => optional($this->birth_day)->format('d/m/Y'),
+            'active_at' => optional($this->active_at)->format('d/m/Y'),
+            'expired_at' => optional($this->expired_at)->format('d/m/Y'),
             'created_at' => optional($this->created_at)->format('H:i d/m/Y'),
             'updated_at' =>optional($this->updated_at)->format('H:i d/m/Y'),
             'createdBy' => new UserTransformer($this->createdBy),

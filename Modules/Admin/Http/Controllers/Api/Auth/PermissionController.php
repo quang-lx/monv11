@@ -29,6 +29,10 @@ class PermissionController extends ApiController
 	{
 		return  $this->permissionRepository->serverPagingForGroup($request);
 	}
+    public function allByGroupArray(Request $request)
+    {
+        return  $this->permissionRepository->serverPagingForGroupArray($request);
+    }
     public function index(Request $request)
     {
         return PermissionTransformer::collection($this->permissionRepository->serverPagingFor($request));
