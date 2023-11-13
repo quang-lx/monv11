@@ -61,7 +61,7 @@
                                         Mật khẩu phải có tối thiểu 8 ký tự, gồm cả chữ hoa, chữ thường , số và ký tự đặc
                                         biệt:
                                     </p>
-                                    <el-form ref="changepassForm" :model="modelForm" label-width="200px"
+                                    <el-form ref="changepassForm" :model="modelForm" size="small" label-width="200px"
                                         label-position="top" v-loading.body="loadingPassword">
                                         <el-form-item class="formPassword"
                                             :class="{ 'el-form-item is-error': changepassForm.errors.has('password_old') }">
@@ -111,7 +111,7 @@
                                         }}</el-button>
                                     </span>
                                 </el-dialog>
-                                <el-form ref="form" :model="modelForm" label-width="200px" label-position="top"
+                                <el-form ref="form" :model="modelForm" label-width="200px" size="small" label-position="top"
                                     v-loading.body="loading">
                                     <div class="row">
                                         <div class="col-md-6">
@@ -123,10 +123,10 @@
                                                     v-text="form.errors.first('username')"></div>
                                             </el-form-item>
                                             <el-form-item label="Mã nhân viên"
-                                                :class="{ 'el-form-item is-error': form.errors.has('name') }">
-                                                <el-input v-model="modelForm.name"></el-input>
-                                                <div class="el-form-item__error" v-if="form.errors.has('name')"
-                                                    v-text="form.errors.first('name')"></div>
+                                                :class="{ 'el-form-item is-error': form.errors.has('id') }">
+                                                <el-input v-model="modelForm.id"></el-input>
+                                                <div class="el-form-item__error" v-if="form.errors.has('id')"
+                                                    v-text="form.errors.first('id')"></div>
                                             </el-form-item>
 
                                             <el-form-item :label="$t('user.label.email')"
@@ -152,11 +152,11 @@
                                                     v-text="form.errors.first('phone')"></div>
                                             </el-form-item>
 
-                                            <el-form-item label="Đơn vị"
-                                                :class="{ 'el-form-item is-error': form.errors.has('email') }">
-                                                <el-input v-model="modelForm.email" autocomplete="off"></el-input>
-                                                <div class="el-form-item__error" v-if="form.errors.has('email')"
-                                                    v-text="form.errors.first('email')"></div>
+                                            <el-form-item :label="$t('user.label.department_id')"
+                                                :class="{ 'el-form-item is-error': form.errors.has('department_id') }">
+                                                <el-input v-model="modelForm.department_id" autocomplete="off"></el-input>
+                                                <div class="el-form-item__error" v-if="form.errors.has('department_id')"
+                                                    v-text="form.errors.first('department_id')"></div>
                                             </el-form-item>
                                         </div>
 
@@ -446,7 +446,7 @@ export default {
 
 .formPassword img {
     position: absolute;
-    top: 53px;
+    top: 37px;
     right: 10px;
 }
 </style>
