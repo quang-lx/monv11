@@ -319,8 +319,6 @@ body:not(.layout-fixed) .main-sidebar {
 
 .btn-primary{
     border-radius: 4px !important;
-    background: #6589FF !important;
-    color: var(--rest-text-icon-default-foreground-3, #FFF) !important;
     font-size: 14px !important;
     font-style: normal !important;
     font-weight: 500 !important;
@@ -345,7 +343,7 @@ body:not(.layout-fixed) .main-sidebar {
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
-    line-height: 24px; 
+    line-height: 24px;
     color: var(--basic-8, #2F363D);
 }
 
