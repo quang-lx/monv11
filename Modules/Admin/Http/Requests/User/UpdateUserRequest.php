@@ -17,31 +17,25 @@ class UpdateUserRequest extends FormRequest
     public function rules()
     {
         $user = $this->route()->parameter('user');
-        $userType =$this->request->get('type');
 
 
         $rules = [
-            'name'=>"required",
-            'email' => "required|unique:users,email,{$user->id}|email",
-            'password_confirmation' => 'same:password'
-        ];
 
-        if ($userType == User::TYPE_USER) {
-            $rules['username'] = ['required',"unique:users,username,{$user->id}", new PhoneNumber()];
-        } else {
-            $rules['username'] = ['required',"unique:users,username,{$user->id}"];
-        }
+            'username' => "required|unique:users,username,{$user->id}",
+
+            'name'=>"required",
+            'sex'=>"required",
+            'department_id'=>"required",
+            'active_at'=>"required",
+            'expired_at'=>"required",
+
+            'email' => 'email',
+         ];
+
+
         return $rules;
     }
-    protected function prepareForValidation(): void
-    {
-        $userType =$this->request->get('type');
-        if ($userType == User::TYPE_USER) {
-            $username =$this->request->get('username');
-            $usernameFormatted = validate_isdn($username);
-            $this->merge(['username' => $usernameFormatted]);
-        }
-    }
+
     /**
      * Get custom attributes for validator errors.
      *
@@ -64,12 +58,18 @@ class UpdateUserRequest extends FormRequest
             'username.required' => 'Tài khoản là bắt buộc',
             'username.unique' => 'Tài khoản đã tồn tại trên hệ thống',
             'name.required' => 'Tên là bắt buộc',
-            'email.unique' => 'Email đã được sử dung',
-            'password.required' => 'Mật khẩu là bắt buộc',
-            'password.confirmed' => 'Xác nhận mật khẩu không đúng',
-            'password_confirmation.same' => 'Xác nhận mật khẩu không đúng',
+            'sex.required' => 'Giới tính là bắt buộc',
+            'department_id.required' => 'Đơn vị là bắt buộc',
+            'active_at.required' => 'Thời gian hiệu lực của tài khoản',
+            'email.unique' => 'Email đã được sử dụng',
             'email.required' => 'Email là bắt buộc',
             'email.email' => 'Email sai định dạng',
+
+            'phone.unique' => 'Số điện thoại đã được sử dụng',
+            'phone.required' => 'Số điện thoại là bắt buộc',
+            'phone.regex' => 'Số điện thoại chỉ dược nhập là số',
+
+
         ];
     }
 }

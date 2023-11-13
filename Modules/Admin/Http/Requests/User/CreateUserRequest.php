@@ -15,13 +15,17 @@ class CreateUserRequest extends FormRequest
     }
     public function rules()
     {
-        $userType =$this->request->get('type');
 
         $rules = [
 
+            'username'=>"required|unique:users",
+            'name'=>"required",
+            'sex'=>"required",
+            'department_id'=>"required",
+            'active_at'=>"required",
+            'expired_at'=>"required",
 
-            'name' => 'required',
-            'email' => 'unique:users|email',
+            'email' => 'email',
         ];
 
         return $rules;
@@ -47,9 +51,11 @@ class CreateUserRequest extends FormRequest
     {
         return [
             'username.required' => 'Tài khoản là bắt buộc',
-            'username.regex' => 'Tài khoản không được chứa dấu cách/ ký tự đặc biệt/ tên có dấu',
             'username.unique' => 'Tài khoản đã tồn tại trên hệ thống',
             'name.required' => 'Tên là bắt buộc',
+            'sex.required' => 'Giới tính là bắt buộc',
+            'department_id.required' => 'Đơn vị là bắt buộc',
+            'active_at.required' => 'Thời gian hiệu lực của tài khoản',
             'email.unique' => 'Email đã được sử dụng',
             'email.required' => 'Email là bắt buộc',
             'email.email' => 'Email sai định dạng',
@@ -59,12 +65,7 @@ class CreateUserRequest extends FormRequest
             'phone.regex' => 'Số điện thoại chỉ dược nhập là số',
 
 
-            'password.required' => 'Mật khẩu là bắt buộc',
-            'password_confirmation.required' => 'Xác nhận mật khẩu không được để trống',
-            'password.regex' => 'Mật khẩu phải bao gồm ký tự chữ và số, không được chứa dấu cách',
-            'password_confirmation.same' => 'Xác nhận mật khẩu không đúng',
-            'password.same' => 'Xác nhận mật khẩu không đúng',
-            'password.min' => 'Mật khẩu tối thiểu 6 ký tự'
+
         ];
     }
 }

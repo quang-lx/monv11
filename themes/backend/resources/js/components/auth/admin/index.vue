@@ -438,12 +438,7 @@
 
         },
         created() {
-            if (this.$route.query.msg) {
-                this.$notify({
-                    type: 'success',
-                    message: this.$route.query.msg
-                });
-            }
+
 
         }
     }

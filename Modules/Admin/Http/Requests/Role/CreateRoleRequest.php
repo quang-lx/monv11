@@ -15,6 +15,7 @@ class CreateRoleRequest extends FormRequest
     {
         $rules = [
             'name'=>"required",
+
         ];
         return $rules;
     }

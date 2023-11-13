@@ -46,13 +46,16 @@
 
                                     </div>
                                 </div>
-                                <el-form ref="form" :model="modelForm"   label-position="top"
+                                <el-form   :model="modelForm"
+                                         label-position="top"
+                                         ref="modelForm"
+                                         :rules="formRules"
                                                  v-loading.body="loading"
                                         >
                                             <div class="row">
                                                 <div class="col-md-6">
 
-                                                    <el-form-item :label="$t('permission.label.name')"
+                                                    <el-form-item :label="$t('role.label.name')" prop="name"
                                                                   :class="{'el-form-item is-error': form.errors.has( 'name') }">
                                                         <el-input v-model="modelForm.name"
                                                                   size="medium"
@@ -123,6 +126,11 @@
                 form: new Form(),
                 loading: false,
                 load_done: false,
+                formRules: {
+                    name: [
+                        { required: true, message: '' ,   trigger: 'submit'}
+                    ]
+                },
                 modelForm: {
                     id: '',
                     name: '',

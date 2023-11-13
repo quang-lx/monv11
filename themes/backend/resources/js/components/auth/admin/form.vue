@@ -4,7 +4,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-md-6">
-                         
+
 
                         <div class="float-left d-flex align-items-center">
                             <i class="el-icon-arrow-left f-icon-bound-breadcrumb mr-2" @click="gotoPage({name: 'admin.admins.index'})"></i>
@@ -46,7 +46,9 @@
                             </div><!-- /.card-header -->
                             <div class="card-body">
 
-                                <el-form ref="form"
+                                <el-form
+                                         :rules="userRules"
+                                         ref="modelForm"
                                          :model="modelForm"
                                          label-position="top"
                                          v-loading.body="loading"
@@ -55,6 +57,7 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <el-form-item :label="$t('user.label.name')"
+                                                          prop="name"
                                                           :class="{'el-form-item is-error': form.errors.has('name') }">
                                                 <el-input v-model="modelForm.name" size="small"></el-input>
                                                 <div class="el-form-item__error"
@@ -64,6 +67,7 @@
                                         </div>
                                         <div class="col-md-4">
                                             <el-form-item :label="$t('user.label.sex')"
+                                                          prop="sex"
                                                           :class="{'el-form-item is-error': form.errors.has('sex') }">
 
                                                 <el-select v-model="modelForm.sex" size="small"
@@ -118,6 +122,7 @@
                                         </div>
                                         <div class="col-md-4">
                                             <el-form-item :label="$t('user.label.department_id')"
+                                                          prop="department_id"
                                                           :class="{'el-form-item is-error': form.errors.has('department_id') }">
 
                                                 <el-select v-model="modelForm.department_id"
@@ -161,6 +166,7 @@
                                         </div>
                                         <div class="col-md-4">
                                             <el-form-item label="Thời gian hiệu lực của tài khoản"
+                                                          prop="active_at"
                                                           :class="{'el-form-item is-error': form.errors.has('active_at') }">
                                                 <div class="row">
                                                     <div class="col-md-6 d-flex">
@@ -303,6 +309,26 @@
                 changepassForm: new Form(),
                 loading: false,
                 loadingPassword: false,
+                userRules: {
+                    username: [
+                        { required: true, message: 'Bắt buộc' , trigger: 'submit'}
+                    ],
+                    sex: [
+                        { required: true, message: '' , trigger: 'submit'}
+                    ],
+                    name: [
+                        { required: true, message: '', trigger: 'submit' }
+                    ],
+                    department_id: [
+                        { required: true, message: '', trigger: 'submit' }
+                    ],
+                    active_at: [
+                        { required: true, message: '' , trigger: 'submit'}
+                    ],
+                    expired_at: [
+                        { required: true, message: '' , trigger: 'submit'}
+                    ],
+                },
                 modelForm: {
                     username: '',
                     name: '',
