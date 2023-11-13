@@ -76,7 +76,26 @@ aside .sidebar {
 .f-pointer {
   cursor: pointer;
 }
-
+.f-icon-bound {
+    cursor:pointer;
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+    background: #F5F5FA;
+    display: flex;
+    padding: 6px;
+    align-items: center;
+}
+.f-icon-bound-breadcrumb {
+    cursor:pointer;
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+    background: #8181A5;
+    display: flex;
+    padding: 6px;
+    align-items: center;
+}
 .card-body {
   padding: 12px !important;
 }

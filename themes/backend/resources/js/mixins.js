@@ -21,6 +21,9 @@ const mixin = {
         }
     },
     methods: {
+        gotoPage(route) {
+            this.$router.push(route)
+        },
         getSubmitError(error) {
             const firstPropValue = Object.values(error.errors)[0];
             return firstPropValue[0];

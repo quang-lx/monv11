@@ -1,7 +1,7 @@
 <template>
 
 <div>
-    <el-checkbox v-model="is_select_all" @change="handleCheckAllChange">{{$t('role.label.select all')}}</el-checkbox>
+    <el-checkbox v-model="is_select_all" @change="handleCheckAllChange" class="mb-3">{{$t('role.label.select all')}}</el-checkbox>
 
 
 

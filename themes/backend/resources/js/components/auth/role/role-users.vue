@@ -10,10 +10,10 @@
                     <div class="col-md-6">
 
 
-                        <div class="float-sm-right" @click="show_add_user_form = true" style="cursor:pointer">
-                            <i class="el-icon-plus"></i>
+                        <div class="float-sm-right d-flex flex-row" @click="show_add_user_form = true" style="cursor:pointer">
+                            <i class="el-icon-plus f-icon-bound mr-2"></i>
 
-                            {{ $t('common.add') }}
+                            <span>{{ $t('common.add') }}</span>
 
                         </div>
                     </div>

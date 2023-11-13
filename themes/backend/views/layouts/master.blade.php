@@ -28,6 +28,7 @@
 
     @include('backend::partials.globals')
     @section('styles')
+
     @show
     @stack('css-stack')
     @stack('translation-stack')
