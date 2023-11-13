@@ -1,6 +1,12 @@
 $color-primary: #6589FF;
 /* theme color */
 $--color-primary: #6589FF;
+$--size-base: 12px !default;
+$--font-size-base: 12px !default;
+$font-family-sans-serif: -apple-system, system-ui,  Roboto, "Helvetica Neue", Arial, sans-serif !default;
+$font-family-serif:     Roboto, Georgia, "Times New Roman", Times, serif !default;
+$font-family-monospace:  Roboto, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
+$font-family-base:       $font-family-sans-serif !default;
 
 /* icon font path, required */
 $--font-path: '~element-ui/lib/theme-chalk/fonts';
@@ -21,7 +27,11 @@ $fa-css-prefix: el-icon-fa;
   -moz-osx-font-smoothing: grayscale;
 }
 
-;
+
+html, body {
+    font-family: Roboto !important;
+
+}
 
 .content-wrapper {
   .content {
