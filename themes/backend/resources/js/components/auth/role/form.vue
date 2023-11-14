@@ -161,7 +161,12 @@
                             type: 'success',
                             message: response.message,
                         });
-                        this.$router.push({name: 'admin.roles.index'});
+                        if (this.$route.params.roleId !== undefined) {
+
+                        } else {
+                            this.$router.push({name: 'admin.roles.index'});
+                        }
+
                     })
                     .catch((error) => {
 
