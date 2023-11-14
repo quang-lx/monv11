@@ -63,7 +63,9 @@
                                             <el-form-item :label="$t('user.label.name')"
                                                           prop="name"
                                                           :class="{'el-form-item is-error': form.errors.has('name') }">
-                                                <el-input v-model="modelForm.name" size="small"></el-input>
+                                                <el-input v-model="modelForm.name" size="small"
+                                                placeholder="Nhập họ và tên"
+                                                ></el-input>
                                                 <div class="el-form-item__error"
                                                      v-if="form.errors.has('name')"
                                                      v-text="form.errors.first('name')"></div>
@@ -95,6 +97,7 @@
                                             <el-form-item :label="$t('user.label.email')"
                                                           :class="{'el-form-item is-error': form.errors.has('email') }">
                                                 <el-input v-model="modelForm.email" size="small"
+                                                          placeholder="Nhập email"
                                                           autocomplete="off"></el-input>
                                                 <div class="el-form-item__error"
                                                      v-if="form.errors.has('email')"
@@ -108,6 +111,7 @@
                                             <el-form-item :label="$t('user.label.phone')"
                                                           :class="{'el-form-item is-error': form.errors.has('phone') }">
                                                 <el-input v-model="modelForm.phone" size="small"
+                                                          placeholder="Nhập số điện thoại"
                                                           autocomplete="off"></el-input>
                                                 <div class="el-form-item__error"
                                                      v-if="form.errors.has('phone')"
@@ -118,6 +122,7 @@
                                             <el-form-item :label="$t('user.label.identification')"
                                                           :class="{'el-form-item is-error': form.errors.has('identification') }">
                                                 <el-input v-model="modelForm.identification" size="small"
+                                                          placeholder="Nhập giấy tờ tuỳ thân"
                                                           autocomplete="off"></el-input>
                                                 <div class="el-form-item__error"
                                                      v-if="form.errors.has('identification')"
@@ -237,11 +242,12 @@
                                 >
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <el-form-item :label="$t('user.label.username')"
+                                            <el-form-item label="Tài khoản đăng nhập"
                                                           :class="{'el-form-item is-error': form.errors.has('username') }">
                                                 <div class="row">
                                                     <div class="col-sm-9">
                                                         <el-input v-model="modelForm.username" :disabled="!modelForm.is_new"
+                                                                  placeholder="Nhập tài khoản đăng nhập"
                                                                   size="small"
                                                                   autocomplete="off"></el-input>
                                                     </div>
