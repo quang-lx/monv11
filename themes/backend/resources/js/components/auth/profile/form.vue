@@ -49,10 +49,23 @@
                                     <h2>
                                         Thông tin cá nhân
                                     </h2>
-                                    <el-button type="danger" class="btn btn-flat btn-change-pass"
-                                        @click="changePassDialogVisible = true">
-                                        {{ $t('user.label.change_password') }}
-                                    </el-button>
+                                    <div class="col-6">
+                                        <div class="d-flex justify-content-end">
+                                            <el-button class="btn btn-flat btn-cancel" size="small" @click="onCancel()">
+                                                {{ $t('mon.button.cancel') }}
+                                            </el-button>
+
+                                            <el-button type="primary" @click="onSubmit()" size="small" :loading="loading"
+                                                class="btn btn-flat btn-primary">
+                                                {{ $t('mon.button.update') }}
+                                            </el-button>
+
+                                            <el-button type="danger" size="small" class="btn btn-flat btn-change-pass"
+                                                @click="changePassDialogVisible = true">
+                                                {{ $t('user.label.change_password') }}
+                                            </el-button>
+                                        </div>
+                                    </div>
                                 </div>
                                 <el-dialog class="popup-change-pass" custom-class="change-pass"
                                     :visible.sync="changePassDialogVisible" :show-close="false" width="500px">
@@ -61,13 +74,13 @@
                                         Mật khẩu phải có tối thiểu 8 ký tự, gồm cả chữ hoa, chữ thường , số và ký tự đặc
                                         biệt:
                                     </p>
-                                    <el-form ref="changepassForm" :model="modelForm" size="small" label-width="200px"
+                                    <el-form ref="changepassForm" :model="modelFormPass" size="small" label-width="200px"
                                         label-position="top" v-loading.body="loadingPassword">
                                         <el-form-item class="formPassword"
                                             :class="{ 'el-form-item is-error': changepassForm.errors.has('password_old') }">
                                             <label class="el-form-item__label" for="">{{ $t('user.label.password_old')
                                             }}<span class="text-danger"> *</span></label>
-                                            <el-input v-model="modelForm.password_old" autocomplete="off"
+                                            <el-input v-model="modelFormPass.password_old" autocomplete="off"
                                                 :type="show_password_old ? 'text' : 'password'"></el-input>
                                             <!-- <div class="el-form-item__error" v-if="changepassForm.errors.has('password_old')"
                                                 v-text="changepassForm.errors.first('password_old')"></div> -->
@@ -80,7 +93,7 @@
                                             <label class="el-form-item__label" for="">{{ $t('user.label.password_new')
                                             }}<span class="text-danger"> *</span></label>
 
-                                            <el-input v-model="modelForm.password_new" autocomplete="off"
+                                            <el-input v-model="modelFormPass.password_new" autocomplete="off"
                                                 :type="show_password_new ? 'text' : 'password'"></el-input>
                                             <!-- <div class="el-form-item__error"
                                                 v-if="changepassForm.errors.has('password_new')"
@@ -94,7 +107,7 @@
                                             <label class="el-form-item__label" for="">{{
                                                 $t('user.label.password_confirmation') }}<span class="text-danger">
                                                     *</span></label>
-                                            <el-input v-model="modelForm.password_confirmation" autocomplete="off"
+                                            <el-input v-model="modelFormPass.password_confirmation" autocomplete="off"
                                                 :type="show_password_confirmation ? 'text' : 'password'"></el-input>
                                             <img role="button" class="show-hide-pass"
                                                 @click="show_password_confirmation = !show_password_confirmation"
@@ -118,15 +131,50 @@
 
                                             <el-form-item :label="$t('user.label.username')"
                                                 :class="{ 'el-form-item is-error': form.errors.has('username') }">
-                                                <el-input v-model="modelForm.username" autocomplete="off"></el-input>
+                                                <el-input :disabled="true" v-model="modelForm.username"
+                                                    autocomplete="off"></el-input>
                                                 <div class="el-form-item__error" v-if="form.errors.has('username')"
                                                     v-text="form.errors.first('username')"></div>
                                             </el-form-item>
-                                            <el-form-item label="Mã nhân viên"
-                                                :class="{ 'el-form-item is-error': form.errors.has('id') }">
-                                                <el-input v-model="modelForm.id"></el-input>
-                                                <div class="el-form-item__error" v-if="form.errors.has('id')"
-                                                    v-text="form.errors.first('id')"></div>
+
+                                            <el-form-item :label="$t('user.label.sex')"
+                                                :class="{ 'el-form-item is-error': form.errors.has('sex') }">
+                                                <el-input :disabled="true" v-model="modelForm.sex"
+                                                    autocomplete="off"></el-input>
+                                                <div class="el-form-item__error" v-if="form.errors.has('sex')"
+                                                    v-text="form.errors.first('sex')"></div>
+                                            </el-form-item>
+
+                                            <el-form-item :label="$t('user.label.phone')"
+                                                :class="{ 'el-form-item is-error': form.errors.has('phone') }">
+                                                <el-input v-model="modelForm.phone"></el-input>
+                                                <div class="el-form-item__error" v-if="form.errors.has('phone')"
+                                                    v-text="form.errors.first('phone')"></div>
+                                            </el-form-item>
+
+                                            <el-form-item :label="$t('user.label.birth_day')"
+                                                :class="{ 'el-form-item is-error': form.errors.has('birth_day') }">
+                                                <el-input v-model="modelForm.birth_day" autocomplete="off"></el-input>
+                                                <div class="el-form-item__error" v-if="form.errors.has('birth_day')"
+                                                    v-text="form.errors.first('birth_day')"></div>
+                                            </el-form-item>
+                                        </div>
+
+                                        <div class="col-md-6">
+
+                                            <el-form-item :label="$t('user.label.name')"
+                                                :class="{ 'el-form-item is-error': form.errors.has('name') }">
+                                                <el-input :disabled="true" v-model="modelForm.name"
+                                                    autocomplete="off"></el-input>
+                                                <div class="el-form-item__error" v-if="form.errors.has('name')"
+                                                    v-text="form.errors.first('name')"></div>
+                                            </el-form-item>
+
+                                            <el-form-item :label="$t('user.label.department_id')"
+                                                :class="{ 'el-form-item is-error': form.errors.has('department_id') }">
+                                                <el-input :disabled="true" v-model="modelForm.department.name"></el-input>
+                                                <div class="el-form-item__error" v-if="form.errors.has('department_id')"
+                                                    v-text="form.errors.first('department_id')"></div>
                                             </el-form-item>
 
                                             <el-form-item :label="$t('user.label.email')"
@@ -135,28 +183,12 @@
                                                 <div class="el-form-item__error" v-if="form.errors.has('email')"
                                                     v-text="form.errors.first('email')"></div>
                                             </el-form-item>
-                                        </div>
 
-                                        <div class="col-md-6">
-
-                                            <el-form-item :label="$t('user.label.name')"
-                                                :class="{ 'el-form-item is-error': form.errors.has('name') }">
-                                                <el-input v-model="modelForm.name" autocomplete="off"></el-input>
-                                                <div class="el-form-item__error" v-if="form.errors.has('name')"
-                                                    v-text="form.errors.first('name')"></div>
-                                            </el-form-item>
-                                            <el-form-item :label="$t('user.label.phone')"
-                                                :class="{ 'el-form-item is-error': form.errors.has('phone') }">
-                                                <el-input v-model="modelForm.phone"></el-input>
-                                                <div class="el-form-item__error" v-if="form.errors.has('phone')"
-                                                    v-text="form.errors.first('phone')"></div>
-                                            </el-form-item>
-
-                                            <el-form-item :label="$t('user.label.department_id')"
-                                                :class="{ 'el-form-item is-error': form.errors.has('department_id') }">
-                                                <el-input v-model="modelForm.department_id" autocomplete="off"></el-input>
-                                                <div class="el-form-item__error" v-if="form.errors.has('department_id')"
-                                                    v-text="form.errors.first('department_id')"></div>
+                                            <el-form-item :label="$t('user.label.identification')"
+                                                :class="{ 'el-form-item is-error': form.errors.has('identification') }">
+                                                <el-input v-model="modelForm.identification" autocomplete="off"></el-input>
+                                                <div class="el-form-item__error" v-if="form.errors.has('identification')"
+                                                    v-text="form.errors.first('identification')"></div>
                                             </el-form-item>
                                         </div>
 
@@ -192,15 +224,18 @@ export default {
             show_password_confirmation: false,
             show_password_new: false,
             show_password_old: false,
+            modelFormPass: {
+                password_old: '',
+                password_new: '',
+                password_confirmation: ''
+            },
             modelForm: {
                 username: '',
                 name: '',
                 email: '',
                 phone: '',
                 roles: [],
-                is_new: false,
                 type: 2
-
             },
             roles: [],
             checkAll: false,
@@ -220,7 +255,6 @@ export default {
                         type: 'success',
                         message: response.message,
                     });
-                    this.$router.push({ name: 'admin.users.index' });
                 })
                 .catch((error) => {
 
@@ -233,9 +267,9 @@ export default {
         },
         changePassword() {
             this.changepassForm = new Form({
-                password_old: this.modelForm.password_old,
-                password_new: this.modelForm.password_new,
-                password_confirmation: this.modelForm.password_confirmation
+                password_old: this.modelFormPass.password_old,
+                password_new: this.modelFormPass.password_new,
+                password_confirmation: this.modelFormPass.password_confirmation
             });
             this.loadingPassword = true;
 
@@ -292,10 +326,7 @@ export default {
                 });
         },
         getRoute() {
-            if (this.$route.params.userId !== undefined) {
-                return route('api.users.update', { user: this.$route.params.userId });
-            }
-            return route('api.users.store');
+                return route('api.users.update', { user: this.modelForm.id });
         },
         handleCheckAllChange(val) {
             this.modelForm.roles = val ? this.roles.map(item => item.id) : [];
@@ -365,25 +396,12 @@ export default {
 }
 
 .btn-change-pass {
-    display: flex;
-    width: 124px;
-    height: 32px;
-    padding: 4px 16px;
-    justify-content: center;
-    align-items: center;
     gap: 4px;
     border-radius: 4px;
     border: 1px solid var(--common-5, #0381FE);
     background: var(--common-1, #FFF);
     color: var(--common-5, #0381FE);
-    text-align: justify;
-
-    /* Heading/16/Medium */
-    font-family: Roboto;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 24px;
+    font-size: 14px !important;
     /* 150% */
 }
 

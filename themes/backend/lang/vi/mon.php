@@ -8,7 +8,7 @@ return [
         'cancelBtn' => 'Ở lại',
         'delete' => 'Xóa',
         'close' => 'Đóng',
-
+        'update' => 'Cập nhật'
     ],
     'all' => 'Tất cả',
     'confirm' => 'Xác nhận',

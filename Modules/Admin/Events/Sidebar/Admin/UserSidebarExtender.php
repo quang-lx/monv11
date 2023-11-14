@@ -22,7 +22,7 @@ class UserSidebarExtender extends AbstractAdminSidebar
         $menu->group('system administration', function (Group $group) {
             $group->hideHeading(true);
             $group->item(trans('backend::sidebar.home'), function (Item $item) {
-                $item->icon('fas fa-warehouse');
+                $item->icon('fas custom-icon home-icon');
                 $item->weight(10);
                 $item->authorize(
                     $this->auth->hasAccess('admin.dashboard.index')
@@ -32,7 +32,7 @@ class UserSidebarExtender extends AbstractAdminSidebar
 
             });
             $group->item(trans('backend::sidebar.system administration'), function (Item $item) {
-                $item->icon('fas fa-cog');
+                $item->icon('fas custom-icon setting-icon');
                 $item->weight(10);
                 $item->authorize(
                     $this->auth->hasAccess('admin.admins.index')
