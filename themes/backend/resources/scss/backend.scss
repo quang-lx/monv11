@@ -1,8 +1,8 @@
 $color-primary: #6589FF;
 /* theme color */
 $--color-primary: #6589FF;
-$--size-base: 12px !default;
-$--font-size-base: 12px !default;
+$--size-base: 14px !default;
+$--font-size-base: 14px !default;
 $font-family-sans-serif: -apple-system, system-ui,  Roboto, "Helvetica Neue", Arial, sans-serif !default;
 $font-family-serif:     Roboto, Georgia, "Times New Roman", Times, serif !default;
 $font-family-monospace:  Roboto, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
@@ -163,7 +163,7 @@ aside .sidebar {
 }
 .el-table {
     font-family: Roboto !important;
-    font-size: 12px !important;
+    font-size: 14px !important;
 }
 .el-table__header th tr {
 
@@ -175,10 +175,3 @@ aside .sidebar {
     font-weight: 500;
 }
 
-label:not(.form-check-label):not(.custom-file-label) {
-    font-size: 12px !important;
-}
-
-.el-form .el-form-item__label {
-    font-size: 12px !important;
-} 
