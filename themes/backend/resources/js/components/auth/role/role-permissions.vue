@@ -10,7 +10,7 @@
         :data="groupPermissions"
         style="width: 100%" >
         <el-table-column   :label="$t('common.stt')" width="75" type="index"
-                           sortable="custom">
+                            >
 
         </el-table-column>
 

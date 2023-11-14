@@ -69,7 +69,7 @@
                                             ref="dataTable"
                                             v-loading.body="tableIsLoading"
                                             @sort-change="handleSortChange">
-                                        <el-table-column prop="id" :label="$t('category.label.id')" width="75" sortable="custom">
+                                        <el-table-column prop="id" :label="$t('category.label.id')" width="75"  >
 
                                         </el-table-column>
                                         <el-table-column prop="" label="Ảnh đại diện">
@@ -78,10 +78,10 @@
                                                      width="100"/>
                                             </template>
                                         </el-table-column>
-                                        <el-table-column prop="title" :label="$t('category.label.title')" sortable="custom">
+                                        <el-table-column prop="title" :label="$t('category.label.title')"  >
 
                                         </el-table-column>
-                                        <el-table-column prop="slug" :label="$t('category.label.slug')" sortable="custom">
+                                        <el-table-column prop="slug" :label="$t('category.label.slug')"  >
 
                                         </el-table-column>
                                         <el-table-column prop="status" :label="$t('category.label.status')" sortable="status">
@@ -91,11 +91,11 @@
                                             </template>
 
                                         </el-table-column>
-                                        <el-table-column prop="updated_at" label="Ngày cập nhật" sortable="custom">
+                                        <el-table-column prop="updated_at" label="Ngày cập nhật"  >
 
                                         </el-table-column>
 
-                                        <el-table-column prop="actions" width="130">
+                                        <el-table-column prop="actions"  :label="$t('common.action')"  width="130">
                                             <template slot-scope="scope">
                                                 <edit-button
                                                         :to="{name: 'admin.category.edit', params: {categoryId: scope.row.id}}"></edit-button>

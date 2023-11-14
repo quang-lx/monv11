@@ -86,22 +86,22 @@
                                             ref="dataTable"
                                             v-loading.body="tableIsLoading"
                                             @sort-change="handleSortChange">
-                                        <el-table-column prop="id" :label="$t('user.label.id')" width="75" sortable="custom">
+                                        <el-table-column prop="id" :label="$t('user.label.id')" width="75"  >
 
                                         </el-table-column>
-                                        <el-table-column prop="username" :label="$t('user.label.username')" sortable="custom"> </el-table-column>
-                                        <el-table-column prop="name" :label="$t('user.label.name')" sortable="custom">
+                                        <el-table-column prop="username" :label="$t('user.label.username')"  > </el-table-column>
+                                        <el-table-column prop="name" :label="$t('user.label.name')"  >
 
                                         </el-table-column>
-                                        <el-table-column prop="email" :label="$t('user.label.email')" sortable="custom">
-
-                                        </el-table-column>
-
-                                        <el-table-column prop="updated_at" :label="$t('user.label.updated_at')" sortable="custom">
+                                        <el-table-column prop="email" :label="$t('user.label.email')"  >
 
                                         </el-table-column>
 
-                                        <el-table-column prop="actions" width="130">
+                                        <el-table-column prop="updated_at" :label="$t('user.label.updated_at')"  >
+
+                                        </el-table-column>
+
+                                        <el-table-column prop="actions"  :label="$t('common.action')"  width="130">
                                             <template slot-scope="scope">
                                                 <edit-button
                                                         :to="{name: 'admin.users.edit', params: {userId: scope.row.id}}"></edit-button>

@@ -5,7 +5,6 @@
                 <div class="row mb-2">
                     <div class="col-md-6">
                         <div class="float-left d-flex align-items-center">
-                            <i class="el-icon-arrow-left f-icon-bound-breadcrumb mr-2" @click="gotoPage({name: 'admin.roles.index'})"></i>
                             <span class="f-breadcrumb">{{ $t(pageTitle) }}</span>
 
                         </div>
@@ -59,7 +58,8 @@
                                                     <el-form-item :label="$t('role.label.name')" prop="name"
                                                                   :class="{'el-form-item is-error': form.errors.has( 'name') }">
                                                         <el-input v-model="modelForm.name"
-                                                                  size="medium"
+                                                                  placeholder="Nhập tên vai trò"
+                                                                  size="small"
                                                                   @focus="form.errors.clear('name')"></el-input>
                                                         <div class="el-form-item__error"
                                                              v-if="form.errors.has('name')"
@@ -73,6 +73,7 @@
                                                                   :class="{'el-form-item is-error': form.errors.has( 'description') }">
                                                         <el-input v-model="modelForm.description" type="textarea"
                                                                   show-word-limit
+                                                                  placeholder="Nhập mô tả"
                                                                   :autosize="{ minRows: 2, maxRows: 10}" maxlength="200"></el-input>
                                                         <div class="el-form-item__error"
                                                              v-if="form.errors.has('description')"

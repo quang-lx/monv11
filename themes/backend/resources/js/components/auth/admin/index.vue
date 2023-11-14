@@ -89,35 +89,35 @@
                                             v-loading.body="tableIsLoading"
                                             @sort-change="handleSortChange">
 
-                                        <el-table-column prop="username" fixed :label="$t('user.label.username')" width="150" sortable="custom"> </el-table-column>
+                                        <el-table-column prop="username" fixed :label="$t('user.label.username')" width="150"  > </el-table-column>
 
-                                        <el-table-column prop="name" :label="$t('user.label.name')" width="250" sortable="custom">
-
-                                        </el-table-column>
-                                        <el-table-column prop="email" :label="$t('user.label.email')" width="200"  sortable="custom">
+                                        <el-table-column prop="name" :label="$t('user.label.name')" width="250"  >
 
                                         </el-table-column>
-                                        <el-table-column prop="phone" :label="$t('user.label.phone')" width="130" sortable="custom">
+                                        <el-table-column prop="email" :label="$t('user.label.email')" width="200"   >
 
                                         </el-table-column>
-                                        <el-table-column prop="sex" :label="$t('user.label.sex')" width="120" sortable="custom">
+                                        <el-table-column prop="phone" :label="$t('user.label.phone')" width="130"  >
+
+                                        </el-table-column>
+                                        <el-table-column prop="sex" :label="$t('user.label.sex')" width="120"  >
                                             <template slot-scope="scope">
                                                 <span>{{scope.row.sex_text}}</span>
                                             </template>
                                         </el-table-column>
-                                        <el-table-column prop="birth_day" :label="$t('user.label.birth_day')" width="150" sortable="custom">
+                                        <el-table-column prop="birth_day" :label="$t('user.label.birth_day')" width="150"  >
 
                                         </el-table-column>
-                                        <el-table-column prop="identification" :label="$t('user.label.identification')" width="150" sortable="custom">
+                                        <el-table-column prop="identification" :label="$t('user.label.identification')" width="150"  >
 
                                         </el-table-column>
-                                        <el-table-column prop="expired_at" :label="$t('user.label.status')" width="150" sortable="custom">
+                                        <el-table-column prop="expired_at" :label="$t('user.label.status')" width="150"  >
                                             <template slot-scope="scope">
                                                 <span>{{scope.row.status_text}}</span>
                                             </template>
                                         </el-table-column>
 
-                                        <el-table-column prop="created_at" :label="$t('user.label.created_at')"  width="150" sortable="custom">
+                                        <el-table-column prop="created_at" :label="$t('user.label.created_at')"  width="150"  >
 
                                         </el-table-column>
                                         <el-table-column prop="created_by" :label="$t('user.label.created by')"  width="150" >
@@ -126,7 +126,7 @@
                                             </template>
                                         </el-table-column>
 
-                                        <el-table-column prop="actions"  width="130" fixed="right">
+                                        <el-table-column prop="actions"  :label="$t('common.action')"   width="130" fixed="right">
                                             <template slot-scope="scope">
                                                 <edit-button
                                                         :to="{name: 'admin.admins.edit', params: {userId: scope.row.id}}"></edit-button>

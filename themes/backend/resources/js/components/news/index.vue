@@ -60,7 +60,7 @@
                                       ref="dataTable"
                                       v-loading.body="tableIsLoading"
                                       @sort-change="handleSortChange">
-                                        <el-table-column prop="id" :label="$t('news.label.id')" width="75" sortable="custom">
+                                        <el-table-column prop="id" :label="$t('news.label.id')" width="75"  >
 
                                         </el-table-column>
                                         <el-table-column prop="" label="Ảnh đại diện">
@@ -69,15 +69,15 @@
                                                      width="100"/>
                                             </template>
                                         </el-table-column>
-                                        <el-table-column prop="title" :label="$t('news.label.title')" sortable="custom">
+                                        <el-table-column prop="title" :label="$t('news.label.title')"  >
 
                                         </el-table-column>
-                                        <el-table-column prop="category_id" :label="$t('news.label.category_id')" sortable="custom">
+                                        <el-table-column prop="category_id" :label="$t('news.label.category_id')"  >
                                             <template slot-scope="scope">
                                                 <span v-if="scope.row.category">{{scope.row.category.title}}</span>
                                             </template>
                                         </el-table-column>
-                                        <el-table-column prop="author" :label="$t('news.label.author')" sortable="custom">
+                                        <el-table-column prop="author" :label="$t('news.label.author')"  >
 
                                         </el-table-column>
                                         <el-table-column prop="status" :label="$t('category.label.status')" sortable="status">
@@ -88,11 +88,11 @@
 
                                         </el-table-column>
 
-                            <el-table-column prop="updated_at" label="Ngày cập nhật" sortable="custom">
+                            <el-table-column prop="updated_at" label="Ngày cập nhật"  >
 
                                         </el-table-column>
 
-                                        <el-table-column prop="actions" width="130">
+                                        <el-table-column prop="actions"  :label="$t('common.action')"  width="130">
                                             <template slot-scope="scope">
                                                 <edit-button
                                                   :to="{name: 'admin.news.edit', params: {newsId: scope.row.id}}"></edit-button>

@@ -1,8 +1,7 @@
 <template>
- <span>
+<div>
 
- </span>
-
+</div>
 
 </template>
 
@@ -12,7 +11,7 @@
     import Tinymce from '../utils/Tinymce'
 
     export default {
-        components: {Tinymce},
+
         props: {
             locales: {default: null},
             pageTitle: {default: null, String},

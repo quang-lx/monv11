@@ -61,36 +61,36 @@
                       prop="id"
                       :label="$t('permission.label.id')"
                       width="75"
-                      sortable="custom"
+
                     >
                     </el-table-column>
                     <el-table-column
                       prop="title"
                       :label="$t('permission.label.title')"
-                      sortable="custom"
+
                     >
                     </el-table-column>
                     <el-table-column
                       prop="group_name"
                       :label="$t('permission.label.group_name')"
-                      sortable="custom"
+
                     >
                     </el-table-column>
 
                     <el-table-column
                       prop="created_at"
                       :label="$t('permission.label.created_at')"
-                      sortable="custom"
+
                     >
                     </el-table-column>
                     <el-table-column
                       prop="updated_at"
                       :label="$t('permission.label.updated_at')"
-                      sortable="custom"
+
                     >
                     </el-table-column>
 
-                    <el-table-column prop="actions" width="130">
+                    <el-table-column prop="actions"  :label="$t('common.action')"  width="130">
                       <template slot-scope="scope">
                         <edit-button
                           :to="{

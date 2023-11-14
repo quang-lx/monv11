@@ -67,13 +67,13 @@
                             type="selection"
                             width="55">
                     </el-table-column>
-                    <el-table-column prop="id" :label="$t('permission.label.id')" width="75" sortable="custom">
+                    <el-table-column prop="id" :label="$t('permission.label.id')" width="75"  >
 
                     </el-table-column>
-                    <el-table-column prop="name" :label="$t('permission.label.name')" sortable="custom">
+                    <el-table-column prop="name" :label="$t('permission.label.name')"  >
 
                     </el-table-column>
-                    <el-table-column prop="guard_name" :label="$t('permission.label.guard_name')" sortable="custom">
+                    <el-table-column prop="guard_name" :label="$t('permission.label.guard_name')"  >
 
                     </el-table-column>
 

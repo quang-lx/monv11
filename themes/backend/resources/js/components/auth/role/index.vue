@@ -46,23 +46,23 @@
                                         v-loading.body="tableIsLoading"
                                         @sort-change="handleSortChange">
                                         <el-table-column   :label="$t('common.stt')" width="75" type="index"
-                                                         sortable="custom">
+                                                          >
 
                                         </el-table-column>
-                                        <el-table-column prop="name" :label="$t('role.label.name')" sortable="custom">
+                                        <el-table-column prop="name" :label="$t('role.label.name')"  >
 
                                         </el-table-column>
                                         <el-table-column prop="description" :label="$t('role.label.description')"
-                                                         sortable="custom">
+                                                          >
 
                                         </el-table-column>
 
                                         <el-table-column prop="updated_at" :label="$t('role.label.created_at')"
-                                                         sortable="custom">
+                                                          >
 
                                         </el-table-column>
 
-                                        <el-table-column prop="actions" width="80">
+                                        <el-table-column prop="actions"  :label="$t('common.action')"  width="80" >
                                             <template slot-scope="scope">
                                                 <edit-button
                                                     :to="{name: 'admin.roles.edit', params: {roleId: scope.row.id}}"></edit-button>

@@ -103,7 +103,7 @@
                                         </el-table-column>
 
                                         <el-table-column prop="filename" :label="$t('media.label.filename')"
-                                                         sortable="custom">
+                                                          >
                                             <template slot-scope="scope">
                                                 <strong v-if="scope.row.is_folder" style="cursor: pointer;"
                                                         @click="enterFolder(scope)">
@@ -115,10 +115,10 @@
                                             </template>
                                         </el-table-column>
                                         <el-table-column prop="created_at" :label="$t('media.label.created_at')"
-                                                         sortable="custom"
+
                                                          width="150">
                                         </el-table-column>
-                                        <el-table-column prop="actions" label="" width="150">
+                                        <el-table-column prop="actions"  :label="$t('common.action')"  label="" width="150">
                                             <template slot-scope="scope">
                                                 <div class="pull-right">
                                                     <el-button

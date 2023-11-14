@@ -10,8 +10,8 @@
                     <div class="col-md-6">
 
 
-                        <div class="float-sm-right d-flex flex-row" @click="show_add_user_form = true" style="cursor:pointer">
-                            <i class="el-icon-plus f-icon-bound mr-2"></i>
+                        <div class="float-sm-right d-flex flex-row f-action" @click="show_add_user_form = true" style="cursor:pointer">
+                            <i class="el-icon-plus   mr-2"></i>
 
                             <span>{{ $t('common.add') }}</span>
 
@@ -32,21 +32,21 @@
                                             v-loading.body="tableIsLoading"
                                             @sort-change="handleSortChange">
                                         <el-table-column   :label="$t('common.stt')" width="75" type="index"
-                                                           sortable="custom">
+                                                            >
                                         </el-table-column>
-                                        <el-table-column prop="username" :label="$t('user.label.username')" sortable="custom"> </el-table-column>
-                                        <el-table-column prop="name" :label="$t('user.label.name')" sortable="custom">
+                                        <el-table-column prop="username" :label="$t('user.label.username')"  > </el-table-column>
+                                        <el-table-column prop="name" :label="$t('user.label.name')"  >
 
                                         </el-table-column>
-                                        <el-table-column prop="email" :label="$t('user.label.email')" sortable="custom">
-
-                                        </el-table-column>
-
-                                        <el-table-column prop="phone" :label="$t('user.label.phone')" sortable="custom">
+                                        <el-table-column prop="email" :label="$t('user.label.email')"  >
 
                                         </el-table-column>
 
-                                        <el-table-column prop="actions" width="60">
+                                        <el-table-column prop="phone" :label="$t('user.label.phone')"  >
+
+                                        </el-table-column>
+
+                                        <el-table-column prop="actions"  :label="$t('common.action')"  width="130">
                                             <template slot-scope="scope">
                                                    <i class="el-icon-close" style="cursor:pointer" @click="confirmRemoveUser(scope.row.id)"></i>
                                             </template>
