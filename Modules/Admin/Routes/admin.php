@@ -192,7 +192,29 @@ Route::group(['prefix' => '/department'], function ( ) {
     ]);
     
 });
+Route::group(['prefix' => '/configdisplay'], function ( ) {
+
+    Route::get('/', [
+        'as' => 'admin.configdisplay.index',
+        'uses' => 'ConfigDisplay\ConfigDisplayController@index',
+        'middleware' => 'permission:admin.configdisplay.index'
+    ]);
+    Route::get('create', [
+        'as' => 'admin.configdisplay.create',
+        'uses' => 'ConfigDisplay\ConfigDisplayController@create',
+        'middleware' => 'permission:admin.configdisplay.create'
+    ]);
+
+    Route::get('{configdisplay}/edit', [
+        'as' => 'admin.configdisplay.edit',
+        'uses' => 'ConfigDisplay\ConfigDisplayController@edit',
+        'middleware' => 'permission:admin.configdisplay.edit'
+    ]);
+
+
+});
 // append
+
 
 
 

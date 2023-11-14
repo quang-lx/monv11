@@ -224,5 +224,30 @@ Route::middleware('auth:api')->prefix('/departments')->group(function (){
         'uses' => 'Department\DepartmentController@destroy',
     ]);
 });
+Route::middleware('auth:api')->prefix('/configdisplays')->group(function (){
+
+    Route::get('/', [
+        'as' => 'api.configdisplay.index',
+        'uses' => 'ConfigDisplay\ConfigDisplayController@index',
+    ]);
+    Route::post('/{configdisplay}/edit', [
+            'as' => 'api.configdisplay.update',
+            'uses' => 'ConfigDisplay\ConfigDisplayController@update',
+        ]);
+   Route::get('/{configdisplay}', [
+              'as' => 'api.configdisplay.find',
+              'uses' => 'ConfigDisplay\ConfigDisplayController@find',
+          ]);
+    Route::post('/', [
+        'as' => 'api.configdisplay.store',
+        'uses' => 'ConfigDisplay\ConfigDisplayController@store',
+    ]);
+
+    Route::delete('/{configdisplay}', [
+        'as' => 'api.configdisplay.destroy',
+        'uses' => 'ConfigDisplay\ConfigDisplayController@destroy',
+    ]);
+});
 // append
+
 

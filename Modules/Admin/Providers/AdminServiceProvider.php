@@ -145,7 +145,15 @@ class AdminServiceProvider extends ServiceProvider
                 return $repository;
             }
         );
+        $this->app->bind(
+            'Modules\Admin\Repositories\ConfigDisplayRepository',
+            function () {
+                $repository = new \Modules\Admin\Repositories\Eloquent\EloquentConfigDisplayRepository(new \Modules\Mon\Entities\ConfigDisplay());
+                return $repository;
+            }
+        );
 // add bindings
+
 
 
 
