@@ -62,7 +62,7 @@
 
                                         </el-table-column>
 
-                                        <el-table-column prop="actions"  :label="$t('common.action')"  width="80" >
+                                        <el-table-column prop="actions"  :label="$t('common.action')"  width="100" >
                                             <template slot-scope="scope">
                                                 <edit-button
                                                     :to="{name: 'admin.roles.edit', params: {roleId: scope.row.id}}"></edit-button>

@@ -46,7 +46,7 @@
 
                                         </el-table-column>
 
-                                        <el-table-column prop="actions"  :label="$t('common.action')"  width="130">
+                                        <el-table-column prop="actions"  :label="$t('common.action')"  width="100">
                                             <template slot-scope="scope">
                                                    <i class="el-icon-close" style="cursor:pointer" @click="confirmRemoveUser(scope.row.id)"></i>
                                             </template>

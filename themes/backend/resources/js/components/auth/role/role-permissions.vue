@@ -22,7 +22,7 @@
             </template>
         </el-table-column>
         <el-table-column
-
+            width="100"
             :label="$t('role.label.function')"
         >
             <template slot-scope="scope">

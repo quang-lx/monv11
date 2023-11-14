@@ -126,7 +126,7 @@
                                             </template>
                                         </el-table-column>
 
-                                        <el-table-column prop="actions"  :label="$t('common.action')"   width="130" fixed="right">
+                                        <el-table-column prop="actions"  :label="$t('common.action')"   width="100" fixed="right">
                                             <template slot-scope="scope">
                                                 <edit-button
                                                         :to="{name: 'admin.admins.edit', params: {userId: scope.row.id}}"></edit-button>
