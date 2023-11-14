@@ -124,6 +124,7 @@
                             });
 
                         } else {
+                            this.closePopup();
                             this.$emit("on-save-config", this.list) ;
                         }
                      })

@@ -448,6 +448,7 @@
                 this.queryServer(filter_data)
             },
             onSaveConfigDisplay(config_data) {
+                this.show_config = false;
                 this.list_selected_col = config_data
             },
             queryServer(customProperties) {
