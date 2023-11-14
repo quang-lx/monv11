@@ -185,7 +185,8 @@ export default {
             "cancel": "Huỷ",
             "search": "Tìm kiếm",
             "default": "Mặc định",
-            "apply": "Áp dụng"
+            "apply": "Áp dụng",
+            "accept": "Đồng ý"
         },
         "department": {
             "label": {

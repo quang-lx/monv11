@@ -26,6 +26,11 @@
                             <inline-svg src="/images/filter.svg"  /> Bộ lọc
 
                         </span>
+
+                        <span class="f-action pl-4 f-pointer" @click="show_config = true">
+                            <inline-svg src="/images/list.svg"  /> Tuỳ chỉnh
+
+                        </span>
                     </div>
                     <div class="col-md-4">
 
@@ -227,6 +232,7 @@
             </div>
         </el-dialog>
         <filter-form :show_filter = "show_filter" @on-filter="onFilterUser"></filter-form>
+        <config-display-component v-if="load_col_setting_done" :list_all_col="full_col_name" :list_selected_col="list_selected_col" :show_config="show_config" @on-save-config="onSaveConfigDisplay"></config-display-component>
 
     </div>
 </template>
@@ -234,16 +240,69 @@
 <script>
     import FilterForm from './filter_form';
     import InlineSvg from 'vue-inline-svg';
+    import ConfigDisplayComponent from './../../utils/ConfigDisplayComponent';
 
     import Form from "form-backend-validation";
 
     export default {
         components: {
             FilterForm,
-            InlineSvg
+            InlineSvg,
+            ConfigDisplayComponent
+
         },
         data() {
             return {
+                load_col_setting_done: false,
+                list_selected_col: [],
+                full_col_name: [
+
+                    {
+                        col_name: 'username',
+                        name: this.$t('user.label.username')
+                    },
+                    {
+                        col_name: 'name',
+                        name: this.$t('user.label.name')
+                    },
+                    {
+                        col_name: 'email',
+                        name: this.$t('user.label.email')
+                    },
+                    {
+                        col_name: 'phone',
+                        name: this.$t('user.label.phone')
+                    },
+                    {
+                        col_name: 'sex',
+                        name: this.$t('user.label.sex')
+                    },
+                    {
+                        col_name: 'birth_day',
+                        name: this.$t('user.label.birth_day')
+                    },
+                    {
+                        col_name: 'identification',
+                        name: this.$t('user.label.identification')
+                    },
+                    {
+                        col_name: 'created_at',
+                        name: this.$t('user.label.created_at')
+                    },
+                    {
+                        col_name: 'updated_at',
+                        name: this.$t('user.label.updated_at')
+                    },
+                    {
+                        col_name: 'status',
+                        name: this.$t('user.label.status')
+                    },
+                    {
+                        col_name: 'created_by',
+                        name: this.$t('user.label.created by')
+                    }
+                ],
+                show_config: false,
                 show_filter: false,
                 addForm: new Form(),
                 editForm: new Form(),
@@ -381,6 +440,9 @@
             onFilterUser(filter_data) {
                 this.queryServer(filter_data)
             },
+            onSaveConfigDisplay(config_data) {
+                this.list_selected_col = config_data
+            },
             queryServer(customProperties) {
 
                 const properties = {
@@ -431,10 +493,29 @@
             },
 
 
+            getListColSelected() {
+                this.list_selected_col = this.full_col_name;
+                const properties = {
+                    page: 1,
+                    per_page: 100,
+                    table_name: 'user',
+
+                };
+
+                window.axios.get(route('api.configdisplay.index', _.merge(properties, {})))
+                    .then((response) => {
+
+                        this.list_selected_col = response.data.data;
+                        this.load_col_setting_done = true;
+                    });
+            },
+
+
         },
         mounted() {
             this.fetchData();
             this.getDepartmentList({});
+            this.getListColSelected();
 
         },
         created() {

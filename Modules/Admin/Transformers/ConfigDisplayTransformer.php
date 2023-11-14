@@ -15,6 +15,11 @@ class ConfigDisplayTransformer extends JsonResource
         $data = [
             'id' => $this->id,
 
+            'table_name' => $this->table_name,
+            'col_name' => $this->col_name,
+            'position' => $this->position,
+            'order' => $this->position,
+
 
              'urls' => [
                 'delete_url' => route('api.configdisplay.destroy', $this->id),

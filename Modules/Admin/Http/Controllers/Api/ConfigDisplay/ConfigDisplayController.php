@@ -8,6 +8,7 @@ use Modules\Mon\Entities\ConfigDisplay;
 use Modules\Admin\Http\Requests\ConfigDisplay\CreateConfigDisplayRequest;
 use Modules\Admin\Http\Requests\ConfigDisplay\UpdateConfigDisplayRequest;
 use Modules\Admin\Repositories\ConfigDisplayRepository;
+use Modules\Admin\Transformers\ConfigDisplayTransformer;
 use Illuminate\Routing\Controller;
 use Modules\Mon\Http\Controllers\ApiController;
 use Modules\Mon\Auth\Contracts\Authentication;

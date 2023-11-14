@@ -4,10 +4,25 @@ namespace Modules\Admin\Repositories\Eloquent;
 
 use Illuminate\Http\Request;
 use Modules\Admin\Repositories\ConfigDisplayRepository;
+use Modules\Mon\Entities\ConfigDisplay;
 use \Modules\Mon\Repositories\Eloquent\BaseRepository;
 
 class EloquentConfigDisplayRepository extends BaseRepository implements ConfigDisplayRepository
 {
+    public function create($data)
+    {
+        $table_name = $data['table_name']?? null;
+        $list_col = $data['list_col']?? [];
+        ConfigDisplay::query()->where('table_name', $table_name)->delete();
+        foreach ($list_col as $key=> $col_obj) {
+            ConfigDisplay::create([
+                'table_name' => $table_name,
+                'col_name' => $col_obj['col_name'],
+                'position' => $key+1
+            ]);
+        }
+    }
+
     public function serverPagingFor(Request $request, $relations = null)
     {
         $query = $this->newQueryBuilder();
@@ -27,4 +42,6 @@ class EloquentConfigDisplayRepository extends BaseRepository implements ConfigDi
         $query->orderBy('position', 'desc');
         return $query->paginate($request->get('per_page', 10));
     }
+
+
 }
