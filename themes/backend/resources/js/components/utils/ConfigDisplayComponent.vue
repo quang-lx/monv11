@@ -4,7 +4,7 @@
         :show-close="true"
 
         :destroy-on-close="true"
-        :visible.sync="show_config">
+        :visible.sync="show_popup">
         <div class="fluid container" style="padding-left: 11px">
             <p class="f-config-title">Tuỳ chỉnh</p>
             <p  class="f-description">Điều chỉnh thứ tự hiển thị của các cột thông tin trong màn danh sách</p>
@@ -47,7 +47,7 @@
 
         </div>
         <div class="d-flex justify-content-end mt-5">
-            <el-button size="small"  @click="show_config = false" :loading="loading">{{$t('common.cancel')}}</el-button>
+            <el-button size="small"  @click="closePopup" :loading="loading">{{$t('common.cancel')}}</el-button>
             <el-button size="small" type="primary" @click="onSubmitConfig" :loading="loading">{{$t('common.accept')}}</el-button>
         </div>
     </el-dialog>
@@ -74,6 +74,7 @@
         },
         data() {
             return {
+                show_popup: this.show_config,
                 form: new Form(),
                 list2: this.list_all_col.filter(item => {
                     return ! (_.includes(this.list_selected_col, {col_name: item.col_name}))
@@ -107,7 +108,9 @@
             getRouteSaveConfig() {
                 return route('api.configdisplay.store');
             },
-
+            closePopup() {
+                this.$emit("close-popup") ;
+            },
             onSubmitConfig() {
                 this.form = new Form(  {list_col: this.list, table_name:'user'});
                 this.loading = true;

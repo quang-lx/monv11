@@ -114,7 +114,7 @@ aside .sidebar {
 
   /* Body/14/Regular */
   font-family: Roboto;
-  font-size: 14px;
+  font-size: 14px !important;
   font-style: normal;
   font-weight: 400 !important;
   line-height: 22px;
@@ -175,3 +175,6 @@ aside .sidebar {
     font-weight: 500;
 }
 
+.el-input.is-disabled .el-input__inner{
+  color: var(--gray-9, #2F3748);
+}

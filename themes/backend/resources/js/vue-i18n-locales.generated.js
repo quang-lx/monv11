@@ -237,7 +237,8 @@ export default {
                 "deleteBtn": "Xóa",
                 "cancelBtn": "Ở lại",
                 "delete": "Xóa",
-                "close": "Đóng"
+                "close": "Đóng",
+                "update": "Cập nhật"
             },
             "all": "Tất cả",
             "confirm": "Xác nhận",

@@ -81,7 +81,7 @@
 
             <div class="d-flex justify-content-end">
                 <el-button size="small"  @click="setDefault">{{$t('common.default')}}</el-button>
-                <el-button size="small"  @click="show_filter = false">{{$t('common.cancel')}}</el-button>
+                <el-button size="small"  @click="closePopup">{{$t('common.cancel')}}</el-button>
                 <el-button size="small" type="primary" @click="onSearchUser">{{$t('common.apply')}}</el-button>
             </div>
         </el-dialog>
@@ -97,7 +97,7 @@
         },
         data() {
             return {
-
+                show_popup: this.show_filter,
                 search_data: {
                   status: '',
                   created_by: '',
@@ -133,6 +133,9 @@
         methods: {
             onSearchUser() {
                 this.$emit("on-filter", this.search_data) ;
+            },
+            closePopup() {
+                this.$emit("close-popup") ;
             },
             getListUser() {
 

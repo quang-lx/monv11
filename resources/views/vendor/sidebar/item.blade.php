@@ -1,5 +1,5 @@
 <li class=" nav-item @if($item->getItemClass()){{ $item->getItemClass() }}@endif @if($active)menu-open @endif @if($item->hasItems())has-treeview @endif ">
-    <a href="{{ $item->getUrl() }}" class="nav-link @if(count($appends) > 0) hasAppend @endif @if($active) active @endif" @if($item->getNewTab())target="_blank"@endif>
+    <a href="{{ $item->getUrl() }}" class="nav-link d-flex align-items-center @if(count($appends) > 0) hasAppend @endif @if($active) active @endif" @if($item->getNewTab())target="_blank"@endif>
         <i class="nav-icon {{ $item->getIcon() }}"></i>
         <p>
             {{ $item->getName() }}
