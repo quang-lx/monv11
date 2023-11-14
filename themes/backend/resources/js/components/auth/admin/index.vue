@@ -232,7 +232,7 @@
             </div>
         </el-dialog>
         <filter-form :show_filter = "show_filter" @on-filter="onFilterUser" @close-popup="closeFilter"></filter-form>
-        <config-display-component v-if="load_col_setting_done" :list_all_col="full_col_name" :list_selected_col="list_selected_col" :show_config="show-config" @on-save-config="onSaveConfigDisplay"
+        <config-display-component v-if="load_col_setting_done" :list_all_col="full_col_name" :list_selected_col="list_selected_col" :show_config="show_config" @on-save-config="onSaveConfigDisplay"
         @close-popup="closeConfig"
         ></config-display-component>
 
