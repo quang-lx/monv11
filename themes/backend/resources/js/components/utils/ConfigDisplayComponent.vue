@@ -164,6 +164,9 @@
                 this.$nextTick(() => {
                     this.delayedDragging = false;
                 });
+            },
+            show_config(new_value) {
+                this.show_popup = new_value;
             }
         }
     };
