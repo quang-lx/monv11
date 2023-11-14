@@ -134,9 +134,7 @@
             onSearchUser() {
                 this.$emit("on-filter", this.search_data) ;
             },
-            closePopup() {
-                this.$emit("close-popup") ;
-            },
+
             getListUser() {
 
                 const properties = {

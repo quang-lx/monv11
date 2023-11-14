@@ -17,10 +17,15 @@ const mixin = {
             links: {},
             searchQuery: '',
             tableIsLoading: false,
+            show_popup: false,
 
         }
     },
     methods: {
+        closePopup() {
+            this.show_popup = false
+            this.$emit("close-popup") ;
+        },
         gotoPage(route) {
             this.$router.push(route)
         },

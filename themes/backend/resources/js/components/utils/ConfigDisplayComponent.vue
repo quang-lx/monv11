@@ -108,9 +108,7 @@
             getRouteSaveConfig() {
                 return route('api.configdisplay.store');
             },
-            closePopup() {
-                this.$emit("close-popup") ;
-            },
+
             onSubmitConfig() {
                 this.form = new Form(  {list_col: this.list, table_name:'user'});
                 this.loading = true;

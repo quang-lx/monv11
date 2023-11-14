@@ -231,9 +231,9 @@
                 <el-button size="small" type="primary" @click="confirmEditDepartment">Sửa</el-button>
             </div>
         </el-dialog>
-        <filter-form :show_filter = "show_filter" @on-filter="onFilterUser" @close-popup="show_filter = false"></filter-form>
-        <config-display-component v-if="load_col_setting_done" :list_all_col="full_col_name" :list_selected_col="list_selected_col" :show_config="show_config" @on-save-config="onSaveConfigDisplay"
-        @close-popup="show_config = false"
+        <filter-form :show_filter = "show_filter" @on-filter="onFilterUser" @close-popup="closeFilter"></filter-form>
+        <config-display-component v-if="load_col_setting_done" :list_all_col="full_col_name" :list_selected_col="list_selected_col" :show_config="show-config" @on-save-config="onSaveConfigDisplay"
+        @close-popup="closeConfig"
         ></config-display-component>
 
     </div>
@@ -339,7 +339,12 @@
             };
         },
         methods: {
-
+            closeFilter() {
+              this.show_filter = false;
+            },
+            closeConfig() {
+                this.show_config = false;
+            },
             handleNodeClick(data, checked, indeterminate) {
                 this.parent_selected = data.id
                 this.editModel.id = data.id
