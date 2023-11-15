@@ -2,7 +2,7 @@
     <el-dialog
         width="376px"
         :show-close="true"
-
+        top="1vh"
         :destroy-on-close="true"
         :visible.sync="show_popup">
         <div class="fluid container" style="padding-left: 11px">
