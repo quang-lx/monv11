@@ -154,7 +154,8 @@ class UserRepository extends BaseRepository implements UserInterface
                 $q->orWhere('name', 'LIKE', "%{$keyword}%")
                     ->orWhere('email', 'LIKE', "%{$keyword}%")
                     ->orWhere('id', 'LIKE', "%{$keyword}%")
-                    ->orWhere('username', 'LIKE', "%{$keyword}%");
+                    ->orWhere('username', 'LIKE', "%{$keyword}%")
+                    ->orWhere('identification', 'LIKE', "%{$keyword}%");
             });
         }
         $exclude_ids = $request->get('exclude_ids', null);

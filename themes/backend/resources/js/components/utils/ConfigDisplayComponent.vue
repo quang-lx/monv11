@@ -63,28 +63,21 @@
                 type: Array,
                 default: () => []
             },
-            list_selected_col:{
-                type: Array,
-                default: () => []
-            },
-            show_config : {default: false}
+
+            show_config : {default: false},
+            table_name : {default: 'user'},
+
         },
         components: {
             draggable
         },
+
         data() {
             return {
                 show_popup: this.show_config,
                 form: new Form(),
-                list2: this.list_all_col.filter(item => {
-                    return ! (_.includes(this.list_selected_col, {col_name: item.col_name}))
-                }).map((row, index) => {
-                    return _.merge(row, {name:row.name, order: index + 1});
-                }),
-                list: this.list_selected_col.map((item, index) => {
-                    let idx = _.findIndex(this.list_all_col,   {  col_name : item.col_name });
-                    return _.merge(this.list_all_col[idx], {name:this.list_all_col[idx].name, order: index + 1});
-                }),
+                list2: [],
+                list: [],
                 editable: true,
                 isDragging: false,
                 delayedDragging: false,
@@ -93,6 +86,31 @@
         },
 
         methods: {
+            getListColSelected() {
+
+                const properties = {
+                    page: 1,
+                    per_page: 100,
+                    table_name: this.table_name,
+
+                };
+
+                window.axios.get(route("api.configdisplay.index", _.merge(properties, {})))
+                    .then((response) => {
+
+                        this.list = response.data.data.map((item, index) => {
+                            let idx = _.findIndex(this.list_all_col,   {  col_name : item.col_name });
+                            return _.merge(this.list_all_col[idx], {name:this.list_all_col[idx].name, order: index + 1});
+                        });
+                        this.list2 = this.list_all_col.filter(item => {
+                            let idx = _.findIndex(response.data.data,   {  col_name : item.col_name });
+                            return  idx < 0;
+                        }).map((row, index) => {
+                            return _.merge(row, {name:row.name, order: index + 1});
+                        })
+                        this.$emit("on-save-config", this.list) ;
+                    });
+            },
             orderList() {
                 this.list = this.list.sort((one, two) => {
                     return one.order - two.order;
@@ -169,7 +187,12 @@
             show_config(new_value) {
                 this.show_popup = new_value;
             }
-        }
+        },
+        mounted() {
+            this.getListColSelected();
+
+
+        },
     };
 </script>
 

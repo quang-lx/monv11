@@ -94,38 +94,38 @@
                                             v-loading.body="tableIsLoading"
                                             @sort-change="handleSortChange">
 
-                                        <el-table-column prop="username" fixed :label="$t('user.label.username')" width="150"  > </el-table-column>
+                                        <el-table-column v-if="isShowCol.username" prop="username"  :label="$t('user.label.username')" width="150"  > </el-table-column>
 
-                                        <el-table-column prop="name" :label="$t('user.label.name')" width="250"  >
-
-                                        </el-table-column>
-                                        <el-table-column prop="email" :label="$t('user.label.email')" width="200"   >
+                                        <el-table-column v-if="isShowCol.name" prop="name" :label="$t('user.label.name')" width="250"  >
 
                                         </el-table-column>
-                                        <el-table-column prop="phone" :label="$t('user.label.phone')" width="130"  >
+                                        <el-table-column v-if="isShowCol.email" prop="email" :label="$t('user.label.email')" width="200"   >
 
                                         </el-table-column>
-                                        <el-table-column prop="sex" :label="$t('user.label.sex')" width="120"  >
+                                        <el-table-column v-if="isShowCol.phone" prop="phone" :label="$t('user.label.phone')" width="130"  >
+
+                                        </el-table-column>
+                                        <el-table-column v-if="isShowCol.sex" prop="sex" :label="$t('user.label.sex')" width="120"  >
                                             <template slot-scope="scope">
                                                 <span>{{scope.row.sex_text}}</span>
                                             </template>
                                         </el-table-column>
-                                        <el-table-column prop="birth_day" :label="$t('user.label.birth_day')" width="150"  >
+                                        <el-table-column v-if="isShowCol.birth_day" prop="birth_day" :label="$t('user.label.birth_day')" width="150"  >
 
                                         </el-table-column>
-                                        <el-table-column prop="identification" :label="$t('user.label.identification')" width="150"  >
+                                        <el-table-column v-if="isShowCol.identification" prop="identification" :label="$t('user.label.identification')" width="150"  >
 
                                         </el-table-column>
-                                        <el-table-column prop="expired_at" :label="$t('user.label.status')" width="150"  >
+                                        <el-table-column v-if="isShowCol.expired_at" prop="expired_at" :label="$t('user.label.status')" width="150"  >
                                             <template slot-scope="scope">
                                                 <span>{{scope.row.status_text}}</span>
                                             </template>
                                         </el-table-column>
 
-                                        <el-table-column prop="created_at" :label="$t('user.label.created_at')"  width="150"  >
+                                        <el-table-column v-if="isShowCol.created_at" prop="created_at" :label="$t('user.label.created_at')"  width="150"  >
 
                                         </el-table-column>
-                                        <el-table-column prop="created_by" :label="$t('user.label.created by')"  width="150" >
+                                        <el-table-column v-if="isShowCol.created_by" prop="created_by" :label="$t('user.label.created by')"  width="150" >
                                             <template slot-scope="scope">
                                                 <span v-if="scope.row.createdBy">{{scope.row.createdBy.name}}</span>
                                             </template>
@@ -232,7 +232,10 @@
             </div>
         </el-dialog>
         <filter-form :show_filter = "show_filter" @on-filter="onFilterUser" @close-popup="closeFilter"></filter-form>
-        <config-display-component v-if="load_col_setting_done" :list_all_col="full_col_name" :list_selected_col="list_selected_col" :show_config="show_config" @on-save-config="onSaveConfigDisplay"
+        <config-display-component   :list_all_col="full_col_name"
+                                    table_name="user"
+
+                                    :show_config="show_config" @on-save-config="onSaveConfigDisplay"
         @close-popup="closeConfig"
         ></config-display-component>
 
@@ -243,7 +246,7 @@
     import FilterForm from './filter_form';
     import InlineSvg from 'vue-inline-svg';
     import ConfigDisplayComponent from './../../utils/ConfigDisplayComponent';
-
+    import _ from 'lodash';
     import Form from "form-backend-validation";
 
     export default {
@@ -253,10 +256,26 @@
             ConfigDisplayComponent
 
         },
+        computed: {
+            isShowCol: function() {
+                return this.list_selected_col.reduce(
+                    (obj, item) => Object.assign(obj, { [item.col_name]: 1 }), {});
+            }
+        },
         data() {
             return {
-                load_col_setting_done: false,
+
                 list_selected_col: [],
+                list_col_width: [
+                    {
+                        col_name: 'username',
+                        width: 150,
+                    },
+                    {
+                        col_name: 'name',
+                        width: 200,
+                    }
+                ],
                 full_col_name: [
 
                     {
@@ -339,6 +358,7 @@
             };
         },
         methods: {
+
             closeFilter() {
               this.show_filter = false;
             },
@@ -501,29 +521,14 @@
             },
 
 
-            getListColSelected() {
-                this.list_selected_col = this.full_col_name;
-                const properties = {
-                    page: 1,
-                    per_page: 100,
-                    table_name: 'user',
 
-                };
-
-                window.axios.get(route('api.configdisplay.index', _.merge(properties, {})))
-                    .then((response) => {
-
-                        this.list_selected_col = response.data.data;
-                        this.load_col_setting_done = true;
-                    });
-            },
 
 
         },
         mounted() {
             this.fetchData();
             this.getDepartmentList({});
-            this.getListColSelected();
+
 
         },
         created() {
