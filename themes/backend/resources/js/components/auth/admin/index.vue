@@ -31,6 +31,10 @@
                             <inline-svg src="/images/list.svg"  /> Tuỳ chỉnh
 
                         </span>
+                        <span class="f-action pl-4 f-pointer" @click="show_config = true">
+                            <inline-svg src="/images/download.svg"  /> Tải xuống
+
+                        </span>
                     </div>
                     <div class="col-md-4">
 
