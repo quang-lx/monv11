@@ -15,7 +15,7 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="row justify-content-between mb-2">
-                    <div class="col-md-4   ">
+                    <div class="col-md-8   ">
                         <router-link :to="{name: 'admin.admins.create'}" class="f-action ">
                             <i class="el-icon-plus"></i>
 
