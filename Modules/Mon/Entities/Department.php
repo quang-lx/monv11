@@ -4,6 +4,12 @@ namespace Modules\Mon\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class Department
+ * @property  $name
+ * @property  $parent_id
+ * @package Modules\Mon\Entities
+ */
 class Department extends Model
 {
 

@@ -4,17 +4,17 @@ return [
         'id' => 'ID',
 
         'name' => 'Tên',
-        'title' => 'Nhóm',
-        'add department' => 'Tạo nhóm mới',
-        'edit department' => 'Đổi tên nhóm'
+        'title' => 'Đơn vị',
+        'add department' => 'Tạo đơn vị mới',
+        'edit department' => 'Đổi tên đơn vị'
 
 
     ],
 
     'message' => [
-        'create success' => 'Tạo nhóm mới thành công.',
-        'update success' => 'Cập nhật nhóm thành công.',
-        'delete success' => 'Xóa nhóm thành công.',
+        'create success' => 'Tạo đơn vị mới thành công.',
+        'update success' => 'Cập nhật đơn vị thành công.',
+        'delete success' => 'Xóa đơn vị thành công.',
     ]
 
 ];

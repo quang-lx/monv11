@@ -3,10 +3,20 @@
 namespace Modules\Admin\Repositories\Eloquent;
 
 use Modules\Admin\Repositories\DepartmentRepository;
+use Modules\Mon\Entities\Department;
 use \Modules\Mon\Repositories\Eloquent\BaseRepository;
 
 class EloquentDepartmentRepository extends BaseRepository implements DepartmentRepository
 {
+    public function destroy($model)
+    {
+        $id = $model->id;
+        $cxh = Department::query()->where('name','Chưa xếp nhóm')->first();
+        if($cxh) {
+            Department::query()->where('parent_id', $id)->update(['parent_id' => $cxh->id]);
+        }
+        return $model->delete();
+    }
     public function getAllTree($parent_id = null) {
         $data = [];
         $query = $this->newQueryBuilder();
