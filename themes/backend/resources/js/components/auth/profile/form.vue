@@ -298,7 +298,8 @@ export default {
                 cancelButtonText: this.$t('mon.cancel.No'),
                 type: 'warning'
             }).then(() => {
-                this.$router.push({ name: 'admin.users.index' });
+                this.fetchData();
+                this.fetchRoles();
             }).catch(() => {
 
             });
