@@ -11,7 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-
+        Schema::table('department', function (Blueprint $table) {
+            $table->integer('not_assign' )->default(0)->nullable();
+        });
     }
 
     /**

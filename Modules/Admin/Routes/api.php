@@ -223,6 +223,11 @@ Route::middleware('auth:api')->prefix('/departments')->group(function (){
         'as' => 'api.department.destroy',
         'uses' => 'Department\DepartmentController@destroy',
     ]);
+
+    Route::get('/not-assign/count', [
+        'as' => 'api.department.countNotAssign',
+        'uses' => 'Department\DepartmentController@countNotAssign',
+    ]);
 });
 Route::middleware('auth:api')->prefix('/configdisplays')->group(function (){
 

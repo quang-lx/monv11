@@ -72,15 +72,32 @@
                                     v-model="filterDepartment">
                                 </el-input>
 
+                                <div class="mb-2">
+                                    <span class="custom-tree-node" >
+                                        <span> <inline-svg src="/images/d_all.svg"  /> <span class="ml-2"> Tất cả </span></span>
+                                        <span>{{department_user_total}}</span>
+                                      </span>
+                                </div>
                                 <el-tree
                                     class="filter-tree"
                                     :data="departmentTreeData"
                                     :props="treeProps"
                                     default-expand-all
                                     :filter-node-method="filterNode"
+
                                     @node-click="handleNodeClick"
                                     ref="tree">
+                                    <span class="custom-tree-node" slot-scope="{ node, data }">
+                                        <span>{{ node.label }}</span>
+                                        <span>{{data.count_user}}</span>
+                                      </span>
                                 </el-tree>
+                                <div class="mt-2">
+                                    <span class="custom-tree-node" >
+                                        <span>  <span class="ml-2"> Chưa xếp nhóm </span></span>
+                                        <span>{{count_not_assign}}</span>
+                                      </span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -264,6 +281,13 @@
             isShowCol: function() {
                 return this.list_selected_col.reduce(
                     (obj, item) => Object.assign(obj, { [item.col_name]: 1 }), {});
+            },
+            department_user_total: function () {
+                let total = 0;
+                for(let i = 0 ; i< this.departmentTreeData.length; i++) {
+                    total = total + this.departmentTreeData[i].count_user;
+                }
+                return total;
             }
         },
         data() {
@@ -358,6 +382,7 @@
                 departmentLoading: false,
                 filterDepartment: '',
                 listFilterColumn: [],
+                count_not_assign: 0
 
             };
         },
@@ -524,7 +549,15 @@
                 return  route('api.department.update', {department: this.editModel.id});
             },
 
+            getDepartmentNotAssign() {
 
+                window.axios.get(route('api.department.countNotAssign', {}))
+                    .then((response) => {
+
+                        this.count_not_assign = response.data;
+
+                    });
+            },
 
 
 
@@ -532,7 +565,7 @@
         mounted() {
             this.fetchData();
             this.getDepartmentList({});
-
+            this.getDepartmentNotAssign();
 
         },
         created() {
@@ -545,6 +578,13 @@
 <style scoped>
     .disabled {
         pointer-events:none;
+
+    }
+    .custom-tree-node {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
 
     }
 

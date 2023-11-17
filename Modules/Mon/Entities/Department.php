@@ -14,5 +14,5 @@ class Department extends Model
 {
 
     protected $table = 'department';
-    protected $fillable = ['name', 'parent_id'];
+    protected $fillable = ['name', 'parent_id', 'not_assign'];
 }
