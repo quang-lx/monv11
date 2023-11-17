@@ -41,6 +41,7 @@ return [
         'to date' => 'Đến ngày',
         'save_pass' => 'Lưu mật khẩu',
         'profile' => 'Thông tin cá nhân',
+        'import title' => 'Tải lên danh sách',
 
     ],
     'tabs' => [

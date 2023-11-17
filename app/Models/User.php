@@ -22,7 +22,16 @@ class User extends Authenticatable
         'email',
         'password',
         'enter_wrong_password',
-        'retry_time',
+        'name',
+        'email',
+        'phone',
+        'department_id',
+        'sex',
+        'birth_day',
+        'identification',
+        'active_at',
+        'expired_at',
+        'username'
     ];
 
     /**

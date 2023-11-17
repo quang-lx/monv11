@@ -161,6 +161,12 @@ Route::middleware('auth:api')->prefix('auth')->group(function (){
 
     ]);
 
+    Route::post('imports', [
+        'as' => 'api.users.imports',
+        'uses' => 'Auth\UserController@imports',
+
+    ]);
+
 });
 
 

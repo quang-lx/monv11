@@ -31,20 +31,16 @@
                             <inline-svg src="/images/list.svg" /> Tuỳ chỉnh
 
                         </span>
-                        <span class="f-action pl-4 f-pointer" @click="exportUser">
+                        <span class="f-action pl-4 f-pointer" @click="exportUsers">
                             <inline-svg src="/images/download.svg" /> Tải xuống
 
                         </span>
 
-                        <label for="file">
-                            <span class="f-action pl-4 f-pointer" @click="exportUser">
-                                <inline-svg src="/images/download.svg" /> Import
+                        <span class="f-action pl-4 f-pointer" @click="show_import = true">
+                            <inline-svg src="/images/upload.svg" /> Import
 
-                            </span>
-                            <input type="file" id="file" style="display: none" name="image"
-                                accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" multiple=""
-                                data-original-title="import file">
-                        </label>
+                        </span>
+
                     </div>
                     <div class="col-md-4">
 
@@ -217,6 +213,8 @@
             </div>
         </el-dialog>
         <filter-form :show_filter="show_filter" @on-filter="onFilterUser" @close-popup="closeFilter"></filter-form>
+        <import-user :show_import="show_import" :loadingImport="loadingImport" @on-import="onImportUsers" @close-popup="closeImport" :data_export="data_export"></import-user>
+
         <config-display-component :list_all_col="full_col_name" table_name="user" :show_config="show_config"
             @on-save-config="onSaveConfigDisplay" @close-popup="closeConfig"></config-display-component>
 
@@ -225,6 +223,7 @@
 
 <script>
 import FilterForm from './filter_form';
+import ImportUser from './import_user';
 import InlineSvg from 'vue-inline-svg';
 import ConfigDisplayComponent from './../../utils/ConfigDisplayComponent';
 import _ from 'lodash';
@@ -233,6 +232,7 @@ import Form from "form-backend-validation";
 export default {
     components: {
         FilterForm,
+        ImportUser,
         InlineSvg,
         ConfigDisplayComponent
 
@@ -306,6 +306,7 @@ export default {
             ],
             show_config: false,
             show_filter: false,
+            show_import: false,
             addForm: new Form(),
             editForm: new Form(),
             parent_selected: null,
@@ -335,7 +336,10 @@ export default {
             departmentLoading: false,
             filterDepartment: '',
             listFilterColumn: [],
-            filter_data: {}
+            filter_data: {},
+            file: '',
+            loadingImport: 0,
+            data_export:[]
 
         };
     },
@@ -344,6 +348,12 @@ export default {
         closeFilter() {
             this.show_filter = false;
         },
+
+        closeImport() {
+            this.show_import = false;
+            this.loadingImport = 0;
+        },
+
         closeConfig() {
             this.show_config = false;
         },
@@ -504,7 +514,7 @@ export default {
         },
 
 
-        exportUser() {
+        exportUsers() {
 
             const properties = {
                 order_by: this.order_meta.order_by,
@@ -527,6 +537,37 @@ export default {
                     link.href = response.data.fileUrl;
                     link.target = '_blank';
                     link.click();
+                });
+        },
+
+        handleFileUpload() {
+            this.file = this.$refs.file.files[0];
+        },
+
+        onImportUsers(file) {
+            this.loadingImport = 1;
+            let formData = new FormData();
+            formData.append("file", file);
+            axios
+                .post(route('api.users.imports'), formData, {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    },
+                })
+                .then((response) => {
+                    this.loadingImport = 2;
+                    this.$message({
+                        type: "success",
+                        message: response.data.message,
+                    });
+                    this.data_export = response.data
+                    this.fetchData();
+
+                })
+                .catch((err) => {
+                    this.loadingImport = 0
+                    this.data_export = err.response.data
+                    this.loading = false;
                 });
         },
 

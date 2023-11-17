@@ -10,5 +10,6 @@ return [
     'default' => 'Mặc định',
     'apply' => 'Áp dụng',
     'accept' => 'Đồng ý',
+    'upload' => 'Tải lên',
 
 ];

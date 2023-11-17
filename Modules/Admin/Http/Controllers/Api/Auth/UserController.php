@@ -2,18 +2,24 @@
 
 namespace Modules\Admin\Http\Controllers\Api\Auth;
 
+use App\Exports\UsersErrorExport;
 use App\Exports\UsersExport;
+use App\Imports\ImportUsers;
+use Modules\Mon\Entities\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 use Modules\Admin\Http\Requests\User\ChangePasswordRequest;
 use Modules\Admin\Http\Requests\User\CreateUserRequest;
+use Modules\Admin\Http\Requests\Excel\ExcelUploadRequest;
 use Modules\Admin\Http\Requests\User\UpdateUserRequest;
 use Modules\Admin\Transformers\Auth\UserFullTransformer;
 use Modules\Admin\Transformers\Auth\UserPermissionsTransformer;
 use Modules\Admin\Transformers\Auth\UserTransformer;
-use Modules\Mon\Entities\User;
 use Modules\Mon\Http\Controllers\ApiController;
 use Modules\Mon\Repositories\ProfileRepository;
 use Modules\Mon\Repositories\UserRepository;
@@ -133,8 +139,52 @@ class UserController extends ApiController
 
     public function exports(Request $request)
     {
-        Excel::store(new UsersExport($request), 'public/' . 'users_' . Carbon::now()->timestamp . '.xlsx');
-        $fileUrl = url('storage/' . 'users_' . Carbon::now()->timestamp . '.xlsx');
+        $time_now = Carbon::now()->timestamp;
+        Excel::store(new UsersExport($request), 'public/' . 'users_' . $time_now . '.xlsx');
+        $fileUrl = url('storage/' . 'users_' . $time_now . '.xlsx');
         return response()->json(['success' => true, 'fileUrl' => $fileUrl]);
+    }
+
+    public function imports(ExcelUploadRequest $request)
+    {
+        $import = new ImportUsers();
+        Excel::import($import, $request->file('file'));
+        $data_user = $import->getDataImport();
+        $list_error = [];
+
+        DB::transaction(function () use ($request, &$data_user, &$list_error) {
+           
+            foreach ($data_user as $key => $user) {
+                try {
+                    if (User::where('username', $user['username'])->first()) {
+                        throw new \Exception('Custom exception message');
+                    }
+                    $user_model = new User();
+                    $user_model->name = $user['name'];
+                    $user_model->email = $user['email'];
+                    $user_model->phone = $user['phone'];
+                    $user_model->department_id = $user['department_id'];
+                    $user_model->birth_day = $user['birth_day'];
+                    $user_model->identification = $user['identification'];
+                    $user_model->active_at = $user['active_at'];
+                    $user_model->expired_at = $user['expired_at'];
+                    $user_model->username = $user['username'];
+                    $user_model->password = Hash::make('123456aA@');
+                    $user_model->save();
+                } catch (\Throwable $th) {
+                    $list_error[] = $user;
+                }
+            }
+        });
+        $time_now = Carbon::now()->timestamp;
+        Excel::store(new UsersErrorExport($list_error), 'public/' . 'users_error_' . $time_now . '.xlsx');
+        $fileUrl = url('storage/' . 'users_error_' . $time_now . '.xlsx');
+        return response()->json([
+            'success' => true,
+            'message' => 'Tải lên danh sách user thành công',
+            'total' => count($data_user),
+            'fileUrl' => $fileUrl,
+            'total_success' => count($data_user) - count($list_error)
+        ]);
     }
 }
