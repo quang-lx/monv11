@@ -53,7 +53,7 @@ class ImportUsers implements ToModel, WithHeadingRow, WithStartRow
 
    public function getDepartmentId($name): int
    {
-      $cxh = Department::query()->where('name', 'Chưa xếp nhóm')->first();
+      $cxh = Department::query()->where('not_assign', 1)->first();
 
       $department_model = Department::where('name', $name)->first();
       if (!$department_model) {
