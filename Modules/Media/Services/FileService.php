@@ -44,7 +44,7 @@ class FileService {
 			'mimetype' => $savedFile->mimetype,
 		]);
 		if (in_array(strtolower($file->getClientOriginalExtension()), [ 'jpg', 'jpeg', 'gif', 'png' ])) {
-			$this->createThumbnails($savedFile);
+//			$this->createThumbnails($savedFile);
 		}
 
 		return $savedFile;
