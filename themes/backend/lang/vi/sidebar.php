@@ -32,7 +32,7 @@ return [
 
     'home' => 'Trang chủ',
     'packages' => 'Gói cước',
-    'customers' => 'Khách hàng',
+    'device' => 'Quản lý thiết bị',
 
 
 

@@ -152,7 +152,15 @@ class AdminServiceProvider extends ServiceProvider
                 return $repository;
             }
         );
+        $this->app->bind(
+            'Modules\Admin\Repositories\DeviceRepository',
+            function () {
+                $repository = new \Modules\Admin\Repositories\Eloquent\EloquentDeviceRepository(new \Modules\Mon\Entities\Device());
+                return $repository;
+            }
+        );
 // add bindings
+
 
 
 

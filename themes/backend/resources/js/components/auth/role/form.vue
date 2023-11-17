@@ -159,7 +159,7 @@
                 this.form.post(this.getRoute())
                     .then((response) => {
                         this.loading = false;
-                        this.$message({
+                        this.$notify({
                             type: 'success',
                             message: response.message,
                         });

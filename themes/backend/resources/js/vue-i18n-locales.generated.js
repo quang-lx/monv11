@@ -168,8 +168,8 @@ export default {
                 "2": "order",
                 "description": "Miêu tả",
                 "status": "Trạng thái",
-                "create_category": "Tạo Chuyên mục ",
-                "update_category": "Cập nhật"
+                "create_device": "Thêm mới thiết bị",
+                "update_device": "Cập nhật thiết bị"
             },
             "message": {
                 "create success": "Tạo Chuyên mục  thành công.",
@@ -200,6 +200,26 @@ export default {
                 "create success": "Tạo đơn vị mới thành công.",
                 "update success": "Cập nhật đơn vị thành công.",
                 "delete success": "Xóa đơn vị thành công."
+            }
+        },
+        "device": {
+            "label": {
+                "id": "ID",
+                "name": "Tên thiết bị",
+                "code": "Mã thiết bị",
+                "type": "Loại thiết bị",
+                "box": "Box thiết bị",
+                "status": "Trạng thái",
+                "serial number": "Serial number",
+                "note": "Ghi chú chi tiết",
+                "title": "Quản lý thiết bị",
+                "create_device": "Thêm mới thiết bị",
+                "update_device": "Cập nhật thiết bị"
+            },
+            "message": {
+                "create success": "Tạo thiết bị thành công.",
+                "update success": "Cập nhật thiết bị thành công.",
+                "delete success": "Xóa thiết bị thành công."
             }
         },
         "media": {
@@ -396,7 +416,7 @@ export default {
             "news": "Tin tức",
             "home": "Trang chủ",
             "packages": "Gói cước",
-            "customers": "Khách hàng"
+            "device": "Quản lý thiết bị"
         },
         "user": {
             "label": {

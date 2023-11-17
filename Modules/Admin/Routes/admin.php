@@ -213,7 +213,29 @@ Route::group(['prefix' => '/configdisplay'], function ( ) {
 
 
 });
+Route::group(['prefix' => '/device'], function ( ) {
+
+    Route::get('/', [
+        'as' => 'admin.device.index',
+        'uses' => 'Device\DeviceController@index',
+        'middleware' => 'permission:admin.device.index'
+    ]);
+    Route::get('create', [
+        'as' => 'admin.device.create',
+        'uses' => 'Device\DeviceController@create',
+        'middleware' => 'permission:admin.device.create'
+    ]);
+
+    Route::get('{device}/edit', [
+        'as' => 'admin.device.edit',
+        'uses' => 'Device\DeviceController@edit',
+        'middleware' => 'permission:admin.device.edit'
+    ]);
+
+
+});
 // append
+
 
 
 

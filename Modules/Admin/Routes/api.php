@@ -248,6 +248,31 @@ Route::middleware('auth:api')->prefix('/configdisplays')->group(function (){
         'uses' => 'ConfigDisplay\ConfigDisplayController@destroy',
     ]);
 });
+Route::middleware('auth:api')->prefix('/devices')->group(function (){
+
+    Route::get('/', [
+        'as' => 'api.device.index',
+        'uses' => 'Device\DeviceController@index',
+    ]);
+    Route::post('/{device}/edit', [
+            'as' => 'api.device.update',
+            'uses' => 'Device\DeviceController@update',
+        ]);
+   Route::get('/{device}', [
+              'as' => 'api.device.find',
+              'uses' => 'Device\DeviceController@find',
+          ]);
+    Route::post('/', [
+        'as' => 'api.device.store',
+        'uses' => 'Device\DeviceController@store',
+    ]);
+
+    Route::delete('/{device}', [
+        'as' => 'api.device.destroy',
+        'uses' => 'Device\DeviceController@destroy',
+    ]);
+});
 // append
+
 
 

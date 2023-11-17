@@ -11,8 +11,8 @@ import AdminList from './../components/auth/admin/index.vue';
 import AdminForm from './../components/auth/admin/form.vue';
 
 
-import CategoryList from './../components/category/index.vue';
-import CategoryForm from './../components/category/form.vue';
+import DeviceList from './../components/device/index.vue';
+import DeviceForm from './../components/device/form.vue';
 
 import ProfileForm from './../components/auth/profile/form.vue';
 
@@ -92,25 +92,25 @@ export default [
 
 
     {
-        path: '/admin/danh-muc',
-        name: 'admin.category.index',
-        component: CategoryList,
+        path: '/admin/device',
+        name: 'admin.device.index',
+        component: DeviceList,
     },
     {
-        path: '/admin/danh-muc/create',
-        name: 'admin.category.create',
-        component: CategoryForm,
+        path: '/admin/device/create',
+        name: 'admin.device.create',
+        component: DeviceForm,
         props: {
-            pageTitle: 'category.label.create_category',
+            pageTitle: 'device.label.create_device',
         },
     },
 
     {
-        path: '/admin/danh-muc/:categoryId/edit',
-        name: 'admin.category.edit',
-        component: CategoryForm,
+        path: '/admin/device/:deviceId/edit',
+        name: 'admin.device.edit',
+        component: DeviceForm,
         props: {
-            pageTitle: 'category.label.update_category',
+            pageTitle: 'device.label.update_device',
         },
     },
 

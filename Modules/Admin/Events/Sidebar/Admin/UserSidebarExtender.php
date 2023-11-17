@@ -68,7 +68,15 @@ class UserSidebarExtender extends AbstractAdminSidebar
 
             });
 
+            $group->item(trans('backend::sidebar.device'), function (Item $item) {
+                $item->icon('fas custom-icon home-icon');
+                $item->weight(10);
+                $item->authorize(
+                    $this->auth->hasAccess('admin.device.index')
+                );
+                $item->route('admin.device.index');
 
+            });
 
 
         });

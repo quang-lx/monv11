@@ -399,8 +399,11 @@
                 this.form.post(this.getRoute())
                     .then((response) => {
                         this.loading = false;
-
-                        window.location.href = route('admin.admins.index') + '?msg=' + response.message
+                        this.$notify({
+                            type: 'success',
+                            message: response.message,
+                        });
+                        this.$router.push({name: 'admin.admins.index'});
                     })
                     .catch((error) => {
 
