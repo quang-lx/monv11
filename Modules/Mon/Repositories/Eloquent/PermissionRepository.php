@@ -1,6 +1,7 @@
 <?php
 namespace Modules\Mon\Repositories\Eloquent;
 
+use Illuminate\Database\Eloquent\Collection;
 use \Modules\Mon\Repositories\Eloquent\BaseRepository;
 use Modules\Mon\Repositories\PermissionRepository as PermissionRepositoryInterface;
 use Illuminate\Http\Request;
@@ -66,14 +67,24 @@ class PermissionRepository extends BaseRepository implements PermissionRepositor
     {
         $groups = $this->serverPagingForGroup($request,$relations );
          $groups_arr = [];
-        foreach ($groups as $group_name => $permission) {
+         /**
+          * @var  $group_name
+          * @var  $permission Collection
+          */
+        foreach ($groups as $group => $permission) {
             $groups_arr[] = [
-                'group_name' => $group_name,
+                'group_name' => isset($permission[0])? $permission[0]->group_name: $group,
                 'permissions'=> $permission
             ];
         }
         return $groups_arr;
     }
+
+    /**
+     * @param Request $request
+     * @param $relations
+     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
+     */
 	public function getAllPermission(Request $request, $relations) {
 		$query = $this->newQueryBuilder();
 		if ($relations) {
