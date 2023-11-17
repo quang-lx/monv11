@@ -28,15 +28,30 @@
                         <div class="card">
                             <div class="card-body card-info-user text-center">
                                 <div class="demo-type text-center">
-                                    <el-avatar :size="192" src="">
-                                        <img src="" />
-                                    </el-avatar>
+
+
+                                    <el-upload
+                                        :size="192"
+                                        class="upload-demo"
+                                        :action="uploadUrl"
+
+                                        :on-success="handleSuccess"
+                                        :show-file-list="false"
+                                        :http-request="uploadFile"
+                                        :multiple="true"
+                                        >
+                                        <el-avatar :size="192" :src="modelForm.avatar_url">
+
+                                        </el-avatar>
+                                    </el-upload>
                                 </div>
                                 <div class="name">
                                     {{ modelForm.name }}
                                 </div>
 
-                                <div class="username">
+                                <div class="user
+
+">
                                     {{ modelForm.username }}
                                 </div>
                             </div><!-- /.card-body -->
@@ -215,6 +230,18 @@ export default {
         locales: { default: null },
         pageTitle: { default: null, String },
     },
+    computed: {
+        uploadUrl() {
+
+            return route('api.users.uploadAvatar');
+        },
+        requestHeaders() {
+            const userApiToken = document.head.querySelector('meta[name="user-api-token"]');
+            return {
+                Authorization: `Bearer ${userApiToken.content}`,
+            };
+        },
+    },
     data() {
         return {
             form: new Form(),
@@ -240,7 +267,8 @@ export default {
             roles: [],
             checkAll: false,
             isIndeterminate: true,
-            changePassDialogVisible: false
+            changePassDialogVisible: false,
+            imageUrl:''
         };
     },
     methods: {
@@ -338,7 +366,30 @@ export default {
             let checkedCount = value.length;
             this.checkAll = checkedCount === this.roles.length;
             this.isIndeterminate = checkedCount > 0 && checkedCount < this.roles.length;
-        }
+        },
+
+        handleSuccess(response) {
+            console.log(response)
+        },
+        uploadFile(event) {
+
+            const data = new FormData();
+
+            data.append('file', event.file);
+            window.axios.post(route('api.users.uploadAvatar'), data)
+                .then((response) => {
+                    this.modelForm.avatar_url = response.data.data.full_url
+                })
+                .catch((error) => {
+                    console.log(error.response.data);
+                    this.fileIsUploading = false;
+                    this.$notify.error({
+                        title: 'Error',
+                        message: error.response.data.errors.file[0],
+                    });
+                });
+        },
+
 
 
     },
@@ -346,8 +397,8 @@ export default {
         this.fetchData();
         this.fetchRoles();
 
-    },
-    computed: {}
+    }
+
 }
 </script>
 

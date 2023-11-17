@@ -143,6 +143,11 @@ Route::middleware('auth:api')->prefix('auth')->group(function (){
         'uses' => 'Auth\UserController@store',
 
     ]);
+    Route::post('users/upload-avatar', [
+        'as' => 'api.users.uploadAvatar',
+        'uses' => 'Auth\UserController@uploadAvatar',
+
+    ]);
 
     Route::post('users/{user}/change-password', [
         'as' => 'api.users.change-password',

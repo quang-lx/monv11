@@ -15,6 +15,7 @@ class UserFullTransformer extends JsonResource
             'username' => $this->username,
             'name' => $this->name,
             'email' => $this->email,
+            'avatar_url' => url($this->avatar_url),
             'type' => $this->type,
             'status' => $this->status,
             'shop_id' => $this->shop_id,
