@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
  * Class Department
  * @property  $name
  * @property  $parent_id
+ * @property  $not_assign
  * @package Modules\Mon\Entities
  */
 class Department extends Model

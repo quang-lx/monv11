@@ -167,8 +167,9 @@ class UserController extends ApiController
     public function exports(Request $request)
     {
         $time_now = Carbon::now()->timestamp;
-        Excel::store(new UsersExport($request), 'public/' . 'users_' . $time_now . '.xlsx');
-        $fileUrl = url('storage/' . 'users_' . $time_now . '.xlsx');
+        $file_name = 'users_' . $time_now . '.xlsx';
+        Excel::store(new UsersExport($request), ('/public/media/'. $file_name));
+        $fileUrl = url('storage/media/' . $file_name);
         return response()->json(['success' => true, 'fileUrl' => $fileUrl]);
     }
 
@@ -204,8 +205,9 @@ class UserController extends ApiController
             }
         });
         $time_now = Carbon::now()->timestamp;
-        Excel::store(new UsersErrorExport($list_error), 'public/' . 'users_error_' . $time_now . '.xlsx');
-        $fileUrl = url('storage/' . 'users_error_' . $time_now . '.xlsx');
+        $file_name = 'users_error_' . $time_now . '.xlsx';
+        Excel::store(new UsersErrorExport($list_error),   ('/public/media/'. $file_name));
+        $fileUrl = url('storage/media/' . $file_name);
         return response()->json([
             'success' => true,
             'message' => 'Tải lên danh sách user thành công',
