@@ -15,9 +15,7 @@ use Modules\Media\Traits\MediaRelation;
  */
 class ConfigDisplay extends Model
 {
-
-
-    protected $table = '';
+    protected $table = 'config_display';
     protected $fillable = ['col_name', 'table_name', 'position'];
 
 }

@@ -35,6 +35,16 @@
                             <inline-svg src="/images/download.svg" /> Tải xuống
 
                         </span>
+
+                        <label for="file">
+                            <span class="f-action pl-4 f-pointer" @click="exportUser">
+                                <inline-svg src="/images/download.svg" /> Import
+
+                            </span>
+                            <input type="file" id="file" style="display: none" name="image"
+                                accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" multiple=""
+                                data-original-title="import file">
+                        </label>
                     </div>
                     <div class="col-md-4">
 
@@ -515,8 +525,8 @@ export default {
                     var link = document.createElement('a');
 
                     link.href = response.data.fileUrl;
-                        link.target = '_blank';
-                        link.click();
+                    link.target = '_blank';
+                    link.click();
                 });
         },
 
