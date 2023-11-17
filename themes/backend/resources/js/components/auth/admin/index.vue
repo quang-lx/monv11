@@ -94,7 +94,7 @@
                                 </el-tree>
                                 <div class="mt-2">
                                     <span class="custom-tree-node" >
-                                        <span>  <span class="ml-2"> Chưa xếp nhóm </span></span>
+                                           <span class="ml-2"> Chưa xếp nhóm </span>
                                         <span>{{count_not_assign}}</span>
                                       </span>
                                 </div>
@@ -422,6 +422,7 @@
                                 message: response.data.message,
                             });
                             this.getDepartmentList({})
+                            this.getDepartmentNotAssign()
 
                         }else {
                             this.$notify({
