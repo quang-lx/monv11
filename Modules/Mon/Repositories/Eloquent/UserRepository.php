@@ -143,6 +143,12 @@ class UserRepository extends BaseRepository implements UserInterface
      */
     public function serverPagingFor(Request $request, $relations = null)
     {
+        $query = $this->queryGetUsers($request, $relations);
+        return $query->paginate($request->get('per_page', 10));
+    }
+
+    public function queryGetUsers($request, $relations = null)
+    {
         $query = $this->newQueryBuilder();
         if ($relations) {
             $query = $query->with($relations);
@@ -224,7 +230,7 @@ class UserRepository extends BaseRepository implements UserInterface
         if ($request->get('group_by') !== null) {
             $query->groupBy(explode(",", $request->get('group_by')));
         }
-        return $query->paginate($request->get('per_page', 10));
+        return $query;
     }
 
 }

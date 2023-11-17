@@ -2,8 +2,11 @@
 
 namespace Modules\Admin\Http\Controllers\Api\Auth;
 
+use App\Exports\UsersExport;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Maatwebsite\Excel\Facades\Excel;
 use Modules\Admin\Http\Requests\User\ChangePasswordRequest;
 use Modules\Admin\Http\Requests\User\CreateUserRequest;
 use Modules\Admin\Http\Requests\User\UpdateUserRequest;
@@ -52,7 +55,7 @@ class UserController extends ApiController
         $data['finish_reg'] = 1;
         $data['password'] = env('DEFAULT_PASSWORD', '123456aA@');
 
-        $user = $this->userRepository->createWithRoles($data, $request->get('roles') );
+        $user = $this->userRepository->createWithRoles($data, $request->get('roles'));
 
         return response()->json([
             'errors' => false,
@@ -62,7 +65,7 @@ class UserController extends ApiController
 
     public function find(User $user)
     {
-        return new  UserFullTransformer($user);
+        return new UserFullTransformer($user);
     }
 
     public function profile()
@@ -126,5 +129,12 @@ class UserController extends ApiController
             'errors' => false,
             'message' => trans('backend::user.message.reset password success'),
         ]);
+    }
+
+    public function exports(Request $request)
+    {
+        Excel::store(new UsersExport($request), 'public/' . 'users_' . Carbon::now()->timestamp . '.xlsx');
+        $fileUrl = url('storage/' . 'users_' . Carbon::now()->timestamp . '.xlsx');
+        return response()->json(['success' => true, 'fileUrl' => $fileUrl]);
     }
 }

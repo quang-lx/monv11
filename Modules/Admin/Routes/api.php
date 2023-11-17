@@ -155,7 +155,11 @@ Route::middleware('auth:api')->prefix('auth')->group(function (){
 
     ]);
 
+    Route::post('exports', [
+        'as' => 'api.users.exports',
+        'uses' => 'Auth\UserController@exports',
 
+    ]);
 
 });
 

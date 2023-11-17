@@ -17,7 +17,7 @@ class ConfigDisplay extends Model
 {
 
 
-    protected $table = 'config_display';
+    protected $table = '';
     protected $fillable = ['col_name', 'table_name', 'position'];
 
 }
