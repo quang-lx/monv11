@@ -160,6 +160,8 @@
                     .then((response) => {
                         this.loading = false;
                         this.$notify({
+                            title: this.$route.params.deviceId !== undefined? 'Cập nhật thành công': 'Thêm mới thành công',
+
                             type: 'success',
                             message: response.message,
                         });
@@ -174,7 +176,8 @@
 
                         this.loading = false;
                         this.$notify.error({
-                            title: this.$t('mon.error.Title'),
+                            title: this.$route.params.deviceId !== undefined? 'Cập nhật thất bại': 'Thêm mới thất bại',
+
                             message: this.getSubmitError(this.form.errors),
                         });
                     });

@@ -401,6 +401,8 @@
                         this.loading = false;
                         this.$notify({
                             type: 'success',
+                            title: this.$route.params.deviceId !== undefined? 'Cập nhật thành công': 'Thêm mới thành công',
+
                             message: response.message,
                         });
                         this.$router.push({name: 'admin.admins.index'});
@@ -409,7 +411,8 @@
 
                         this.loading = false;
                         this.$notify.error({
-                            title: this.$t('mon.error.Title'),
+                            title: this.$route.params.deviceId !== undefined? 'Cập nhật thất bại': 'Thêm mới thất bại',
+
                             message: this.getSubmitError(this.form.errors),
                         });
                     });
