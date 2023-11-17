@@ -186,7 +186,8 @@ export default {
             "search": "Tìm kiếm",
             "default": "Mặc định",
             "apply": "Áp dụng",
-            "accept": "Đồng ý"
+            "accept": "Đồng ý",
+            "upload": "Tải lên"
         },
         "department": {
             "label": {
@@ -457,7 +458,8 @@ export default {
                 "from date": "Từ ngày",
                 "to date": "Đến ngày",
                 "save_pass": "Lưu mật khẩu",
-                "profile": "Thông tin cá nhân"
+                "profile": "Thông tin cá nhân",
+                "import title": "Tải lên danh sách"
             },
             "tabs": {
                 "data": "Thông tin chung",
