@@ -12,8 +12,8 @@ return [
         'description' => 'Miêu tả',
         'status' => 'Trạng thái',
 
-        'create_category' => 'Tạo Chuyên mục ',
-        'update_category' => 'Cập nhật',
+        'create_device' => 'Thêm mới thiết bị',
+        'update_device' => 'Cập nhật thiết bị',
     ],
 
     'message' => [

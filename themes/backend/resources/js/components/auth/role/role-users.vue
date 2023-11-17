@@ -133,13 +133,13 @@
                     type: 'warning'
                 }).then(() => {
                     this.removeUser(user_id)
-                    this.$message({
+                    this.$notify({
                         type: 'success',
                         title: 'Xóa người dùng thành công',
                         message: 'Người dùng đã được xóa thành công.'
                     });
                 }).catch(() => {
-                    this.$message({
+                    this.$notify({
                         type: 'error',
                         title: 'Xóa người dùng thất bại',
                         message: 'Đã xảy ra lỗi không mong muốn, vui lòng thử lại.'

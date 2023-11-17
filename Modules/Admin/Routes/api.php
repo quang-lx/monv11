@@ -143,6 +143,11 @@ Route::middleware('auth:api')->prefix('auth')->group(function (){
         'uses' => 'Auth\UserController@store',
 
     ]);
+    Route::post('users/upload-avatar', [
+        'as' => 'api.users.uploadAvatar',
+        'uses' => 'Auth\UserController@uploadAvatar',
+
+    ]);
 
     Route::post('users/{user}/change-password', [
         'as' => 'api.users.change-password',
@@ -233,6 +238,11 @@ Route::middleware('auth:api')->prefix('/departments')->group(function (){
         'as' => 'api.department.destroy',
         'uses' => 'Department\DepartmentController@destroy',
     ]);
+
+    Route::get('/not-assign/count', [
+        'as' => 'api.department.countNotAssign',
+        'uses' => 'Department\DepartmentController@countNotAssign',
+    ]);
 });
 Route::middleware('auth:api')->prefix('/configdisplays')->group(function (){
 
@@ -258,6 +268,31 @@ Route::middleware('auth:api')->prefix('/configdisplays')->group(function (){
         'uses' => 'ConfigDisplay\ConfigDisplayController@destroy',
     ]);
 });
+Route::middleware('auth:api')->prefix('/devices')->group(function (){
+
+    Route::get('/', [
+        'as' => 'api.device.index',
+        'uses' => 'Device\DeviceController@index',
+    ]);
+    Route::post('/{device}/edit', [
+            'as' => 'api.device.update',
+            'uses' => 'Device\DeviceController@update',
+        ]);
+   Route::get('/{device}', [
+              'as' => 'api.device.find',
+              'uses' => 'Device\DeviceController@find',
+          ]);
+    Route::post('/', [
+        'as' => 'api.device.store',
+        'uses' => 'Device\DeviceController@store',
+    ]);
+
+    Route::delete('/{device}', [
+        'as' => 'api.device.destroy',
+        'uses' => 'Device\DeviceController@destroy',
+    ]);
+});
 // append
+
 
 

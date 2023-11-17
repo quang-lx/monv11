@@ -399,14 +399,20 @@
                 this.form.post(this.getRoute())
                     .then((response) => {
                         this.loading = false;
+                        this.$notify({
+                            type: 'success',
+                            title: this.$route.params.userId !== undefined? 'Cập nhật thành công': 'Thêm mới thành công',
 
-                        window.location.href = route('admin.admins.index') + '?msg=' + response.message
+                            message: response.message,
+                        });
+                        this.$router.push({name: 'admin.admins.index'});
                     })
                     .catch((error) => {
 
                         this.loading = false;
                         this.$notify.error({
-                            title: this.$t('mon.error.Title'),
+                            title: this.$route.params.userId !== undefined? 'Cập nhật thất bại': 'Thêm mới thất bại',
+
                             message: this.getSubmitError(this.form.errors),
                         });
                     });

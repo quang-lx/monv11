@@ -73,13 +73,39 @@
                                 </div>
                             </div><!-- /.card-header -->
                             <div class="card-body">
-                                <el-input class="mb-2" placeholder="Tìm kiếm" size="mini" v-model="filterDepartment">
+                                <el-input
+                                    class="mb-2"
+                                    placeholder="Tìm kiếm"
+                                    size="mini"
+                                    v-model="filterDepartment">
                                 </el-input>
 
-                                <el-tree class="filter-tree" :data="departmentTreeData" :props="treeProps"
-                                    default-expand-all :filter-node-method="filterNode" @node-click="handleNodeClick"
+                                <div class="mb-2">
+                                    <span class="custom-tree-node" >
+                                        <span> <inline-svg src="/images/d_all.svg"  /> <span class="ml-2"> Tất cả </span></span>
+                                        <span>{{department_user_total}}</span>
+                                      </span>
+                                </div>
+                                <el-tree
+                                    class="filter-tree"
+                                    :data="departmentTreeData"
+                                    :props="treeProps"
+                                    default-expand-all
+                                    :filter-node-method="filterNode"
+
+                                    @node-click="handleNodeClick"
                                     ref="tree">
+                                    <span class="custom-tree-node" slot-scope="{ node, data }">
+                                        <span>{{ node.label }}</span>
+                                        <span>{{data.count_user}}</span>
+                                      </span>
                                 </el-tree>
+                                <div class="mt-2">
+                                    <span class="custom-tree-node" >
+                                           <span class="ml-2"> Chưa xếp nhóm </span>
+                                        <span>{{count_not_assign}}</span>
+                                      </span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -241,6 +267,13 @@ export default {
         isShowCol: function () {
             return this.list_selected_col.reduce(
                 (obj, item) => Object.assign(obj, { [item.col_name]: 1 }), {});
+        },
+        department_user_total: function () {
+            let total = 0;
+            for(let i = 0 ; i< this.departmentTreeData.length; i++) {
+                total = total + this.departmentTreeData[i].count_user;
+            }
+            return total;
         }
     },
     data() {
@@ -339,7 +372,8 @@ export default {
             filter_data: {},
             file: '',
             loadingImport: 0,
-            data_export:[]
+            data_export:[],
+            count_not_assign: 0
 
         };
     },
@@ -385,6 +419,7 @@ export default {
                             message: response.data.message,
                         });
                         this.getDepartmentList({})
+                        this.getDepartmentNotAssign()
 
                     } else {
                         this.$notify({
@@ -512,7 +547,15 @@ export default {
         getRouteEditDepartment() {
             return route('api.department.update', { department: this.editModel.id });
         },
+        getDepartmentNotAssign() {
 
+            window.axios.get(route('api.department.countNotAssign', {}))
+                .then((response) => {
+
+                    this.count_not_assign = response.data;
+
+                });
+        },
 
         exportUsers() {
 
@@ -575,7 +618,7 @@ export default {
     mounted() {
         this.fetchData();
         this.getDepartmentList({});
-
+        this.getDepartmentNotAssign();
 
     },
     created() {
@@ -588,6 +631,13 @@ export default {
 <style scoped>
 .disabled {
     pointer-events: none;
+
+}
+.custom-tree-node {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
 }
 </style>

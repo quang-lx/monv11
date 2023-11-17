@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
+use Modules\Admin\Http\Requests\UploadAvatarRequest;
 use Modules\Admin\Http\Requests\User\ChangePasswordRequest;
 use Modules\Admin\Http\Requests\User\CreateUserRequest;
 use Modules\Admin\Http\Requests\Excel\ExcelUploadRequest;
@@ -20,6 +21,9 @@ use Modules\Admin\Http\Requests\User\UpdateUserRequest;
 use Modules\Admin\Transformers\Auth\UserFullTransformer;
 use Modules\Admin\Transformers\Auth\UserPermissionsTransformer;
 use Modules\Admin\Transformers\Auth\UserTransformer;
+
+use Modules\Media\Services\FileService;
+use Modules\Media\Transformers\MediaTransformer;
 use Modules\Mon\Http\Controllers\ApiController;
 use Modules\Mon\Repositories\ProfileRepository;
 use Modules\Mon\Repositories\UserRepository;
@@ -27,6 +31,10 @@ use Modules\Mon\Auth\Contracts\Authentication;
 
 class UserController extends ApiController
 {
+    /**
+     * @var FileService
+     */
+    private $fileService;
     /**
      * @var UserRepository
      */
@@ -38,12 +46,31 @@ class UserController extends ApiController
     public function __construct(
         Authentication $auth,
         UserRepository $userRepository,
-        ProfileRepository $profileRepository
+        ProfileRepository $profileRepository,
+        FileService $fileService
     ) {
         parent::__construct($auth);
         $this->userRepository = $userRepository;
         $this->profileRepository = $profileRepository;
+        $this->fileService = $fileService;
 
+
+    }
+
+    public function uploadAvatar(UploadAvatarRequest $request)
+    {
+        $savedFile = $this->fileService->store($request->file('file'), $request->get('parent_id')? : 0);
+
+        if (is_string($savedFile)) {
+            return response()->json([
+                'error' => $savedFile,
+            ], 409);
+        }
+
+        $user = $this->auth->user();
+        $user->avatar_url = $savedFile->path_string;
+        $user->save();
+        return new MediaTransformer($savedFile);
     }
 
     public function index(Request $request)
@@ -153,7 +180,7 @@ class UserController extends ApiController
         $list_error = [];
 
         DB::transaction(function () use ($request, &$data_user, &$list_error) {
-           
+
             foreach ($data_user as $key => $user) {
                 try {
                     if (User::where('username', $user['username'])->first()) {
