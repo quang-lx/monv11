@@ -457,6 +457,23 @@ body:not(.layout-fixed) .main-sidebar {
     -webkit-mask: url("/images/setting-menu.svg") no-repeat center / contain;
 }
 
+.route-square {
+    -webkit-mask: url("/images/route-square.svg") no-repeat center / contain;
+}
+
+.warning-2 {
+    -webkit-mask: url("/images/warning-2.svg") no-repeat center / contain;
+}
+.device-icon {
+    -webkit-mask: url("/images/device-icon.svg") no-repeat center / contain;
+}
+.category-icon {
+    -webkit-mask: url("/images/category-icon.svg") no-repeat center / contain;
+}
+.user-square {
+    -webkit-mask: url("/images/user-square.svg") no-repeat center / contain;
+}
+
 .fa-angle-double-right::before{
     content: '' !important;
 }
