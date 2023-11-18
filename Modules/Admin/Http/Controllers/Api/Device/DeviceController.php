@@ -2,6 +2,10 @@
 
 namespace Modules\Admin\Http\Controllers\Api\Device;
 
+use App\Exports\DevicesErrorExport;
+use App\Exports\DevicesExport;
+use App\Imports\ImportDevices;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\Admin\Transformers\DeviceTransformer;
@@ -10,8 +14,13 @@ use Modules\Admin\Http\Requests\Device\CreateDeviceRequest;
 use Modules\Admin\Http\Requests\Device\UpdateDeviceRequest;
 use Modules\Admin\Repositories\DeviceRepository;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Facades\Excel;
+use Modules\Admin\Http\Requests\Excel\ExcelUploadRequest;
 use Modules\Mon\Http\Controllers\ApiController;
 use Modules\Mon\Auth\Contracts\Authentication;
+use Illuminate\Support\Facades\Log;
 
 class DeviceController extends ApiController
 {
@@ -73,6 +82,51 @@ class DeviceController extends ApiController
         return response()->json([
             'errors' => false,
             'message' => trans('backend::device.message.delete success'),
+        ]);
+    }
+
+    public function exports(Request $request)
+    {
+        $time_now = Carbon::now()->timestamp;
+        Excel::store(new DevicesExport($request), 'public/' . 'device_' . $time_now . '.xlsx');
+        $fileUrl = url('storage/' . 'device_' . $time_now . '.xlsx');
+        return response()->json(['success' => true, 'fileUrl' => $fileUrl]);
+    }
+
+    public function imports(ExcelUploadRequest $request)
+    {
+        $import = new ImportDevices($request);
+        Excel::import($import, $request->file('file'));
+        $data_device = $import->getDataImport();
+        $list_error = [];
+
+        DB::transaction(function () use ($request, &$data_device, &$list_error) {
+
+            foreach ($data_device as $key => $device) {
+                try {
+                    $device_model = new Device();
+                    $device_model->code = $device['code'];
+                    $device_model->name = $device['name'];
+                    $device_model->type = $device['type'];
+                    $device_model->serial_number = $device['serial_number'];
+                    $device_model->note = $device['note'];
+                    $device_model->save();
+                } catch (\Throwable $th) {
+                    Log::info($th->getMessage());
+                    $list_error[] = $device;
+                }
+            }
+        });
+        Log::info([count($data_device) - count($list_error)]);
+        $time_now = Carbon::now()->timestamp;
+        Excel::store(new DevicesErrorExport($list_error), 'public/' . 'devices_error_' . $time_now . '.xlsx');
+        $fileUrl = url('storage/' . 'devices_error_' . $time_now . '.xlsx');
+        return response()->json([
+            'success' => true,
+            'message' => 'Tải lên danh sách device thành công',
+            'total' => count($data_device),
+            'fileUrl' => $fileUrl,
+            'total_success' => (count($data_device) - count($list_error))
         ]);
     }
 }

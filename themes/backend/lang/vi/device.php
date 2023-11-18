@@ -14,6 +14,7 @@ return [
 
         'create_device' => 'Thêm mới thiết bị',
         'update_device' => 'Cập nhật thiết bị',
+        'import title' => 'Tải lên danh sách',
 
 
     ],

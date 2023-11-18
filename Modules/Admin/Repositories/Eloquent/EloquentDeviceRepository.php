@@ -11,6 +11,12 @@ class EloquentDeviceRepository extends BaseRepository implements DeviceRepositor
 
     public function serverPagingFor(Request $request, $relations = null)
     {
+        $query = $this->queryGetDevice($request, $relations = null);
+        return $query->paginate($request->get('per_page', 10));
+    }
+
+    public function queryGetDevice($request, $relations = null)
+    {
         $query = $this->newQueryBuilder();
         if ($relations) {
             $query = $query->with($relations);
@@ -31,6 +37,6 @@ class EloquentDeviceRepository extends BaseRepository implements DeviceRepositor
         }
 
         $query->orderBy('updated_at', 'desc');
-        return $query->paginate($request->get('per_page', 10));
+        return $query;
     }
 }
