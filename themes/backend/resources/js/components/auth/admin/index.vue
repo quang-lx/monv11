@@ -118,52 +118,27 @@
                                     <el-table :data="data" stripe style="width: 100%" ref="dataTable"
                                         v-loading.body="tableIsLoading" @sort-change="handleSortChange">
 
-                                        <el-table-column v-if="isShowCol.username" prop="username"
-                                            :label="$t('user.label.username')" width="150"> </el-table-column>
-
-                                        <el-table-column v-if="isShowCol.name" prop="name" :label="$t('user.label.name')"
-                                            width="250">
-
-                                        </el-table-column>
-                                        <el-table-column v-if="isShowCol.email" prop="email" :label="$t('user.label.email')"
-                                            width="200">
-
-                                        </el-table-column>
-                                        <el-table-column v-if="isShowCol.phone" prop="phone" :label="$t('user.label.phone')"
-                                            width="130">
-
-                                        </el-table-column>
-                                        <el-table-column v-if="isShowCol.sex" prop="sex" :label="$t('user.label.sex')"
-                                            width="120">
+                                        <el-table-column
+                                            v-for="col_selected in list_selected_col"
+                                            :key="col_selected.col_name"
+                                            :prop="col_selected.col_name"
+                                                         :label="list_col_label[col_selected.col_name]"
+                                            width="150"  >
                                             <template slot-scope="scope">
-                                                <span>{{ scope.row.sex_text }}</span>
+
+                                                <span v-if="col_selected.col_name == 'sex'">{{ scope.row.sex_text}}</span>
+                                                <span v-else-if="col_selected.col_name == 'status'">{{ scope.row.status_text}}</span>
+                                                <span v-else-if="col_selected.col_name == 'created_by'">
+                                                   {{ scope.row.created_by_name }}
+                                                </span>
+                                                <span v-else> {{scope.row[col_selected.col_name]}}</span>
+
                                             </template>
-                                        </el-table-column>
-                                        <el-table-column v-if="isShowCol.birth_day" prop="birth_day"
-                                            :label="$t('user.label.birth_day')" width="150">
+
 
                                         </el-table-column>
-                                        <el-table-column v-if="isShowCol.identification" prop="identification"
-                                            :label="$t('user.label.identification')" width="150">
 
-                                        </el-table-column>
-                                        <el-table-column v-if="isShowCol.expired_at" prop="expired_at"
-                                            :label="$t('user.label.status')" width="150">
-                                            <template slot-scope="scope">
-                                                <span>{{ scope.row.status_text }}</span>
-                                            </template>
-                                        </el-table-column>
 
-                                        <el-table-column v-if="isShowCol.created_at" prop="created_at"
-                                            :label="$t('user.label.created_at')" width="150">
-
-                                        </el-table-column>
-                                        <el-table-column v-if="isShowCol.created_by" prop="created_by"
-                                            :label="$t('user.label.created by')" width="150">
-                                            <template slot-scope="scope">
-                                                <span v-if="scope.row.createdBy">{{ scope.row.createdBy.name }}</span>
-                                            </template>
-                                        </el-table-column>
 
                                         <el-table-column prop="actions" :label="$t('common.action')" width="100"
                                             fixed="right">
@@ -274,67 +249,75 @@ export default {
                 total = total + this.departmentTreeData[i].count_user;
             }
             return total;
-        }
+        },
+        list_col_label: function() {
+            return this.convertArrayToObject(this.full_col_name, 'col_name', 'name')
+
+        },
+
     },
     data() {
         return {
 
             list_selected_col: [],
-            list_col_width: [
-                {
-                    col_name: 'username',
-                    width: 150,
-                },
-                {
-                    col_name: 'name',
-                    width: 200,
-                }
-            ],
+
+
             full_col_name: [
 
                 {
                     col_name: 'username',
-                    name: this.$t('user.label.username')
+                    name: this.$t('user.label.username'),
+
                 },
                 {
                     col_name: 'name',
-                    name: this.$t('user.label.name')
+                    name: this.$t('user.label.name'),
+
                 },
                 {
                     col_name: 'email',
-                    name: this.$t('user.label.email')
+                    name: this.$t('user.label.email'),
+
                 },
                 {
                     col_name: 'phone',
-                    name: this.$t('user.label.phone')
+                    name: this.$t('user.label.phone'),
+
                 },
                 {
                     col_name: 'sex',
-                    name: this.$t('user.label.sex')
+                    name: this.$t('user.label.sex'),
+
                 },
                 {
                     col_name: 'birth_day',
-                    name: this.$t('user.label.birth_day')
+                    name: this.$t('user.label.birth_day'),
+
                 },
                 {
                     col_name: 'identification',
-                    name: this.$t('user.label.identification')
+                    name: this.$t('user.label.identification'),
+
                 },
                 {
                     col_name: 'created_at',
-                    name: this.$t('user.label.created_at')
+                    name: this.$t('user.label.created_at'),
+
                 },
                 {
                     col_name: 'updated_at',
-                    name: this.$t('user.label.updated_at')
+                    name: this.$t('user.label.updated_at'),
+
                 },
                 {
                     col_name: 'status',
-                    name: this.$t('user.label.status')
+                    name: this.$t('user.label.status'),
+
                 },
                 {
                     col_name: 'created_by',
-                    name: this.$t('user.label.created by')
+                    name: this.$t('user.label.created by'),
+
                 }
             ],
             show_config: false,

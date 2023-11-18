@@ -28,7 +28,7 @@ class UserTransformer extends JsonResource
             'expired_at' => optional($this->expired_at)->format('d/m/Y'),
             'created_at' => optional($this->created_at)->format('H:i d/m/Y'),
             'updated_at' =>optional($this->updated_at)->format('H:i d/m/Y'),
-            'createdBy' => new UserTransformer($this->createdBy),
+            'created_by_name' => optional($this->createdBy)->name,
             'urls' => [
                 'delete_url' => route('api.users.destroy', $this->id),
             ],
