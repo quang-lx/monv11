@@ -98,7 +98,7 @@
                 window.axios.get(route("api.configdisplay.index", _.merge(properties, {})))
                     .then((response) => {
 
-                        this.list = response.data.data.map((item, index) => {
+                        this.list = response.data.data.reverse().map((item, index) => {
                             let idx = _.findIndex(this.list_all_col,   {  col_name : item.col_name });
                             return _.merge(this.list_all_col[idx], {name:this.list_all_col[idx].name, order: index + 1});
                         });

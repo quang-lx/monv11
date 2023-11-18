@@ -22,6 +22,15 @@ const mixin = {
         }
     },
     methods: {
+        convertArrayToObject (array_convert, key, value)  {
+        const initialValue = {};
+        return array_convert.reduce((obj, item) => {
+            return {
+                ...obj,
+                [item[key]]: item[value],
+            };
+        }, initialValue);
+    },
         closePopup() {
             this.show_popup = false
             this.$emit("close-popup") ;
