@@ -4,63 +4,41 @@ namespace App\Exports;
 
 use App\Models\User;
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Events\AfterSheet;
-use Modules\Mon\Entities\ConfigDisplay;
-use Modules\Mon\Repositories\Eloquent\UserRepository;
+use Modules\Admin\Repositories\Eloquent\EloquentDeviceRepository;
+use Modules\Mon\Entities\Device;
 
-class UsersErrorExport implements FromView, WithEvents
+class DevicesExport implements FromView, WithEvents
 {
-    protected $list_error;
+    protected $request;
     protected $data_export = [];
     protected $columns_export;
-    public function __construct($list_error)
+    public function __construct($request)
     {
-        $this->list_error = $list_error;
+        $this->request = $request;
         $this->columns_export = [
             [
+                'col_name' => 'code',
+                'name' =>  trans('backend::device.label.code'),
+            ],
+            [
                 'col_name' => 'name',
-                'name' => trans('backend::user.label.name'),
+                'name' =>  trans('backend::device.label.name'),
             ],
             [
-                'col_name' => 'email',
-                'name' => trans('backend::user.label.email'),
-            ],
-
-            [
-                'col_name' => 'phone',
-                'name' => trans('backend::user.label.phone'),
+                'col_name' => 'serial_number',
+                'name' =>  trans('backend::device.label.serial number'),
             ],
             [
-                'col_name' => 'department',
-                'name' => trans('backend::user.label.department'),
+                'col_name' => 'box',
+                'name' =>  trans('backend::device.label.box'),
             ],
             [
-                'col_name' => 'sex',
-                'name' => trans('backend::user.label.sex'),
-            ],
-            [
-                'col_name' => 'birth_day',
-                'name' => trans('backend::user.label.birth_day'),
-            ],
-            [
-                'col_name' => 'identification',
-                'name' => trans('backend::user.label.identification'),
-            ],
-            [
-                'col_name' => 'active_at',
-                'name' => trans('backend::user.label.active_at'),
-            ],
-            [
-                'col_name' => 'expired_at',
-                'name' => trans('backend::user.label.expired_at'),
-            ],
-            [
-                'col_name' => 'username',
-                'name' => trans('backend::user.label.username'),
-            ],
+                'col_name' => 'status',
+                'name' =>  trans('backend::device.label.status'),
+            ]
         ];
     }
 
@@ -96,26 +74,21 @@ class UsersErrorExport implements FromView, WithEvents
             },
         ];
     }
-
     public function view(): View
     {
-        return view('exports.template_error', [
-            'data' => $this->list_error,
+        $device_repo = new EloquentDeviceRepository(new Device);
+        $query = $device_repo->queryGetDevice($this->request);
+
+        $query->chunk(100, function ($devices) {
+            foreach ($devices as $deivce) {
+                $this->data_export[] = $deivce->toArray();
+            }
+        });
+        return view('exports.device', [
+            'devices' => $this->data_export,
             'columns' => $this->columns_export
         ]);
     }
 
-    public function formatConfigPlay($config_play)
-    {
-        $columns_export = [];
-        foreach ($config_play as $column) {
-
-            $columns_export[] = [
-                'col_name' => $column->col_name,
-                'name' => trans('backend::user.label.' . $column->col_name)
-            ];
-        }
-        return $columns_export;
-    }
-
+    
 }

@@ -291,6 +291,17 @@ Route::middleware('auth:api')->prefix('/devices')->group(function (){
         'as' => 'api.device.destroy',
         'uses' => 'Device\DeviceController@destroy',
     ]);
+
+    Route::post('exports', [
+        'as' => 'api.device.exports',
+        'uses' => 'Device\DeviceController@exports',
+    ]);
+
+    Route::post('imports', [
+        'as' => 'api.device.imports',
+        'uses' => 'Device\DeviceController@imports',
+
+    ]);
 });
 // append
 

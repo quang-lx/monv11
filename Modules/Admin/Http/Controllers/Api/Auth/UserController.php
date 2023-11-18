@@ -213,7 +213,7 @@ class UserController extends ApiController
             'message' => 'Tải lên danh sách user thành công',
             'total' => count($data_user),
             'fileUrl' => $fileUrl,
-            'total_success' => count($data_user) - count($list_error)
+            'total_success' => (count($data_user) - count($list_error))
         ]);
     }
 }
