@@ -88,8 +88,8 @@ class DeviceController extends ApiController
     public function exports(Request $request)
     {
         $time_now = Carbon::now()->timestamp;
-        Excel::store(new DevicesExport($request), 'public/' . 'device_' . $time_now . '.xlsx');
-        $fileUrl = url('storage/' . 'device_' . $time_now . '.xlsx');
+        Excel::store(new DevicesExport($request), '/public/media/' . 'device_' . $time_now . '.xlsx');
+        $fileUrl = url('storage/media/' . 'device_' . $time_now . '.xlsx');
         return response()->json(['success' => true, 'fileUrl' => $fileUrl]);
     }
 
@@ -123,8 +123,8 @@ class DeviceController extends ApiController
             }
         });
         $time_now = Carbon::now()->timestamp;
-        Excel::store(new DevicesErrorExport($list_error), 'public/' . 'devices_error_' . $time_now . '.xlsx');
-        $fileUrl = url('storage/' . 'devices_error_' . $time_now . '.xlsx');
+        Excel::store(new DevicesErrorExport($list_error), 'public/media/' . 'devices_error_' . $time_now . '.xlsx');
+        $fileUrl = url('storage/media/' . 'devices_error_' . $time_now . '.xlsx');
         return response()->json([
             'success' => true,
             'message' => trans('backend::device.message.import success'),
