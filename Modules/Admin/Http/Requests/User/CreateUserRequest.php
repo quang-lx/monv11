@@ -25,7 +25,7 @@ class CreateUserRequest extends FormRequest
             'active_at'=>"required",
             'expired_at'=>"required",
 
-            'email' => 'email',
+            'email' => 'nullable|email',
         ];
 
         return $rules;
