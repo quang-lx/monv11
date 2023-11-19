@@ -59,7 +59,7 @@ class UserController extends ApiController
 
     public function uploadAvatar(UploadAvatarRequest $request)
     {
-        $savedFile = $this->fileService->store($request->file('file'), $request->get('parent_id')? : 0);
+        $savedFile = $this->fileService->store($request->file('file'), $request->get('parent_id') ?: 0);
 
         if (is_string($savedFile)) {
             return response()->json([
@@ -185,7 +185,11 @@ class UserController extends ApiController
             foreach ($data_user as $key => $user) {
                 try {
                     if (User::where('username', $user['username'])->first()) {
-                        throw new \Exception('Custom exception message');
+                        throw new \Exception(trans('backend::user.label.username') . ' đã tồn tại');
+                    }
+                    $message_error = $this->validateData($user);
+                    if ($message_error) {
+                        throw new \Exception($message_error);
                     }
                     $user_model = new User();
                     $user_model->name = $user['name'];
@@ -200,6 +204,7 @@ class UserController extends ApiController
                     $user_model->password = Hash::make('123456aA@');
                     $user_model->save();
                 } catch (\Throwable $th) {
+                    $user['error'] = $th->getMessage();
                     $list_error[] = $user;
                 }
             }
@@ -215,5 +220,22 @@ class UserController extends ApiController
             'fileUrl' => $fileUrl,
             'total_success' => (count($data_user) - count($list_error))
         ]);
+    }
+
+    public function validateData($user)
+    {
+        if (!$user['name']) {
+            return trans('backend::user.label.name') . trans('backend::mon.error.required');
+        }
+        if (!$user['department']) {
+            return trans('backend::user.label.department') . trans('backend::mon.error.required');
+        }
+        if (!$user['sex']) {
+            return trans('backend::user.label.sex') . trans('backend::mon.error.required');
+        }
+        if (!$user['username']) {
+            return trans('backend::user.label.username') . trans('backend::mon.error.required');
+        }
+        return null;
     }
 }

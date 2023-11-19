@@ -23,6 +23,7 @@ return [
         'create success' => 'Tạo thiết bị thành công.',
         'update success' => 'Cập nhật thiết bị thành công.',
         'delete success' => 'Xóa thiết bị thành công.',
+        'import success' => 'Tải lên danh sách device thành công.',
     ]
 
 ];

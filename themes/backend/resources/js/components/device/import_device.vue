@@ -30,7 +30,7 @@
                 </div>
                 <div class="">
                     <el-button round size="small" icon="el-icon-download">
-                        <a target=”_blank”  href="/excel-template/Staff_Template.xlsx">Dữ liệu mẫu</a>
+                        <a target=”_blank”  href="/excel-template/Device_Template.xlsx">Dữ liệu mẫu</a>
                     </el-button>
                 </div>
             </div>

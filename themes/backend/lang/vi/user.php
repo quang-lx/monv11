@@ -42,6 +42,7 @@ return [
         'save_pass' => 'Lưu mật khẩu',
         'profile' => 'Thông tin cá nhân',
         'import title' => 'Tải lên danh sách',
+        'active_at' => 'Thời gian băt đầu hiệu lực',
 
     ],
     'tabs' => [
