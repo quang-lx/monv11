@@ -38,6 +38,10 @@ class DevicesErrorExport implements FromView, WithEvents
             [
                 'col_name' => 'note',
                 'name' =>  trans('backend::device.label.note'),
+            ],
+            [
+                'col_name' => 'error',
+                'name' =>  trans('backend::mon.error.Title'),
             ]
         ];
     }

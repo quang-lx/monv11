@@ -104,6 +104,10 @@ class DeviceController extends ApiController
 
             foreach ($data_device as $key => $device) {
                 try {
+                    $message_error = $this->validateData($device);
+                    if ($message_error) {
+                        throw new \Exception($message_error);
+                    }
                     $device_model = new Device();
                     $device_model->code = $device['code'];
                     $device_model->name = $device['name'];
@@ -113,20 +117,27 @@ class DeviceController extends ApiController
                     $device_model->save();
                 } catch (\Throwable $th) {
                     Log::info($th->getMessage());
+                    $device['error'] = $th->getMessage();
                     $list_error[] = $device;
                 }
             }
         });
-        Log::info([count($data_device) - count($list_error)]);
         $time_now = Carbon::now()->timestamp;
         Excel::store(new DevicesErrorExport($list_error), 'public/' . 'devices_error_' . $time_now . '.xlsx');
         $fileUrl = url('storage/' . 'devices_error_' . $time_now . '.xlsx');
         return response()->json([
             'success' => true,
-            'message' => 'Tải lên danh sách device thành công',
+            'message' => trans('backend::device.message.import success'),
             'total' => count($data_device),
             'fileUrl' => $fileUrl,
             'total_success' => (count($data_device) - count($list_error))
         ]);
+    }
+
+    public function validateData($device){
+        if (!$device['code']) {
+           return trans('backend::device.label.code').trans('backend::mon.error.required');
+        }
+        return null;
     }
 }

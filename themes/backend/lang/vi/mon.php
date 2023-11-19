@@ -20,7 +20,8 @@ return [
     ],
     'error' => [
         'Title' => 'Lỗi',
-        'Message' => 'Có lỗi xảy ra.'
+        'Message' => 'Có lỗi xảy ra.',
+        'required' => ' không được để trống'
     ],
 
     'modal' => [

@@ -35,7 +35,7 @@ class UsersErrorExport implements FromView, WithEvents
             ],
             [
                 'col_name' => 'department',
-                'name' => trans('backend::user.label.department'),
+                'name' => trans('backend::user.label.department_id'),
             ],
             [
                 'col_name' => 'sex',
@@ -61,6 +61,10 @@ class UsersErrorExport implements FromView, WithEvents
                 'col_name' => 'username',
                 'name' => trans('backend::user.label.username'),
             ],
+            [
+                'col_name' => 'error',
+                'name' =>  trans('backend::mon.error.Title'),
+            ]
         ];
     }
 
