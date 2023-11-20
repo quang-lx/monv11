@@ -209,9 +209,10 @@
                 window.axios.get(routeUri)
                     .then((response) => {
                         this.loading = false;
-
+                        let current_user = this.modelForm.users;
                         this.modelForm = response.data.data;
                         this.load_done = true;
+                        this.modelForm.users = current_user;
                     });
             },
 

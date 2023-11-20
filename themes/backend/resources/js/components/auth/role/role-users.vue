@@ -120,7 +120,8 @@
                         .then((response) => {
 
                             this.currentUsers = response.data.data;
-                            this.$emit("update-users", this.currentUsers) ;
+                            this.$emit("update-users", response.data.data) ;
+
                         });
                 }
 
@@ -147,7 +148,8 @@
                 });
             },
             removeUser(user_id) {
-                this.currentUsers.filter (item => {return item.id != user_id})
+                this.currentUsers = this.currentUsers.filter (item => {return item.id != user_id})
+
             },
             queryServer(customProperties) {
 
