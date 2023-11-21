@@ -423,8 +423,8 @@ export default {
                 "female_min_value": "Giá trị nữ thấp",
                 "female_max_value": "Giá trị nữ cao",
                 "title": "Danh sách dịch vụ khám",
-                "create_service": "Thêm mới thiết bị",
-                "update_service": "Cập nhật thiết bị",
+                "create_service": "Thêm mới dịch vụ",
+                "update_service": "Cập nhật dịch vụ",
                 "import title": "Tải lên danh sách"
             },
             "message": {
@@ -432,6 +432,17 @@ export default {
                 "update success": "Cập nhật dịch vụ thành công.",
                 "delete success": "Xóa dịch vụ thành công.",
                 "import success": "Tải lên danh sách dịch vụ thành công."
+            }
+        },
+        "serviceindex": {
+            "label": {
+                "create_serviceindex": "Thêm mới dịch vụ",
+                "update_serviceindex": "Cập nhật dịch vụ"
+            },
+            "message": {
+                "create success": "Thêm mới chỉ số thành công.",
+                "update success": "Cập nhật chỉ số thành công.",
+                "delete success": "Xóa chỉ số thành công."
             }
         },
         "sidebar": {
@@ -443,8 +454,10 @@ export default {
             "permissions": "Chức năng",
             "index": "Danh sách",
             "media": "Media",
-            "category": "Danh mục",
+            "category": "Quản lý danh mục",
+            "testing service": "Danh mục xét nghiệm",
             "news": "Tin tức",
+            "service": "Tin tức",
             "home": "Trang chủ",
             "packages": "Gói cước",
             "device": "Quản lý thiết bị"

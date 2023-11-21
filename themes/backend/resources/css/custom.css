@@ -1,3 +1,6 @@
+.el-input-number.is-without-controls .el-input__inner {
+    text-align: left !important;
+}
 .box-head-actions {
     height: 50px;
 }

@@ -4,6 +4,7 @@ namespace Modules\Admin\Http\Controllers\Api\ServiceIndex;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Modules\Admin\Transformers\ServiceIndexTransformer;
 use Modules\Mon\Entities\ServiceIndex;
 use Modules\Admin\Http\Requests\ServiceIndex\CreateServiceIndexRequest;
 use Modules\Admin\Http\Requests\ServiceIndex\UpdateServiceIndexRequest;
@@ -52,7 +53,7 @@ class ServiceIndexController extends ApiController
 
     public function find(ServiceIndex $serviceindex)
     {
-        return new  ServiceIndexFullTransformer($serviceindex);
+        return new  ServiceIndexTransformer($serviceindex);
     }
 
     public function update(ServiceIndex $serviceindex, UpdateServiceIndexRequest $request)

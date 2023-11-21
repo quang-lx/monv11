@@ -112,9 +112,10 @@
                                         <div class="col-md-3">
                                             <el-form-item :label="$t('service.label.min_value')"
                                                           :class="{'el-form-item is-error': form.errors.has('min_value') }">
-                                                <el-input v-model="modelForm.min_value" size="small"
+                                                <el-input-number :controls="false" v-model="modelForm.min_value" size="small"
+                                                                 style="width: 100%"
                                                           placeholder="Nhập giá trị thấp"
-                                                          autocomplete="off"></el-input>
+                                                          autocomplete="off"></el-input-number>
                                                 <div class="el-form-item__error"
                                                      v-if="form.errors.has('min_value')"
                                                      v-text="form.errors.first('min_value')"></div>
@@ -123,9 +124,10 @@
                                         <div class="col-md-3">
                                             <el-form-item :label="$t('service.label.max_value')"
                                                           :class="{'el-form-item is-error': form.errors.has('max_value') }">
-                                                <el-input v-model="modelForm.max_value" size="small"
+                                                <el-input-number :controls="false" v-model="modelForm.max_value" size="small"
                                                           placeholder="Nhập giá trị cao"
-                                                          autocomplete="off"></el-input>
+                                                                 style="width: 100%"
+                                                                 autocomplete="off"></el-input-number>
                                                 <div class="el-form-item__error"
                                                      v-if="form.errors.has('max_value')"
                                                      v-text="form.errors.first('max_value')"></div>
@@ -134,9 +136,10 @@
                                         <div class="col-md-3">
                                             <el-form-item :label="$t('service.label.ref_value')"
                                                           :class="{'el-form-item is-error': form.errors.has('ref_value') }">
-                                                <el-input v-model="modelForm.ref_value" size="small"
+                                                <el-input-number :controls="false" v-model="modelForm.ref_value" size="small"
+                                                                 style="width: 100%"
                                                             disabled
-                                                          autocomplete="off"></el-input>
+                                                                 autocomplete="off"></el-input-number>
                                                 <div class="el-form-item__error"
                                                      v-if="form.errors.has('ref_value')"
                                                      v-text="form.errors.first('ref_value')"></div>
@@ -159,9 +162,10 @@
                                         <div class="col-md-3">
                                             <el-form-item :label="$t('service.label.male_min_value')"
                                                           :class="{'el-form-item is-error': form.errors.has('male_min_value') }">
-                                                <el-input v-model="modelForm.male_min_value" size="small"
+                                                <el-input-number :controls="false" v-model="modelForm.male_min_value" size="small"
                                                           placeholder="Nhập giá nam trị thấp"
-                                                          autocomplete="off"></el-input>
+                                                                 style="width: 100%; text-align: left"
+                                                                 autocomplete="off"></el-input-number>
                                                 <div class="el-form-item__error"
                                                      v-if="form.errors.has('male_min_value')"
                                                      v-text="form.errors.first('male_min_value')"></div>
@@ -170,9 +174,10 @@
                                         <div class="col-md-3">
                                             <el-form-item :label="$t('service.label.male_max_value')"
                                                           :class="{'el-form-item is-error': form.errors.has('male_max_value') }">
-                                                <el-input v-model="modelForm.male_max_value" size="small"
+                                                <el-input-number :controls="false" v-model="modelForm.male_max_value" size="small"
                                                           placeholder="Nhập giá trị nam cao"
-                                                          autocomplete="off"></el-input>
+                                                                 style="width: 100%; text-align: left"
+                                                                 autocomplete="off"></el-input-number>
                                                 <div class="el-form-item__error"
                                                      v-if="form.errors.has('male_max_value')"
                                                      v-text="form.errors.first('male_max_value')"></div>
@@ -181,9 +186,10 @@
                                         <div class="col-md-3">
                                             <el-form-item :label="$t('service.label.female_min_value')"
                                                           :class="{'el-form-item is-error': form.errors.has('female_min_value') }">
-                                                <el-input v-model="modelForm.female_min_value" size="small"
+                                                <el-input-number :controls="false" v-model="modelForm.female_min_value" size="small"
                                                           placeholder="Nhập giá trị nữ thấp"
-                                                          autocomplete="off"></el-input>
+                                                                 style="width: 100%"
+                                                                 autocomplete="off"></el-input-number>
                                                 <div class="el-form-item__error"
                                                      v-if="form.errors.has('female_min_value')"
                                                      v-text="form.errors.first('female_min_value')"></div>
@@ -192,9 +198,10 @@
                                         <div class="col-md-3">
                                             <el-form-item :label="$t('service.label.female_max_value')"
                                                           :class="{'el-form-item is-error': form.errors.has('female_max_value') }">
-                                                <el-input v-model="modelForm.female_max_value" size="small"
+                                                <el-input-number :controls="false" v-model="modelForm.female_max_value" size="small"
                                                           placeholder="Nhập giá trị nữ cao"
-                                                          autocomplete="off"></el-input>
+                                                                 style="width: 100%"
+                                                                 autocomplete="off"></el-input-number>
                                                 <div class="el-form-item__error"
                                                      v-if="form.errors.has('female_max_value')"
                                                      v-text="form.errors.first('female_max_value')"></div>
@@ -211,6 +218,30 @@
                     </div>
                 </div>
 
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+
+                            <div class="card-body">
+
+                                <div class="f-box-title  d-flex align-items-center">
+                                    <svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M0.751357 0.494751H19.2514C19.5304 0.494751 19.7566 0.720965 19.7566 1.00001V14.75C19.7566 15.0291 19.5304 15.2553 19.2514 15.2553H0.751357C0.472308 15.2553 0.246094 15.0291 0.246094 14.75V1.00001C0.246094 0.720965 0.472308 0.494751 0.751357 0.494751ZM18.7459 14.2445V1.50526H1.25661V14.2445H18.7459Z" fill="#252525"/>
+                                        <path d="M2.99609 8.50289L3.00091 7.49237L17.0114 7.55908L17.0066 8.5696L2.99609 8.50289Z" fill="#252525"/>
+                                        <path d="M2.99609 10.5648L3.00091 9.55426L17.0114 9.62097L17.0066 10.6315L2.99609 10.5648Z" fill="#252525"/>
+                                        <path d="M2.99609 12.6267L3.00091 11.6162L17.0114 11.6829L17.0066 12.6934L2.99609 12.6267Z" fill="#252525"/>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M3.50136 2.99475H9.75136C10.0304 2.99475 10.2566 3.22096 10.2566 3.50001V6.00001C10.2566 6.27906 10.0304 6.50528 9.75136 6.50528H3.50136C3.22231 6.50528 2.99609 6.27906 2.99609 6.00001V3.50001C2.99609 3.22096 3.22231 2.99475 3.50136 2.99475ZM9.24586 5.49451V4.00526H4.00661V5.49451H9.24586Z" fill="#252525"/>
+                                    </svg>
+
+                                    <span class="f-text-title pl-1"> Chỉ số con</span>
+                                </div>
+
+                                <service-index :service_id="$route.params.testingserviceId" @update-service-index="onUpdateServiceIndex"></service-index>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
 
             </div>
         </section>
@@ -223,11 +254,15 @@
 
 <script>
     import Form from 'form-backend-validation';
+    import ServiceIndex from './serviceindex';
 
     export default {
         props: {
             locales: {default: null},
             pageTitle: {default: null, String},
+        },
+        components: {
+            ServiceIndex
         },
         data() {
             return {
@@ -250,14 +285,14 @@
                     code_lis: '',
                     name: '',
                     type: '',
-                    min_value: '',
-                    max_value: '',
+                    min_value: null,
+                    max_value: null,
                     ref_value: '',
                     unit: '',
-                    male_min_value: '',
-                    male_max_value: '',
-                    female_min_value: '',
-                    female_max_value: '',
+                    male_min_value: null,
+                    male_max_value: null,
+                    female_min_value: null,
+                    female_max_value: null,
 
 
 
@@ -267,7 +302,9 @@
             };
         },
         methods: {
-
+            onUpdateServiceIndex(list_service_index) {
+                this.modelForm.list_service_index = list_service_index
+            },
             onSubmit() {
                 this.form = new Form(_.merge(this.modelForm, {}));
                 this.loading = true;
@@ -347,5 +384,6 @@
 </script>
 
 <style scoped>
+
 
 </style>
