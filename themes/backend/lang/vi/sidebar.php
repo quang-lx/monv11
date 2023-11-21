@@ -35,6 +35,7 @@ return [
     'home' => 'Trang chủ',
     'packages' => 'Gói cước',
     'device' => 'Quản lý thiết bị',
+    'disease' => 'Khám bệnh',
 
 
 
