@@ -123,7 +123,7 @@
                                             :key="col_selected.col_name"
                                             :prop="col_selected.col_name"
                                                          :label="list_col_label[col_selected.col_name]"
-                                            width="150"  >
+                                            min-width="150"  >
                                             <template slot-scope="scope">
 
                                                 <span v-if="col_selected.col_name == 'sex'">{{ scope.row.sex_text}}</span>

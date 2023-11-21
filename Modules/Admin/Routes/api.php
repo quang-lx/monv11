@@ -303,7 +303,57 @@ Route::middleware('auth:api')->prefix('/devices')->group(function (){
 
     ]);
 });
+Route::middleware('auth:api')->prefix('/service')->group(function (){
+
+    Route::get('/', [
+        'as' => 'api.service.index',
+        'uses' => 'TestingService\TestingServiceController@index',
+    ]);
+    Route::post('/{testingservice}/edit', [
+            'as' => 'api.service.update',
+            'uses' => 'TestingService\TestingServiceController@update',
+        ]);
+   Route::get('/{testingservice}', [
+              'as' => 'api.service.find',
+              'uses' => 'TestingService\TestingServiceController@find',
+          ]);
+    Route::post('/', [
+        'as' => 'api.service.store',
+        'uses' => 'TestingService\TestingServiceController@store',
+    ]);
+
+    Route::delete('/{testingservice}', [
+        'as' => 'api.service.destroy',
+        'uses' => 'TestingService\TestingServiceController@destroy',
+    ]);
+});
+Route::middleware('auth:api')->prefix('/serviceindices')->group(function (){
+
+    Route::get('/', [
+        'as' => 'api.serviceindex.index',
+        'uses' => 'ServiceIndex\ServiceIndexController@index',
+    ]);
+    Route::post('/{serviceindex}/edit', [
+            'as' => 'api.serviceindex.update',
+            'uses' => 'ServiceIndex\ServiceIndexController@update',
+        ]);
+   Route::get('/{serviceindex}', [
+              'as' => 'api.serviceindex.find',
+              'uses' => 'ServiceIndex\ServiceIndexController@find',
+          ]);
+    Route::post('/', [
+        'as' => 'api.serviceindex.store',
+        'uses' => 'ServiceIndex\ServiceIndexController@store',
+    ]);
+
+    Route::delete('/{serviceindex}', [
+        'as' => 'api.serviceindex.destroy',
+        'uses' => 'ServiceIndex\ServiceIndexController@destroy',
+    ]);
+});
 // append
+
+
 
 
 

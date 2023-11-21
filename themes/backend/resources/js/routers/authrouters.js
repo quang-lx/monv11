@@ -4,8 +4,8 @@ import PermissionForm from './../components/auth/permission/form.vue';
 import Role from './../components/auth/role/index.vue';
 import RoleForm from './../components/auth/role/form.vue';
 
-import UserList from './../components/auth/user/index.vue';
-import UserForm from './../components/auth/user/form.vue';
+import ServiceList from './../components/testingservice/index.vue';
+import ServiceForm from './../components/testingservice/form.vue';
 
 import AdminList from './../components/auth/admin/index.vue';
 import AdminForm from './../components/auth/admin/form.vue';
@@ -122,6 +122,30 @@ export default [
             pageTitle: 'user.label.profile',
         },
     },
+
+    {
+        path: '/admin/service',
+        name: 'admin.service.index',
+        component: ServiceList,
+    },
+    {
+        path: '/admin/service/create',
+        name: 'admin.service.create',
+        component: ServiceForm,
+        props: {
+            pageTitle: 'service.label.create_service',
+        },
+    },
+
+    {
+        path: '/admin/service/:testingserviceId/edit',
+        name: 'admin.service.edit',
+        component: ServiceForm,
+        props: {
+            pageTitle: 'service.label.update_service',
+        },
+    },
+
 
 
 

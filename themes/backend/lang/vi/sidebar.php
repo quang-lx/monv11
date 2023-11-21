@@ -25,9 +25,11 @@ return [
     // general setting
      'media' => 'Media',
 
-    'category' => 'Danh mục',
+    'category' => 'Quản lý danh mục',
+    'testing service' => 'Danh mục xét nghiệm',
 
     'news' => 'Tin tức',
+    'service' => 'Tin tức',
 
 
     'home' => 'Trang chủ',

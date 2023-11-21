@@ -190,7 +190,7 @@ Route::group(['prefix' => '/department'], function ( ) {
         'uses' => 'Department\DepartmentController@edit',
         'middleware' => 'permission:admin.department.edit'
     ]);
-    
+
 });
 Route::group(['prefix' => '/configdisplay'], function ( ) {
 
@@ -234,7 +234,51 @@ Route::group(['prefix' => '/device'], function ( ) {
 
 
 });
+Route::group(['prefix' => '/service'], function ( ) {
+
+    Route::get('/', [
+        'as' => 'admin.service.index',
+        'uses' => 'TestingService\TestingServiceController@index',
+        'middleware' => 'permission:admin.service.index'
+    ]);
+    Route::get('create', [
+        'as' => 'admin.service.create',
+        'uses' => 'TestingService\TestingServiceController@create',
+        'middleware' => 'permission:admin.service.create'
+    ]);
+
+    Route::get('{testingservice}/edit', [
+        'as' => 'admin.service.edit',
+        'uses' => 'TestingService\TestingServiceController@edit',
+        'middleware' => 'permission:admin.service.edit'
+    ]);
+
+
+});
+Route::group(['prefix' => '/service-index'], function ( ) {
+
+    Route::get('/', [
+        'as' => 'admin.serviceindex.index',
+        'uses' => 'ServiceIndex\ServiceIndexController@index',
+        'middleware' => 'permission:admin.serviceindex.index'
+    ]);
+    Route::get('create', [
+        'as' => 'admin.serviceindex.create',
+        'uses' => 'ServiceIndex\ServiceIndexController@create',
+        'middleware' => 'permission:admin.serviceindex.create'
+    ]);
+
+    Route::get('{serviceindex}/edit', [
+        'as' => 'admin.serviceindex.edit',
+        'uses' => 'ServiceIndex\ServiceIndexController@edit',
+        'middleware' => 'permission:admin.serviceindex.edit'
+    ]);
+
+
+});
 // append
+
+
 
 
 
