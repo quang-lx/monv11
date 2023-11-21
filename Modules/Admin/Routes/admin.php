@@ -276,7 +276,29 @@ Route::group(['prefix' => '/service-index'], function ( ) {
 
 
 });
+Route::group(['prefix' => '/disease'], function ( ) {
+
+    Route::get('/', [
+        'as' => 'admin.disease.index',
+        'uses' => 'Disease\DiseaseController@index',
+        'middleware' => 'permission:admin.disease.index'
+    ]);
+    Route::get('create', [
+        'as' => 'admin.disease.create',
+        'uses' => 'Disease\DiseaseController@create',
+        'middleware' => 'permission:admin.disease.create'
+    ]);
+
+    Route::get('{disease}/edit', [
+        'as' => 'admin.disease.edit',
+        'uses' => 'Disease\DiseaseController@edit',
+        'middleware' => 'permission:admin.disease.edit'
+    ]);
+
+
+});
 // append
+
 
 
 

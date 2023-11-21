@@ -95,7 +95,7 @@ class DeviceController extends ApiController
 
     public function imports(ExcelUploadRequest $request)
     {
-        $import = new ImportDevices($request);
+        $import = new ImportDevices();
         Excel::import($import, $request->file('file'));
         $data_device = $import->getDataImport();
         $list_error = [];
