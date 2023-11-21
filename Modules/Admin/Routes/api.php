@@ -351,7 +351,43 @@ Route::middleware('auth:api')->prefix('/serviceindices')->group(function (){
         'uses' => 'ServiceIndex\ServiceIndexController@destroy',
     ]);
 });
+Route::middleware('auth:api')->prefix('/diseases')->group(function (){
+
+    Route::get('/', [
+        'as' => 'api.disease.index',
+        'uses' => 'Disease\DiseaseController@index',
+    ]);
+    Route::post('/{disease}/edit', [
+            'as' => 'api.disease.update',
+            'uses' => 'Disease\DiseaseController@update',
+        ]);
+   Route::get('/{disease}', [
+              'as' => 'api.disease.find',
+              'uses' => 'Disease\DiseaseController@find',
+          ]);
+    Route::post('/', [
+        'as' => 'api.disease.store',
+        'uses' => 'Disease\DiseaseController@store',
+    ]);
+
+    Route::delete('/{disease}', [
+        'as' => 'api.disease.destroy',
+        'uses' => 'Disease\DiseaseController@destroy',
+    ]);
+    
+    Route::post('exports', [
+        'as' => 'api.disease.exports',
+        'uses' => 'Disease\DiseaseController@exports',
+    ]);
+
+    Route::post('imports', [
+        'as' => 'api.disease.imports',
+        'uses' => 'Disease\DiseaseController@imports',
+
+    ]);
+});
 // append
+
 
 
 

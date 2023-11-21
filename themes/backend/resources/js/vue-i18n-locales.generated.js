@@ -225,6 +225,27 @@ export default {
                 "import success": "Tải lên danh sách device thành công."
             }
         },
+        "disease": {
+            "label": {
+                "id": "ID",
+                "stt": "STT",
+                "code": "Mã bệnh",
+                "name": "Tên bệnh",
+                "created_at": "Ngày tạo",
+                "created_by": "Người tạo",
+                "describe": "Mô tả",
+                "title": "Danh sách bệnh",
+                "create_disease": "Thêm mới",
+                "update_disease": "Cập nhật bệnh",
+                "import title": "Tải lên danh sách"
+            },
+            "message": {
+                "create success": "Tạo bệnh thành công.",
+                "update success": "Cập nhật bệnh thành công.",
+                "delete success": "Xóa bệnh thành công.",
+                "import success": "Tải lên danh sách bệnh thành công."
+            }
+        },
         "media": {
             "label": {
                 "media": "Media",
@@ -460,7 +481,8 @@ export default {
             "service": "Tin tức",
             "home": "Trang chủ",
             "packages": "Gói cước",
-            "device": "Quản lý thiết bị"
+            "device": "Quản lý thiết bị",
+            "disease": "Khám bệnh"
         },
         "user": {
             "label": {

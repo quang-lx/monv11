@@ -173,7 +173,15 @@ class AdminServiceProvider extends ServiceProvider
                 return $repository;
             }
         );
+        $this->app->bind(
+            'Modules\Admin\Repositories\DiseaseRepository',
+            function () {
+                $repository = new \Modules\Admin\Repositories\Eloquent\EloquentDiseaseRepository(new \Modules\Mon\Entities\Disease());
+                return $repository;
+            }
+        );
 // add bindings
+
 
 
 
