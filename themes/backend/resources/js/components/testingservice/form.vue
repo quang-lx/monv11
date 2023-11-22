@@ -285,14 +285,15 @@
                     code_lis: '',
                     name: '',
                     type: '',
-                    min_value: null,
-                    max_value: null,
+                    min_value: undefined,
+                    max_value: undefined,
                     ref_value: '',
                     unit: '',
-                    male_min_value: null,
-                    male_max_value: null,
-                    female_min_value: null,
-                    female_max_value: null,
+                    male_min_value: undefined,
+                    male_max_value: undefined,
+                    female_min_value: undefined,
+                    female_max_value: undefined,
+                    list_service_index: []
 
 
 

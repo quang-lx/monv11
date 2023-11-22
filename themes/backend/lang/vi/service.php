@@ -2,7 +2,7 @@
 return [
     'label' => [
         'id' => 'ID',
-        'name' => 'Tên dịch vụ ',
+        'name' => 'Tên dịch vụ',
         'code' => 'Mã dịch vụ',
         'code_lis' => 'Mã gửi LIS',
         'type' => 'Loại dịch vụ',

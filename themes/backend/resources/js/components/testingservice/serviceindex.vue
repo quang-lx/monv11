@@ -50,6 +50,10 @@
 
                                     <el-table :data="data" stripe style="width: 100%" ref="dataTable"
                                         v-loading.body="tableIsLoading" @sort-change="handleSortChange">
+
+                                        <el-table-column   :label="$t('common.stt')" width="75" type="index" > </el-table-column>
+
+
                                         <el-table-column prop="code" :label="$t('service.label.code')" width="120">
                                             <template slot-scope="scope">
                                                 <span v-if="scope.row.is_edit">
@@ -292,14 +296,14 @@ export default {
                 code_lis: '',
                 name: '',
                 type: '',
-                min_value: '',
-                max_value: '',
-                ref_value: '',
+                min_value: undefined,
+                max_value: undefined,
+                ref_value: undefined,
                 unit: '',
-                male_min_value: '',
-                male_max_value: '',
-                female_min_value: '',
-                female_max_value: '',
+                male_min_value: undefined,
+                male_max_value: undefined,
+                female_min_value: undefined,
+                female_max_value: undefined,
                 is_edit: 1
             }
 

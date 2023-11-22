@@ -45,10 +45,7 @@
                                         ref="dataTable"
                                         v-loading.body="tableIsLoading"
                                         @sort-change="handleSortChange">
-                                        <el-table-column   :label="$t('common.stt')" width="75" type="index"
-                                                          >
-
-                                        </el-table-column>
+                                        <el-table-column   :label="$t('common.stt')" width="75" type="index" > </el-table-column>
                                         <el-table-column prop="name" :label="$t('role.label.name')"  >
 
                                         </el-table-column>
