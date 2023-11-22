@@ -33,7 +33,7 @@
                         <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange"
                                        :current-page.sync="meta.current_page" :page-sizes="[25, 50, 75, 100]"
                                        :page-size="parseInt(meta.per_page)"
-                                       layout="sizes, prev, pager, next" :total="meta.total">
+                                       layout="sizes, prev, pager, next" :total="meta.total" v-if="meta.total> 25">
                         </el-pagination>
 
                     </div>

@@ -17,10 +17,10 @@ class EloquentServiceIndexRepository extends BaseRepository implements ServiceIn
         if ($request->get('search') !== null) {
             $keyword = $request->get('search');
             $query->where(function ($q) use ($keyword) {
-                $q->where('code', 'LIKE', "%{$keyword}%");
-                $q->where('code_lis', 'LIKE', "%{$keyword}%");
-                $q->where('name', 'LIKE', "%{$keyword}%");
-                $q->where('type', 'LIKE', "%{$keyword}%");
+                $q->orWhere('code', 'LIKE', "%{$keyword}%");
+                $q->orWhere('code_lis', 'LIKE', "%{$keyword}%");
+                $q->orWhere('name', 'LIKE', "%{$keyword}%");
+                $q->orWhere('type', 'LIKE', "%{$keyword}%");
 
             });
         }

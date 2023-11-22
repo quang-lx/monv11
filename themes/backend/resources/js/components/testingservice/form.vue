@@ -287,7 +287,7 @@
                     type: '',
                     min_value: undefined,
                     max_value: undefined,
-                    ref_value: '',
+                    ref_value: undefined,
                     unit: '',
                     male_min_value: undefined,
                     male_max_value: undefined,
