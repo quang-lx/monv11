@@ -278,6 +278,9 @@
                     ],
                     code_lis: [
                         { required: true, message: '' , trigger: 'submit'}
+                    ],
+                    type: [
+                        { required: true, message: '' , trigger: 'submit'}
                     ]
                 },
                 modelForm: {
