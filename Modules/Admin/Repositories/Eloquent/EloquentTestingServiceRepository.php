@@ -11,22 +11,27 @@ class EloquentTestingServiceRepository extends BaseRepository implements Testing
 {
     public function create($data)
     {
-        $list_service_index= $data['list_service_index'];
+        $list_service_index= $data['list_service_index']?? [];
 
         unset($data['list_service_index']);
 
         $model = $this->model->create($data);
-        $this->syncServiceIndex($model,$list_service_index);
+        if (count($list_service_index)) {
+            $this->syncServiceIndex($model,$list_service_index);
+        }
         return $model;
     }
 
     public function update($model, $data)
     {
-        $list_service_index= $data['list_service_index'];
+        $list_service_index= $data['list_service_index']?? [];
 
         unset($data['list_service_index']);
         $model->update($data);
-        $this->syncServiceIndex($model,$list_service_index);
+        if (count($list_service_index)) {
+            $this->syncServiceIndex($model,$list_service_index);
+        }
+
         return $model;
     }
     public function syncServiceIndex($model,$list_service_index) {
