@@ -26,7 +26,7 @@ return [
      'media' => 'Media',
 
     'category' => 'Quản lý danh mục',
-    'testing service' => 'Danh mục xét nghiệm',
+    'testing service' => 'Danh mục dịch vụ',
 
     'news' => 'Tin tức',
     'service' => 'Tin tức',
