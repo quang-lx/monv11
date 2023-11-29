@@ -98,9 +98,11 @@
                                         <div class="col-md-3">
                                             <el-form-item :label="$t('service.label.type')"
                                                           :class="{'el-form-item is-error': form.errors.has('type') }">
-                                                <el-input v-model="modelForm.type" size="small"
-                                                          placeholder="Nhập tên dịch vụ"
-                                                          autocomplete="off"></el-input>
+                                                <el-select v-model="modelForm.type" placeholder="Chọn loại dịch vụ" style="width: 100%">
+                                                    <el-option v-for="item in list_serivce_type" :key="item.id" :label="item.name"
+                                                               :value="item.id">
+                                                    </el-option>
+                                                </el-select>
                                                 <div class="el-form-item__error"
                                                      v-if="form.errors.has('type')"
                                                      v-text="form.errors.first('type')"></div>
@@ -253,6 +255,7 @@
 <script>
     import Form from 'form-backend-validation';
     import ServiceIndex from './serviceindex';
+    import _ from "lodash";
 
     export default {
         props: {
@@ -300,6 +303,7 @@
 
 
                 },
+                list_serivce_type: []
 
             };
         },
@@ -375,9 +379,26 @@
                 return route('api.service.store');
             },
 
+            getServiceType() {
+
+                const properties = {
+                    page: 1,
+                    per_page: 10000
+
+                };
+
+                window.axios.get(route('api.servicetype.index', properties))
+                    .then((response) => {
+
+                        this.list_service_type = response.data.data;
+
+                    });
+            },
+
 
         },
         mounted() {
+            this.getServiceType();
             this.fetchData();
 
         },
