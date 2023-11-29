@@ -2,9 +2,7 @@
     <div>
 
 
-        <!-- Main content -->
-        <section class="content">
-            <div class="container-fluid">
+
                 <div class="row justify-content-between mb-2">
                     <div class="col-md-4 d-flex flex-row align-items-center">
                         <span>Danh sách chỉ số con</span>
@@ -251,9 +249,7 @@
                     </div>
                 </div>
 
-            </div>
-        </section>
-
+         
 
 
     </div>
