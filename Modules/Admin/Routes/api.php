@@ -386,7 +386,32 @@ Route::middleware('auth:api')->prefix('/diseases')->group(function (){
 
     ]);
 });
+Route::middleware('auth:api')->prefix('/servicetypes')->group(function (){
+
+    Route::get('/', [
+        'as' => 'api.servicetype.index',
+        'uses' => 'ServiceType\ServiceTypeController@index',
+    ]);
+    Route::post('/{servicetype}/edit', [
+            'as' => 'api.servicetype.update',
+            'uses' => 'ServiceType\ServiceTypeController@update',
+        ]);
+   Route::get('/{servicetype}', [
+              'as' => 'api.servicetype.find',
+              'uses' => 'ServiceType\ServiceTypeController@find',
+          ]);
+    Route::post('/', [
+        'as' => 'api.servicetype.store',
+        'uses' => 'ServiceType\ServiceTypeController@store',
+    ]);
+
+    Route::delete('/{servicetype}', [
+        'as' => 'api.servicetype.destroy',
+        'uses' => 'ServiceType\ServiceTypeController@destroy',
+    ]);
+});
 // append
+
 
 
 

@@ -11,5 +11,6 @@ return [
     'apply' => 'Áp dụng',
     'accept' => 'Đồng ý',
     'upload' => 'Tải lên',
+    'created_at' => 'Ngày tạo'
 
 ];

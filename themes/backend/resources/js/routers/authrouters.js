@@ -17,6 +17,12 @@ import DeviceForm from './../components/device/form.vue';
 import DiseaseList from './../components/disease/index.vue';
 import DiseaseForm from './../components/disease/form.vue';
 
+
+
+
+import ServiceTypeList from './../components/servicetype/index.vue';
+import ServiceTypeForm from './../components/servicetype/form.vue';
+
 import ProfileForm from './../components/auth/profile/form.vue';
 
 
@@ -173,6 +179,28 @@ export default [
     },
 
 
+    {
+        path: '/admin/servicetype',
+        name: 'admin.servicetype.index',
+        component: ServiceTypeList,
+    },
+    {
+        path: '/admin/servicetype/create',
+        name: 'admin.servicetype.create',
+        component: ServiceTypeForm,
+        props: {
+            pageTitle: 'servicetype.label.create_servicetype',
+        },
+    },
+
+    {
+        path: '/admin/servicetype/:servicetypeId/edit',
+        name: 'admin.servicetype.edit',
+        component: ServiceTypeForm,
+        props: {
+            pageTitle: 'servicetype.label.update_servicetype',
+        },
+    },
 
 
 ];

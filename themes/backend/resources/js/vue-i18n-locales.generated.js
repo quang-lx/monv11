@@ -187,7 +187,8 @@ export default {
             "default": "Mặc định",
             "apply": "Áp dụng",
             "accept": "Đồng ý",
-            "upload": "Tải lên"
+            "upload": "Tải lên",
+            "created_at": "Ngày tạo"
         },
         "department": {
             "label": {
@@ -466,6 +467,23 @@ export default {
                 "delete success": "Xóa chỉ số thành công."
             }
         },
+        "servicetype": {
+            "label": {
+                "id": "ID",
+                "name": "Tên loại dịch vụ",
+                "code": "Mã loại dịch vụ",
+                "description": "Mô tả",
+                "create_servicetype": "Thêm mới loại dịch vụ",
+                "update_servicetype": "Cập nhật loại dịch vụ",
+                "import title": "Tải lên danh sách"
+            },
+            "message": {
+                "create success": "Tạo loại dịch vụ thành công.",
+                "update success": "Cập nhật loại dịch vụ thành công.",
+                "delete success": "Xóa loại dịch vụ thành công.",
+                "import success": "Tải lên danh sách loại dịch vụ thành công."
+            }
+        },
         "sidebar": {
             "system administration": "Quản trị chung",
             "roles and permission": "Roles and permission",
@@ -539,26 +557,6 @@ export default {
                 "change password success": "Đổi mật khẩu thành công.",
                 "not allow self delete": "Không cho phép xóa tài khoản bạn đang đăng nhập.",
                 "reset password success": "Reset mật khẩu thành công."
-            }
-        },
-        "voucher": {
-            "label": {
-                "voucher": "Voucher",
-                "id": "ID",
-                "name": "Tên",
-                "type": "Loại",
-                "status": "Trạng thái",
-                "amount": "Số lượng",
-                "range_time": "Thời gian",
-                "start_time": "Thời gian bắt đầu",
-                "end_time": "Thời gian kết thúc",
-                "create_voucher": "Tạo Voucher ",
-                "update_voucher": "Cập nhật"
-            },
-            "message": {
-                "create success": "Tạo Voucher  thành công.",
-                "update success": "Cập nhật Voucher  thành công.",
-                "delete success": "Xóa Voucher  thành công."
             }
         }
     }
