@@ -14,8 +14,13 @@ return [
         'unit' => 'Đơn vị',
         'female_min_value' => 'Giá trị nữ thấp',
         'female_max_value' => 'Giá trị nữ cao',
+        'status' => 'Trạng thái dịch vụ',
 
         'title' => 'Danh sách dịch vụ khám',
+        'stt' => 'STT',
+        'created_at' => 'Ngày kê',
+        'created_by' => 'Người kê',
+        'add service title' => 'Chọn dịch vụ',
 
         'create_service' => 'Thêm mới dịch vụ',
         'update_service' => 'Cập nhật dịch vụ',

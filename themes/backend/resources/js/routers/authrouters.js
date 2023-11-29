@@ -17,6 +17,9 @@ import DeviceForm from './../components/device/form.vue';
 import DiseaseList from './../components/disease/index.vue';
 import DiseaseForm from './../components/disease/form.vue';
 
+import PatientList from './../components/patient/index.vue';
+import PatientForm from './../components/patient/form.vue';
+
 import ProfileForm from './../components/auth/profile/form.vue';
 
 
@@ -169,6 +172,29 @@ export default [
         component: DiseaseForm,
         props: {
             pageTitle: 'disease.label.update_disease',
+        },
+    },
+
+    {
+        path: '/admin/patient',
+        name: 'admin.patient.index',
+        component: PatientList,
+    },
+    {
+        path: '/admin/patient/create',
+        name: 'admin.patient.create',
+        component: PatientForm,
+        props: {
+            pageTitle: 'patient.label.create_patient',
+        },
+    },
+
+    {
+        path: '/admin/patient/:patientId/edit',
+        name: 'admin.patient.edit',
+        component: PatientForm,
+        props: {
+            pageTitle: 'patient.label.update_patient',
         },
     },
 
