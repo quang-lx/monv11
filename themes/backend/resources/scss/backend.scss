@@ -178,3 +178,9 @@ aside .sidebar {
 .el-input.is-disabled .el-input__inner{
   color: var(--gray-9, #2F3748);
 }
+
+.select-date-customer .el-input__inner{
+  padding-left: 8px;
+  padding-right: 8px;
+  width: 140px;
+}

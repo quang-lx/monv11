@@ -297,7 +297,29 @@ Route::group(['prefix' => '/disease'], function ( ) {
 
 
 });
+Route::group(['prefix' => '/patient'], function ( ) {
+
+    Route::get('/', [
+        'as' => 'admin.patient.index',
+        'uses' => 'Patient\PatientController@index',
+        'middleware' => 'permission:admin.patient.index'
+    ]);
+    Route::get('create', [
+        'as' => 'admin.patient.create',
+        'uses' => 'Patient\PatientController@create',
+        'middleware' => 'permission:admin.patient.create'
+    ]);
+
+    Route::get('{patient}/edit', [
+        'as' => 'admin.patient.edit',
+        'uses' => 'Patient\PatientController@edit',
+        'middleware' => 'permission:admin.patient.edit'
+    ]);
+
+
+});
 // append
+
 
 
 
