@@ -26,6 +26,7 @@ class ServiceIndexTransformer extends JsonResource
             'male_min_value' => $this->male_min_value,
             'male_max_value' => $this->male_max_value,
             'unit' => $this->unit,
+            'is_edit' => 0,
             'female_min_value' => $this->female_min_value,
             'female_max_value' => $this->female_max_value,
              'urls' => [

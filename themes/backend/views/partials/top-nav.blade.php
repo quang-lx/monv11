@@ -27,20 +27,20 @@
                         </a>
                     </div>
                     <div class="dropdown-divider"></div>
-                    <div class="d-flex justify-content-between align-items-center my-3 langauge">
-                        <div class="d-flex align-items-center">
-                            <img class="mr-3" src="{{ URL::asset('/images/global.svg') }}" alt="">
-                        <p>Ngôn ngữ</p>
-                        </div>
-                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                            <label class="btn active">
-                                <input type="radio" name="options" id="option1" autocomplete="off" checked> EN
-                            </label>
-                            <label class="btn">
-                                <input type="radio" name="options" id="option2" autocomplete="off"> VI
-                            </label>
-                        </div>
-                    </div>
+{{--                    <div class="d-flex justify-content-between align-items-center my-3 langauge">--}}
+{{--                        <div class="d-flex align-items-center">--}}
+{{--                            <img class="mr-3" src="{{ URL::asset('/images/global.svg') }}" alt="">--}}
+{{--                        <p>Ngôn ngữ</p>--}}
+{{--                        </div>--}}
+{{--                        <div class="btn-group btn-group-toggle" data-toggle="buttons">--}}
+{{--                            <label class="btn active">--}}
+{{--                                <input type="radio" name="options" id="option1" autocomplete="off" checked> EN--}}
+{{--                            </label>--}}
+{{--                            <label class="btn">--}}
+{{--                                <input type="radio" name="options" id="option2" autocomplete="off"> VI--}}
+{{--                            </label>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
                     <div class="dropdown-divider"></div>
                     <div class="mt-3 mb-2 d-flex align-items-center">
                             <img class="mr-3" src="{{ URL::asset('/images/logout.svg') }}" alt="">
