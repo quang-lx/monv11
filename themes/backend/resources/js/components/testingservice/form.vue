@@ -99,7 +99,9 @@
                                             <el-form-item :label="$t('service.label.type')"
                                                           prop="type"
                                                           :class="{'el-form-item is-error': form.errors.has('type') }">
-                                                <el-select v-model="modelForm.type" placeholder="Chọn loại dịch vụ" style="width: 100%" size="small">
+                                                <el-select v-model="modelForm.type"
+                                                           filterable
+                                                           placeholder="Chọn loại dịch vụ" style="width: 100%" size="small">
                                                     <el-option v-for="item in list_service_type" :key="item.id" :label="item.name"
                                                                :value="item.id">
                                                     </el-option>
