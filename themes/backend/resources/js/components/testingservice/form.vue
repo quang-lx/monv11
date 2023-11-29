@@ -114,7 +114,7 @@
                                                           :class="{'el-form-item is-error': form.errors.has('min_value') }">
                                                 <el-input-number :controls="false" v-model="modelForm.min_value" size="small"
                                                                  style="width: 100%"
-                                                          placeholder="Nhập giá trị thấp"
+                                                          placeholder="Nhập Trẻ em thấp"
                                                           autocomplete="off"></el-input-number>
                                                 <div class="el-form-item__error"
                                                      v-if="form.errors.has('min_value')"
@@ -125,7 +125,7 @@
                                             <el-form-item :label="$t('service.label.max_value')"
                                                           :class="{'el-form-item is-error': form.errors.has('max_value') }">
                                                 <el-input-number :controls="false" v-model="modelForm.max_value" size="small"
-                                                          placeholder="Nhập giá trị cao"
+                                                          placeholder="Nhập Trẻ em cao"
                                                                  style="width: 100%"
                                                                  autocomplete="off"></el-input-number>
                                                 <div class="el-form-item__error"
@@ -138,7 +138,6 @@
                                                           :class="{'el-form-item is-error': form.errors.has('ref_value') }">
                                                 <el-input-number :controls="false" v-model="modelForm.ref_value" size="small"
                                                                  style="width: 100%"
-                                                            disabled
                                                                  autocomplete="off"></el-input-number>
                                                 <div class="el-form-item__error"
                                                      v-if="form.errors.has('ref_value')"
@@ -149,7 +148,6 @@
                                             <el-form-item :label="$t('service.label.unit')"
                                                           :class="{'el-form-item is-error': form.errors.has('unit') }">
                                                 <el-input v-model="modelForm.unit" size="small"
-                                                          disabled
                                                           autocomplete="off"></el-input>
                                                 <div class="el-form-item__error"
                                                      v-if="form.errors.has('unit')"

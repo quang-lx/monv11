@@ -295,6 +295,182 @@ export default {
                 "permission_denied": "Không có quyền truy cập...."
             }
         },
+        "news": {
+            "label": {
+                "news": "Tin tức",
+                "category": "Danh mục",
+                "category_id": "Danh mục",
+                "id": "ID",
+                "title": "Tiêu đề",
+                "slug": "Đường dẫn",
+                "description": "Mô tả ngắn",
+                "content": "Nội dung",
+                "status": "Trạng thái",
+                "author": "Tác giả",
+                "from_source": "Nguồn tin",
+                "create_news": "Tạo tin tức",
+                "update_news": "Cập nhật",
+                "tags": "Thẻ tag",
+                "flag_hot": "Mục hot",
+                "flag_featured": "Mục tiêu biểu",
+                "flag_most_read": "Mục đọc nhiều nhất",
+                "flag_video": "Mục video",
+                "meta_keywords": "Thẻ mô tả từ khóa",
+                "meta_title": "Thẻ mô tả tiêu đề",
+                "meta_description": "Thẻ tóm tắt nội dung"
+            },
+            "message": {
+                "create success": "Tạo tin tức thành công.",
+                "update success": "Cập nhật tin tức thành công.",
+                "delete success": "Xóa tin tức thành công."
+            }
+        },
+        "packages": {
+            "label": {
+                "packages": "Gói cước",
+                "id": "ID",
+                "name": "Tên",
+                "period_time": "Số tháng",
+                "price": "Số tiền",
+                "status": "Trạng thái",
+                "create_packages": "Tạo gói cước ",
+                "update_packages": "Cập nhật"
+            },
+            "message": {
+                "create success": "Tạo gói cước  thành công.",
+                "update success": "Cập nhật gói cước  thành công.",
+                "delete success": "Xóa gói cước  thành công."
+            }
+        },
+        "permission": {
+            "label": {
+                "id": "ID",
+                "name": "Mã chức năng",
+                "guard_name": "Guard name",
+                "title": "Tên chức năng",
+                "group": "Nhóm",
+                "group_name": "Tên nhóm",
+                "created_at": "Ngày tạo",
+                "updated_at": "Ngày cập nhật",
+                "create_permission": "Thêm mới",
+                "update_permission": "Cập nhật",
+                "permissions": "Danh sách chức năng"
+            },
+            "message": {
+                "create success": "Thêm mới chức năng thành công.",
+                "update success": "Cập nhật chức năng thành công.",
+                "delete success": "Xóa chức năng thành công."
+            },
+            "group_mapping": {
+                "admins": "Quản trị viên",
+                "category": "Danh mục",
+                "dashboard": "Trang admin",
+                "login": "Đăng nhập",
+                "media": "Media",
+                "news": "Tin tức",
+                "roles": "Nhóm quyền",
+                "permissions": "Chức năng",
+                "users": "Người dùng"
+            }
+        },
+        "profile": {
+            "label": {
+                "profile": "Thông tin tài khoản"
+            }
+        },
+        "role": {
+            "label": {
+                "id": "ID",
+                "name": "Tên vai trò",
+                "description": "Mô tả",
+                "guard_name": "Guard name",
+                "created_at": "Ngày tạo",
+                "updated_at": "Ngày cập nhật",
+                "create_role": "Thêm mới vai trò",
+                "update_role": "Cập nhật",
+                "roles": "Danh sách vai trò",
+                "permissions": "Danh sách chức năng",
+                "list_permissions": "Danh sách chức năng",
+                "selected_permissions": "Chức năng đã chọn",
+                "information": "Thông tin nhóm quyền",
+                "assign": "Gán",
+                "remove": "Hủy",
+                "tab user": "Thông tin người dùng",
+                "group name": "Mục phân quyền",
+                "function": "Chức năng",
+                "select all": "Chọn tất cả chức năng",
+                "list users": "Thông tin người dùng",
+                "add user title": "Thêm người dùng",
+                "user": "Người dùng"
+            },
+            "message": {
+                "create success": "Thêm mới nhóm quyền thành công.",
+                "update success": "Cập nhật nhóm quyền thành công.",
+                "delete success": "Xóa nhóm quyền thành công.",
+                "add permissions success": "Gán chức năng thành công",
+                "remove permissions success": "Bỏ chức năng thành công"
+            },
+            "allow": "Chọn",
+            "deny": "Từ chối",
+            "allow all": "Chọn tất cả",
+            "deny all": "Từ chối tất cả"
+        },
+        "service": {
+            "label": {
+                "id": "ID",
+                "name": "Tên dịch vụ",
+                "code": "Mã dịch vụ",
+                "code_lis": "Mã gửi LIS",
+                "type": "Loại dịch vụ",
+                "min_value": "Trẻ em thấp",
+                "max_value": "Trẻ em cao",
+                "ref_value": "Giá trị tham chiếu",
+                "male_min_value": "Giá trị nam thấp",
+                "male_max_value": "Giá trị nam cao",
+                "unit": "Đơn vị",
+                "female_min_value": "Giá trị nữ thấp",
+                "female_max_value": "Giá trị nữ cao",
+                "title": "Danh sách dịch vụ khám",
+                "create_service": "Thêm mới dịch vụ",
+                "update_service": "Cập nhật dịch vụ",
+                "import title": "Tải lên danh sách"
+            },
+            "message": {
+                "create success": "Tạo dịch vụ thành công.",
+                "update success": "Cập nhật dịch vụ thành công.",
+                "delete success": "Xóa dịch vụ thành công.",
+                "import success": "Tải lên danh sách dịch vụ thành công."
+            }
+        },
+        "serviceindex": {
+            "label": {
+                "create_serviceindex": "Thêm mới dịch vụ",
+                "update_serviceindex": "Cập nhật dịch vụ"
+            },
+            "message": {
+                "create success": "Thêm mới chỉ số thành công.",
+                "update success": "Cập nhật chỉ số thành công.",
+                "delete success": "Xóa chỉ số thành công."
+            }
+        },
+        "sidebar": {
+            "system administration": "Quản trị chung",
+            "roles and permission": "Roles and permission",
+            "admins": "Quản lý tài khoản",
+            "users": "Người dùng",
+            "roles": "Quản lý vai trò tài khoản",
+            "permissions": "Chức năng",
+            "index": "Danh sách",
+            "media": "Media",
+            "category": "Quản lý danh mục",
+            "testing service": "Danh mục dịch vụ",
+            "news": "Tin tức",
+            "service": "Tin tức",
+            "home": "Trang chủ",
+            "packages": "Gói cước",
+            "device": "Quản lý thiết bị",
+            "disease": "Khám bệnh"
+        },
         "user": {
             "label": {
                 "id": "ID",
