@@ -374,7 +374,7 @@ Route::middleware('auth:api')->prefix('/diseases')->group(function (){
         'as' => 'api.disease.destroy',
         'uses' => 'Disease\DiseaseController@destroy',
     ]);
-    
+
     Route::post('exports', [
         'as' => 'api.disease.exports',
         'uses' => 'Disease\DiseaseController@exports',
@@ -409,6 +409,36 @@ Route::middleware('auth:api')->prefix('/servicetypes')->group(function (){
         'as' => 'api.servicetype.destroy',
         'uses' => 'ServiceType\ServiceTypeController@destroy',
     ]);
+});
+Route::middleware('auth:api')->prefix('/patients')->group(function (){
+
+    Route::get('/', [
+        'as' => 'api.patient.index',
+        'uses' => 'Patient\PatientController@index',
+    ]);
+    Route::post('/{patient}/edit', [
+            'as' => 'api.patient.update',
+            'uses' => 'Patient\PatientController@update',
+        ]);
+   Route::get('/{patient}', [
+              'as' => 'api.patient.find',
+              'uses' => 'Patient\PatientController@find',
+          ]);
+    Route::post('/', [
+        'as' => 'api.patient.store',
+        'uses' => 'Patient\PatientController@store',
+    ]);
+
+    Route::get('/patient-has-service/get', [
+        'as' => 'api.patient.patientHasService',
+        'uses' => 'Patient\PatientController@getPatientHasService',
+    ]);
+
+    Route::delete('/{patient}', [
+        'as' => 'api.patient.destroy',
+        'uses' => 'Patient\PatientController@destroy',
+    ]);
+
 });
 // append
 

@@ -68,6 +68,16 @@ class UserSidebarExtender extends AbstractAdminSidebar
 
             });
 
+            $group->item(trans('backend::sidebar.patient'), function (Item $item) {
+                $item->icon('fas custom-icon route-square');
+                $item->weight(10);
+                $item->authorize(
+                    $this->auth->hasAccess('admin.patient.index')
+                );
+                $item->route('admin.patient.index');
+
+            });
+
             $group->item(trans('backend::sidebar.device'), function (Item $item) {
                 $item->icon('fas custom-icon device-icon');
                 $item->weight(10);
@@ -94,14 +104,16 @@ class UserSidebarExtender extends AbstractAdminSidebar
                     );
                 });
 
-            });
-            $group->item(trans('backend::sidebar.disease'), function (Item $item) {
-                $item->icon('fas custom-icon device-icon');
-                $item->weight(10);
-                $item->authorize(
-                    $this->auth->hasAccess('admin.disease.index')
-                );
-                $item->route('admin.disease.index');
+                $item->item(trans('backend::sidebar.disease'), function (Item $item) {
+
+                    $item->weight(0);
+
+
+                    $item->route('admin.disease.index');
+                    $item->authorize(
+                        $this->auth->hasAccess('admin.disease.index')
+                    );
+                });
 
             });
 
