@@ -114,6 +114,16 @@ class UserSidebarExtender extends AbstractAdminSidebar
                         $this->auth->hasAccess('admin.disease.index')
                     );
                 });
+                $item->item(trans('backend::sidebar.service type'), function (Item $item) {
+
+                    $item->weight(0);
+
+
+                    $item->route('admin.servicetype.index');
+                    $item->authorize(
+                        $this->auth->hasAccess('admin.servicetype.index')
+                    );
+                });
 
             });
 

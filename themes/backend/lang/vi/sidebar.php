@@ -26,16 +26,15 @@ return [
      'media' => 'Media',
 
     'category' => 'Quản lý danh mục',
-    'testing service' => 'Danh mục dịch vụ',
+    'testing service' => 'Danh mục dịch vụ xét nghiệm',
 
-    'news' => 'Tin tức',
-    'service' => 'Tin tức',
 
 
     'home' => 'Trang chủ',
     'packages' => 'Gói cước',
     'device' => 'Quản lý thiết bị',
     'disease' => 'Danh mục bệnh',
+    'service type' => 'Danh mục loại dịch vụ',
     'patient' => 'Quản lý bệnh nhân'
 
 
