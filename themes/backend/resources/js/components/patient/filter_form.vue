@@ -148,21 +148,6 @@
                 this.$emit("on-filter", this.search_data) ;
             },
 
-            getListPatient() {
-
-                const properties = {
-                    page: 1,
-                    per_page: 9000
-
-                };
-
-                window.axios.get(route('api.patients.index', properties))
-                    .then((response) => {
-
-                        this.listPatient = response.data.data;
-
-                    });
-            },
             setDefault() {
                 this.search_data = {
                     status: '',
@@ -177,7 +162,6 @@
 
         },
         mounted() {
-            this.getListPatient();
 
         },
 

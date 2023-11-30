@@ -101,8 +101,8 @@
         </section>
 
 
-        <import-disease :show_import="show_import" :loadingImport="loadingImport" @on-import="onImportdiseases"
-            @close-popup="closeImport" :data_export="data_export"></import-disease>
+        <popup-import :show_import="show_import" :loadingImport="loadingImport" @on-import="onImportdiseases"
+            @close-popup="closeImport" url_template="/excel-template/Diseases_Template.xlsx" :data_export="data_export"></popup-import>
 
     </div>
 </template>
@@ -111,13 +111,12 @@
 import InlineSvg from 'vue-inline-svg';
 import _ from 'lodash';
 import Form from "form-backend-validation";
-import ImportDisease from './import_disease';
+import PopupImport from '../utils/PopupImport';
 
 export default {
     components: {
         InlineSvg,
-        ImportDisease,
-
+        PopupImport
     },
 
     data() {

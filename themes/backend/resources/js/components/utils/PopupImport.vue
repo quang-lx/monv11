@@ -1,10 +1,10 @@
 <template>
     <div>
         <el-dialog width="40%" :show-close="true" :title="$t('device.label.import title')" :destroy-on-close="true"
-            :visible.sync="show_import">
+            :visible.sync="show_import" :before-close="onClosePopup">
             <div class="body-dialog">
                 <div class="">
-                    <div>Bấm để tải file lên hệ thống (File tải tối đã 20mb)</div>
+                    <div>Bấm để tải file lên hệ thống (File tải tối đã 20mb) 1</div>
                     <div class="import">
                         <input type="file" id="file" ref="file" v-on:change="handleFileUpload()" />
                         <div class="text-danger mt-2" v-if="data_export?.errors"
@@ -30,7 +30,7 @@
                 </div>
                 <div class="">
                     <el-button round size="small" icon="el-icon-download">
-                        <a target=”_blank”  href="/excel-template/Diseases_Template.xlsx">Dữ liệu mẫu</a>
+                        <a target=”_blank”  :href="url_template">Dữ liệu mẫu</a>
                     </el-button>
                 </div>
             </div>
@@ -38,7 +38,7 @@
                 <el-button size="small" @click="closePopup">{{
                     $t("common.cancel")
                 }}</el-button>
-                <el-button size="small" type="primary" @click="onImportDisease">{{
+                <el-button size="small" type="primary" @click="onImportDevices">{{
                     $t("common.upload")
                 }}</el-button>
             </div>
@@ -51,19 +51,23 @@ export default {
     props: {
         show_import: { default: false },
         loadingImport: { default: 0 },
+        url_template: { default: 0 },
         data_export: { default: [] }
     },
     data() {
         return {
-            show_popup: this.show_import,
             modelForm: {
                 file: "",
             },
         };
     },
     methods: {
-        onImportDisease() {
+        onImportDevices() {
             this.$emit("on-import", this.modelForm.file);
+        },
+
+        onClosePopup() {
+            this.$emit("close-popup");
         },
 
         handleFileUpload() {
