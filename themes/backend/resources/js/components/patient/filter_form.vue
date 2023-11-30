@@ -161,9 +161,7 @@
         watch: {
 
         },
-        mounted() {
 
-        },
 
     }
 </script>

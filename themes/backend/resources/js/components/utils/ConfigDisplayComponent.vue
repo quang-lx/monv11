@@ -128,7 +128,7 @@
             },
 
             onSubmitConfig() {
-                this.form = new Form(  {list_col: this.list, table_name:'user'});
+                this.form = new Form(  {list_col: this.list, table_name:this.table_name});
                 this.loading = true;
 
                 this.form.post(this.getRouteSaveConfig())
