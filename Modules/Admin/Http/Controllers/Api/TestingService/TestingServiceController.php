@@ -103,13 +103,14 @@ class TestingServiceController extends ApiController
                 $row['type'] = optional($service_type)->id;
                 DB::beginTransaction();
                 $message_error = $this->validateData($row);
-                if ($message_error) {
-                    throw new \Exception($message_error);
-                }
                 $service_index_data = $row['index'];
                 unset($row['index']);
                 $row_error['index_code'] =$service_index_data['code'];
                 $row_error['index_name'] =$service_index_data['name'];
+
+                if ($message_error) {
+                    throw new \Exception($message_error);
+                }
 
                 $testing_service = TestingService::query()->where('code' , $row['code'])->first();
                 if (!$testing_service) {

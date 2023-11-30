@@ -22,6 +22,9 @@ class ImportTestingService implements ToModel, WithHeadingRow, WithStartRow
 
    public function model(array $row)
    {
+       if(!array_filter($row)) {
+           return null;
+       }
        $result_item = [
          "code" => $row[1] ?? null,
          "code_lis" => $row[2] ?? null,
