@@ -26,8 +26,8 @@ class UpdateTestingServiceRequest extends FormRequest
                 $rules = array_merge($rules, ['list_service_index.'.$key.'.code' => 'required|unique:testing_service_index,code,'.$service_index['id']]);
                 $rules = array_merge($rules, ['list_service_index.'.$key.'.code_lis' => 'required|unique:testing_service_index,code_lis,'.$service_index['id']]);
             } else {
-                $rules = array_merge($rules, ['list_service_index.'.$key.'.code' => 'required|unique:testing_service_index']);
-                $rules = array_merge($rules, ['list_service_index.'.$key.'.code_lis' => 'required|unique:testing_service_index']);
+                $rules = array_merge($rules, ['list_service_index.'.$key.'.code' => 'required|unique:testing_service_index,code']);
+                $rules = array_merge($rules, ['list_service_index.'.$key.'.code_lis' => 'required|unique:testing_service_index,code_lis']);
             }
         }
         return $rules;
