@@ -106,7 +106,7 @@ class EloquentPatientRepository extends BaseRepository implements PatientReposit
         }
 
         $time_range = $request->get('time_range');
-        if ($time_range !== null) {
+        if ($time_range !== null && count($time_range)> 0) {
 
             $query->whereBetween('birthday', $time_range);
         }
