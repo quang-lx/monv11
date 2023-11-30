@@ -8,6 +8,7 @@ use Modules\Admin\Repositories\PatientRepository;
 use Modules\Mon\Entities\PatientHasService;
 use \Modules\Mon\Repositories\Eloquent\BaseRepository;
 use Illuminate\Http\Request;
+use Modules\Mon\Entities\Patient;
 
 class EloquentPatientRepository extends BaseRepository implements PatientRepository
 {
@@ -15,6 +16,8 @@ class EloquentPatientRepository extends BaseRepository implements PatientReposit
     public function create($data)
     {
         $data['created_by'] = Auth::user()->id;
+        $data['data_sources'] = Patient::Local;
+        $data['status'] = Patient::STATUS_RECEIVE;
         $model = $this->model->create($data);
         foreach ($data['list_service'] as $key => $value) {
             $patient_has_service = new PatientHasService;
@@ -72,5 +75,55 @@ class EloquentPatientRepository extends BaseRepository implements PatientReposit
         }
 
         return $query->paginate($request->get('per_page', 10));
+    }
+
+    public function serverPagingFor(Request $request, $relations = null)
+    {
+        $query = $this->queryGetPatients($request, $relations = null);
+        return $query->paginate($request->get('per_page', 10));
+    }
+
+    public function queryGetPatients($request, $relations = null)
+    {
+        $query = $this->newQueryBuilder();
+        if ($relations) {
+            $query = $query->with($relations);
+        }
+
+        $status = $request->get('status');
+        if ($status !== null) {
+            $query->where('status', $status);
+        }
+
+        $data_source = $request->get('data_source');
+        if ($data_source !== null) {
+            $query->where('data_source', $data_source);
+        }
+
+        $sex = $request->get('sex');
+        if ($sex !== null) {
+            $query->where('sex', $sex);
+        }
+
+        $time_range = $request->get('time_range');
+        if ($time_range !== null && count($time_range)> 0) {
+
+            $query->whereBetween('birthday', $time_range);
+        }
+
+        if ($request->get('search') !== null) {
+            $keyword = $request->get('search');
+            $query->where(function ($q) use ($keyword) {
+                $q->orWhere('name', 'LIKE', "%{$keyword}%")
+                    ->orWhere('code', 'LIKE', "%{$keyword}%")
+                    ->orWhere('phone', 'LIKE', "%{$keyword}%")
+                    ->orWhere('address', 'LIKE', "%{$keyword}%")
+                    ->orWhere('papers', 'LIKE', "%{$keyword}%")
+                    ->orWhere('job', 'LIKE', "%{$keyword}%");
+            });
+        }
+
+        $query->orderBy('updated_at', 'desc');
+        return $query;
     }
 }

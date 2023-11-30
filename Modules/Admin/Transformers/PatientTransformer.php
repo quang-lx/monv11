@@ -4,7 +4,7 @@ namespace Modules\Admin\Transformers;
 
 
 use Illuminate\Http\Resources\Json\JsonResource;
-
+use Modules\Mon\Entities\Patient;
 
 class PatientTransformer extends JsonResource
 {
@@ -19,7 +19,7 @@ class PatientTransformer extends JsonResource
             'name' => $this->name,
             'sex' => $this->sex,
             'label_sex' => $this->sex == 1 ? 'Nam' : 'Nữ',
-            'birthday' => $this->birthday,
+            'birthday' => \DateTime::createFromFormat('Y-m-d H:i:s', $this->birthday)->format('Y-m-d'),
             'phone' => $this->phone,
             'email' => $this->email,
             'papers' => $this->papers,
@@ -27,20 +27,37 @@ class PatientTransformer extends JsonResource
             'address' => $this->address,
             'dependant' => $this->dependant,
             'phone_dependant' => $this->phone_dependant,
-            'data_sources' => $this->data_sources,
+            'data_sources' => $this->data_sources == Patient::Local ? 'Local' : 'LIS',
             'status' => $this->status,
+            'status_name' => $this->formatStatus($this->status),
             'created_at' => $this->created_at->format('d-m-Y'),
             'updated_at' => $this->updated_at->format('d-m-Y'),
             'created_by_info' => $user->name . ' - ' . $user->username,
-            'status_name' => $this->status,
             'urls' => [
                 'delete_url' => route('api.patient.destroy', $this->id),
             ],
 
         ];
 
-
         return $data;
+    }
+
+    public function formatStatus($status)
+    {
+        $name = '';
+        switch ($status) {
+            case Patient::STATUS_RECEIVE:
+                $name = 'Tiếp đón';
+                break;
+            case Patient::STATUS_PROCESSING:
+                $name = 'Đang khám';
+                break;
+            case Patient::STATUS_DONE:
+                $name = 'Hoàn thành';
+                break;
+
+        }
+        return $name;
     }
 
 
