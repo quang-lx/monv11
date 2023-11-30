@@ -27,6 +27,10 @@
                             <inline-svg src="/images/filter.svg" /> Bộ lọc
 
                         </span>
+                        <span class="f-action pl-4 f-pointer" @click="show_config = true">
+                            <inline-svg src="/images/list.svg" /> Tuỳ chỉnh
+
+                        </span>
 
                         <span class="f-action pl-4 f-pointer" @click="exportPatients">
                             <inline-svg src="/images/download.svg" /> Tải xuống
@@ -58,35 +62,21 @@
                                     <el-table :data="data" stripe style="width: 100%" ref="dataTable"
                                         v-loading.body="tableIsLoading" @sort-change="handleSortChange"
                                         @selection-change="handleSelectionChange">
-                                        <el-table-column type="selection" width="55">
-                                        </el-table-column>
-                                        <el-table-column :label="$t('patient.label.stt')" type="index" width="100">
-                                        </el-table-column>
-                                        <el-table-column prop="id" :label="$t('patient.label.id')" width="150">
+                                        <el-table-column
+                                            v-for="col_selected in list_selected_col"
+                                            :key="col_selected.col_name"
+                                            :prop="col_selected.col_name"
+                                            :label="list_col_label[col_selected.col_name]"
+                                            min-width="150"  >
+                                            <template slot-scope="scope">
+
+                                                <span> {{scope.row[col_selected.col_name]}}</span>
+
+                                            </template>
+
+
                                         </el-table-column>
 
-                                        <el-table-column prop="name" :label="$t('patient.label.name')" width="150">
-                                        </el-table-column>
-                                        <el-table-column prop="label_sex" :label="$t('patient.label.sex')" width="150">
-                                        </el-table-column>
-                                        <el-table-column prop="birthday" :label="$t('patient.label.birthday')" width="150">
-                                        </el-table-column>
-                                        <el-table-column prop="phone" :label="$t('patient.label.phone')" width="150">
-                                        </el-table-column>
-                                        <el-table-column prop="papers" :label="$t('patient.label.papers')" width="150">
-                                        </el-table-column>
-                                        <el-table-column prop="job" :label="$t('patient.label.job')" width="150">
-                                        </el-table-column>
-                                        <el-table-column prop="address" :label="$t('patient.label.address')" width="150">
-                                        </el-table-column>
-                                        <el-table-column prop="created_at" :label="$t('patient.label.created_at')"
-                                            width="150">
-                                        </el-table-column>
-                                        <el-table-column prop="status_name" :label="$t('patient.label.status')" width="200">
-                                        </el-table-column>
-                                        <el-table-column prop="data_sources" :label="$t('patient.label.data_sources')"
-                                            width="150">
-                                        </el-table-column>
 
                                         <el-table-column prop="actions" :label="$t('common.action')" width="100"
                                             fixed="right">
@@ -131,6 +121,8 @@
 
         <filter-form :show_filter="show_filter" @on-filter="onFilter" @close-popup="closeFilter"></filter-form>
 
+        <config-display-component :list_all_col="full_col_name" table_name="patient" :show_config="show_config"
+                                  @on-save-config="onSaveConfigDisplay" @close-popup="closeConfig"></config-display-component>
 
     </div>
 </template>
@@ -141,17 +133,95 @@ import _ from 'lodash';
 import Form from "form-backend-validation";
 import ImportModel from './import_model';
 import FilterForm from './filter_form';
+import ConfigDisplayComponent from "../utils/ConfigDisplayComponent";
 
 export default {
     components: {
         InlineSvg,
         ImportModel,
-        FilterForm
+        FilterForm,
+        ConfigDisplayComponent
     },
+    computed: {
+        isShowCol: function () {
+            return this.list_selected_col.reduce(
+                (obj, item) => Object.assign(obj, { [item.col_name]: 1 }), {});
+        },
 
+        list_col_label: function() {
+            return this.convertArrayToObject(this.full_col_name, 'col_name', 'name')
+
+        },
+
+    },
     data() {
         return {
+            list_selected_col: [],
 
+
+            full_col_name: [
+
+                {
+                    col_name: 'id',
+                    name: this.$t('patient.label.id'),
+
+                },
+                {
+                    col_name: 'name',
+                    name: this.$t('patient.label.name'),
+
+                },
+                {
+                    col_name: 'sex',
+                    name: this.$t('patient.label.sex'),
+
+                },
+                {
+                    col_name: 'birthday',
+                    name: this.$t('patient.label.birthday'),
+
+                },
+                {
+                    col_name: 'phone',
+                    name: this.$t('patient.label.phone'),
+
+                },
+                {
+                    col_name: 'papers',
+                    name: this.$t('patient.label.papers'),
+
+                },
+                {
+                    col_name: 'job',
+                    name: this.$t('patient.label.job'),
+
+                },
+                {
+                    col_name: 'created_at',
+                    name: this.$t('patient.label.created_at'),
+
+                },
+                {
+                    col_name: 'address',
+                    name: this.$t('patient.label.address'),
+
+                },
+                {
+                    col_name: 'created_at',
+                    name: this.$t('patient.label.created_at'),
+
+                },
+                {
+                    col_name: 'status',
+                    name: this.$t('patient.label.status'),
+
+                },
+                {
+                    col_name: 'data_sources',
+                    name: this.$t('patient.label.data_sources'),
+
+                }
+            ],
             show_config: false,
             show_filter: false,
             addForm: new Form(),
@@ -186,7 +256,13 @@ export default {
         handleSelectionChange(val) {
             this.multipleSelection = val;
         },
-
+        onSaveConfigDisplay(config_data) {
+            this.show_config = false;
+            this.list_selected_col = config_data
+        },
+        closeConfig() {
+            this.show_config = false;
+        },
         queryServer(customProperties) {
 
             const properties = {
