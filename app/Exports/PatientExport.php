@@ -2,16 +2,17 @@
 
 namespace App\Exports;
 
-use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Events\AfterSheet;
+use Modules\Admin\Repositories\Eloquent\EloquentPatientRepository;
+use Modules\Admin\Transformers\PatientTransformer;
 use Modules\Mon\Entities\ConfigDisplay;
-use Modules\Mon\Repositories\Eloquent\UserRepository;
+use Modules\Mon\Entities\Patient;
 
-class UsersExport implements FromView, WithEvents
+class PatientExport implements FromView, WithEvents
 {
     protected $request;
     protected $data_export = [];
@@ -21,48 +22,48 @@ class UsersExport implements FromView, WithEvents
         $this->request = $request;
         $this->columns_export = [
             [
-                'col_name' => 'username',
-                'name' =>  trans('backend::user.label.username'),
+                'col_name' => 'id',
+                'name' => trans('backend::patient.label.id'),
             ],
             [
                 'col_name' => 'name',
-                'name' =>  trans('backend::user.label.name'),
-            ],
-            [
-                'col_name' => 'email',
-                'name' =>  trans('backend::user.label.email'),
-            ],
-            [
-                'col_name' => 'phone',
-                'name' =>  trans('backend::user.label.phone'),
+                'name' => trans('backend::patient.label.name'),
             ],
             [
                 'col_name' => 'sex',
-                'name' =>  trans('backend::user.label.sex'),
+                'name' => trans('backend::patient.label.sex'),
             ],
             [
-                'col_name' => 'birth_day',
-                'name' =>  trans('backend::user.label.birth_day'),
+                'col_name' => 'birthday',
+                'name' => trans('backend::patient.label.birthday'),
             ],
             [
-                'col_name' => 'identification',
-                'name' =>  trans('backend::user.label.identification'),
+                'col_name' => 'phone',
+                'name' => trans('backend::patient.label.phone'),
+            ],
+            [
+                'col_name' => 'papers',
+                'name' => trans('backend::patient.label.papers'),
+            ],
+            [
+                'col_name' => 'job',
+                'name' => trans('backend::patient.label.job'),
+            ],
+            [
+                'col_name' => 'address',
+                'name' => trans('backend::patient.label.address'),
             ],
             [
                 'col_name' => 'created_at',
-                'name' => trans('backend::user.label.created_at'),
-            ],
-            [
-                'col_name' => 'updated_at',
-                'name' =>  trans('backend::user.label.updated_at'),
+                'name' => trans('backend::patient.label.created_at'),
             ],
             [
                 'col_name' => 'status',
-                'name' =>  trans('backend::user.label.status'),
+                'name' => trans('backend::patient.label.status'),
             ],
             [
-                'col_name' => 'created_by',
-                'name' =>  trans('backend::user.label.created_by'),
+                'col_name' => 'data_sources',
+                'name' => trans('backend::patient.label.data_sources'),
             ],
         ];
     }
@@ -101,35 +102,34 @@ class UsersExport implements FromView, WithEvents
     }
     public function view(): View
     {
-        $user_repo = new UserRepository(new User);
-        $query = $user_repo->queryGetUsers($this->request);
-
-        $query->chunk(100, function ($users) {
-            foreach ($users as $user) {
-                $this->data_export[] = $user->toArray();
-            }
-        });
-        $config_play = ConfigDisplay::where('table_name', 'user')->orderBy('position','asc')->get();
-        if ($config_play) {
+        $patient_repo = new EloquentPatientRepository(new Patient);
+        $query = $patient_repo->queryGetPatients($this->request);
+        $patients = PatientTransformer::collection($query->get());
+        foreach ($patients as $patient) {
+            $this->data_export[] = $patient;
+        }
+        $config_play = ConfigDisplay::where('table_name', 'patient')->orderBy('position', 'asc')->get();
+        if (count($config_play) > 0) {
             $this->columns_export = $this->formatConfigPlay($config_play);
         }
+
         return view('exports.template', [
             'data_export' => $this->data_export,
             'columns' => $this->columns_export
         ]);
     }
 
-    public function formatConfigPlay($config_play) 
+    public function formatConfigPlay($config_play)
     {
         $columns_export = [];
         foreach ($config_play as $column) {
 
             $columns_export[] = [
                 'col_name' => $column->col_name,
-                'name' => trans('backend::user.label.'.$column->col_name)
+                'name' => trans('backend::patient.label.' . $column->col_name)
             ];
         }
         return $columns_export;
     }
-    
+
 }

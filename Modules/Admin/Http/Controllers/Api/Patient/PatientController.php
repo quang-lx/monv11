@@ -2,6 +2,8 @@
 
 namespace Modules\Admin\Http\Controllers\Api\Patient;
 
+use App\Exports\PatientExport;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\Mon\Entities\Patient;
@@ -9,6 +11,7 @@ use Modules\Admin\Http\Requests\Patient\CreatePatientRequest;
 use Modules\Admin\Http\Requests\Patient\UpdatePatientRequest;
 use Modules\Admin\Repositories\PatientRepository;
 use Illuminate\Routing\Controller;
+use Maatwebsite\Excel\Facades\Excel;
 use Modules\Admin\Transformers\PatientHasServiceTransformer;
 use Modules\Admin\Transformers\PatientTransformer;
 use Modules\Mon\Http\Controllers\ApiController;
@@ -81,4 +84,13 @@ class PatientController extends ApiController
     {
         return PatientHasServiceTransformer::collection($this->patientRepository->getPatientHasService($request));
     }
+
+    public function exports(Request $request)
+    {
+        $time_now = Carbon::now()->timestamp;
+        Excel::store(new PatientExport($request), '/public/media/' . 'patient_' . $time_now . '.xlsx');
+        $fileUrl = url('storage/media/' . 'patient_' . $time_now . '.xlsx');
+        return response()->json(['success' => true, 'fileUrl' => $fileUrl]);
+    }
+
 }

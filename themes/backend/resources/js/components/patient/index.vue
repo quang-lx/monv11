@@ -23,8 +23,12 @@
 
                         </router-link>
 
+                        <span class="f-action pl-4 f-pointer" @click="show_filter = true">
+                            <inline-svg src="/images/filter.svg" /> Bộ lọc
 
-                        <span class="f-action pl-4 f-pointer" @click="exportpatients">
+                        </span>
+
+                        <span class="f-action pl-4 f-pointer" @click="exportPatients">
                             <inline-svg src="/images/download.svg" /> Tải xuống
 
                         </span>
@@ -75,14 +79,16 @@
                                         </el-table-column>
                                         <el-table-column prop="address" :label="$t('patient.label.address')" width="150">
                                         </el-table-column>
-                                        <el-table-column prop="created_at" :label="$t('patient.label.created_at')" width="150">
+                                        <el-table-column prop="created_at" :label="$t('patient.label.created_at')"
+                                            width="150">
                                         </el-table-column>
-                                        <el-table-column prop="status" :label="$t('patient.label.status')" width="200">
+                                        <el-table-column prop="status_name" :label="$t('patient.label.status')" width="200">
                                         </el-table-column>
-                                        <el-table-column prop="data_sources" :label="$t('patient.label.data_sources')" width="150">
+                                        <el-table-column prop="data_sources" :label="$t('patient.label.data_sources')"
+                                            width="150">
                                         </el-table-column>
 
-                                        <el-table-column prop="actions"  :label="$t('common.action')" width="100"
+                                        <el-table-column prop="actions" :label="$t('common.action')" width="100"
                                             fixed="right">
                                             <template slot-scope="scope">
                                                 <edit-button
@@ -123,6 +129,9 @@
         <import-model :show_import="show_import" :loadingImport="loadingImport" @on-import="onImportPatients"
             @close-popup="closeImport" :data_export="data_export"></import-model>
 
+        <filter-form :show_filter="show_filter" @on-filter="onFilter" @close-popup="closeFilter"></filter-form>
+
+
     </div>
 </template>
 
@@ -131,12 +140,13 @@ import InlineSvg from 'vue-inline-svg';
 import _ from 'lodash';
 import Form from "form-backend-validation";
 import ImportModel from './import_model';
+import FilterForm from './filter_form';
 
 export default {
     components: {
         InlineSvg,
         ImportModel,
-
+        FilterForm
     },
 
     data() {
@@ -157,11 +167,22 @@ export default {
             loadingImport: 0,
             show_import: false,
             data_export: [],
-            multipleSelection: []
+            multipleSelection: [],
+            filter_data: [],
 
         };
     },
     methods: {
+
+        closeFilter() {
+            this.show_filter = false;
+        },
+
+        onFilter(filter_data) {
+            this.filter_data = filter_data;
+            this.queryServer(filter_data)
+        },
+
         handleSelectionChange(val) {
             this.multipleSelection = val;
         },
@@ -195,7 +216,7 @@ export default {
             this.loadingImport = 0;
         },
 
-        exportpatients() {
+        exportPatients() {
 
             const properties = {
                 order_by: this.order_meta.order_by,
@@ -204,7 +225,10 @@ export default {
                 type: 1
             };
 
-            window.axios.post(route('api.patient.exports'), properties)
+            window.axios.post(route('api.patient.exports'), {
+                ...properties,
+                ...this.filter_data
+            })
                 .then((response) => {
                     var link = document.createElement('a');
 

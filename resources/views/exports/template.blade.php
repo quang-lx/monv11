@@ -14,11 +14,11 @@
         </tr>
     </thead>
     <tbody>
-        @foreach ($users as $key => $user)
+        @foreach ($data_export as $key => $data)
             <tr>
                 <td>{{ $key += 1 }}</td>
                 @foreach ($columns as $column)
-                    <td>{{ $user[$column['col_name']] }}</td>
+                    <td>{{ $data[$column['col_name']] }}</td>
                 @endforeach
             </tr>
         @endforeach

@@ -38,7 +38,7 @@ return [
         'create_patient' => 'Thêm mới',
         'update_patient' => 'Cập nhật bệnh nhân',
         'import title' => 'Tải lên danh sách',
-
+        'filter title' => 'Lọc danh sách bệnh nhân'
     ],
 
     'message' => [

@@ -439,6 +439,11 @@ Route::middleware('auth:api')->prefix('/patients')->group(function (){
         'uses' => 'Patient\PatientController@destroy',
     ]);
 
+    Route::post('exports', [
+        'as' => 'api.patient.exports',
+        'uses' => 'Patient\PatientController@exports',
+    ]);
+
 });
 // append
 
