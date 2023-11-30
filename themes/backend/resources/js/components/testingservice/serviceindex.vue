@@ -89,18 +89,7 @@
                                                 </span>
                                             </template>
                                         </el-table-column>
-                                        <el-table-column prop="type" :label="$t('service.label.type')" width="150">
-                                            <template slot-scope="scope">
-                                                <span v-if="scope.row.is_edit">
-                                                    <el-input v-model="scope.row.type" size="small"
-                                                              placeholder="Nhập tên dịch vụ" ></el-input>
-                                                </span>
-                                                <span v-else>
-                                                     {{scope.row.type}}
 
-                                                </span>
-                                            </template>
-                                        </el-table-column>
                                         <el-table-column prop="min_value" :label="$t('service.label.min_value')" width="150">
                                             <template slot-scope="scope">
                                                 <span v-if="scope.row.is_edit">

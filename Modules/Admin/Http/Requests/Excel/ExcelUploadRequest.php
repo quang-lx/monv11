@@ -26,7 +26,7 @@ class ExcelUploadRequest extends FormRequest
     public function attributes()
     {
         return [
-            'username' => 'Tài khoản'
+
         ];
     }
     public function authorize()

@@ -2,9 +2,22 @@
 
 namespace Modules\Admin\Http\Controllers\Api\TestingService;
 
+use App\Exports\DevicesErrorExport;
+use App\Exports\ServiceErrorExport;
+use App\Imports\ImportDevices;
+use App\Imports\ImportTestingService;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
+use Maatwebsite\Excel\Facades\Excel;
+use Modules\Admin\Http\Requests\Excel\ExcelUploadRequest;
 use Modules\Admin\Transformers\TestingServiceTransformer;
+use Modules\Mon\Entities\Device;
+use Modules\Mon\Entities\ServiceIndex;
+use Modules\Mon\Entities\ServiceType;
 use Modules\Mon\Entities\TestingService;
 use Modules\Admin\Http\Requests\TestingService\CreateTestingServiceRequest;
 use Modules\Admin\Http\Requests\TestingService\UpdateTestingServiceRequest;
@@ -74,5 +87,101 @@ class TestingServiceController extends ApiController
             'errors' => false,
             'message' => trans('backend::service.message.delete success'),
         ]);
+    }
+
+    public function imports(ExcelUploadRequest $request)
+    {
+        $import = new ImportTestingService();
+        Excel::import($import, $request->file('file'));
+        $data_service = $import->getDataImport();
+        $list_error = [];
+
+        foreach ($data_service as $key => $row) {
+            try {
+                $service_type = ServiceType::query()->where('name', $row['type'])->first();
+                $row['type'] = optional($service_type)->id;
+                DB::beginTransaction();
+                $message_error = $this->validateData($row);
+                if ($message_error) {
+                    throw new \Exception($message_error);
+                }
+                $service_index_data = $row['index'];
+                unset($row['index']);
+
+                $testing_service = TestingService::query()->where('code' , $row['code'])->first();
+                if (!$testing_service) {
+                    $testing_service = new TestingService();
+                }
+
+                $testing_service->fill($row);
+                $testing_service->save();
+
+                $service_index = ServiceIndex::query()->where('service_id', $testing_service->id)
+                    ->where('code', $service_index_data['code'])->first();
+                if (!$service_index) {
+                    $service_index = new ServiceIndex();
+                }
+                $service_index->fill($service_index_data);
+                $service_index->service_id = $testing_service->id;
+                $service_index->save();
+                DB::commit();
+            } catch (\Throwable $th) {
+                Log::info($th->getMessage());
+                $row['error'] = $th->getMessage();
+                $list_error[] = $row;
+                DB::rollBack();
+            }
+        }
+        $time_now = Carbon::now()->timestamp;
+        Excel::store(new ServiceErrorExport($list_error), 'public/media/' . 'service_error_' . $time_now . '.xlsx');
+        $fileUrl = url('storage/media/' . 'service_error_' . $time_now . '.xlsx');
+        return response()->json([
+            'success' => true,
+            'message' => trans('backend::device.message.import success'),
+            'total' => count($data_service),
+            'fileUrl' => $fileUrl,
+            'total_success' => (count($data_service) - count($list_error))
+        ]);
+    }
+
+    public function validateData($item){
+        $rules = [
+            'code' => "required",
+            'code_lis' => "required",
+            'name' => "required",
+            'type' => "required",
+
+        ];
+        $rule_message = [
+            'code.required' => 'Mã dịch vụ là bắt buộc',
+            'code_lis.required' => 'Mã gửi LIS là bắt buộc',
+            'name.required' => 'Tên dịch vụ là bắt buộc',
+            'type.required' => 'Loại dịch vụ là bắt buộc',
+        ];
+        $rule_index = [
+            'code' => "required",
+            'code_lis' => "required",
+            'name' => "required",
+
+        ];
+        $rule_index_message = [
+            'name.required' => 'Chỉ số con: Tên dịch vụ là bắt buộc',
+            'code.required' => 'Chỉ số con: Mã dịch vụ là bắt buộc',
+            'code_lis.required' => 'Chỉ số con: Mã gửi LIS là bắt buộc',
+
+        ];
+
+        $validator_service = Validator::make($item, $rules, $rule_message);
+        if ($validator_service->fails()) {
+            return $validator_service->errors()->first();
+        }
+
+        $index_data = $item['index']?? [];
+
+        $validator_index = Validator::make($index_data, $rule_index, $rule_index_message);
+        if ($validator_index->fails()) {
+            return $validator_index->errors()->first();
+        }
+        return null;
     }
 }

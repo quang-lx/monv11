@@ -326,6 +326,11 @@ Route::middleware('auth:api')->prefix('/service')->group(function (){
         'as' => 'api.service.destroy',
         'uses' => 'TestingService\TestingServiceController@destroy',
     ]);
+    Route::post('imports', [
+        'as' => 'api.service.imports',
+        'uses' => 'TestingService\TestingServiceController@imports',
+
+    ]);
 });
 Route::middleware('auth:api')->prefix('/serviceindices')->group(function (){
 

@@ -42,3 +42,14 @@ if (!function_exists('removeSign')) {
         return $str;
     }
 }
+
+if (!function_exists('idic_convert_number_format')) {
+    function idic_convert_number_format($str)
+    {
+        if(empty($str)) {
+            return $str;
+        }
+        $str = str_replace(',', '.', $str);
+        return is_numeric($str)? $str: null;
+    }
+}

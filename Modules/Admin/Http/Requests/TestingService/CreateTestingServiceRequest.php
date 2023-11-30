@@ -14,7 +14,6 @@ class CreateTestingServiceRequest extends FormRequest
             'name' => "required",
             'type' => "required",
             'list_service_index.*.name' => 'required',
-            'list_service_index.*.type' => 'required',
             'list_service_index.*.code' => 'required|unique:testing_service_index',
             'list_service_index.*.code_lis' => 'required|unique:testing_service_index'
         ];

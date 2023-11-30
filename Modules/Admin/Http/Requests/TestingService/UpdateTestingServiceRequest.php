@@ -17,7 +17,6 @@ class UpdateTestingServiceRequest extends FormRequest
             'name' => "required",
             'type' => "required",
             'list_service_index.*.name' => 'required',
-            'list_service_index.*.type' => 'required',
 
         ];
 
