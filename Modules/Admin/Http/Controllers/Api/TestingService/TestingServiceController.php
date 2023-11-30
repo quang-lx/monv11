@@ -98,6 +98,7 @@ class TestingServiceController extends ApiController
 
         foreach ($data_service as $key => $row) {
             try {
+                $row_error = $row;
                 $service_type = ServiceType::query()->where('name', $row['type'])->first();
                 $row['type'] = optional($service_type)->id;
                 DB::beginTransaction();
@@ -107,6 +108,8 @@ class TestingServiceController extends ApiController
                 }
                 $service_index_data = $row['index'];
                 unset($row['index']);
+                $row_error['index_code'] =$service_index_data['code'];
+                $row_error['index_name'] =$service_index_data['name'];
 
                 $testing_service = TestingService::query()->where('code' , $row['code'])->first();
                 if (!$testing_service) {
@@ -127,8 +130,8 @@ class TestingServiceController extends ApiController
                 DB::commit();
             } catch (\Throwable $th) {
                 Log::info($th->getMessage());
-                $row['error'] = $th->getMessage();
-                $list_error[] = $row;
+                $row_error['error'] = $th->getMessage();
+                $list_error[] = $row_error;
                 DB::rollBack();
             }
         }

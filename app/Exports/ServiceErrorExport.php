@@ -45,7 +45,7 @@ class ServiceErrorExport implements FromView, WithEvents
             ],
             [
                 'col_name' => 'ref_value',
-                'name' =>  trans('backend::mon.error.ref_value'),
+                'name' =>  trans('backend::service.error.ref_value'),
             ],
             [
                 'col_name' => 'male_min_value',
@@ -57,7 +57,7 @@ class ServiceErrorExport implements FromView, WithEvents
             ],
             [
                 'col_name' => 'female_min_value',
-                'name' =>  trans('backend::mon.error.female_min_value'),
+                'name' =>  trans('backend::service.error.female_min_value'),
             ],
             [
                 'col_name' => 'female_max_value',
@@ -65,7 +65,19 @@ class ServiceErrorExport implements FromView, WithEvents
             ],
             [
                 'col_name' => 'unit',
-                'name' =>  trans('backend::mon.error.unit'),
+                'name' =>  trans('backend::service.error.unit'),
+            ],
+            [
+                'col_name' => 'index_code',
+                'name' =>  "Mã chỉ số con",
+            ],
+            [
+                'col_name' => 'index_name',
+                'name' =>  "Tên chỉ số con",
+            ],
+            [
+                'col_name' => 'error',
+                'name' =>  trans('backend::mon.error.Title'),
             ]
         ];
     }
