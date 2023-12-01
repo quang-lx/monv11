@@ -120,14 +120,17 @@ class TestingServiceController extends ApiController
                 $testing_service->fill($row);
                 $testing_service->save();
 
-                $service_index = ServiceIndex::query()->where('service_id', $testing_service->id)
-                    ->where('code', $service_index_data['code'])->first();
-                if (!$service_index) {
-                    $service_index = new ServiceIndex();
+                if ($service_index_data) {
+                    $service_index = ServiceIndex::query()->where('service_id', $testing_service->id)
+                        ->where('code', $service_index_data['code'])->first();
+                    if (!$service_index) {
+                        $service_index = new ServiceIndex();
+                    }
+                    $service_index->fill($service_index_data);
+                    $service_index->service_id = $testing_service->id;
+                    $service_index->save();
                 }
-                $service_index->fill($service_index_data);
-                $service_index->service_id = $testing_service->id;
-                $service_index->save();
+
                 DB::commit();
             } catch (\Throwable $th) {
                 Log::info($th->getMessage());
@@ -180,12 +183,15 @@ class TestingServiceController extends ApiController
             return $validator_service->errors()->first();
         }
 
-        $index_data = $item['index']?? [];
+        $index_data = $item['index']?? null;
 
-        $validator_index = Validator::make($index_data, $rule_index, $rule_index_message);
-        if ($validator_index->fails()) {
-            return $validator_index->errors()->first();
+        if(!empty($index_data)) {
+            $validator_index = Validator::make($index_data, $rule_index, $rule_index_message);
+            if ($validator_index->fails()) {
+                return $validator_index->errors()->first();
+            }
         }
+
         return null;
     }
 }
