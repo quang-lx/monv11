@@ -111,7 +111,7 @@
         </section>
 
 
-        <popup-import :show_import="show_import" :loadingImport="loadingImport" @on-import="onImportDevices" @close-popup="closeImport" :data_export="data_export"></popup-import>
+        <popup-import :show_import="show_import" :loadingImport="loadingImport" @on-import="onImportDevices" @close-popup="closeImport" :data_export="data_export" url_template="/excel-template/Service_Template.xlsx"></popup-import>
 
     </div>
 </template>
