@@ -105,8 +105,8 @@ class TestingServiceController extends ApiController
                 $message_error = $this->validateData($row);
                 $service_index_data = $row['index'];
                 unset($row['index']);
-                $row_error['index_code'] =$service_index_data['code'];
-                $row_error['index_name'] =$service_index_data['name'];
+                $row_error['index_code'] =$service_index_data['code']?? '';
+                $row_error['index_name'] =$service_index_data['name']?? '';
 
                 if ($message_error) {
                     throw new \Exception($message_error);
