@@ -117,7 +117,7 @@
 
 
         <popup-import :show_import="show_import" :loadingImport="loadingImport" @on-import="onImportPatients"
-        url_template="/excel-template/Patients_Template.xlsx"
+        url_template="/excel-template/Patient_Template.xlsx"
             @close-popup="closeImport" :data_export="data_export"></popup-import>
 
         <filter-form :show_filter="show_filter" @on-filter="onFilter" @close-popup="closeFilter"></filter-form>
@@ -173,7 +173,7 @@ export default {
 
                 },
                 {
-                    col_name: 'sex',
+                    col_name: 'label_sex',
                     name: this.$t('patient.label.sex'),
 
                 },

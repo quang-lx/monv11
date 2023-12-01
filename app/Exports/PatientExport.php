@@ -42,6 +42,10 @@ class PatientExport implements FromView, WithEvents
                 'name' => trans('backend::patient.label.phone'),
             ],
             [
+                'col_name' => 'email',
+                'name' => trans('backend::patient.label.email'),
+            ],
+            [
                 'col_name' => 'papers',
                 'name' => trans('backend::patient.label.papers'),
             ],

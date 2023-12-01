@@ -66,7 +66,7 @@
                                        filterable style="width: 100% !important">
                                 <el-option
                                     v-for="item in listDataSource"
-                                    :key="'data_source'+ item.id"
+                                    :key="'data_sources'+ item.value"
                                     :label="item.label"
                                     :value="item.value">
                                 </el-option>
