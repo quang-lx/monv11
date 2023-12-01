@@ -214,7 +214,7 @@
             </div>
         </el-dialog>
         <filter-form :show_filter="show_filter" @on-filter="onFilterUser" @close-popup="closeFilter"></filter-form>
-        <import-user :show_import="show_import" :loadingImport="loadingImport" @on-import="onImportUsers" @close-popup="closeImport" :data_export="data_export"></import-user>
+        <popup-import :show_import="show_import" :loadingImport="loadingImport" @on-import="onImportUsers" @close-popup="closeImport" url_template="/excel-template/Staff_Template.xlsx" :data_export="data_export"></popup-import>
 
         <config-display-component :list_all_col="full_col_name" table_name="user" :show_config="show_config"
             @on-save-config="onSaveConfigDisplay" @close-popup="closeConfig"></config-display-component>
@@ -224,18 +224,18 @@
 
 <script>
 import FilterForm from './filter_form';
-import ImportUser from './import_user';
 import InlineSvg from 'vue-inline-svg';
 import ConfigDisplayComponent from './../../utils/ConfigDisplayComponent';
 import _ from 'lodash';
 import Form from "form-backend-validation";
+import PopupImport from '../../utils/PopupImport';
 
 export default {
     components: {
         FilterForm,
-        ImportUser,
         InlineSvg,
-        ConfigDisplayComponent
+        ConfigDisplayComponent,
+        PopupImport
 
     },
     computed: {
@@ -513,7 +513,6 @@ export default {
             this.departmentLoading = true;
             window.axios.get(route('api.department.tree', _.merge(properties, customProperties)))
                 .then((response) => {
-                    console.log(response)
                     this.departmentLoading = false;
                     this.departmentTreeData = response.data;
 
@@ -548,16 +547,12 @@ export default {
                 search: this.searchQuery,
                 type: 1
             };
-            console.log({
-                ...properties,
-                ...this.filter_data
-            })
+
             window.axios.post(route('api.users.exports'), {
                 ...properties,
                 ...this.filter_data
             })
                 .then((response) => {
-                    console.log(response)
                     var link = document.createElement('a');
 
                     link.href = response.data.fileUrl;

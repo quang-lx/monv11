@@ -449,6 +449,12 @@ Route::middleware('auth:api')->prefix('/patients')->group(function (){
         'uses' => 'Patient\PatientController@exports',
     ]);
 
+    Route::post('imports', [
+        'as' => 'api.patient.imports',
+        'uses' => 'Patient\PatientController@imports',
+
+    ]);
+
 });
 // append
 

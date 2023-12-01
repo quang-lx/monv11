@@ -116,8 +116,9 @@
         </section>
 
 
-        <import-model :show_import="show_import" :loadingImport="loadingImport" @on-import="onImportPatients"
-            @close-popup="closeImport" :data_export="data_export"></import-model>
+        <popup-import :show_import="show_import" :loadingImport="loadingImport" @on-import="onImportPatients"
+        url_template="/excel-template/Patient_Template.xlsx"
+            @close-popup="closeImport" :data_export="data_export"></popup-import>
 
         <filter-form :show_filter="show_filter" @on-filter="onFilter" @close-popup="closeFilter"></filter-form>
 
@@ -131,15 +132,15 @@
 import InlineSvg from 'vue-inline-svg';
 import _ from 'lodash';
 import Form from "form-backend-validation";
-import ImportModel from './import_model';
 import FilterForm from './filter_form';
+import PopupImport from '../utils/PopupImport';
 import ConfigDisplayComponent from "../utils/ConfigDisplayComponent";
 
 export default {
     components: {
         InlineSvg,
-        ImportModel,
         FilterForm,
+        PopupImport,
         ConfigDisplayComponent
     },
     computed: {

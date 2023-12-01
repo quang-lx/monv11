@@ -111,7 +111,7 @@
         </section>
 
 
-        <import-device :show_import="show_import" :loadingImport="loadingImport" @on-import="onImportDevices" @close-popup="closeImport" :data_export="data_export"></import-device>
+        <popup-import :show_import="show_import" :loadingImport="loadingImport" @on-import="onImportDevices" @close-popup="closeImport" :data_export="data_export"></popup-import>
 
     </div>
 </template>
@@ -120,13 +120,12 @@
 import InlineSvg from 'vue-inline-svg';
 import _ from 'lodash';
 import Form from "form-backend-validation";
-import ImportDevice from './import_device';
+import PopupImport from '../utils/PopupImport';
 
 export default {
     components: {
         InlineSvg,
-        ImportDevice,
-
+        PopupImport
     },
 
     data() {
