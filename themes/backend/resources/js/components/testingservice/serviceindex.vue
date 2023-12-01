@@ -7,7 +7,7 @@
                     <div class="col-md-4 d-flex flex-row align-items-center">
                         <span>Danh sách chỉ số con</span>
                         <el-input suffix-icon="el-icon-search" @keyup.native="performSearch" placeholder="Tìm kiếm chỉ số"
-                                  size="medium" v-model="searchQuery">
+                                  size="small" v-model="searchQuery">
                         </el-input>
                     </div>
                     <div class="col-md-8 d-flex flex-row align-items-center d-flex justify-content-end">
