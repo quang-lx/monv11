@@ -3,12 +3,35 @@
 namespace Modules\Admin\Repositories\Eloquent;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Modules\Admin\Repositories\TestingServiceRepository;
 use Modules\Mon\Entities\ServiceIndex;
+use Modules\Mon\Entities\TestingService;
 use \Modules\Mon\Repositories\Eloquent\BaseRepository;
 
 class EloquentTestingServiceRepository extends BaseRepository implements TestingServiceRepository
 {
+    /**
+     * @param $model TestingService
+     */
+    public function destroy($model)
+    {
+        try {
+            DB::beginTransaction();
+            $model->serviceIndexes()->delete();
+            $result =  $model->delete();
+            DB::commit();
+            return $result;
+        } catch (\Exception $exception) {
+            Log::error($exception->getTraceAsString());
+            DB::rollBack();
+        }
+        return false;
+
+    }
+
+
     public function create($data)
     {
         $list_service_index= $data['list_service_index']?? [];

@@ -81,11 +81,11 @@ class TestingServiceController extends ApiController
 
     public function destroy(TestingService $testingservice)
     {
-        $this->testingserviceRepository->destroy($testingservice);
+        $result = $this->testingserviceRepository->destroy($testingservice);
 
         return response()->json([
-            'errors' => false,
-            'message' => trans('backend::service.message.delete success'),
+            'errors' => $result? $result:false,
+            'message' => $result? trans('backend::service.message.delete success'): trans('backend::common.server error'),
         ]);
     }
 
