@@ -173,7 +173,7 @@ export default {
 
                 },
                 {
-                    col_name: 'label_sex',
+                    col_name: 'sex',
                     name: this.$t('patient.label.sex'),
 
                 },
