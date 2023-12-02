@@ -494,6 +494,7 @@ export default {
             "apply": "Áp dụng",
             "accept": "Đồng ý",
             "upload": "Tải lên",
+            "update": "Cập nhật",
             "created_at": "Ngày tạo"
         },
         "patient": {
@@ -534,13 +535,17 @@ export default {
                 "create_patient": "Thêm mới",
                 "update_patient": "Cập nhật bệnh nhân",
                 "import title": "Tải lên danh sách",
-                "filter title": "Lọc danh sách bệnh nhân"
+                "filter title": "Lọc danh sách bệnh nhân",
+                "create new": "Tạo mới bệnh nhân",
+                "same patient": "Trùng bệnh nhân",
+                "re-examination": "Tái khám"
             },
             "message": {
                 "create success": "Tạo bệnh nhân thành công.",
                 "update success": "Cập nhật bệnh nhân thành công.",
                 "delete success": "Xóa bệnh nhân thành công.",
-                "import success": "Tải lên danh sách bệnh nhân thành công."
+                "import success": "Tải lên danh sách bệnh nhân thành công.",
+                "re-examination fail": "Bệnh nhân chưa hoàn thành khám không thể tái khám."
             }
         },
         "media": {

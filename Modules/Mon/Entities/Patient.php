@@ -28,6 +28,7 @@ class Patient extends Model
         'phone_dependant',
         'data_sources',
         'status',
+        'diagnose',
         'created_by',
         'created_at',
         'updated_at'
