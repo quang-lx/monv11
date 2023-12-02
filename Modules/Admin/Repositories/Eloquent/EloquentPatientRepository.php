@@ -139,7 +139,6 @@ class EloquentPatientRepository extends BaseRepository implements PatientReposit
             $keyword = $request->get('search');
             $query->where(function ($q) use ($keyword) {
                 $q->orWhere('name', 'LIKE', "%{$keyword}%")
-                    ->orWhere('code', 'LIKE', "%{$keyword}%")
                     ->orWhere('phone', 'LIKE', "%{$keyword}%")
                     ->orWhere('address', 'LIKE', "%{$keyword}%")
                     ->orWhere('papers', 'LIKE', "%{$keyword}%")

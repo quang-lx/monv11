@@ -80,6 +80,7 @@
                                         <el-table-column prop="actions" :label="$t('common.action')" width="100"
                                             fixed="right">
                                             <template slot-scope="scope">
+                                                <i @click="onReExamination(scope.row.id)" role="button" class="el-icon-refresh-right mr-2"></i>
                                                 <edit-button
                                                     :to="{ name: 'admin.patient.edit', params: { patientId: scope.row.id } }"></edit-button>
                                                 <reload-delete-button :scope="scope"
@@ -336,7 +337,25 @@ export default {
                 });
         },
 
-
+        onReExamination(id) {
+            window.axios.post(route('api.patient.change_status'), { id: id, status: 1 })
+                .then((response) => {
+                    if (!response.data.errors) {
+                        this.$notify({
+                            type: 'success',
+                            title: 'Tái khám thành công',
+                            message: response.data.message,
+                        });
+                        this.$router.push({ name: 'admin.patient.index' });
+                    } else {
+                        this.$notify({
+                            type: 'error',
+                            title: 'Lỗi',
+                            message: response.data.message,
+                        });
+                    }
+                });
+        },
 
     },
     mounted() {
