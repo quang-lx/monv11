@@ -62,16 +62,15 @@
                                     <el-table :data="data" stripe style="width: 100%" ref="dataTable"
                                         v-loading.body="tableIsLoading" @sort-change="handleSortChange"
                                         @selection-change="handleSelectionChange">
-                                        <el-table-column
-                                            v-for="col_selected in list_selected_col"
-                                            :key="col_selected.col_name"
-                                            :prop="col_selected.col_name"
-                                            :label="list_col_label[col_selected.col_name]"
-                                            min-width="150"  >
+                                        <el-table-column v-for="col_selected in list_selected_col"
+                                            :key="col_selected.col_name" :prop="col_selected.col_name"
+                                            :label="list_col_label[col_selected.col_name]" min-width="150">
                                             <template slot-scope="scope">
-
-                                                <span> {{scope.row[col_selected.col_name]}}</span>
-
+                                                    <span v-if="col_selected.col_name == 'sex'">{{
+                                                        scope.row.sex_text }}</span>
+                                                    <span v-else-if="col_selected.col_name == 'status'">{{
+                                                        scope.row.status_text }}</span>
+                                                    <span v-else> {{ scope.row[col_selected.col_name] }}</span>
                                             </template>
 
 
@@ -117,13 +116,13 @@
 
 
         <popup-import :show_import="show_import" :loadingImport="loadingImport" @on-import="onImportPatients"
-        url_template="/excel-template/Patient_Template.xlsx"
-            @close-popup="closeImport" :data_export="data_export"></popup-import>
+            url_template="/excel-template/Patient_Template.xlsx" @close-popup="closeImport"
+            :data_export="data_export"></popup-import>
 
         <filter-form :show_filter="show_filter" @on-filter="onFilter" @close-popup="closeFilter"></filter-form>
 
         <config-display-component :list_all_col="full_col_name" table_name="patient" :show_config="show_config"
-                                  @on-save-config="onSaveConfigDisplay" @close-popup="closeConfig"></config-display-component>
+            @on-save-config="onSaveConfigDisplay" @close-popup="closeConfig"></config-display-component>
 
     </div>
 </template>
@@ -149,7 +148,7 @@ export default {
                 (obj, item) => Object.assign(obj, { [item.col_name]: 1 }), {});
         },
 
-        list_col_label: function() {
+        list_col_label: function () {
             return this.convertArrayToObject(this.full_col_name, 'col_name', 'name')
 
         },
@@ -205,11 +204,6 @@ export default {
                 {
                     col_name: 'address',
                     name: this.$t('patient.label.address'),
-
-                },
-                {
-                    col_name: 'created_at',
-                    name: this.$t('patient.label.created_at'),
 
                 },
                 {

@@ -15,24 +15,43 @@ class EloquentPatientRepository extends BaseRepository implements PatientReposit
 
     public function create($data)
     {
+        $patient_same_phone = $this->patientSamePhoneNumber($data['phone']);
+        if (count($patient_same_phone) > 0 && !$data['is_agree']) {
+            return response()->json([
+                'errors' => true,
+                'list_patient_same' => $patient_same_phone,
+            ]);
+        }
         $data['created_by'] = Auth::user()->id;
         $data['data_sources'] = Patient::Local;
         $data['status'] = Patient::STATUS_RECEIVE;
         $model = $this->model->create($data);
-        foreach ($data['list_service'] as $key => $value) {
+        foreach ($data['list_service'] ?? [] as $key => $value) {
             $patient_has_service = new PatientHasService;
             $patient_has_service->patient_id = $model->id;
             $patient_has_service->service_id = $value['service_id'];
             $patient_has_service->created_by = Auth::user()->id;
             $patient_has_service->save();
         }
+
+        return response()->json([
+            'errors' => false,
+            'message' => trans('backend::patient.message.create success'),
+        ]);
     }
 
     public function update($patient, $data)
     {
         $list_id = [];
+        $patient_same_phone = $this->patientSamePhoneNumber($data['phone']);
+        if (count($patient_same_phone) > 0 && !$data['is_agree']) {
+            return response()->json([
+                'errors' => true,
+                'list_patient_same' => $patient_same_phone,
+            ]);
+        }
         $patient->update($data);
-        foreach ($data['list_service'] as $key => $value) {
+        foreach ($data['list_service'] ?? [] as $key => $value) {
             $patient_has_service = PatientHasService::where('patient_id', $patient->id)->where('service_id', $value['service_id'])->first();
             if (!$patient_has_service) {
                 $patient_has_service = new PatientHasService;
@@ -45,6 +64,11 @@ class EloquentPatientRepository extends BaseRepository implements PatientReposit
         }
 
         PatientHasService::whereNotIn('id', $list_id)->delete();
+
+        return response()->json([
+            'errors' => false,
+            'message' => trans('backend::patient.message.update success'),
+        ]);
     }
 
     public function getPatientHasService(Request $request, $relations = null)
@@ -106,7 +130,7 @@ class EloquentPatientRepository extends BaseRepository implements PatientReposit
         }
 
         $time_range = $request->get('time_range');
-        if ($time_range !== null && count($time_range)> 0) {
+        if ($time_range !== null && count($time_range) > 0) {
 
             $query->whereBetween('birthday', $time_range);
         }
@@ -125,5 +149,29 @@ class EloquentPatientRepository extends BaseRepository implements PatientReposit
 
         $query->orderBy('updated_at', 'desc');
         return $query;
+    }
+
+    function patientSamePhoneNumber($phone)
+    {
+        return Patient::where('phone', $phone)->get();
+    }
+
+    function changeStatus($data)
+    {
+        $patient = Patient::find($data['id']);
+        $status = $patient->status;
+        if ($status == Patient::STATUS_DONE) {
+            $patient->status = $data['status'];
+            $patient->save();
+            return response()->json([
+                'errors' => false,
+                'message' => trans('backend::patient.message.update success'),
+            ]);
+        } else {
+            return response()->json([
+                'errors' => true,
+                'message' => trans('backend::patient.message.re-examination fail'),
+            ]);
+        }
     }
 }

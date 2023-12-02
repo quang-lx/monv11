@@ -50,12 +50,7 @@ class PatientController extends ApiController
 
     public function store(CreatePatientRequest $request)
     {
-        $this->patientRepository->create($request->all());
-
-        return response()->json([
-            'errors' => false,
-            'message' => trans('backend::patient.message.create success'),
-        ]);
+        return $this->patientRepository->create($request->all());
     }
 
 
@@ -66,12 +61,7 @@ class PatientController extends ApiController
 
     public function update(Patient $patient, UpdatePatientRequest $request)
     {
-        $this->patientRepository->update($patient, $request->all());
-
-        return response()->json([
-            'errors' => false,
-            'message' => trans('backend::patient.message.update success'),
-        ]);
+        return $this->patientRepository->update($patient, $request->all());
     }
 
     public function destroy(Patient $patient)
@@ -193,6 +183,11 @@ class PatientController extends ApiController
                 'name' => trans('backend::mon.error.Title'),
             ]
         ];
+    }
+
+    public function changeStatus(Request $request)
+    {
+        return $this->patientRepository->changeStatus($request->all());
     }
 
 
