@@ -18,6 +18,7 @@ class TestingServiceTransformer extends JsonResource
             'code_lis' => $this->code_lis,
             'name' => $this->name,
             'type' => $this->type,
+            'type_name' => $this->type_name,
             'min_value' => $this->min_value,
             'max_value' => $this->max_value,
             'ref_value' => $this->ref_value,

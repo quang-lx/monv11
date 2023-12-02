@@ -58,6 +58,9 @@
 
                                         <el-table-column prop="name" :label="$t('service.label.name')" min-width="150"> </el-table-column>
                                         <el-table-column prop="type" :label="$t('service.label.type')" width="150">
+                                            <template slot-scope="scope">
+                                                <span>{{ scope.row.type_name }}</span>
+                                            </template>
                                         </el-table-column>
                                         <el-table-column prop="min_value" :label="$t('service.label.min_value')" width="150"> </el-table-column>
                                         <el-table-column prop="max_value" :label="$t('service.label.max_value')" width="150"> </el-table-column>
@@ -108,7 +111,7 @@
         </section>
 
 
-        <popup-import :show_import="show_import" :loadingImport="loadingImport" @on-import="onImportDevices" @close-popup="closeImport" :data_export="data_export"></popup-import>
+        <popup-import :show_import="show_import" :loadingImport="loadingImport" @on-import="onImportDevices" @close-popup="closeImport" :data_export="data_export" url_template="/excel-template/Service_Template.xlsx"></popup-import>
 
     </div>
 </template>

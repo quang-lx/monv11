@@ -22,6 +22,13 @@ class ImportTestingService implements ToModel, WithHeadingRow, WithStartRow
 
    public function model(array $row)
    {
+
+       $tmp = [];
+       foreach ($row as $key => $value)
+       {
+           $tmp[]= $value;
+       }
+       $row  = $tmp;
        if(!array_filter($row)) {
            return null;
        }
@@ -75,7 +82,12 @@ class ImportTestingService implements ToModel, WithHeadingRow, WithStartRow
        $result_item_index['female_max_value'] = idic_convert_number_format($result_item_index['female_max_value']);
        $result_item_index['min_value'] = idic_convert_number_format($result_item_index['min_value']);
        $result_item_index['max_value'] = idic_convert_number_format($result_item_index['max_value']);
-       $result_item['index'] = $result_item_index;
+       if(array_filter($result_item_index)) {
+           $result_item['index'] = $result_item_index;
+       } else {
+           $result_item['index'] = null;
+       }
+
 
        $this->result[] = $result_item;
    }

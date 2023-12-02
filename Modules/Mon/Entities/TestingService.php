@@ -2,6 +2,7 @@
 
 namespace Modules\Mon\Entities;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -30,7 +31,21 @@ class TestingService extends Model
         'male_min_value', 'male_max_value', 'unit', 'female_min_value', 'female_max_value'
     ];
 
+    protected $appends = ['type_name'];
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function serviceType() {
+        return $this->belongsTo(\Modules\Mon\Entities\ServiceType::class, 'type');
+    }
+
     public function serviceIndexes() {
         return $this->hasMany(ServiceIndex::class, 'service_id');
+    }
+    protected function typeName(): Attribute
+    {
+        return new Attribute(
+            get: fn () => optional($this->serviceType)->name,
+        );
     }
 }

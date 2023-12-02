@@ -81,11 +81,11 @@ class TestingServiceController extends ApiController
 
     public function destroy(TestingService $testingservice)
     {
-        $this->testingserviceRepository->destroy($testingservice);
+        $result = $this->testingserviceRepository->destroy($testingservice);
 
         return response()->json([
-            'errors' => false,
-            'message' => trans('backend::service.message.delete success'),
+            'errors' => $result? $result:false,
+            'message' => $result? trans('backend::service.message.delete success'): trans('backend::common.server error'),
         ]);
     }
 
@@ -105,8 +105,8 @@ class TestingServiceController extends ApiController
                 $message_error = $this->validateData($row);
                 $service_index_data = $row['index'];
                 unset($row['index']);
-                $row_error['index_code'] =$service_index_data['code'];
-                $row_error['index_name'] =$service_index_data['name'];
+                $row_error['index_code'] =$service_index_data['code']?? '';
+                $row_error['index_name'] =$service_index_data['name']?? '';
 
                 if ($message_error) {
                     throw new \Exception($message_error);
@@ -120,14 +120,17 @@ class TestingServiceController extends ApiController
                 $testing_service->fill($row);
                 $testing_service->save();
 
-                $service_index = ServiceIndex::query()->where('service_id', $testing_service->id)
-                    ->where('code', $service_index_data['code'])->first();
-                if (!$service_index) {
-                    $service_index = new ServiceIndex();
+                if ($service_index_data) {
+                    $service_index = ServiceIndex::query()->where('service_id', $testing_service->id)
+                        ->where('code', $service_index_data['code'])->first();
+                    if (!$service_index) {
+                        $service_index = new ServiceIndex();
+                    }
+                    $service_index->fill($service_index_data);
+                    $service_index->service_id = $testing_service->id;
+                    $service_index->save();
                 }
-                $service_index->fill($service_index_data);
-                $service_index->service_id = $testing_service->id;
-                $service_index->save();
+
                 DB::commit();
             } catch (\Throwable $th) {
                 Log::info($th->getMessage());
@@ -180,12 +183,15 @@ class TestingServiceController extends ApiController
             return $validator_service->errors()->first();
         }
 
-        $index_data = $item['index']?? [];
+        $index_data = $item['index']?? null;
 
-        $validator_index = Validator::make($index_data, $rule_index, $rule_index_message);
-        if ($validator_index->fails()) {
-            return $validator_index->errors()->first();
+        if(!empty($index_data)) {
+            $validator_index = Validator::make($index_data, $rule_index, $rule_index_message);
+            if ($validator_index->fails()) {
+                return $validator_index->errors()->first();
+            }
         }
+
         return null;
     }
 }
