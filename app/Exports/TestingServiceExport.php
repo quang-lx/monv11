@@ -7,10 +7,12 @@ use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Events\AfterSheet;
-use Modules\Admin\Repositories\Eloquent\EloquentDiseaseRepository;
-use Modules\Mon\Entities\Disease;
+use Modules\Admin\Repositories\Eloquent\EloquentTestingServiceRepository;
+use Modules\Admin\Transformers\TestingServiceTransformer;
+use Modules\Mon\Entities\TestingService;
+use Illuminate\Support\Facades\Log;
 
-class DiseaseExport implements FromView, WithEvents
+class TestingServiceExport implements FromView, WithEvents
 {
     protected $request;
     protected $data_export = [];
@@ -21,15 +23,43 @@ class DiseaseExport implements FromView, WithEvents
         $this->columns_export = [
             [
                 'col_name' => 'code',
-                'name' =>  trans('backend::disease.label.code'),
+                'name' =>  trans('backend::service.label.code'),
             ],
             [
                 'col_name' => 'name',
-                'name' =>  trans('backend::disease.label.name'),
+                'name' =>  trans('backend::service.label.name'),
             ],
             [
-                'col_name' => 'describe',
-                'name' =>  trans('backend::disease.label.describe'),
+                'col_name' => 'min_value',
+                'name' =>  trans('backend::service.label.min_value'),
+            ],
+            [
+                'col_name' => 'max_value',
+                'name' =>  trans('backend::service.label.max_value'),
+            ],
+            [
+                'col_name' => 'ref_value',
+                'name' =>  trans('backend::service.label.ref_value'),
+            ],
+            [
+                'col_name' => 'unit',
+                'name' =>  trans('backend::service.label.unit'),
+            ],
+            [
+                'col_name' => 'male_min_value',
+                'name' =>  trans('backend::service.label.male_min_value'),
+            ],
+            [
+                'col_name' => 'male_max_value',
+                'name' =>  trans('backend::service.label.male_max_value'),
+            ],
+            [
+                'col_name' => 'female_min_value',
+                'name' =>  trans('backend::service.label.female_min_value'),
+            ],
+            [
+                'col_name' => 'female_max_value',
+                'name' =>  trans('backend::service.label.female_max_value'),
             ],
         ];
     }
@@ -68,9 +98,8 @@ class DiseaseExport implements FromView, WithEvents
     }
     public function view(): View
     {
-        $repo = new EloquentDiseaseRepository(new Disease);
-        $query = $repo->queryGetDisease($this->request);
-
+        $repo = new EloquentTestingServiceRepository(new TestingService);
+        $query = $repo->queryGetTestingService($this->request);
         $query->chunk(100, function ($list) {
             foreach ($list as $data) {
                 $this->data_export[] = $data->toArray();

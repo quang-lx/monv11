@@ -4,6 +4,7 @@ namespace Modules\Admin\Http\Controllers\Api\TestingService;
 
 use App\Exports\DevicesErrorExport;
 use App\Exports\ServiceErrorExport;
+use App\Exports\TestingServiceExport;
 use App\Imports\ImportDevices;
 use App\Imports\ImportTestingService;
 use Carbon\Carbon;
@@ -193,5 +194,13 @@ class TestingServiceController extends ApiController
         }
 
         return null;
+    }
+
+    public function exports(Request $request)
+    {
+        $time_now = Carbon::now()->timestamp;
+        Excel::store(new TestingServiceExport($request), '/public/media/' . 'danh_muc_dich_vu_' . $time_now . '.xlsx');
+        $fileUrl = url('storage/media/' . 'danh_muc_dich_vu_' . $time_now . '.xlsx');
+        return response()->json(['success' => true, 'fileUrl' => $fileUrl]);
     }
 }

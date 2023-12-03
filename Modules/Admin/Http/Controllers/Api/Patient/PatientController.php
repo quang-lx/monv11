@@ -20,6 +20,7 @@ use Modules\Admin\Transformers\PatientHasServiceTransformer;
 use Modules\Admin\Transformers\PatientTransformer;
 use Modules\Mon\Http\Controllers\ApiController;
 use Modules\Mon\Auth\Contracts\Authentication;
+use Illuminate\Support\Facades\Log;
 
 class PatientController extends ApiController
 {

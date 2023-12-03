@@ -24,7 +24,7 @@
                         </router-link>
 
 
-                        <span class="f-action pl-4 f-pointer" @click="exportDevices">
+                        <span class="f-action pl-4 f-pointer" @click="onExport">
                             <inline-svg src="/images/download.svg" /> Tải xuống
 
                         </span>
@@ -181,7 +181,7 @@ export default {
             this.loadingImport = 0;
         },
 
-        exportDevices() {
+        onExport() {
 
             const properties = {
                 order_by: this.order_meta.order_by,

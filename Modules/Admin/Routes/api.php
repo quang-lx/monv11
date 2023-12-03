@@ -331,6 +331,12 @@ Route::middleware('auth:api')->prefix('/service')->group(function (){
         'uses' => 'TestingService\TestingServiceController@imports',
 
     ]);
+
+    Route::post('exports', [
+        'as' => 'api.service.exports',
+        'uses' => 'TestingService\TestingServiceController@exports',
+
+    ]);
 });
 Route::middleware('auth:api')->prefix('/serviceindices')->group(function (){
 

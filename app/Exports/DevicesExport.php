@@ -76,16 +76,16 @@ class DevicesExport implements FromView, WithEvents
     }
     public function view(): View
     {
-        $device_repo = new EloquentDeviceRepository(new Device);
-        $query = $device_repo->queryGetDevice($this->request);
+        $repo = new EloquentDeviceRepository(new Device);
+        $query = $repo->queryGetDevice($this->request);
 
-        $query->chunk(100, function ($devices) {
-            foreach ($devices as $deivce) {
-                $this->data_export[] = $deivce->toArray();
+        $query->chunk(100, function ($list) {
+            foreach ($list as $data) {
+                $this->data_export[] = $data->toArray();
             }
         });
-        return view('exports.device', [
-            'devices' => $this->data_export,
+        return view('exports.template', [
+            'data_export' => $this->data_export,
             'columns' => $this->columns_export
         ]);
     }

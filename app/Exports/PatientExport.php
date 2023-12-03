@@ -109,6 +109,7 @@ class PatientExport implements FromView, WithEvents
         $patient_repo = new EloquentPatientRepository(new Patient);
         $query = $patient_repo->queryGetPatients($this->request);
         $patients = PatientTransformer::collection($query->get());
+        Log::info([$patients]);
         foreach ($patients as $patient) {
             $this->data_export[] = $patient;
         }
