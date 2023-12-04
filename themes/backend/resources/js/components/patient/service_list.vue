@@ -9,7 +9,7 @@
                     <div class="col-md-6">
                         <div class="row d-flex flex-row align-items-center">
                             <span class="col-3">Danh sách dịch vụ</span>
-                            <el-input class="col-4" suffix-icon="el-icon-search" @keyup.native="performSearch"
+                            <el-input class="col-9" suffix-icon="el-icon-search" @keyup.native="performSearch"
                                 placeholder="Tìm kiếm dịch vụ" size="small" v-model="searchQuery">
                             </el-input>
                         </div>
