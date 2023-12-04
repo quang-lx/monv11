@@ -6,6 +6,7 @@
             :show-close="false"
             :title="$t('user.label.filter title')"
             :destroy-on-close="true"
+            @close="closePopup"
             :visible.sync="show_popup">
 
 

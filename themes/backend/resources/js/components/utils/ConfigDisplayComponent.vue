@@ -4,6 +4,7 @@
         :show-close="true"
         top="1vh"
         :destroy-on-close="true"
+        @close="closePopup"
         :visible.sync="show_popup">
         <div class="fluid container" style="padding-left: 11px">
             <p class="f-config-title">Tuỳ chỉnh</p>
