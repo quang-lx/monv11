@@ -176,7 +176,7 @@
                                         <div class="col-md-4">
                                             <el-form-item label="Thời gian hiệu lực của tài khoản"
                                                           prop="active_at"
-                                                          :class="{'el-form-item is-error': form.errors.has('active_at') }">
+                                                          :class="{'el-form-item is-error': form.errors.has('active_at') || form.errors.has('expired_at') }">
                                                 <div class="row">
                                                     <div class="col-md-6 d-flex">
                                                         <span class="mr-2">Từ</span>
@@ -208,6 +208,9 @@
                                                 <div class="el-form-item__error"
                                                      v-if="form.errors.has('active_at')"
                                                      v-text="form.errors.first('active_at')"></div>
+                                                <div class="el-form-item__error"
+                                                     v-else-if="form.errors.has('expired_at')"
+                                                     v-text="form.errors.first('expired_at')"></div>
                                             </el-form-item>
                                         </div>
 

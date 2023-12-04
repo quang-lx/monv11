@@ -21,7 +21,7 @@ return [
         'create_admin' => 'THÊM TÀI KHOẢN',
         'update_admin' => 'Sửa tài khoản',
 
-        'users' => 'Tài khoản',
+        'users' => 'Quản lý tài khoản',
         'roles' => 'Nhóm quyền',
         'change_password' => 'Đổi mật khẩu',
         'admins' => 'Quản lý tài khoản CMS',
