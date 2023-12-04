@@ -6,7 +6,7 @@
             :show-close="false"
             :title="$t('user.label.filter title')"
             :destroy-on-close="true"
-            :visible.sync="show_filter">
+            :visible.sync="show_popup">
 
 
             <el-form ref="filterForm"
@@ -95,9 +95,13 @@
         props: {
             show_filter : {default: false}
         },
+        computed: {
+            show_popup: function () {
+                return this.show_filter
+            },
         data() {
             return {
-                show_popup: this.show_filter,
+
                 search_data: {
                   status: '',
                   created_by: '',
