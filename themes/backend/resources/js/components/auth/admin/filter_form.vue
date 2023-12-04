@@ -98,7 +98,8 @@
         computed: {
             show_popup: function () {
                 return this.show_filter
-            },
+            }
+        },
         data() {
             return {
 
