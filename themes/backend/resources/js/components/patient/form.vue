@@ -76,7 +76,7 @@
                                         <div class="col-md-4">
                                             <el-form-item :label="$t('patient.label.sex')" prop="sex"
                                                 :class="{ 'el-form-item is-error': form.errors.has('sex') }">
-                                                <el-select v-model="modelForm.sex" placeholder="Chọn giới tính">
+                                                <el-select v-model="modelForm.sex" placeholder="Chọn giới tính" size = "small">
                                                     <el-option v-for="item in sexs" :key="item.value" :label="item.label"
                                                         :value="item.value">
                                                     </el-option>
@@ -88,8 +88,10 @@
 
                                         <div class="col-md-4">
                                             <el-form-item :label="$t('patient.label.birthday')" prop="birthday"
+
                                                 :class="{ 'el-form-item is-error': form.errors.has('birthday') }">
-                                                <el-date-picker v-model="modelForm.birthday" type="date" format="dd/MM/yyyy"
+                                                <el-date-picker v-model="modelForm.birthday" type="date" format="dd/MM/yyyy" size = "small"
+                                                                style="width: 100% !important;"
                                                     placeholder="Chọn ngày tháng năm sinh">
                                                 </el-date-picker>
                                                 <div class="el-form-item__error" v-if="form.errors.has('birthday')"
