@@ -95,14 +95,10 @@
         props: {
             show_filter : {default: false}
         },
-        computed: {
-            show_popup: function () {
-                return this.show_filter
-            }
-        },
+
         data() {
             return {
-
+                show_popup: this.show_config,
                 search_data: {
                   status: '',
                   created_by: '',
@@ -166,7 +162,9 @@
 
         },
         watch: {
-
+            show_filter(new_value) {
+                this.show_popup = new_value;
+            }
         },
         mounted() {
             this.getListUser();
