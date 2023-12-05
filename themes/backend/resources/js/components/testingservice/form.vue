@@ -328,7 +328,7 @@
                             message: response.message,
                         });
                         if(this.is_new) {
-                            this.$router.push({name: 'api.service.update', params: {testingservice: response.data.id}});
+                            window.location.href= route('api.service.update', {testingservice: response.data.id})
                         }
                     })
                     .catch((error) => {
