@@ -73,38 +73,29 @@
                                 </div>
                             </div><!-- /.card-header -->
                             <div class="card-body">
-                                <el-input
-                                    class="mb-2"
-                                    placeholder="Tìm kiếm"
-                                    size="mini"
-                                    v-model="filterDepartment">
+                                <el-input class="mb-2" placeholder="Tìm kiếm" size="mini" v-model="filterDepartment">
                                 </el-input>
 
                                 <div class="mb-2">
-                                    <span class="custom-tree-node" >
-                                        <span> <inline-svg src="/images/d_all.svg"  /> <span class="ml-2"> Tất cả </span></span>
-                                        <span>{{department_user_total}}</span>
-                                      </span>
+                                    <span class="custom-tree-node">
+                                        <span> <inline-svg src="/images/d_all.svg" /> <span class="ml-2"> Tất cả
+                                            </span></span>
+                                        <span>{{ department_user_total }}</span>
+                                    </span>
                                 </div>
-                                <el-tree
-                                    class="filter-tree"
-                                    :data="departmentTreeData"
-                                    :props="treeProps"
-                                    default-expand-all
-                                    :filter-node-method="filterNode"
-
-                                    @node-click="handleNodeClick"
+                                <el-tree class="filter-tree" :data="departmentTreeData" :props="treeProps"
+                                    default-expand-all :filter-node-method="filterNode" @node-click="handleNodeClick"
                                     ref="tree">
                                     <span class="custom-tree-node" slot-scope="{ node, data }">
                                         <span>{{ node.label }}</span>
-                                        <span>{{data.count_user}}</span>
-                                      </span>
+                                        <span>{{ data.count_user }}</span>
+                                    </span>
                                 </el-tree>
                                 <div class="mt-2">
-                                    <span class="custom-tree-node" >
-                                           <span class="ml-2"> Chưa xếp nhóm </span>
-                                        <span>{{count_not_assign}}</span>
-                                      </span>
+                                    <span class="custom-tree-node">
+                                        <span class="ml-2"> Chưa xếp nhóm </span>
+                                        <span>{{ count_not_assign }}</span>
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -118,20 +109,18 @@
                                     <el-table :data="data" stripe style="width: 100%" ref="dataTable"
                                         v-loading.body="tableIsLoading" @sort-change="handleSortChange">
 
-                                        <el-table-column
-                                            v-for="col_selected in list_selected_col"
-                                            :key="col_selected.col_name"
-                                            :prop="col_selected.col_name"
-                                                         :label="list_col_label[col_selected.col_name]"
-                                            min-width="150"  >
+                                        <el-table-column v-for="col_selected in list_selected_col"
+                                            :key="col_selected.col_name" :prop="col_selected.col_name"
+                                            :label="list_col_label[col_selected.col_name]" min-width="150">
                                             <template slot-scope="scope">
 
-                                                <span v-if="col_selected.col_name == 'sex'">{{ scope.row.sex_text}}</span>
-                                                <span v-else-if="col_selected.col_name == 'status'">{{ scope.row.status_text}}</span>
+                                                <span v-if="col_selected.col_name == 'sex'">{{ scope.row.sex_text }}</span>
+                                                <span v-else-if="col_selected.col_name == 'status'">{{
+                                                    scope.row.status_text }}</span>
                                                 <span v-else-if="col_selected.col_name == 'created_by'">
-                                                   {{ scope.row.created_by_name }}
+                                                    {{ scope.row.created_by_name }}
                                                 </span>
-                                                <span v-else> {{scope.row[col_selected.col_name]}}</span>
+                                                <span v-else> {{ scope.row[col_selected.col_name] }}</span>
 
                                             </template>
 
@@ -214,7 +203,9 @@
             </div>
         </el-dialog>
         <filter-form :show_filter="show_filter" @on-filter="onFilterUser" @close-popup="closeFilter"></filter-form>
-        <popup-import :show_import="show_import" :loadingImport="loadingImport" @on-import="onImportUsers" @close-popup="closeImport" url_template="/excel-template/Staff_Template.xlsx" :data_export="data_export"></popup-import>
+        <popup-import :show_import="show_import" :loadingImport="loadingImport" @on-import="onImportUsers"
+            @close-popup="closeImport" url_template="/excel-template/Staff_Template.xlsx"
+            :data_export="data_export"></popup-import>
 
         <config-display-component :list_all_col="full_col_name" table_name="user" :show_config="show_config"
             @on-save-config="onSaveConfigDisplay" @close-popup="closeConfig"></config-display-component>
@@ -245,12 +236,12 @@ export default {
         },
         department_user_total: function () {
             let total = 0;
-            for(let i = 0 ; i< this.departmentTreeData.length; i++) {
+            for (let i = 0; i < this.departmentTreeData.length; i++) {
                 total = total + this.departmentTreeData[i].count_user;
             }
             return total;
         },
-        list_col_label: function() {
+        list_col_label: function () {
             return this.convertArrayToObject(this.full_col_name, 'col_name', 'name')
 
         },
@@ -355,7 +346,7 @@ export default {
             filter_data: {},
             file: '',
             loadingImport: 0,
-            data_export:[],
+            data_export: [],
             count_not_assign: 0
 
         };
@@ -577,9 +568,10 @@ export default {
                 })
                 .then((response) => {
                     this.loadingImport = 2;
-                    this.$message({
-                        type: "success",
+                    this.$notify({
+                        title: 'Thành công',
                         message: response.data.message,
+                        type: 'success'
                     });
                     this.data_export = response.data
                     this.fetchData();
@@ -611,6 +603,7 @@ export default {
     pointer-events: none;
 
 }
+
 .custom-tree-node {
     flex: 1;
     display: flex;

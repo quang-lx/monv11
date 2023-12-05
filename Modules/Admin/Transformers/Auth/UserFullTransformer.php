@@ -21,6 +21,7 @@ class UserFullTransformer extends JsonResource
             'shop_id' => $this->shop_id,
             'phone' => $this->phone,
             'sex' => $this->sex,
+            'sex_text' => $this->sex == 'male' ? 'Nam' : 'Nữ',
             'active_at' => optional($this->active_at)->format('Y-m-d'),
             'expired_at' => optional($this->expired_at)->format('Y-m-d'),
             'birth_day' => optional($this->birth_day)->format('Y-m-d'),
