@@ -328,7 +328,8 @@
                             message: response.message,
                         });
                         if(this.is_new) {
-                            window.location.href= route('admin.service.edit', {testingservice: response.id})
+                            // window.location.href= route('admin.service.edit', {testingservice: response.id})
+                            this.$router.push({name: 'admin.service.edit', params:{testingservice: response.id}});
                         }
                     })
                     .catch((error) => {
