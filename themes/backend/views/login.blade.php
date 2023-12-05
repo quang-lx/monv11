@@ -301,7 +301,7 @@
     @if (session('success'))
         <script>
             $(document).ready(function() {
-                toastr.success("{{ session('success') }}")
+                toastr.success("{{ session('success') }}", '', { closeButton: true })
             })
         </script>
     @endif
@@ -309,7 +309,7 @@
     @if ($errors->first())
         <script>
             $(document).ready(function() {
-                toastr.error("{{ $errors->first() }}")
+                toastr.error("{{ $errors->first() }}", '', { closeButton: true })
             })
         </script>
     @endif

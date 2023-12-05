@@ -159,6 +159,7 @@ class UserRepository extends BaseRepository implements UserInterface
 
                 $q->orWhere('name', 'LIKE', "%{$keyword}%")
                     ->orWhere('email', 'LIKE', "%{$keyword}%")
+                    ->orWhere('phone', 'LIKE', "%{$keyword}%")
                     ->orWhere('id', 'LIKE', "%{$keyword}%")
                     ->orWhere('username', 'LIKE', "%{$keyword}%")
                     ->orWhere('identification', 'LIKE', "%{$keyword}%");
@@ -190,7 +191,7 @@ class UserRepository extends BaseRepository implements UserInterface
             $query->where('created_by', $created_by);
         }
         $time_range = $request->get('time_range');
-        if ($time_range !== null) {
+        if ($time_range !== null && count($time_range) > 0) {
 
             $query->whereBetween('created_at', $time_range);
         }

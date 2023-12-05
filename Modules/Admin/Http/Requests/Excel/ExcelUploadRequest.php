@@ -37,8 +37,8 @@ class ExcelUploadRequest extends FormRequest
     public function messages()
     {
         return [
-            'file.required' => 'Vui lòng chọn file',
-            'file.mimes' => 'File không đúng định dạng',
+            'file.required' => 'Trường thông tin bắt buộc',
+            'file.mimes' => 'File không đúng định dạng. Vui lòng thử lại',
             'file.max' => 'Dung lượng file không được quá 20mb',
         ];
     }

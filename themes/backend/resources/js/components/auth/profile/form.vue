@@ -154,7 +154,7 @@
 
                                             <el-form-item :label="$t('user.label.sex')"
                                                 :class="{ 'el-form-item is-error': form.errors.has('sex') }">
-                                                <el-input :disabled="true" v-model="modelForm.sex"
+                                                <el-input :disabled="true" v-model="modelForm.sex_text"
                                                     autocomplete="off"></el-input>
                                                 <div class="el-form-item__error" v-if="form.errors.has('sex')"
                                                     v-text="form.errors.first('sex')"></div>
