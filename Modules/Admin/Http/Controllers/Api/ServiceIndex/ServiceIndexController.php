@@ -42,10 +42,11 @@ class ServiceIndexController extends ApiController
 
     public function store(CreateServiceIndexRequest $request)
     {
-        $this->serviceindexRepository->create($request->all());
+        $model = $this->serviceindexRepository->create($request->all());
 
         return response()->json([
             'errors' => false,
+            'id' => $model->id,
             'message' => trans('backend::serviceindex.message.create success'),
         ]);
     }
@@ -62,6 +63,7 @@ class ServiceIndexController extends ApiController
 
         return response()->json([
             'errors' => false,
+            'id' => $serviceindex->id,
             'message' => trans('backend::serviceindex.message.update success'),
         ]);
     }

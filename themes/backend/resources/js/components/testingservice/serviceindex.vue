@@ -296,18 +296,85 @@ export default {
     },
     methods: {
         saveRow(index) {
-            this.data[index].is_edit = 0
+            let routeUri = route('api.serviceindex.store');
+            const vm = this;
+            if (this.data[index].id) {
+                routeUri = route('api.serviceindex.update', {serviceindex: this.data[index].id});
+            }
+            const params = _.merge(this.data[index], {service_id:this.service_id})
+            window.axios.post(routeUri, params)
+                .then((response) => {
+                    if (response.data.errors === false) {
+                        vm.$notify({
+                            type: 'success',
+                            title: 'Thành công',
+                            message: response.data.message,
+                        });
+                        this.data[index].id = response.data.id
+                        this.data[index].is_edit = 0
+                    }
+                })
+                .catch((error) => {
 
+                    vm.$notify({
+                        type: 'error',
+                        title: 'Thất bại',
+                        message: error.data.message,
+                    });
+                });
         },
         discardRow(index) {
-            this.data.splice(index,1,this.old_data[index])
+            if (this.old_data[index]) {
+                this.data.splice(index,1,this.old_data[index])
+            } else {
+                this.data.splice(index, 1);
+            }
+
         },
         editRow(index) {
             this.old_data[index] = _.cloneDeep(this.data[index])
             this.data[index].is_edit = 1
         },
+
         deleteRow(index) {
-            this.data.splice(index, 1);
+
+            this.$confirm("Các thông tin này sẽ bị xóa và không thể hoàn tác.", "XÓA CHỈ SỐ CON?", {
+                confirmButtonText: this.confirmBtn? this.confirmBtn:  this.$t('mon.button.deleteBtn'),
+                cancelButtonText:this.cancelBtn? this.cancelBtn:  this.$t('mon.button.cancelBtn'),
+                type: 'warning',
+                confirmButtonClass: 'el-button--danger',
+            }).then(() => {
+                if(!this.data[index].id) {
+                    this.data.splice(index, 1);
+                } else {
+                    const vm = this;
+                    let routeUri = route('api.serviceindex.destroy', {serviceindex: this.data[index].id});
+                    window.axios.delete(routeUri)
+                        .then((response) => {
+                            if (response.data.errors === false) {
+
+                                vm.$notify({
+                                    type: 'success',
+                                    title: 'Thành công',
+                                    message: response.data.message,
+                                });
+                                this.data.splice(index, 1);
+
+                            }
+                        })
+                        .catch((error) => {
+
+                            this.$notify({
+                                type: 'error',
+                                title: 'Thất bại',
+                                message: error.data.message,
+                            });
+                        });
+                }
+
+            }).catch(() => {
+
+            });
         },
         addItem() {
             this.data.push(_.cloneDeep(this.row_default))

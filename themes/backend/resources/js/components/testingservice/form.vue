@@ -221,7 +221,7 @@
                     </div>
                 </div>
 
-                <div class="row">
+                <div class="row" v-if="is_new">
                     <div class="col-12">
                         <div class="card">
 
@@ -239,7 +239,7 @@
                                     <span class="f-text-title pl-1"> Chỉ số con</span>
                                 </div>
 
-                                <service-index :service_id="$route.params.testingserviceId" @update-service-index="onUpdateServiceIndex"></service-index>
+                                <service-index  :service_id="$route.params.testingserviceId" @update-service-index="onUpdateServiceIndex"></service-index>
                             </div>
                         </div>
                     </div>
@@ -327,7 +327,9 @@
 
                             message: response.message,
                         });
-                        this.$router.push({name: 'admin.service.index'});
+                        if(this.is_new) {
+                            this.$router.push({name: 'api.service.update', params: {testingservice: response.data.id}});
+                        }
                     })
                     .catch((error) => {
 
@@ -405,7 +407,11 @@
             this.fetchData();
 
         },
-        computed: {}
+        computed: {
+            is_new: function () {
+                return this.$route.params.testingserviceId;
+            }
+        }
     }
 </script>
 
