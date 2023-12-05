@@ -328,11 +328,11 @@
                             message: response.message,
                         });
                         if(this.is_new) {
-                            window.location.href= route('admin.serviceindex.edit', {testingservice: response.id})
+                            window.location.href= route('admin.service.edit', {testingservice: response.id})
                         }
                     })
                     .catch((error) => {
-
+                        console.log(error)
                         this.loading = false;
                         this.$notify.error({
                             title: this.$route.params.testingserviceId !== undefined? 'Cập nhật thất bại': 'Thêm mới thất bại',
