@@ -56,10 +56,11 @@ class TestingServiceController extends ApiController
 
     public function store(CreateTestingServiceRequest $request)
     {
-        $this->testingserviceRepository->create($request->all());
+        $model = $this->testingserviceRepository->create($request->all());
 
         return response()->json([
             'errors' => false,
+            'id' => $model->id,
             'message' => trans('backend::service.message.create success'),
         ]);
     }
@@ -76,6 +77,7 @@ class TestingServiceController extends ApiController
 
         return response()->json([
             'errors' => false,
+            'id' => $testingservice->id,
             'message' => trans('backend::service.message.update success'),
         ]);
     }

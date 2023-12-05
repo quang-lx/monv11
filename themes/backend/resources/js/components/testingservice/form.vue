@@ -409,7 +409,7 @@
         },
         computed: {
             is_new: function () {
-                return this.$route.params.testingserviceId;
+                return this.$route.params.testingserviceId === undefined;
             }
         }
     }
