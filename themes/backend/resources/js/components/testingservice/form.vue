@@ -328,7 +328,7 @@
                             message: response.message,
                         });
                         if(this.is_new) {
-                            window.location.href= route('api.service.update', {testingservice: response.data.id})
+                            window.location.href= route('api.service.update', {testingservice: response.id})
                         }
                     })
                     .catch((error) => {
