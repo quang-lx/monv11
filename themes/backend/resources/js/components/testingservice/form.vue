@@ -221,7 +221,7 @@
                     </div>
                 </div>
 
-                <div class="row" v-if="is_new">
+                <div class="row" v-if="!is_new">
                     <div class="col-12">
                         <div class="card">
 
