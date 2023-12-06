@@ -235,6 +235,14 @@
             right: 12px;
             top: 22px;
         }
+        #toast-contaier{
+            width: 370px !important;
+        }
+
+        .toast-error{
+            max-width: 370px !important;
+            width: 370px !important;
+        }
 
         /* social container */
     </style>
@@ -309,7 +317,7 @@
     @if ($errors->first())
         <script>
             $(document).ready(function() {
-                toastr.error("{{ $errors->first() }}", '', { closeButton: true })
+                toastr.error("{!! $errors->first() !!}", '', { closeButton: true })
             })
         </script>
     @endif

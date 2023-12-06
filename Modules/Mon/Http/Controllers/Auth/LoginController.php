@@ -2,7 +2,6 @@
 
 namespace Modules\Mon\Http\Controllers\Auth;
 
-use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
@@ -12,7 +11,7 @@ use Modules\Mon\Http\Controllers\WebController;
 use Modules\Mon\Repositories\UserRepository;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
-
+use Modules\Mon\Entities\User;
 
 class LoginController extends WebController
 {
@@ -166,8 +165,13 @@ class LoginController extends WebController
     {
         $credentials = $request->only('username', 'password');
         $user = User::where('username', $request->input('username'))->first();
+
         if (!$user) {
             return back()->withErrors(['username' => 'Tên người dùng hoặc mật khẩu không chính xác.'])->withInput();
+        }
+
+        if ($user->status == User::STATUS_INACTIVE) {
+            return back()->withErrors(['username' => 'Tài khoản chưa được kích hoạt trên hệ thống <br> Vui lòng liên hệ quản lý'])->withInput();
         }
         $currentDateTime = Carbon::now();
         if ($user->retry_time && Carbon::parse($user->retry_time)->gt($currentDateTime)) {

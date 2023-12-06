@@ -2,10 +2,10 @@
 
 namespace Modules\Mon\Http\Controllers\Auth;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Modules\Mon\Auth\Contracts\Authentication;
+use Modules\Mon\Entities\User;
 use Modules\Mon\Http\Controllers\WebController;
 use Modules\Mon\Http\Requests\User\ChangePasswordRequest;
 
@@ -32,7 +32,7 @@ class UserController extends WebController
     {
         $user = Auth::user();
         $user->password = Hash::make($request->password);
-        $user->need_change_password = 2;
+        $user->need_change_password = User::CHANGED_PASSWORD;
         $user->save();
         Auth::logout();
         return redirect()->route('admin.login')->with('success', 'Đổi mật khẩu thành công');;
