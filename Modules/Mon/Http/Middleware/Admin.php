@@ -24,10 +24,10 @@ class Admin
         if (!$auth->check()) {
             return redirect()->guest(route('admin.login'));
         }
-        if (!$auth->user()->hasRole('cms_login')) {
-            $auth->logout();
-            return redirect()->guest(route('admin.login'))->withErrors(['username' => 'Vui lòng đăng nhâp bằng tài khoản quản trị!']);
-        }
+        // if (!$auth->user()->hasRole('cms_login')) {
+        //     $auth->logout();
+        //     return redirect()->guest(route('admin.login'))->withErrors(['username' => 'Vui lòng đăng nhâp bằng tài khoản quản trị!']);
+        // }
         $routeName = Route::currentRouteName();
 
         if ($auth->user()->need_change_password == User::NEED_CHANGE_PASSWORD && $routeName !== 'admin.need_change_password' ) {
