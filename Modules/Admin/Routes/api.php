@@ -431,6 +431,10 @@ Route::middleware('auth:api')->prefix('/patients')->group(function (){
             'as' => 'api.patient.update',
             'uses' => 'Patient\PatientController@update',
         ]);
+    Route::post('/{patient}/re-examination', [
+            'as' => 'api.patient.reExamination',
+            'uses' => 'Patient\PatientController@reExamination',
+        ]);
    Route::get('/{patient}', [
               'as' => 'api.patient.find',
               'uses' => 'Patient\PatientController@find',
@@ -454,6 +458,10 @@ Route::middleware('auth:api')->prefix('/patients')->group(function (){
         'as' => 'api.patient.exports',
         'uses' => 'Patient\PatientController@exports',
     ]);
+    Route::get('get-by-phone/all', [
+        'as' => 'api.patient.getPatientViaPhone',
+        'uses' => 'Patient\PatientController@getPatientViaPhone',
+    ]);
 
     Route::post('imports', [
         'as' => 'api.patient.imports',
@@ -468,7 +476,32 @@ Route::middleware('auth:api')->prefix('/patients')->group(function (){
     ]);
 
 });
+Route::middleware('auth:api')->prefix('/patient-examinations')->group(function (){
+
+    Route::get('/', [
+        'as' => 'api.patientexamination.index',
+        'uses' => 'PatientExamination\PatientExaminationController@index',
+    ]);
+    Route::post('/{patientexamination}/edit', [
+            'as' => 'api.patientexamination.update',
+            'uses' => 'PatientExamination\PatientExaminationController@update',
+        ]);
+   Route::get('/{patientexamination}', [
+              'as' => 'api.patientexamination.find',
+              'uses' => 'PatientExamination\PatientExaminationController@find',
+          ]);
+    Route::post('/', [
+        'as' => 'api.patientexamination.store',
+        'uses' => 'PatientExamination\PatientExaminationController@store',
+    ]);
+
+    Route::delete('/{patientexamination}', [
+        'as' => 'api.patientexamination.destroy',
+        'uses' => 'PatientExamination\PatientExaminationController@destroy',
+    ]);
+});
 // append
+
 
 
 

@@ -9,7 +9,7 @@
                     Bệnh nhân có số điện thoại trùng với bệnh nhân cũ, bạn có muốn cập nhật bệnh nhân?
                 </div>
             </div>
-            <div class="row my-2">
+            <div class="row my-2 ml-3">
                 <div class="col-12" v-for="patient in list_patient_same">
                     <div>{{ patient.id }} {{ patient.name }} - {{ new
                         Date(patient.birthday).toLocaleDateString('en-GB').replace(/\//g, '/') }}

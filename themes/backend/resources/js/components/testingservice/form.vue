@@ -368,14 +368,26 @@
                     window.axios.get(routeUri)
                         .then((response) => {
                             this.loading = false;
+                            let model_data = response.data.data;
 
-                            this.modelForm = response.data.data;
+                            this.modelForm = this.mapNumberUndefined(model_data)
                             this.modelForm.is_new = false;
+
 
                         });
                 } else {
                     this.modelForm.is_new = true;
                 }
+            },
+            mapNumberUndefined(data) {
+                data.min_value = data.min_value? data.min_value: undefined;
+                data.max_value = data.max_value? data.max_value: undefined;
+                data.ref_value = data.ref_value? data.ref_value: undefined;
+                data.male_max_value = data.male_max_value? data.male_max_value: undefined
+                data.male_min_value = data.male_min_value? data.male_min_value: undefined
+                data.female_min_value = data.female_min_value? data.female_min_value: undefined
+                data.female_max_value = data.female_max_value? data.female_max_value: undefined
+                 return data
             },
 
             getRoute() {

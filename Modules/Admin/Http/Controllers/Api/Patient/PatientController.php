@@ -36,6 +36,9 @@ class PatientController extends ApiController
         $this->patientRepository = $patient;
     }
 
+    public function getPatientViaPhone(Request $request) {
+        return PatientTransformer::collection($this->patientRepository->patientSamePhoneNumber($request->get('phone')));
+    }
 
     public function index(Request $request)
     {
@@ -51,7 +54,12 @@ class PatientController extends ApiController
 
     public function store(CreatePatientRequest $request)
     {
-        return $this->patientRepository->create($request->all());
+        $model = $this->patientRepository->create($request->all());
+        return response()->json([
+            'errors' => false,
+            'id' => $model->id,
+            'message' => trans('backend::patient.message.create success'),
+        ]);
     }
 
 
@@ -62,9 +70,22 @@ class PatientController extends ApiController
 
     public function update(Patient $patient, UpdatePatientRequest $request)
     {
-        return $this->patientRepository->update($patient, $request->all());
+        $this->patientRepository->update($patient, $request->all());
+        return response()->json([
+            'errors' => false,
+            'id' => $patient->id,
+            'message' => trans('backend::patient.message.update success'),
+        ]);
     }
-
+    public function reExamination(Patient $patient, Request $request)
+    {
+        $this->patientRepository->reExamination($patient, $request->all());
+        return response()->json([
+            'errors' => false,
+            'id' => $patient->id,
+            'message' => trans('backend::patient.message.update success'),
+        ]);
+    }
     public function destroy(Patient $patient)
     {
         $this->patientRepository->destroy($patient);

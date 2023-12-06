@@ -337,7 +337,29 @@ Route::group(['prefix' => '/patient'], function ( ) {
 
 
 });
+Route::group(['prefix' => '/patient-examination'], function ( ) {
+
+    Route::get('/', [
+        'as' => 'admin.patientexamination.index',
+        'uses' => 'PatientExamination\PatientExaminationController@index',
+        'middleware' => 'permission:admin.patientexamination.index'
+    ]);
+    Route::get('create', [
+        'as' => 'admin.patientexamination.create',
+        'uses' => 'PatientExamination\PatientExaminationController@create',
+        'middleware' => 'permission:admin.patientexamination.create'
+    ]);
+
+    Route::get('{patientexamination}/edit', [
+        'as' => 'admin.patientexamination.edit',
+        'uses' => 'PatientExamination\PatientExaminationController@edit',
+        'middleware' => 'permission:admin.patientexamination.edit'
+    ]);
+
+
+});
 // append
+
 
 
 

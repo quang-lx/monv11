@@ -9,4 +9,5 @@ interface PatientRepository extends BaseRepository
 {
     public function getPatientHasService(Request $request, $relations = null);
     public function changeStatus($request);
+    public function reExamination($patient, $data);
 }

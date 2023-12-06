@@ -2,9 +2,11 @@
 
 namespace Modules\Admin\Repositories\Eloquent;
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Modules\Admin\Repositories\PatientRepository;
+use Modules\Mon\Entities\PatientExamination;
 use Modules\Mon\Entities\PatientHasService;
 use \Modules\Mon\Repositories\Eloquent\BaseRepository;
 use Illuminate\Http\Request;
@@ -15,17 +17,12 @@ class EloquentPatientRepository extends BaseRepository implements PatientReposit
 
     public function create($data)
     {
-        $patient_same_phone = $this->patientSamePhoneNumber($data['phone']);
-        if (count($patient_same_phone) > 0 && !$data['is_agree']) {
-            return response()->json([
-                'errors' => true,
-                'list_patient_same' => $patient_same_phone,
-            ]);
-        }
+
         $data['created_by'] = Auth::user()->id;
         $data['data_sources'] = Patient::Local;
         $data['status'] = Patient::STATUS_RECEIVE;
         $model = $this->model->create($data);
+        $this->initExamination($model);
         foreach ($data['list_service'] ?? [] as $key => $value) {
             $patient_has_service = new PatientHasService;
             $patient_has_service->patient_id = $model->id;
@@ -34,10 +31,14 @@ class EloquentPatientRepository extends BaseRepository implements PatientReposit
             $patient_has_service->save();
         }
 
-        return response()->json([
-            'errors' => false,
-            'message' => trans('backend::patient.message.create success'),
-        ]);
+        return $model;
+    }
+    public function initExamination($model) {
+        $examination = new PatientExamination();
+        $examination->patient_id = $model->id;
+        $examination->started_at = Carbon::now();
+        $examination->status = PatientExamination::STATUS_INIT;
+        $examination->save();
     }
 
     public function update($patient, $data)
@@ -65,10 +66,13 @@ class EloquentPatientRepository extends BaseRepository implements PatientReposit
 
         PatientHasService::whereNotIn('id', $list_id)->delete();
 
-        return response()->json([
-            'errors' => false,
-            'message' => trans('backend::patient.message.update success'),
-        ]);
+        return $patient;
+    }
+
+    public function reExamination($patient, $data)
+    {
+        $this->initExamination($patient);
+        return $patient;
     }
 
     public function getPatientHasService(Request $request, $relations = null)
