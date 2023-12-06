@@ -5,6 +5,7 @@ namespace Modules\Mon\Http\Middleware;
 use Closure;
 use Modules\Mon\Auth\Contracts\Authentication;
 use Illuminate\Support\Facades\Route;
+use Modules\Mon\Entities\User;
 
 class Admin
 {
@@ -29,7 +30,7 @@ class Admin
         }
         $routeName = Route::currentRouteName();
 
-        if ($auth->user()->need_change_password ==1 && $routeName !== 'admin.need_change_password' ) {
+        if ($auth->user()->need_change_password == User::NEED_CHANGE_PASSWORD && $routeName !== 'admin.need_change_password' ) {
             return redirect()->route('admin.need_change_password');       
         }
 
