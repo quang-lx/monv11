@@ -56,6 +56,7 @@ class UserRepository extends BaseRepository implements UserInterface
         $data = [];
         $data['password'] = env('DEFAULT_PASSWORD', '123456aA@');
         $data['password'] = Hash::make($data['password']);
+        $data['need_change_password'] = User::NEED_CHANGE_PASSWORD;
         $model->update($data);
         return $model;
     }
