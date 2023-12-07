@@ -4,6 +4,7 @@ namespace Modules\Admin\Http\Controllers\Api\ExaminationService;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Modules\Admin\Transformers\ExaminationServiceTransformer;
 use Modules\Mon\Entities\ExaminationService;
 use Modules\Admin\Http\Requests\ExaminationService\CreateExaminationServiceRequest;
 use Modules\Admin\Http\Requests\ExaminationService\UpdateExaminationServiceRequest;

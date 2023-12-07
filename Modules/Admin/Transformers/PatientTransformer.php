@@ -29,6 +29,7 @@ class PatientTransformer extends JsonResource
             'phone_dependant' => $this->phone_dependant,
             'data_sources' => $this->data_sources == Patient::Local ? 'Local' : 'LIS',
             'status' => $this->status,
+            'current_examination' => $this->current_examination? (new PatientExaminationTransformer($this->current_examination)): [],
             'diagnose' => $this->diagnose,
             'status_text' => $this->formatStatus($this->status),
             'created_at' => $this->created_at->format('d-m-Y'),

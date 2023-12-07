@@ -12,4 +12,6 @@ interface PatientRepository extends BaseRepository
     public function changeStatus($request);
     public function reExamination($patient, $data);
     public function addService(Patient $patient, Request $request);
+    public function deleteService(Patient $patient, Request $request);
+    public function cancelService(Patient $patient, Request $request);
 }

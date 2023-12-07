@@ -434,10 +434,19 @@ Route::middleware('auth:api')->prefix('/patients')->group(function (){
     Route::post('/{patient}/re-examination', [
             'as' => 'api.patient.reExamination',
             'uses' => 'Patient\PatientController@reExamination',
-        ]); Route::post('/{patient}/add-service', [
+        ]);
+    Route::post('/{patient}/add-service', [
             'as' => 'api.patient.addService',
             'uses' => 'Patient\PatientController@addService',
         ]);
+    Route::delete('/{patient}/delete-service', [
+        'as' => 'api.patient.deleteService',
+        'uses' => 'Patient\PatientController@deleteService',
+    ]);
+    Route::post('/{patient}/cancel-service', [
+        'as' => 'api.patient.cancelService',
+        'uses' => 'Patient\PatientController@cancelService',
+    ]);
    Route::get('/{patient}', [
               'as' => 'api.patient.find',
               'uses' => 'Patient\PatientController@find',

@@ -12,6 +12,7 @@ use Modules\Mon\Entities\PatientHasService;
 use \Modules\Mon\Repositories\Eloquent\BaseRepository;
 use Illuminate\Http\Request;
 use Modules\Mon\Entities\Patient;
+use Symfony\Component\ErrorHandler\Error\ClassNotFoundError;
 
 class EloquentPatientRepository extends BaseRepository implements PatientRepository
 {
@@ -169,5 +170,36 @@ class EloquentPatientRepository extends BaseRepository implements PatientReposit
             }
 
         }
+    }
+    public function deleteService(Patient $patient, Request $request) {
+        $examination_service_id = $request->get('examination_service_id');
+        /** @var ExaminationService $model */
+        $model = ExaminationService::query()->where([
+            'patient_id' =>  $patient->id,
+            'id' =>  $examination_service_id
+        ])->first();
+
+        if (!$model) {
+            throw new ClassNotFoundError("Dịch vụ không tồn tại");
+        }elseif ($model->status != ExaminationService::STATUS_NEW) {
+            throw new ClassNotFoundError("Không được xoá dịch vụ ở trạng thái ". $model->status_text);
+        }
+        $model->delete();
+    }
+    public function cancelService(Patient $patient, Request $request) {
+        $examination_service_id = $request->get('examination_service_id');
+        /** @var ExaminationService $model */
+        $model = ExaminationService::query()->where([
+            'patient_id' =>  $patient->id,
+            'id' =>  $examination_service_id
+        ])->first();
+
+        if (!$model) {
+            throw new ClassNotFoundError("Dịch vụ không tồn tại");
+        }elseif ($model->status != ExaminationService::STATUS_PROCESSING) {
+            throw new ClassNotFoundError("Không được xoá dịch vụ ở trạng thái ". $model->status_text);
+        }
+        $model->status = ExaminationService::STATUS_CANCEL;
+        $model->save();
     }
 }

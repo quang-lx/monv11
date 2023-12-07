@@ -45,7 +45,10 @@ return [
     ],
 
     'message' => [
+        'reexamination success' => 'Tái khám thành công.',
         'add service success' => 'Thêm dịch vụ thành công.',
+        'delete service success' => 'Xoá dịch vụ thành công.',
+        'cancel service success' => 'Huỷ dịch vụ thành công.',
         'create success' => 'Tạo bệnh nhân thành công.',
         'update success' => 'Cập nhật bệnh nhân thành công.',
         'delete success' => 'Xóa bệnh nhân thành công.',

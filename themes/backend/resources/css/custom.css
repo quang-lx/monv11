@@ -480,3 +480,13 @@ body:not(.layout-fixed) .main-sidebar {
 .fa-angle-double-right::before{
     content: '' !important;
 }
+
+.status_border {
+    width: 150px;
+    display: flex;
+    padding: 4px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    border-radius: 100px;
+}

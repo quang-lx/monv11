@@ -19,8 +19,10 @@ use Illuminate\Database\Eloquent\Model;
 class PatientExamination extends Model
 {
     const  STATUS_INIT = 'init';
+    const  STATUS_PROCESSING = 'processing';
+    const  STATUS_DONE = 'done';
 
-    public $appends = ['status_text'];
+    public $appends = ['status_text', 'status_color'];
 
     protected $table = 'patient_examination';
     protected $fillable = [
@@ -39,12 +41,43 @@ class PatientExamination extends Model
     }
 
     public function getStatusTextAttribute() {
+        return self::mapStatusText($this->status);
+
+    }
+    public function getStatusColorAttribute() {
+        return self::mapStatusColor($this->status);
+
+    }
+    public static function mapStatusText($status) {
         $name = '';
-        switch ($this->status) {
+        switch ($status) {
             case self::STATUS_INIT:
                 $name = 'Tiếp đón';
                 break;
+            case self::STATUS_PROCESSING:
+                $name = 'Đang khám';
+                break;
+            case self::STATUS_DONE:
+                $name = 'Hoàn thành';
+                break;
+
         }
         return $name;
+    }
+    public static function mapStatusColor($status) {
+        $color = '#007AFF6E';
+        switch ($status) {
+            case self::STATUS_INIT:
+                $color = '#007AFF6E';
+                break;
+            case self::STATUS_PROCESSING:
+                $color = '#E1C14C';
+                break;
+            case self::STATUS_DONE:
+                $color = '#A4E381';
+                break;
+
+        }
+        return $color;
     }
 }

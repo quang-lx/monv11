@@ -87,13 +87,49 @@ class PatientController extends ApiController
             'message' => trans('backend::patient.message.add service success'),
         ]);
     }
+    public function deleteService(Patient $patient, Request $request)
+    {
+        try {
+            $this->patientRepository->deleteService($patient, $request);
+            return response()->json([
+                'errors' => false,
+                'message' => trans('backend::patient.message.delete service success'),
+            ]);
+        } catch (\Exception $exception) {
+
+            return response()->json([
+                'errors' => true,
+                'message' => $exception->getMessage(),
+            ]);
+        }
+
+
+    }
+    public function cancelService(Patient $patient, Request $request)
+    {
+        try {
+            $this->patientRepository->cancelService($patient, $request);
+            return response()->json([
+                'errors' => false,
+                'message' => trans('backend::patient.message.cancel service success'),
+            ]);
+        } catch (\Exception $exception) {
+
+            return response()->json([
+                'errors' => true,
+                'message' => $exception->getMessage(),
+            ]);
+        }
+
+
+    }
     public function reExamination(Patient $patient, Request $request)
     {
         $this->patientRepository->reExamination($patient, $request->all());
         return response()->json([
             'errors' => false,
             'id' => $patient->id,
-            'message' => trans('backend::patient.message.update success'),
+            'message' => trans('backend::patient.message.reexamination success'),
         ]);
     }
     public function destroy(Patient $patient)
