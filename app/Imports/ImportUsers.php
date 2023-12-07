@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithStartRow;
 use Modules\Mon\Entities\Department;
+use Modules\Mon\Entities\User;
 
 class ImportUsers implements ToModel, WithHeadingRow, WithStartRow
 {
@@ -32,7 +33,7 @@ class ImportUsers implements ToModel, WithHeadingRow, WithStartRow
          "phone" => $row[3] ?? null,
          "department_id" => $this->getDepartmentId($row[4]) ?? null,
          "department" => $row[4] ?? null,
-         "sex" => $row[5] ?? null,
+         "sex" => $row[5] == 'x' ? User::FEMALE : User::MALE,
          "birth_day" => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[6] ?? null)->format('Y-m-d H:i:s'),
          "identification" => $row[7] ?? null,
          "active_at" => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[8] ?? null)->format('Y-m-d H:i:s'),

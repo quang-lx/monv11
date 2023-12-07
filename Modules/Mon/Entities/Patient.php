@@ -39,17 +39,20 @@ class Patient extends Model
         'updated_at'
     ];
 
-    public $appends = ['current_examination'];
-    public function user() {
+    public $appends = ['current_examination', 'sex_text', 'status_text'];
+    public function user()
+    {
         return $this->belongsTo(User::class, 'created_by');
     }
 
 
-    public function examinations() {
-       return $this->hasMany(PatientExamination::class, 'patient_id');
+    public function examinations()
+    {
+        return $this->hasMany(PatientExamination::class, 'patient_id');
     }
 
-    public function getCurrentExaminationAttribute() {
-       return $this->examinations()->orderByDesc('id')->first();
+    public function getCurrentExaminationAttribute()
+    {
+        return $this->examinations()->orderByDesc('id')->first();
     }
 }
