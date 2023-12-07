@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Modules\Admin\Repositories\PatientRepository;
+use Modules\Mon\Entities\ExaminationService;
 use Modules\Mon\Entities\PatientExamination;
 use Modules\Mon\Entities\PatientHasService;
 use \Modules\Mon\Repositories\Eloquent\BaseRepository;
@@ -23,13 +24,7 @@ class EloquentPatientRepository extends BaseRepository implements PatientReposit
         $data['status'] = Patient::STATUS_RECEIVE;
         $model = $this->model->create($data);
         $this->initExamination($model);
-        foreach ($data['list_service'] ?? [] as $key => $value) {
-            $patient_has_service = new PatientHasService;
-            $patient_has_service->patient_id = $model->id;
-            $patient_has_service->service_id = $value['service_id'];
-            $patient_has_service->created_by = Auth::user()->id;
-            $patient_has_service->save();
-        }
+
 
         return $model;
     }
@@ -41,33 +36,7 @@ class EloquentPatientRepository extends BaseRepository implements PatientReposit
         $examination->save();
     }
 
-    public function update($patient, $data)
-    {
-        $list_id = [];
-        $patient_same_phone = $this->patientSamePhoneNumber($data['phone']);
-        if (count($patient_same_phone) > 0 && !$data['is_agree']) {
-            return response()->json([
-                'errors' => true,
-                'list_patient_same' => $patient_same_phone,
-            ]);
-        }
-        $patient->update($data);
-        foreach ($data['list_service'] ?? [] as $key => $value) {
-            $patient_has_service = PatientHasService::where('patient_id', $patient->id)->where('service_id', $value['service_id'])->first();
-            if (!$patient_has_service) {
-                $patient_has_service = new PatientHasService;
-            }
-            $patient_has_service->patient_id = $patient->id;
-            $patient_has_service->service_id = $value['service_id'];
-            $patient_has_service->created_by = Auth::user()->id;
-            $patient_has_service->save();
-            $list_id[] = $value['id'] ?? null;
-        }
 
-        PatientHasService::whereNotIn('id', $list_id)->delete();
-
-        return $patient;
-    }
 
     public function reExamination($patient, $data)
     {
@@ -75,9 +44,9 @@ class EloquentPatientRepository extends BaseRepository implements PatientReposit
         return $patient;
     }
 
-    public function getPatientHasService(Request $request, $relations = null)
+    public function getCurrentExaminationService(Patient $patient, Request $request, $relations = null)
     {
-        $query = PatientHasService::query();
+        $query = ExaminationService::query();
         if ($relations) {
             $query = $query->with($relations);
         }
@@ -90,9 +59,9 @@ class EloquentPatientRepository extends BaseRepository implements PatientReposit
             });
         }
 
-        if ($request->get('patient_id') !== null) {
-            $query->where('patient_id', $request->get('patient_id'));
-        }
+        $query->where('patient_id', $patient->id);
+        $query->where('examination_id', $patient->current_examination->id);
+
 
         if ($request->get('order_by') !== null && $request->get('order') !== 'null') {
             $order = $request->get('order') === 'ascending' ? 'asc' : 'desc';
@@ -175,6 +144,30 @@ class EloquentPatientRepository extends BaseRepository implements PatientReposit
                 'errors' => true,
                 'message' => trans('backend::patient.message.re-examination fail'),
             ]);
+        }
+    }
+
+    public function addService(Patient $patient, Request $request) {
+        $current_examination = $patient->current_examination;
+        if ($current_examination) {
+            $list_service= $request->get('list_service', []);
+            foreach ($list_service as $service_id) {
+                if(ExaminationService::query()->where([
+                    'patient_id' =>  $patient->id,
+                    'examination_id' =>  $current_examination->id,
+                    'service_id' =>  $service_id
+                ])->count() == 0) {
+                    $examination_service = new ExaminationService();
+                    $examination_service->patient_id = $patient->id;
+                    $examination_service->examination_id = $current_examination->id;
+                    $examination_service->service_id = $service_id;
+                    $examination_service->status = ExaminationService::STATUS_NEW;
+                    $examination_service->created_by = Auth::user()->id;
+                    $examination_service->save();
+                }
+
+            }
+
         }
     }
 }

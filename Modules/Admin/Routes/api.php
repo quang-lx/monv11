@@ -434,6 +434,9 @@ Route::middleware('auth:api')->prefix('/patients')->group(function (){
     Route::post('/{patient}/re-examination', [
             'as' => 'api.patient.reExamination',
             'uses' => 'Patient\PatientController@reExamination',
+        ]); Route::post('/{patient}/add-service', [
+            'as' => 'api.patient.addService',
+            'uses' => 'Patient\PatientController@addService',
         ]);
    Route::get('/{patient}', [
               'as' => 'api.patient.find',
@@ -444,9 +447,9 @@ Route::middleware('auth:api')->prefix('/patients')->group(function (){
         'uses' => 'Patient\PatientController@store',
     ]);
 
-    Route::get('/patient-has-service/get', [
-        'as' => 'api.patient.patientHasService',
-        'uses' => 'Patient\PatientController@getPatientHasService',
+    Route::get('/{patient}/examination-service/get', [
+        'as' => 'api.patient.examinationService',
+        'uses' => 'Patient\PatientController@getExaminationService',
     ]);
 
     Route::delete('/{patient}', [
@@ -500,7 +503,32 @@ Route::middleware('auth:api')->prefix('/patient-examinations')->group(function (
         'uses' => 'PatientExamination\PatientExaminationController@destroy',
     ]);
 });
+Route::middleware('auth:api')->prefix('/examinationservices')->group(function (){
+
+    Route::get('/', [
+        'as' => 'api.examinationservice.index',
+        'uses' => 'ExaminationService\ExaminationServiceController@index',
+    ]);
+    Route::post('/{examinationservice}/edit', [
+            'as' => 'api.examinationservice.update',
+            'uses' => 'ExaminationService\ExaminationServiceController@update',
+        ]);
+   Route::get('/{examinationservice}', [
+              'as' => 'api.examinationservice.find',
+              'uses' => 'ExaminationService\ExaminationServiceController@find',
+          ]);
+    Route::post('/', [
+        'as' => 'api.examinationservice.store',
+        'uses' => 'ExaminationService\ExaminationServiceController@store',
+    ]);
+
+    Route::delete('/{examinationservice}', [
+        'as' => 'api.examinationservice.destroy',
+        'uses' => 'ExaminationService\ExaminationServiceController@destroy',
+    ]);
+});
 // append
+
 
 
 

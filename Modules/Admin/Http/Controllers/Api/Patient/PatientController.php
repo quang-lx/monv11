@@ -8,6 +8,8 @@ use App\Imports\ImportPatient;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Modules\Admin\Transformers\ExaminationServiceTransformer;
+use Modules\Admin\Transformers\PatientFullTransformer;
 use Modules\Mon\Entities\Patient;
 use Modules\Admin\Http\Requests\Patient\CreatePatientRequest;
 use Modules\Admin\Http\Requests\Patient\UpdatePatientRequest;
@@ -65,7 +67,7 @@ class PatientController extends ApiController
 
     public function find(Patient $patient)
     {
-        return new PatientTransformer($patient);
+        return new PatientFullTransformer($patient);
     }
 
     public function update(Patient $patient, UpdatePatientRequest $request)
@@ -75,6 +77,14 @@ class PatientController extends ApiController
             'errors' => false,
             'id' => $patient->id,
             'message' => trans('backend::patient.message.update success'),
+        ]);
+    }
+    public function addService(Patient $patient, Request $request)
+    {
+        $this->patientRepository->addService($patient, $request);
+        return response()->json([
+            'errors' => false,
+            'message' => trans('backend::patient.message.add service success'),
         ]);
     }
     public function reExamination(Patient $patient, Request $request)
@@ -96,9 +106,9 @@ class PatientController extends ApiController
         ]);
     }
 
-    public function getPatientHasService(Request $request)
+    public function getExaminationService(Patient $patient,Request $request)
     {
-        return PatientHasServiceTransformer::collection($this->patientRepository->getPatientHasService($request));
+        return ExaminationServiceTransformer::collection($this->patientRepository->getCurrentExaminationService($patient, $request));
     }
 
     public function exports(Request $request)

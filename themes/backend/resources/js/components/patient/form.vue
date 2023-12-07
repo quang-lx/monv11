@@ -162,7 +162,7 @@
                                             <el-form-item :label="$t('patient.label.label status')" prop="status"
                                                           :class="{ 'el-form-item is-error': form.errors.has('status') }">
                                                 <el-input :disabled="$route.params.patientId"
-                                                          v-model="modelForm.status_name" size="small"></el-input>
+                                                          v-model="modelForm.examination.status_text" size="small"></el-input>
                                             </el-form-item>
                                         </div>
 

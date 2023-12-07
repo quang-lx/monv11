@@ -6,7 +6,7 @@ namespace Modules\Admin\Transformers;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 
-class PatientExaminationTransformer extends JsonResource
+class ExaminationServiceTransformer extends JsonResource
 {
 
 
@@ -14,10 +14,11 @@ class PatientExaminationTransformer extends JsonResource
     {
         $data = [
             'id' => $this->id,
-            'status' => $this->status,
-            'status_text' => $this->status_text,
 
 
+             'urls' => [
+                'delete_url' => route('api.examinationservice.destroy', $this->id),
+            ],
 
         ];
 

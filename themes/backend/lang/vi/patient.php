@@ -45,6 +45,7 @@ return [
     ],
 
     'message' => [
+        'add service success' => 'Thêm dịch vụ thành công.',
         'create success' => 'Tạo bệnh nhân thành công.',
         'update success' => 'Cập nhật bệnh nhân thành công.',
         'delete success' => 'Xóa bệnh nhân thành công.',

@@ -24,15 +24,7 @@
                         </span>
 
 
-                        <!-- <span class="f-action pl-4 f-pointer">
-                            <inline-svg src="/images/download.svg" /> Tải xuống
 
-                        </span>
-
-                        <span class="f-action pl-4 f-pointer">
-                            <inline-svg src="/images/upload.svg" /> Tải lên
-
-                        </span> -->
 
                         <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange"
                             :current-page.sync="meta.current_page" :page-sizes="[25, 50, 75, 100]"
@@ -121,7 +113,7 @@ export default {
 
     },
     props: {
-        patient_id: { default: null }
+        patient_id: { default: null },
     },
     data() {
         return {
@@ -140,6 +132,7 @@ export default {
             show_add_service_form: false,
             service_selecteds: [],
             options: [],
+
         };
     },
     methods: {
@@ -159,10 +152,10 @@ export default {
                 order_by: this.order_meta.order_by,
                 order: this.order_meta.order,
                 search: this.searchQuery,
-                patient_id: this.patient_id
-            };
+                patient: this.patient_id,
 
-            window.axios.get(route('api.patient.patientHasService', _.merge(properties, customProperties)))
+            };
+             window.axios.get(route('api.patient.examinationService', _.merge(properties, customProperties)))
                 .then((response) => {
                     this.tableIsLoading = false;
                     this.tableIsLoading = false;
@@ -177,21 +170,35 @@ export default {
 
 
         confirmAddService() {
-            let options = this.options.filter(item => {
-                return this.service_selecteds.includes(item.id)
-            })
-            let data_format = options.map(item => {
-                return {
-                    id: null,
-                    service_id: item.id,
-                    code: item.code,
-                    name: item.name,
-                    status: 1,
-                }
-            })
-            this.data = this.data.concat(data_format);
-            this.service_selecteds = [];
-            this.show_add_service_form = false;
+
+
+
+            let  routeUri = route('api.patient.addService', {patient: this.patient_id});
+            const vm = this;
+
+            const params = {list_service: this.service_selecteds}
+            window.axios.post(routeUri, params)
+                .then((response) => {
+                    if (response.data.errors === false) {
+                        vm.$notify({
+                            type: 'success',
+                            title: 'Thành công',
+                            message: response.data.message,
+                        });
+                        this.service_selecteds = [];
+                        this.show_add_service_form = false;
+                        this.fetchData();
+
+                    }
+                })
+                .catch((error) => {
+
+                    vm.$notify({
+                        type: 'error',
+                        title: 'Thất bại',
+                        message: error.data.message,
+                    });
+                })
         },
 
         getServiceOptions() {
