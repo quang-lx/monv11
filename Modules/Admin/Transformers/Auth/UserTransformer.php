@@ -1,8 +1,7 @@
 <?php
 namespace Modules\Admin\Transformers\Auth;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Modules\Admin\Transformers\DepartmentTransformer;
-
+use Modules\Mon\Entities\User;
 
 class UserTransformer extends JsonResource
 {
@@ -19,7 +18,7 @@ class UserTransformer extends JsonResource
             'phone' => $this->phone,
 	        'sex' => $this->sex,
 	        'status_text' => $this->status_text,
-            'sex_text' => $this->sex == 'male' ? 'Nam' : 'Nữ',
+            'sex_text' => $this->sex == User::MALE ? 'Nam' : 'Nữ',
 	        'department_id' => $this->department_id,
 	        'identification' => $this->identification,
             'roles' => $this->roles,

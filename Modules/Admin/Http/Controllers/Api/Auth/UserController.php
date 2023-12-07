@@ -195,6 +195,7 @@ class UserController extends ApiController
                     $user_model->name = $user['name'];
                     $user_model->email = $user['email'];
                     $user_model->phone = $user['phone'];
+                    $user_model->sex = $user['sex'];
                     $user_model->department_id = $user['department_id'];
                     $user_model->birth_day = $user['birth_day'];
                     $user_model->identification = $user['identification'];
