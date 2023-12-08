@@ -189,6 +189,8 @@ export default {
         },
         show_config(new_value) {
             this.show_popup = new_value;
+            this.getListColSelected();
+
         }
     },
     mounted() {

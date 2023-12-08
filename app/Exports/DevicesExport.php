@@ -8,6 +8,7 @@ use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Events\AfterSheet;
 use Modules\Admin\Repositories\Eloquent\EloquentDeviceRepository;
+use Modules\Admin\Transformers\DeviceTransformer;
 use Modules\Mon\Entities\Device;
 
 class DevicesExport implements FromView, WithEvents
@@ -79,11 +80,11 @@ class DevicesExport implements FromView, WithEvents
         $repo = new EloquentDeviceRepository(new Device);
         $query = $repo->queryGetDevice($this->request);
 
-        $query->chunk(100, function ($list) {
-            foreach ($list as $data) {
-                $this->data_export[] = $data->toArray();
-            }
-        });
+        $list_data = DeviceTransformer::collection($query->get());
+        foreach ($list_data as $data) {
+            $this->data_export[] = json_decode(json_encode($data),true);
+        }
+
         return view('exports.template', [
             'data_export' => $this->data_export,
             'columns' => $this->columns_export

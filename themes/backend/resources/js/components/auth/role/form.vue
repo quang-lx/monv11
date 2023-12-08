@@ -175,11 +175,11 @@
                     .catch((error) => {
 
                         this.loading = false;
-                        this.$notify.error({
-                            title: this.$route.params.roleId !== undefined? 'Cập nhật thất bại': 'Thêm mới thất bại',
+                        // this.$notify.error({
+                        //     title: this.$route.params.roleId !== undefined? 'Cập nhật thất bại': 'Thêm mới thất bại',
 
-                            message: this.getSubmitError(this.form.errors),
-                        });
+                        //     message: this.getSubmitError(this.form.errors),
+                        // });
                     });
             },
             onCancel() {

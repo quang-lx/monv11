@@ -231,7 +231,7 @@ export default {
     },
     computed: {
         isShowCol: function () {
-            return this.list_selected_col.reduce(
+            return this.isShowCol.reduce(
                 (obj, item) => Object.assign(obj, { [item.col_name]: 1 }), {});
         },
         department_user_total: function () {
@@ -293,11 +293,6 @@ export default {
                 {
                     col_name: 'created_at',
                     name: this.$t('user.label.created_at'),
-
-                },
-                {
-                    col_name: 'updated_at',
-                    name: this.$t('user.label.updated_at'),
 
                 },
                 {
@@ -470,7 +465,7 @@ export default {
             this.queryServer(filter_data)
         },
         onSaveConfigDisplay(config_data) {
-            this.show_config = false;
+            // this.show_config = false;
             this.list_selected_col = config_data
         },
         queryServer(customProperties) {
