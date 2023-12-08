@@ -3,10 +3,10 @@ $color-primary: #6589FF;
 $--color-primary: #6589FF;
 $--size-base: 14px !default;
 $--font-size-base: 14px !default;
-$font-family-sans-serif: -apple-system, system-ui,  Roboto, "Helvetica Neue", Arial, sans-serif !default;
-$font-family-serif:     Roboto, Georgia, "Times New Roman", Times, serif !default;
-$font-family-monospace:  Roboto, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
-$font-family-base:       $font-family-sans-serif !default;
+$font-family-sans-serif: -apple-system, system-ui, Roboto, "Helvetica Neue", Arial, sans-serif !default;
+$font-family-serif: Roboto, Georgia, "Times New Roman", Times, serif !default;
+$font-family-monospace: Roboto, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
+$font-family-base: $font-family-sans-serif !default;
 
 /* icon font path, required */
 $--font-path: '~element-ui/lib/theme-chalk/fonts';
@@ -28,8 +28,9 @@ $fa-css-prefix: el-icon-fa;
 }
 
 
-html, body {
-    font-family: Roboto !important;
+html,
+body {
+  font-family: Roboto !important;
 
 }
 
@@ -77,26 +78,29 @@ aside .sidebar {
 .f-pointer {
   cursor: pointer;
 }
+
 .f-icon-bound {
-    cursor:pointer;
-    width: 32px;
-    height: 32px;
-    border-radius: 4px;
-    background: #F5F5FA;
-    display: flex;
-    padding: 6px;
-    align-items: center;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  background: #F5F5FA;
+  display: flex;
+  padding: 6px;
+  align-items: center;
 }
+
 .f-icon-bound-breadcrumb {
-    cursor:pointer;
-    width: 32px;
-    height: 32px;
-    border-radius: 4px;
-    background: #8181A5;
-    display: flex;
-    padding: 6px;
-    align-items: center;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  background: #8181A5;
+  display: flex;
+  padding: 6px;
+  align-items: center;
 }
+
 .card-body {
   padding: 12px !important;
 }
@@ -130,61 +134,87 @@ aside .sidebar {
 //   background: var(--common-2, #FAFAFA) !important;
 // }
 
-.popup-change-pass .el-dialog__header{
+.popup-change-pass .el-dialog__header {
   padding: 0px !important;
 }
-.popup-change-pass .el-dialog__body{
+
+.popup-change-pass .el-dialog__body {
   padding: 40px !important;
 }
-.popup-change-pass .el-dialog{
+
+.popup-change-pass .el-dialog {
   border-radius: 16px;
 }
 
-.el-form-item.is-required:not(.is-no-asterisk) > .el-form-item__label:before, .el-form-item.is-required:not(.is-no-asterisk) .el-form-item__label-wrap > .el-form-item__label:before {
-    content: none;
+.el-form-item.is-required:not(.is-no-asterisk)>.el-form-item__label:before,
+.el-form-item.is-required:not(.is-no-asterisk) .el-form-item__label-wrap>.el-form-item__label:before {
+  content: none;
 }
 
-.el-form-item.is-required:not(.is-no-asterisk) > .el-form-item__label:after, .el-form-item.is-required:not(.is-no-asterisk) .el-form-item__label-wrap > .el-form-item__label:after {
-    content: "*";
-    color: #F56C6C;
-    margin-left: 4px;
+.el-form-item.is-required:not(.is-no-asterisk)>.el-form-item__label:after,
+.el-form-item.is-required:not(.is-no-asterisk) .el-form-item__label-wrap>.el-form-item__label:after {
+  content: "*";
+  color: #F56C6C;
+  margin-left: 4px;
 }
 
 .f-box-title {
-    padding-bottom: 23px;
+  padding-bottom: 23px;
 }
+
 .f-text-title {
-    color:  #242424;
-    font-family: Roboto;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
+  color: #242424;
+  font-family: Roboto;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 }
+
 .el-table {
-    font-family: Roboto !important;
-    font-size: 14px !important;
+  font-family: Roboto !important;
+  font-size: 14px !important;
 }
+
 .el-table__header th tr {
 
-    background: rgba(245, 245, 250, 0.40);
-    font-weight: 500;
-}
-.el-table th.el-table__cell {
-    background: rgba(245, 245, 250, 0.40) !important;
-    font-weight: 500;
+  background: rgba(245, 245, 250, 0.40);
+  font-weight: 500;
 }
 
-.el-input.is-disabled .el-input__inner{
+.el-table th.el-table__cell {
+  background: rgba(245, 245, 250, 0.40) !important;
+  font-weight: 500;
+}
+
+.el-input.is-disabled .el-input__inner {
   color: var(--gray-9, #2F3748);
 }
 
-.select-date-customer .el-input__inner{
+.select-date-customer .el-input__inner {
   padding-left: 8px;
   padding-right: 8px;
   width: 140px;
 }
 
-.el-drawer__header{
+.el-drawer__header {
   margin-bottom: 0px !important;
+}
+
+.el-table__header thead .el-table__cell {
+  background: var(--basic-1, #E8E8E8) !important;
+  color: #1C1D21;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.el-table__row .el-table__cell {
+  color: #1C1D21;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  padding: 10px 0px;
 }

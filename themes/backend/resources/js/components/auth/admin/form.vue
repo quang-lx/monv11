@@ -272,7 +272,7 @@
                                                 ref="multipleTable"
                                                 :data="roles"
                                                 style="width: 100%"
-                                                @selection-change="handleSelectionChange">
+                                                >
                                                 <el-table-column
                                                     type="selection"
                                                     width="55">
@@ -413,11 +413,11 @@
                     .catch((error) => {
 
                         this.loading = false;
-                        this.$notify.error({
-                            title: this.$route.params.userId !== undefined? 'Cập nhật thất bại': 'Thêm mới thất bại',
+                        // this.$notify.error({
+                        //     title: this.$route.params.userId !== undefined? 'Cập nhật thất bại': 'Thêm mới thất bại',
 
-                            message: this.getSubmitError(this.form.errors),
-                        });
+                        //     message: this.getSubmitError(this.form.errors),
+                        // });
                     });
             },
             onResetPassword() {

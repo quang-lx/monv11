@@ -27,6 +27,7 @@ class ImportUsers implements ToModel, WithHeadingRow, WithStartRow
 
    public function model(array $row)
    {
+      Log::info([$row[6]]);
       $this->result[] = [
          "name" => $row[1] ?? null,
          "email" => $row[2] ?? null,
@@ -34,7 +35,7 @@ class ImportUsers implements ToModel, WithHeadingRow, WithStartRow
          "department_id" => $this->getDepartmentId($row[4]) ?? null,
          "department" => $row[4] ?? null,
          "sex" => $row[5] == 'x' ? User::FEMALE : User::MALE,
-         "birth_day" => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[6] ?? null)->format('Y-m-d H:i:s'),
+         "birth_day" => $row[6] ? \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[6])->format('Y-m-d H:i:s') : null,
          "identification" => $row[7] ?? null,
          "active_at" => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[8] ?? null)->format('Y-m-d H:i:s'),
          "expired_at" => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[9] ?? null)->format('Y-m-d H:i:s'),

@@ -55,20 +55,20 @@ class UpdateUserRequest extends FormRequest
     public function messages()
     {
         return [
-            'username.required' => 'Tài khoản là bắt buộc',
+            '*.required' => 'Thông tin này là bắt buộc',
             'username.unique' => 'Tài khoản đã tồn tại trên hệ thống',
-            'name.required' => 'Tên là bắt buộc',
-            'sex.required' => 'Giới tính là bắt buộc',
-            'department_id.required' => 'Đơn vị là bắt buộc',
-            'active_at.required' => 'Thời gian hiệu lực của tài khoản là bắt buộc',
-            'expired_at.required' => 'Thời gian hiệu lực của tài khoản là bắt buộc',
-            'email.unique' => 'Email đã được sử dụng',
-            'email.required' => 'Email là bắt buộc',
-            'email.email' => 'Email sai định dạng',
+            // 'name.required' => 'Tên là bắt buộc',
+            // 'sex.required' => 'Giới tính là bắt buộc',
+            // 'department_id.required' => 'Đơn vị là bắt buộc',
+            // 'active_at.required' => 'Thời gian hiệu lực của tài khoản là bắt buộc',
+            // 'expired_at.required' => 'Thời gian hiệu lực của tài khoản là bắt buộc',
+            'email.unique' => 'Thông tin đã được sử dụng',
+            // 'email.required' => 'Email là bắt buộc',
+            'email.email' => 'Thông tin sai định dạng',
 
-            'phone.unique' => 'Số điện thoại đã được sử dụng',
-            'phone.required' => 'Số điện thoại là bắt buộc',
-            'phone.regex' => 'Số điện thoại chỉ dược nhập là số',
+            'phone.unique' => 'Thông tin đã được sử dụng',
+            // 'phone.required' => 'Thông tin là bắt buộc',
+            'phone.regex' => 'Thông tin chỉ dược nhập là số',
 
 
         ];
