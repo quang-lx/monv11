@@ -30,7 +30,7 @@ class PatientExport implements FromView, WithEvents
                 'name' => trans('backend::patient.label.name'),
             ],
             [
-                'col_name' => 'sex',
+                'col_name' => 'sex_text',
                 'name' => trans('backend::patient.label.sex'),
             ],
             [
@@ -109,9 +109,8 @@ class PatientExport implements FromView, WithEvents
         $patient_repo = new EloquentPatientRepository(new Patient);
         $query = $patient_repo->queryGetPatients($this->request);
         $patients = PatientTransformer::collection($query->get());
-        Log::info([$patients]);
         foreach ($patients as $patient) {
-            $this->data_export[] = $patient;
+            $this->data_export[] = json_decode(json_encode($patient),true);
         }
         $config_play = ConfigDisplay::where('table_name', 'patient')->orderBy('position', 'asc')->get();
         if (count($config_play) > 0) {
@@ -129,8 +128,17 @@ class PatientExport implements FromView, WithEvents
         $columns_export = [];
         foreach ($config_play as $column) {
 
+            $col_name = $column->col_name;
+            if ($col_name == 'sex') {
+                $col_name = 'sex_text';
+            }
+
+            if ($col_name == 'status') {
+                $col_name = 'status_text';
+            }
+
             $columns_export[] = [
-                'col_name' => $column->col_name,
+                'col_name' => $col_name,
                 'name' => trans('backend::patient.label.' . $column->col_name)
             ];
         }

@@ -2,7 +2,7 @@
 namespace Modules\Admin\Transformers\Auth;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Modules\Admin\Transformers\DepartmentTransformer;
-
+use Modules\Mon\Entities\User;
 
 class UserFullTransformer extends JsonResource
 {
@@ -21,7 +21,7 @@ class UserFullTransformer extends JsonResource
             'shop_id' => $this->shop_id,
             'phone' => $this->phone,
             'sex' => $this->sex,
-            'sex_text' => $this->sex == 'male' ? 'Nam' : 'Nữ',
+            'sex_text' => $this->sex == User::MALE ? 'Nam' : 'Nữ',
             'active_at' => optional($this->active_at)->format('Y-m-d'),
             'expired_at' => optional($this->expired_at)->format('Y-m-d'),
             'birth_day' => optional($this->birth_day)->format('Y-m-d'),

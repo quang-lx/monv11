@@ -32,8 +32,8 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject {
 	const NEED_CHANGE_PASSWORD = 1;
     const CHANGED_PASSWORD = 2;
 
-	const MALE = 'nam';
-	const FEMALE = 'nữ';
+	const MALE = 'male';
+	const FEMALE = 'female';
 
     protected   $guard_name = ['api', 'web'];
 	protected $table = 'users';
