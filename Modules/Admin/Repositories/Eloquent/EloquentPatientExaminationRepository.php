@@ -20,6 +20,17 @@ class EloquentPatientExaminationRepository extends BaseRepository implements Pat
             $query->where('patient_id', $patient_id);
         }
 
+        $filter_date_range = $request->get('filter_date_range');
+
+        if ($filter_date_range && is_array($filter_date_range) && count($filter_date_range) == 2) {
+            $query->whereBetween('started_at', $filter_date_range)
+                ->orWhereBetween('finished_at', $filter_date_range)
+                ->orWhere(function ($query) use ($filter_date_range){
+                    $query->where('started_at', '<', $filter_date_range[0])
+                        ->where('finished_at', '<', $filter_date_range[1]);
+            });
+        }
+
         if ($request->get('order_by') !== null && $request->get('order') !== 'null') {
             $order = $request->get('order') === 'ascending' ? 'asc' : 'desc';
 

@@ -17,12 +17,8 @@
                     <div class="col-md-6">
                         <div class="float-right">
                             <el-button size="small" class="btn btn-flat  btn-warning" v-if="modelForm.current_examination.status == 'done'"
-                                       @click="onReExamination($route.params.patientId)">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="23" height="24" viewBox="0 0 23 24" fill="none">
-                                    <g opacity="0.6">
-                                        <path d="M21.0638 3.99805V9.99805M21.0638 9.99805H15.3177M21.0638 9.99805L16.6296 5.63806C15.3086 4.2578 13.5938 3.36325 11.7435 3.0892C9.89329 2.81516 8.00787 3.17648 6.37138 4.1187C4.7349 5.06092 3.43602 6.53301 2.67047 8.31313C1.90492 10.0932 1.71418 12.085 2.12699 13.9881C2.5398 15.8913 3.5338 17.6028 4.9592 18.8647C6.3846 20.1267 8.16417 20.8707 10.0298 20.9846C11.8953 21.0986 13.7458 20.5764 15.3024 19.4966C16.859 18.4168 18.0374 16.838 18.6599 14.9981" stroke="#1C1D21" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </g>
-                                </svg>
+                                       @click="onReExamination($route.params.patientId)"  >
+                                <i class="el-icon-refresh-right"></i>
                                 {{$t('patient.label.re-examination') }}
                             </el-button>
 
@@ -32,7 +28,7 @@
                             </el-button>
                             <el-button type="primary" @click="onSubmit()" size="small" :loading="loading"
                                        class="btn btn-flat  btn-primary">
-                                {{ $t('mon.button.save') }}
+                                {{ $t('mon.button.update') }}
                             </el-button>
                         </div>
 
@@ -482,7 +478,7 @@
                             });
                             this.show_same_patient = false;
 
-                            this.$router.push({name: 'admin.patient.edit', params: {patientId: id}});
+                            this.fetchData()
 
                         } else {
                             this.$notify({

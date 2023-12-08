@@ -336,6 +336,8 @@
                             }
 
                         });
+                } else {
+                    this.onSave()
                 }
             },
 
@@ -396,7 +398,6 @@
 
         },
         mounted() {
-            this.fetchData();
 
         },
         computed: {

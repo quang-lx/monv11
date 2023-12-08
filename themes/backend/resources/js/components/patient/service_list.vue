@@ -138,12 +138,11 @@
 import InlineSvg from 'vue-inline-svg';
 import _ from 'lodash';
 import Form from "form-backend-validation";
-
-export default {
+ //you need to import the CSS manually
+ export default {
     components: {
         InlineSvg,
-
-    },
+     },
     props: {
         patient_id: { default: null },
     },

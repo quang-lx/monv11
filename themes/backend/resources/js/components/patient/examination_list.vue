@@ -1,7 +1,8 @@
 <template>
     <div>
 
-
+        <div class="card">
+            <div class="card-body">
 
                 <div class="row justify-content-between mb-2">
                     <div class="col-md-6">
@@ -12,9 +13,21 @@
                     </div>
                     <div class="col-md-6 d-flex flex-row align-items-center d-flex justify-content-end">
 
-                       <div>
-                           <span>Thời gian khám</span>
-                       </div>
+                        <div class="d-flex flex-column">
+                            <span class=" mb-1">Thời gian khám</span>
+                            <el-date-picker
+                                size="small"
+                                v-model="filter_date_range"
+                                type="daterange"
+                                range-separator="-"
+                                start-placeholder="Chọn thời gian khám"
+                                end-placeholder=""
+                                format="dd/MM/yyyy"
+                                value-format="yyyy-MM-dd"
+                                @change="queryServer({})"
+                                >
+                            </el-date-picker>
+                        </div>
 
                     </div>
 
@@ -66,6 +79,13 @@
                                             </template>
                                         </el-table-column>
                                     </el-table>
+                                    <div class="pagination-wrap" style="text-align: center; padding-top: 20px;"  >
+                                        <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange"
+                                                       :current-page.sync="meta.current_page" :page-sizes="[25, 50, 75, 100]"
+                                                       :page-size="parseInt(meta.per_page)"
+                                                       layout="total, sizes, prev, pager, next, jumper" :total="meta.total">
+                                        </el-pagination>
+                                    </div>
 
 
                                 </div>
@@ -74,7 +94,8 @@
                     </div>
                 </div>
 
-
+            </div>
+        </div>
 
 
     </div>
@@ -101,6 +122,7 @@ export default {
             show_filter: false,
 
             data: [],
+            filter_date_range: null,
 
             columnsSearch: [],
 
@@ -125,6 +147,7 @@ export default {
                 order: this.order_meta.order,
                 search: this.searchQuery,
                 patient_id: this.patient_id,
+                filter_date_range: this.filter_date_range
 
             };
              window.axios.get(route('api.patientexamination.index', _.merge(properties, customProperties)))
