@@ -28,13 +28,13 @@ class PatientFullTransformer extends JsonResource
             'dependant' => $this->dependant,
             'phone_dependant' => $this->phone_dependant,
             'data_sources' => $this->data_sources == Patient::Local ? 'Local' : 'LIS',
-            'status' => $this->status,
-            'diagnose' => $this->diagnose,
 
             'created_at' => $this->created_at->format('d-m-Y'),
             'updated_at' => $this->updated_at->format('d-m-Y'),
             'created_by_info' => $user->name . ' - ' . $user->username,
-            'examination' => $this->current_examination? (new PatientExaminationTransformer($this->current_examination)): [],
+            'current_examination' => $this->current_examination? (new PatientExaminationTransformer($this->current_examination)): [],
+            'diagnose' => optional($this->current_examination)->diagnose,
+
             'urls' => [
                 'delete_url' => route('api.patient.destroy', $this->id),
             ],

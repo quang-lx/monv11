@@ -39,8 +39,10 @@
                    window.axios.delete(this.scope.row.urls.delete_url)
                         .then((response) => {
                             if (response.data.errors === false) {
-                                vm.$message({
+
+                                vm.$notify({
                                     type: 'success',
+                                    title: 'Thành công',
                                     message: response.data.message,
                                 });
 
@@ -49,8 +51,10 @@
                             }
                         })
                         .catch((error) => {
-                            vm.$message({
+
+                            vm.$notify({
                                 type: 'error',
+                                title: 'Thất bại',
                                 message: error.data.message,
                             });
                         });

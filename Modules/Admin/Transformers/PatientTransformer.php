@@ -29,9 +29,8 @@ class PatientTransformer extends JsonResource
             'phone_dependant' => $this->phone_dependant,
             'data_sources' => $this->data_sources == Patient::Local ? 'Local' : 'LIS',
             'status' => $this->status,
-            'current_examination' => $this->current_examination? (new PatientExaminationTransformer($this->current_examination)): [],
-            'diagnose' => $this->diagnose,
-            'status_text' => $this->formatStatus($this->status),
+            'current_examination' => $this->current_examination? (new PatientExaminationThinTransformer($this->current_examination)): [],
+            'diagnose' => optional($this->current_examination)->diagnose,
             'created_at' => $this->created_at->format('d-m-Y'),
             'updated_at' => $this->updated_at->format('d-m-Y'),
             'created_by_info' => $user->name . ' - ' . $user->username,
@@ -42,24 +41,6 @@ class PatientTransformer extends JsonResource
         ];
 
         return $data;
-    }
-
-    public function formatStatus($status)
-    {
-        $name = '';
-        switch ($status) {
-            case Patient::STATUS_RECEIVE:
-                $name = 'Tiếp đón';
-                break;
-            case Patient::STATUS_PROCESSING:
-                $name = 'Đang khám';
-                break;
-            case Patient::STATUS_DONE:
-                $name = 'Hoàn thành';
-                break;
-
-        }
-        return $name;
     }
 
 

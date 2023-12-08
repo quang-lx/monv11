@@ -11,6 +11,7 @@ use Modules\Admin\Repositories\PatientExaminationRepository;
 use Illuminate\Routing\Controller;
 use Modules\Mon\Http\Controllers\ApiController;
 use Modules\Mon\Auth\Contracts\Authentication;
+use Modules\Admin\Transformers\PatientExaminationTransformer;
 
 class PatientExaminationController extends ApiController
 {
@@ -52,7 +53,7 @@ class PatientExaminationController extends ApiController
 
     public function find(PatientExamination $patientexamination)
     {
-        return new  PatientExaminationFullTransformer($patientexamination);
+        return new  PatientExaminationTransformer($patientexamination);
     }
 
     public function update(PatientExamination $patientexamination, UpdatePatientExaminationRequest $request)

@@ -15,9 +15,7 @@ class Patient extends Model
     const Local = 1;
     const LIS = 2;
 
-    const STATUS_RECEIVE = 1;
-    const STATUS_PROCESSING = 1;
-    const STATUS_DONE = 3;
+
     protected $table = 'patient';
     protected $fillable = [
         'id',
@@ -32,8 +30,6 @@ class Patient extends Model
         'dependant',
         'phone_dependant',
         'data_sources',
-        'status',
-        'diagnose',
         'created_by',
         'created_at',
         'updated_at'

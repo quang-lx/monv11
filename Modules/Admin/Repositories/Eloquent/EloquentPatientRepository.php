@@ -19,16 +19,29 @@ class EloquentPatientRepository extends BaseRepository implements PatientReposit
 
     public function create($data)
     {
-
+        unset($data['current_examination']);
         $data['created_by'] = Auth::user()->id;
         $data['data_sources'] = Patient::Local;
-        $data['status'] = Patient::STATUS_RECEIVE;
         $model = $this->model->create($data);
         $this->initExamination($model);
 
 
         return $model;
     }
+
+    public function update($model, $data)
+    {
+        $diagnose = $data['diagnose']?? '';
+        unset($data['diagnose']);
+        $model->update($data);
+        $current_examination = $model->current_examination;
+        if($current_examination) {
+            $current_examination->diagnose = $diagnose;
+            $current_examination->save();
+        }
+        return $model;
+    }
+
     public function initExamination($model) {
         $examination = new PatientExamination();
         $examination->patient_id = $model->id;
@@ -129,24 +142,7 @@ class EloquentPatientRepository extends BaseRepository implements PatientReposit
         return Patient::where('phone', $phone)->get();
     }
 
-    function changeStatus($data)
-    {
-        $patient = Patient::find($data['id']);
-        $status = $patient->status;
-        if ($status == Patient::STATUS_DONE) {
-            $patient->status = $data['status'];
-            $patient->save();
-            return response()->json([
-                'errors' => false,
-                'message' => trans('backend::patient.message.update success'),
-            ]);
-        } else {
-            return response()->json([
-                'errors' => true,
-                'message' => trans('backend::patient.message.re-examination fail'),
-            ]);
-        }
-    }
+
 
     public function addService(Patient $patient, Request $request) {
         $current_examination = $patient->current_examination;

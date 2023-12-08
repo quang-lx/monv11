@@ -9,7 +9,6 @@ use Modules\Mon\Repositories\BaseRepository;
 interface PatientRepository extends BaseRepository
 {
     public function getCurrentExaminationService(Patient $patient, Request $request, $relations = null);
-    public function changeStatus($request);
     public function reExamination($patient, $data);
     public function addService(Patient $patient, Request $request);
     public function deleteService(Patient $patient, Request $request);

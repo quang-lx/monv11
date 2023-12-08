@@ -20,7 +20,8 @@ import DiseaseForm from './../components/disease/form.vue';
 import ServiceTypeList from './../components/servicetype/index.vue';
 import ServiceTypeForm from './../components/servicetype/form.vue';
 import PatientList from './../components/patient/index.vue';
-import PatientForm from './../components/patient/form.vue';
+import PatientCreate from './../components/patient/create.vue';
+import PatientUpdate from './../components/patient/update.vue';
 
 import ProfileForm from './../components/auth/profile/form.vue';
 
@@ -185,7 +186,7 @@ export default [
     {
         path: '/admin/patient/create',
         name: 'admin.patient.create',
-        component: PatientForm,
+        component: PatientCreate,
         props: {
             pageTitle: 'patient.label.create_patient',
         },
@@ -194,7 +195,7 @@ export default [
     {
         path: '/admin/patient/:patientId/edit',
         name: 'admin.patient.edit',
-        component: PatientForm,
+        component: PatientUpdate,
         props: {
             pageTitle: 'patient.label.update_patient',
         },

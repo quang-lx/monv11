@@ -6,7 +6,7 @@ namespace Modules\Admin\Transformers;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 
-class PatientExaminationTransformer extends JsonResource
+class PatientExaminationThinTransformer extends JsonResource
 {
 
 
@@ -17,11 +17,6 @@ class PatientExaminationTransformer extends JsonResource
             'status' => $this->status,
             'status_text' => $this->status_text,
             'status_color' => $this->status_color,
-            'started_at' => $this->started_at,
-            'finished_at' => $this->finished_at,
-            'diagnose' => $this->diagnose,
-            'patient_id' => $this->patient_id,
-            'count_service' => $this->services->count()
 
 
 
