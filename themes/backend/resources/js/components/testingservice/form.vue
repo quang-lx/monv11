@@ -335,10 +335,10 @@
                     .catch((error) => {
                         console.log(error)
                         this.loading = false;
-                        this.$notify.error({
-                            title: this.$route.params.testingserviceId !== undefined? 'Cập nhật thất bại': 'Thêm mới thất bại',
-                            message: this.getSubmitError(this.form.errors),
-                        });
+                        // this.$notify.error({
+                        //     title: this.$route.params.testingserviceId !== undefined? 'Cập nhật thất bại': 'Thêm mới thất bại',
+                        //     message: this.getSubmitError(this.form.errors),
+                        // });
                     });
             },
 

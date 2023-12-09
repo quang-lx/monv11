@@ -173,10 +173,10 @@
                     .catch((error) => {
 
                         this.loading = false;
-                        this.$notify.error({
-                            title: this.$route.params.servicetypeId !== undefined? 'Cập nhật thất bại': 'Thêm mới thất bại',
-                            message: this.getSubmitError(this.form.errors),
-                        });
+                        // this.$notify.error({
+                        //     title: this.$route.params.servicetypeId !== undefined? 'Cập nhật thất bại': 'Thêm mới thất bại',
+                        //     message: this.getSubmitError(this.form.errors),
+                        // });
                     });
             },
 

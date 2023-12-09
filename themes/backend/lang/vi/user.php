@@ -8,7 +8,7 @@ return [
         'name' => 'Họ và tên',
         'phone' => 'Số điện thoại',
         'status' => 'Trạng thái',
-        'created_at' => 'Thời gian tạo',
+        'created_at' => 'Ngày tạo',
         'updated_at' => 'Ngày cập nhật',
         'password_confirmation' => 'Xác nhận mật khẩu mới',
         'password' => 'Mật khẩu',

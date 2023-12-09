@@ -2,13 +2,14 @@
 
 namespace App\Exports;
 
-use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Events\AfterSheet;
+use Modules\Admin\Transformers\Auth\UserTransformer;
 use Modules\Mon\Entities\ConfigDisplay;
+use Modules\Mon\Entities\User;
 use Modules\Mon\Repositories\Eloquent\UserRepository;
 
 class UsersExport implements FromView, WithEvents
@@ -104,11 +105,11 @@ class UsersExport implements FromView, WithEvents
         $user_repo = new UserRepository(new User);
         $query = $user_repo->queryGetUsers($this->request);
 
-        $query->chunk(100, function ($users) {
-            foreach ($users as $user) {
-                $this->data_export[] = $user->toArray();
-            }
-        });
+        $list_data = UserTransformer::collection($query->get());
+        foreach ($list_data as $data) {
+            $this->data_export[] = json_decode(json_encode($data),true);
+        }
+
         $config_play = ConfigDisplay::where('table_name', 'user')->orderBy('position','asc')->get();
         if ($config_play) {
             $this->columns_export = $this->formatConfigPlay($config_play);
@@ -119,14 +120,23 @@ class UsersExport implements FromView, WithEvents
         ]);
     }
 
-    public function formatConfigPlay($config_play) 
+    public function formatConfigPlay($config_play)
     {
         $columns_export = [];
         foreach ($config_play as $column) {
 
+            $col_name = $column->col_name;
+            if ($col_name == 'sex') {
+                $col_name = 'sex_text';
+            }
+
+            if ($col_name == 'status') {
+                $col_name = 'status_text';
+            }
+
             $columns_export[] = [
-                'col_name' => $column->col_name,
-                'name' => trans('backend::user.label.'.$column->col_name)
+                'col_name' => $col_name,
+                'name' => trans('backend::user.label.' . $column->col_name)
             ];
         }
         return $columns_export;
