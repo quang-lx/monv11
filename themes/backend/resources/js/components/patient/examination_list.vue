@@ -150,7 +150,7 @@ export default {
                 filter_date_range: this.filter_date_range
 
             };
-             window.axios.get(route('api.patientexamination.index', _.merge(properties, customProperties)))
+             window.axios.get(route('api.patientexamination.listViaPatient', _.merge(properties, customProperties)))
                 .then((response) => {
                     this.tableIsLoading = false;
                     this.tableIsLoading = false;

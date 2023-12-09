@@ -77,7 +77,15 @@ class UserSidebarExtender extends AbstractAdminSidebar
                 $item->route('admin.patient.index');
 
             });
+            $group->item(trans('backend::sidebar.examination'), function (Item $item) {
+                $item->icon('fas custom-icon route-square');
+                $item->weight(10);
+                $item->authorize(
+                    $this->auth->hasAccess('admin.patientexamination.index')
+                );
+                $item->route('admin.patientexamination.index');
 
+            });
             $group->item(trans('backend::sidebar.device'), function (Item $item) {
                 $item->icon('fas custom-icon device-icon');
                 $item->weight(10);

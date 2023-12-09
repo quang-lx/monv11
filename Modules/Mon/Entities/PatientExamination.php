@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property $finished_at
  * @property $status
  * @property $diagnose
+ * @property $status_text
+ * @property $status_color
  * @property $created_by
  * @property $patient_id
  * @property $patient

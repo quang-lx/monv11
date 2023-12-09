@@ -482,11 +482,11 @@ body:not(.layout-fixed) .main-sidebar {
 }
 
 .status_border {
-    width: 150px;
+    width: 120px;
     display: flex;
-    padding: 4px 16px;
+    padding: 4px 10px;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: 10px;
     border-radius: 100px;
 }

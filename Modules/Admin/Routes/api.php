@@ -494,10 +494,22 @@ Route::middleware('auth:api')->prefix('/patient-examinations')->group(function (
         'as' => 'api.patientexamination.index',
         'uses' => 'PatientExamination\PatientExaminationController@index',
     ]);
+    Route::get('/list-via-patient', [
+        'as' => 'api.patientexamination.listViaPatient',
+        'uses' => 'PatientExamination\PatientExaminationController@listViaPatient',
+    ]);
     Route::post('/{patientexamination}/edit', [
             'as' => 'api.patientexamination.update',
             'uses' => 'PatientExamination\PatientExaminationController@update',
         ]);
+    Route::post('/{patientexamination}/start', [
+        'as' => 'api.patientexamination.startExamination',
+        'uses' => 'PatientExamination\PatientExaminationController@startExamination',
+    ]);
+    Route::post('/{patientexamination}/finish', [
+        'as' => 'api.patientexamination.finishExamination',
+        'uses' => 'PatientExamination\PatientExaminationController@finishExamination',
+    ]);
    Route::get('/{patientexamination}', [
               'as' => 'api.patientexamination.find',
               'uses' => 'PatientExamination\PatientExaminationController@find',

@@ -45,7 +45,7 @@ class EloquentPatientRepository extends BaseRepository implements PatientReposit
     public function initExamination($model) {
         $examination = new PatientExamination();
         $examination->patient_id = $model->id;
-        $examination->started_at = Carbon::now();
+        $examination->created_by = Auth::user()->id;
         $examination->status = PatientExamination::STATUS_INIT;
         $examination->save();
     }
@@ -137,9 +137,13 @@ class EloquentPatientRepository extends BaseRepository implements PatientReposit
         return $query;
     }
 
-    function patientSamePhoneNumber($phone)
+    function patientSamePhoneNumber($phone, $patient_id = null)
     {
-        return Patient::where('phone', $phone)->get();
+        $query = Patient::query()->where('phone', $phone);
+        if($patient_id) {
+            $query->where('id', '<>', $patient_id);
+        }
+        return $query->get();
     }
 
 

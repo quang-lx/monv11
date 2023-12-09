@@ -25,6 +25,8 @@ import PatientUpdate from './../components/patient/update.vue';
 
 import ProfileForm from './../components/auth/profile/form.vue';
 
+import ExaminationList from './../components/examination/index.vue';
+import ExaminationForm from './../components/examination/update.vue';
 
 const currentLocale = '/' + window.MonCMS.currentLocale;
 
@@ -224,6 +226,23 @@ export default [
             pageTitle: 'servicetype.label.update_servicetype',
         },
     },
+
+    {
+        path: '/admin/kham-benh',
+        name: 'admin.patientexamination.index',
+        component: ExaminationList,
+    },
+
+
+    {
+        path: '/admin/kham-benh/:patientexaminationId/cap-nhat',
+        name: 'admin.patientexamination.edit',
+        component: ExaminationForm,
+        props: {
+            pageTitle: 'examination.label.update_label',
+        },
+    },
+
 
 
 ];

@@ -249,6 +249,27 @@ export default {
                 "import success": "Tải lên danh sách bệnh thành công."
             }
         },
+        "examination": {
+            "label": {
+                "title": "Danh sách khám bệnh",
+                "id": "Mã bệnh nhân",
+                "diagnose": "Chẩn đoán",
+                "started_at": "Thời gian bắt đầu khám",
+                "finished_at": "Thời gian kết thúc khám",
+                "status": "Trạng thái khám bệnh",
+                "created_at": "Thời gian tạo",
+                "created_by": "Người tạo",
+                "service": "Dịch vụ",
+                "create_examination": "Thêm mới",
+                "update_label": "Chi tiết khám bệnh",
+                "create new": "Tạo mới bệnh nhân"
+            },
+            "message": {
+                "create success": "Tạo bệnh nhân thành công.",
+                "update success": "Cập nhật bệnh nhân thành công.",
+                "delete success": "Xóa bệnh nhân thành công."
+            }
+        },
         "media": {
             "label": {
                 "media": "Media",
@@ -402,6 +423,10 @@ export default {
                 "re-examination": "Tái khám"
             },
             "message": {
+                "reexamination success": "Tái khám thành công.",
+                "add service success": "Thêm dịch vụ thành công.",
+                "delete service success": "Xoá dịch vụ thành công.",
+                "cancel service success": "Huỷ dịch vụ thành công.",
                 "create success": "Tạo bệnh nhân thành công.",
                 "update success": "Cập nhật bệnh nhân thành công.",
                 "delete success": "Xóa bệnh nhân thành công.",
@@ -561,6 +586,7 @@ export default {
             "media": "Media",
             "category": "Quản lý danh mục",
             "testing service": "Danh mục dịch vụ xét nghiệm",
+            "examination": "Danh sách khám bệnh",
             "home": "Trang chủ",
             "packages": "Gói cước",
             "device": "Quản lý thiết bị",

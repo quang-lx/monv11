@@ -4,6 +4,7 @@ namespace Modules\Admin\Http\Controllers\Api\PatientExamination;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Modules\Admin\Transformers\ExaminationTransformer;
 use Modules\Mon\Entities\PatientExamination;
 use Modules\Admin\Http\Requests\PatientExamination\CreatePatientExaminationRequest;
 use Modules\Admin\Http\Requests\PatientExamination\UpdatePatientExaminationRequest;
@@ -30,13 +31,18 @@ class PatientExaminationController extends ApiController
 
     public function index(Request $request)
     {
+        return ExaminationTransformer::collection($this->patientexaminationRepository->serverPagingFor($request));
+    }
+
+    public function listViaPatient(Request $request)
+    {
         return PatientExaminationTransformer::collection($this->patientexaminationRepository->serverPagingFor($request));
     }
 
 
     public function all(Request $request)
     {
-        return PatientExaminationTransformer::collection($this->patientexaminationRepository->newQueryBuilder()->get());
+        return ExaminationTransformer::collection($this->patientexaminationRepository->newQueryBuilder()->get());
     }
 
 
@@ -53,7 +59,7 @@ class PatientExaminationController extends ApiController
 
     public function find(PatientExamination $patientexamination)
     {
-        return new  PatientExaminationTransformer($patientexamination);
+        return new  ExaminationTransformer($patientexamination);
     }
 
     public function update(PatientExamination $patientexamination, UpdatePatientExaminationRequest $request)
@@ -74,5 +80,46 @@ class PatientExaminationController extends ApiController
             'errors' => false,
             'message' => trans('backend::patientexamination.message.delete success'),
         ]);
+    }
+    public function startExamination(PatientExamination $patientexamination, Request $request)
+    {
+        try {
+            $patientexamination = $this->patientexaminationRepository->startExamination($patientexamination, $request);
+            return response()->json([
+                'errors' => false,
+                'status' => $patientexamination->status,
+                'status_text' => $patientexamination->status_text,
+                'message' => trans('backend::examination.message.start success'),
+            ]);
+        } catch (\Exception $exception) {
+            return response()->json([
+                'errors' => true,
+                'message' =>$exception->getCode() == 500? __('backend::mon.message.system error') : $exception->getMessage()
+            ]);
+        }
+
+
+
+    }
+
+    public function finishExamination(PatientExamination $patientexamination, Request $request)
+    {
+        try {
+            $patientexamination = $this->patientexaminationRepository->finishExamination($patientexamination, $request);
+            return response()->json([
+                'errors' => false,
+                'status' => $patientexamination->status,
+                'status_text' => $patientexamination->status_text,
+                'message' => trans('backend::examination.message.finish success'),
+            ]);
+        } catch (\Exception $exception) {
+            return response()->json([
+                'errors' => true,
+                'message' =>$exception->getCode() == 500? __('backend::mon.message.system error') : $exception->getMessage()
+            ]);
+        }
+
+
+
     }
 }

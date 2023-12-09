@@ -39,7 +39,7 @@ class PatientController extends ApiController
     }
 
     public function getPatientViaPhone(Request $request) {
-        return PatientTransformer::collection($this->patientRepository->patientSamePhoneNumber($request->get('phone')));
+        return PatientTransformer::collection($this->patientRepository->patientSamePhoneNumber($request->get('phone'), $request->get('patient_id')));
     }
 
     public function index(Request $request)

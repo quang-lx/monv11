@@ -6,7 +6,7 @@ namespace Modules\Admin\Transformers;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Modules\Mon\Entities\Patient;
 
-class PatientTransformer extends JsonResource
+class PatientThinTransformer extends JsonResource
 {
 
 
@@ -29,14 +29,10 @@ class PatientTransformer extends JsonResource
             'phone_dependant' => $this->phone_dependant,
             'data_sources' => $this->data_sources == Patient::Local ? 'Local' : 'LIS',
 
-            'current_examination' => $this->current_examination? (new PatientExaminationThinTransformer($this->current_examination)): [],
-            'diagnose' => optional($this->current_examination)->diagnose,
             'created_at' => $this->created_at->format('d-m-Y'),
             'updated_at' => $this->updated_at->format('d-m-Y'),
             'created_by_info' => $user->name . ' - ' . $user->username,
-            'urls' => [
-                'delete_url' => route('api.patient.destroy', $this->id),
-            ],
+
 
         ];
 

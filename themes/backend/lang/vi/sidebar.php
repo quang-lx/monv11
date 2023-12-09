@@ -27,6 +27,7 @@ return [
 
     'category' => 'Quản lý danh mục',
     'testing service' => 'Danh mục dịch vụ xét nghiệm',
+    'examination' => 'Danh sách khám bệnh',
 
 
 

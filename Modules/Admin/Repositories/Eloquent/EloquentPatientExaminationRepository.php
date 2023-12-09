@@ -2,12 +2,32 @@
 
 namespace Modules\Admin\Repositories\Eloquent;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Modules\Admin\Repositories\PatientExaminationRepository;
+use Modules\Mon\Entities\PatientExamination;
 use \Modules\Mon\Repositories\Eloquent\BaseRepository;
 
 class EloquentPatientExaminationRepository extends BaseRepository implements PatientExaminationRepository
 {
+    public function startExamination(PatientExamination $model,Request $request) {
+        if ($model->status != PatientExamination::STATUS_INIT) {
+            throw new \Exception("Trạng thái không cho phép thực hiện hành động này");
+        }
+        $model->status = PatientExamination::STATUS_PROCESSING;
+        $model->started_at = Carbon::now();
+        $model->save();
+        return $model;
+    }
+    public function finishExamination(PatientExamination $model,Request $request) {
+        if ($model->status != PatientExamination::STATUS_PROCESSING) {
+            throw new \Exception("Trạng thái không cho phép thực hiện hành động này");
+        }
+        $model->status = PatientExamination::STATUS_DONE;
+        $model->finished_at = Carbon::now();
+        $model->save();
+        return $model;
+    }
     public function serverPagingFor(Request $request, $relations = null)
     {
         $query = $this->newQueryBuilder();

@@ -337,7 +337,7 @@ Route::group(['prefix' => '/patient'], function ( ) {
 
 
 });
-Route::group(['prefix' => '/patient-examination'], function ( ) {
+Route::group(['prefix' => '/kham-benh'], function ( ) {
 
     Route::get('/', [
         'as' => 'admin.patientexamination.index',

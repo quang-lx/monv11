@@ -19,7 +19,7 @@
             </div>
 
             <div class="d-flex justify-content-end">
-                <el-button size="small" @click="onCreateNewPatient">{{ $t('common.cancel') }}</el-button>
+                <el-button size="small" @click="onCancel">{{ $t('common.cancel') }}</el-button>
                 <el-button size="small" type="primary" @click="onUpdatePatient">{{ $t('common.update') }}</el-button>
             </div>
         </el-dialog>
@@ -42,7 +42,10 @@ export default {
         };
     },
     methods: {
-
+        onCancel() {
+            this.show_popup = false;
+            this.$emit("close-popup", true);
+        },
         onUpdatePatient() {
             this.$emit("on-update", true);
         },

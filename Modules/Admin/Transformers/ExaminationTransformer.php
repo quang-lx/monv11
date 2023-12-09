@@ -6,12 +6,14 @@ namespace Modules\Admin\Transformers;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 
-class PatientExaminationTransformer extends JsonResource
+class ExaminationTransformer extends JsonResource
 {
 
 
     public function toArray($request)
     {
+        $user = optional($this->createdBy);
+
         $data = [
             'id' => $this->id,
             'status' => $this->status,
@@ -21,8 +23,9 @@ class PatientExaminationTransformer extends JsonResource
             'finished_at' => $this->finished_at,
             'diagnose' => $this->diagnose,
             'patient_id' => $this->patient_id,
-            'count_service' => $this->services->count()
-
+            'count_service' => $this->services->count(),
+            'patient' => $this->patient? new PatientThinTransformer($this->patient): [],
+            'created_by_info' => $user->name . ' - ' . $user->username,
 
 
 
@@ -31,7 +34,6 @@ class PatientExaminationTransformer extends JsonResource
 
         return $data;
     }
-
 
 
 }

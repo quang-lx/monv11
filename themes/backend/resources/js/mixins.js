@@ -82,6 +82,11 @@ const mixin = {
 
             return value
         },
+        getObjetValue (obj, keys) {
+            return keys.split('.').reduce(function (cur, key) {
+                return cur[key];
+            }, obj);
+        }
 
     },
 };

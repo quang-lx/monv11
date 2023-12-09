@@ -310,19 +310,12 @@
 
 
 
-
-        <same-patient-update v-if="!is_new" :show_same_patient="show_same_patient"
-                             :list_patient_same="list_patient_same" @on-update="onSave"
-                             @close-popup="closePopup"></same-patient-update>
-
     </div>
 </template>
 
 <script>
     import Form from 'form-backend-validation';
     import ServiceList from './service_list';
-    import ExaminationList from './examination_list';
-     import SamePatientUpdate from './same_patient_update';
 
     export default {
         props: {
@@ -332,8 +325,6 @@
         components: {
             ServiceList,
 
-            SamePatientUpdate,
-            ExaminationList
         },
 
         data() {

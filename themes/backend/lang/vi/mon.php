@@ -32,7 +32,8 @@ return [
         'home' => 'Trang chủ'
     ],
     'message' => [
-        'permission_denied' => 'Không có quyền truy cập....'
+        'permission_denied' => 'Không có quyền truy cập....',
+        'system error' => 'Có lỗi xảy ra'
     ]
 
 
