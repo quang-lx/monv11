@@ -63,6 +63,7 @@ class RoleRepository extends BaseRepository implements RoleInterface {
             $query->where(function ($q) use ($keyword) {
                 $q->where('name', 'LIKE', "%{$keyword}%")
                     ->orWhere('guard_name', 'LIKE', "%{$keyword}%")
+                    ->orWhere('description', 'LIKE', "%{$keyword}%")
                     ->orWhere('id', 'LIKE', "%{$keyword}%");
             });
         }

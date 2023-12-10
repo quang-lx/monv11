@@ -73,7 +73,8 @@
                                 </div>
                             </div><!-- /.card-header -->
                             <div class="card-body">
-                                <el-input class="mb-2" placeholder="Tìm kiếm" size="mini" v-model="filterDepartment">
+                                <el-input class="mb-2" placeholder="Tìm kiếm" @keyup.native="performSearchDepartment"
+                                    size="mini" v-model="filterDepartment">
                                 </el-input>
 
                                 <div class="mb-2">
@@ -106,9 +107,11 @@
                             <div class="card-body">
                                 <div class="sc-table">
 
-                                    <el-table :data="data" stripe style="width: 100%" ref="dataTable"
+                                    <el-table :data="data" stripe style="width: 100%"
+                                        @selection-change="handleSelectionChange" ref="dataTable"
                                         v-loading.body="tableIsLoading" @sort-change="handleSortChange">
-
+                                        <el-table-column type="selection" width="55">
+                                        </el-table-column>
                                         <el-table-column v-for="col_selected in list_selected_col"
                                             :key="col_selected.col_name" :prop="col_selected.col_name"
                                             :label="list_col_label[col_selected.col_name]" min-width="150">
@@ -171,10 +174,11 @@
 
 
             <el-form ref="addDepartmentForm" :model="addModel" label-position="top" v-loading.body="loadingAdd">
-                <el-form-item label="" :class="{ 'el-form-item is-error': addForm.errors.has('name') }">
+                <el-form-item label="" :class="{ 'el-form-item is-error': form.errors.has('name') }">
                     <el-input v-model="addModel.name" size="medium"></el-input>
-                    <div class="el-form-item__error" v-if="addForm.errors.has('name')"
-                        v-text="addForm.errors.first('name')"></div>
+                    <div class="el-form-item__error" v-if="form.errors.has('name')" v-text="form.errors.first('name')">
+                    </div>
+
                 </el-form-item>
 
             </el-form>
@@ -189,10 +193,10 @@
 
 
             <el-form ref="addDepartmentForm" :model="editModel" label-position="top" v-loading.body="loadingEdit">
-                <el-form-item label="" :class="{ 'el-form-item is-error': editForm.errors.has('name') }">
+                <el-form-item label="" :class="{ 'el-form-item is-error': form.errors.has('name') }">
                     <el-input v-model="editModel.name" size="medium"></el-input>
-                    <div class="el-form-item__error" v-if="editForm.errors.has('name')"
-                        v-text="editForm.errors.first('name')"></div>
+                    <div class="el-form-item__error" v-if="form.errors.has('name')" v-text="form.errors.first('name')">
+                    </div>
                 </el-form-item>
 
             </el-form>
@@ -249,8 +253,11 @@ export default {
     },
     data() {
         return {
+            form: new Form(),
+            multipleSelection: [],
 
             list_selected_col: [],
+            searchDepartment: '',
 
 
             full_col_name: [
@@ -425,10 +432,10 @@ export default {
                 .catch((error) => {
 
                     this.loadingAdd = false;
-                    this.$notify.error({
-                        title: this.$t('mon.error.Title'),
-                        message: this.getSubmitError(this.form.errors),
-                    });
+                    // this.$notify.error({
+                    //     title: this.$t('mon.error.Title'),
+                    //     message: this.getSubmitError(this.form.errors),
+                    // });
                 });
         },
         confirmEditDepartment() {
@@ -454,10 +461,10 @@ export default {
                 .catch((error) => {
 
                     this.loadingEdit = false;
-                    this.$notify.error({
-                        title: this.$t('mon.error.Title'),
-                        message: this.getSubmitError(this.form.errors),
-                    });
+                    // this.$notify.error({
+                    //     title: this.$t('mon.error.Title'),
+                    //     message: this.getSubmitError(this.form.errors),
+                    // });
                 });
         },
         onFilterUser(filter_data) {
@@ -578,6 +585,14 @@ export default {
                     this.loading = false;
                 });
         },
+        performSearchDepartment: _.debounce(function (query) {
+            // this.tableIsLoading = true;
+            this.getDepartmentList({ search: query.target.value });
+        }, 300),
+
+        handleSelectionChange(val) {
+            this.multipleSelection = val;
+        }
 
     },
     mounted() {

@@ -63,7 +63,7 @@
                                             <el-form-item :label="$t('user.label.name')"
                                                           prop="name"
                                                           :class="{'el-form-item is-error': form.errors.has('name') }">
-                                                <el-input v-model="modelForm.name" size="small"
+                                                <el-input v-model="modelForm.name" size="small" maxlength="255"
                                                 placeholder="Nhập họ và tên"
                                                 ></el-input>
                                                 <div class="el-form-item__error"

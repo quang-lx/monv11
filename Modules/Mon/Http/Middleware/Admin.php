@@ -34,6 +34,10 @@ class Admin
             return redirect()->route('admin.need_change_password');       
         }
 
+        if ($routeName == 'admin.need_change_password' && $auth->user()->need_change_password !== User::NEED_CHANGE_PASSWORD) {
+            return redirect()->route('admin.dashboard.index');       
+        }
+
         return $next($request);
     }
 }

@@ -30,7 +30,7 @@
                         </span>
 
                         <span class="f-action pl-4 f-pointer" @click="show_import = true">
-                            <inline-svg src="/images/upload.svg" /> Import
+                            <inline-svg src="/images/upload.svg" /> Tải lên
 
                         </span>
 

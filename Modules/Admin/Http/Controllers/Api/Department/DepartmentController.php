@@ -32,7 +32,7 @@ class DepartmentController extends ApiController
     }
     public function tree(Request $request)
     {
-        return $this->departmentRepository->getAllTree();
+        return $this->departmentRepository->getAllTree(null, $request);
     }
     public function getAllHierarchy(Request $request)
     {

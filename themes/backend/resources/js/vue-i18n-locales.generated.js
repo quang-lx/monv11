@@ -228,7 +228,6 @@ export default {
                 "import success": "Tải lên danh sách bệnh thành công."
             }
         },
-<<<<<<< HEAD
         "examination": {
             "label": {
                 "title": "Danh sách khám bệnh",
@@ -251,9 +250,6 @@ export default {
             }
         },
         "media": {
-=======
-        "service": {
->>>>>>> 871eddbc1bac7eb4715baf76f7e0e9c7963b2f36
             "label": {
                 "id": "ID",
                 "name": "Tên dịch vụ",

@@ -338,7 +338,7 @@ export default {
                     type: 'error',
                     message: this.$t('mon.message.system error'),
                 });
-            }
+            })
         },
 
         onFinishExamination(id, index){
@@ -366,8 +366,8 @@ export default {
                     type: 'error',
                     message: this.$t('mon.message.system error'),
                 });
-            }
-
+            })
+            
 
         }
 

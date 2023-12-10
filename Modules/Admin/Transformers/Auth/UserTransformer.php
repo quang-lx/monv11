@@ -20,7 +20,7 @@ class UserTransformer extends JsonResource
             'email' => $this->email,
             'phone' => $this->phone,
             'sex' => $this->sex,
-            'status_text' => $this->expired_at && Carbon::createFromFormat('Y-m-d H:i:s', $this->expired_at)->gt(Carbon::now()) ? 'Hoạt động' : 'Không hoạt động',
+            'status_text' => $this->expired_at && Carbon::createFromFormat('Y-m-d H:i:s', $this->expired_at)->gt(Carbon::now()) ? 'Đang hoạt động' : 'Không hoạt động',
             'sex_text' => $this->sex == User::MALE ? 'Nam' : 'Nữ',
             'department_id' => $this->department_id,
             'identification' => $this->identification,
