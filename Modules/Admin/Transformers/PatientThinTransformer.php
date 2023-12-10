@@ -32,7 +32,10 @@ class PatientThinTransformer extends JsonResource
             'created_at' => $this->created_at->format('d-m-Y'),
             'updated_at' => $this->updated_at->format('d-m-Y'),
             'created_by_info' => $user->name . ' - ' . $user->username,
-
+            'status' => optional($this->current_examination)->status,
+            'status_text' => optional($this->current_examination)->status_text,
+            'status_color' => optional($this->current_examination)->status_color,
+            'status_class' => optional($this->current_examination)->status_class,
 
         ];
 

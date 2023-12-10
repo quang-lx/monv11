@@ -82,7 +82,7 @@
                                                 </i>
 
                                                 <edit-button
-                                                    :to="{ name: 'admin.patient.edit', params: { patientId: scope.row.id } }"></edit-button>
+                                                    :to="{ name: 'admin.patientexamination.edit', params: { patientexaminationId: scope.row.id } }"></edit-button>
 
                                                 <i @click="onFinishExamination(scope.row.id, scope.$index)" role="button" class=" mr-2" v-if="scope.row.status == 'processing'">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="22" viewBox="0 0 24 22" fill="none">
@@ -283,7 +283,6 @@ export default {
             this.multipleSelection = val;
         },
         onSaveConfigDisplay(config_data) {
-            this.show_config = false;
             this.list_selected_col = config_data
         },
         closeConfig() {
@@ -322,10 +321,7 @@ export default {
 
                             message: response.data.message,
                         });
-                        this.show_same_patient = false;
-
-                        this.data[index].status = response.data.status
-                        this.data[index].status_text = response.data.status_text
+                         this.data.splice(index,1, response.data.model)
 
                     } else {
                         this.$notify({
@@ -333,12 +329,7 @@ export default {
                             message: response.data.message,
                         });
                     }
-                }).catch((e) => {
-                this.$notify({
-                    type: 'error',
-                    message: this.$t('mon.message.system error'),
                 });
-            }
         },
 
         onFinishExamination(id, index){
@@ -350,10 +341,8 @@ export default {
 
                             message: response.data.message,
                         });
-                        this.show_same_patient = false;
 
-                        this.data[index].status = response.data.status
-                        this.data[index].status_text = response.data.status_text
+                        this.data.splice(index,1, response.data.model)
 
                     } else {
                         this.$notify({
@@ -361,14 +350,7 @@ export default {
                             message: response.data.message,
                         });
                     }
-                }).catch((e) => {
-                this.$notify({
-                    type: 'error',
-                    message: this.$t('mon.message.system error'),
                 });
-            }
-
-
         }
 
     },

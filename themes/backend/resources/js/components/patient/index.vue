@@ -264,7 +264,6 @@ export default {
             this.multipleSelection = val;
         },
         onSaveConfigDisplay(config_data) {
-            this.show_config = false;
             this.list_selected_col = config_data
         },
         closeConfig() {

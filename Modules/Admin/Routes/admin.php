@@ -350,7 +350,7 @@ Route::group(['prefix' => '/kham-benh'], function ( ) {
         'middleware' => 'permission:admin.patientexamination.create'
     ]);
 
-    Route::get('{patientexamination}/edit', [
+    Route::get('{patientexamination}/cap-nhat', [
         'as' => 'admin.patientexamination.edit',
         'uses' => 'PatientExamination\PatientExaminationController@edit',
         'middleware' => 'permission:admin.patientexamination.edit'

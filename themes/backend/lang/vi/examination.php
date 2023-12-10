@@ -10,6 +10,7 @@ return [
         'created_at' => 'Thời gian tạo',
         'created_by' => 'Người tạo',
         'service' => 'Dịch vụ',
+        'type' => 'Loại khám',
         'create_examination' => 'Thêm mới',
         'update_label' => 'Chi tiết khám bệnh',
 
