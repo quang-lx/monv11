@@ -4,6 +4,7 @@ namespace Modules\Admin\Http\Controllers\Api\PatientExamination;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Modules\Admin\Transformers\ExaminationFullTransformer;
 use Modules\Admin\Transformers\ExaminationTransformer;
 use Modules\Mon\Entities\PatientExamination;
 use Modules\Admin\Http\Requests\PatientExamination\CreatePatientExaminationRequest;
@@ -59,7 +60,7 @@ class PatientExaminationController extends ApiController
 
     public function find(PatientExamination $patientexamination)
     {
-        return new  ExaminationTransformer($patientexamination);
+        return new  ExaminationFullTransformer($patientexamination);
     }
 
     public function update(PatientExamination $patientexamination, UpdatePatientExaminationRequest $request)
@@ -87,8 +88,7 @@ class PatientExaminationController extends ApiController
             $patientexamination = $this->patientexaminationRepository->startExamination($patientexamination, $request);
             return response()->json([
                 'errors' => false,
-                'status' => $patientexamination->status,
-                'status_text' => $patientexamination->status_text,
+                'model' => new ExaminationTransformer($patientexamination),
                 'message' => trans('backend::examination.message.start success'),
             ]);
         } catch (\Exception $exception) {
@@ -108,8 +108,7 @@ class PatientExaminationController extends ApiController
             $patientexamination = $this->patientexaminationRepository->finishExamination($patientexamination, $request);
             return response()->json([
                 'errors' => false,
-                'status' => $patientexamination->status,
-                'status_text' => $patientexamination->status_text,
+                'model' => new ExaminationTransformer($patientexamination),
                 'message' => trans('backend::examination.message.finish success'),
             ]);
         } catch (\Exception $exception) {

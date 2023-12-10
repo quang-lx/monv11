@@ -14,6 +14,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property $status_color
  * @property $created_by
  * @property $patient_id
+ * @property $type
+ * @property $type_text
  * @property $patient
  * @property $createdBy
  * @package Modules\Mon\Entities
@@ -24,11 +26,17 @@ class PatientExamination extends Model
     const  STATUS_PROCESSING = 'processing';
     const  STATUS_DONE = 'done';
 
-    public $appends = ['status_text', 'status_color'];
+    const TYPE_NEW = 0;
+    const TYPE_AGAIN = 1;
 
+    public $appends = ['status_text', 'status_color', 'status_class', 'type_text'];
+    protected $casts = [
+        'started_at' => 'datetime',
+        'finished_at' => 'datetime',
+    ];
     protected $table = 'patient_examination';
     protected $fillable = [
-       'patient_id', 'started_at', 'finished_at', 'status', 'diagnose', 'created_by'
+       'patient_id', 'started_at', 'finished_at', 'status', 'diagnose', 'created_by', 'type'
     ];
 
     public function createdBy () {
@@ -48,6 +56,10 @@ class PatientExamination extends Model
     }
     public function getStatusColorAttribute() {
         return self::mapStatusColor($this->status);
+
+    }
+    public function getStatusClassAttribute() {
+        return self::mapStatusClass($this->status);
 
     }
     public static function mapStatusText($status) {
@@ -81,5 +93,36 @@ class PatientExamination extends Model
 
         }
         return $color;
+    }
+
+    public static function mapStatusClass($status) {
+        $class= '';
+        switch ($status) {
+            case self::STATUS_INIT:
+                $class = 'examination-init';
+                break;
+            case self::STATUS_PROCESSING:
+                $class = 'examination-processing';
+                break;
+            case self::STATUS_DONE:
+                $class = 'examination-done';
+                break;
+
+        }
+        return $class;
+    }
+
+    public function getTypeTextAttribute() {
+        $class= '';
+        switch ($this->type) {
+            case self::TYPE_NEW:
+                $class = 'Khám mới';
+                break;
+            case self::TYPE_AGAIN:
+                $class = 'Tái khám';
+                break;
+
+        }
+        return $class;
     }
 }
