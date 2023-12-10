@@ -7,7 +7,7 @@ return [
         'guard_name' => 'Guard name',
         'created_at' => 'Ngày tạo',
         'updated_at' => 'Ngày cập nhật',
-        'create_role' => 'Thêm mới vai trò',
+        'create_role' => 'Thêm mới',
         'update_role' => 'Cập nhật',
         'roles' => 'Danh sách vai trò',
         'permissions' => 'Danh sách chức năng',
@@ -27,7 +27,7 @@ return [
     'message' => [
         'create success' => 'Thêm mới nhóm quyền thành công.',
         'update success' => 'Cập nhật nhóm quyền thành công.',
-        'delete success' => 'Xóa nhóm quyền thành công.',
+        'delete success' => 'Vai trò đã được xoá thành công.',
         'add permissions success' => 'Gán chức năng thành công',
         'remove permissions success' => 'Bỏ chức năng thành công',
     ],

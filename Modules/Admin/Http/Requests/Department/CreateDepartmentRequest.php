@@ -9,7 +9,7 @@ class CreateDepartmentRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required'
+            'name' => "required|unique:department",
         ];
     }
 
@@ -23,10 +23,11 @@ class CreateDepartmentRequest extends FormRequest
         return true;
     }
 
-    public function messages()
+    public function messages()  
     {
         return [
-            'title.required' => 'Tên nhóm là bắt buộc'
+            'name.required' => 'Tên nhóm là bắt buộc',
+            'name.unique' => 'Tên nhóm đã tồn tại'
         ];
     }
 

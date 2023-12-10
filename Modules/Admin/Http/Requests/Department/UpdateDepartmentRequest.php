@@ -8,8 +8,9 @@ class UpdateDepartmentRequest extends FormRequest
 {
     public function rules()
     {
+        $department = $this->route()->parameter('department');
         return [
-            'name' => 'required'
+            'name' => "required|unique:department,name,{$department->id}",
         ];
     }
 
@@ -26,7 +27,8 @@ class UpdateDepartmentRequest extends FormRequest
     public function messages()
     {
         return [
-            'title.required' => 'Tên nhóm là bắt buộc'
+            'name.required' => 'Tên nhóm là bắt buộc',
+            'name.unique' => 'Tên nhóm đã tồn tại'
         ];
     }
 

@@ -15,20 +15,21 @@ class EloquentDepartmentRepository extends BaseRepository implements DepartmentR
         Department::query()->where('parent_id', $id)->update(['not_assign' => 1]);
         return $model->delete();
     }
-    public function getAllTree($parent_id = null) {
+    public function getAllTree($parent_id = null, $request) {
         $data = [];
         $query = $this->newQueryBuilder();
         $query->where('not_assign', 0);
+        $query->where('name', 'ilike',  "%{$request->search}%");
         if ($parent_id) {
             $query->where('parent_id', $parent_id);
         } else {
-            $query->whereNull('parent_id');
+            $query->whereNull('parent_id'); 
         }
         $departments = $query->get();
 
         foreach ($departments as $department) {
 
-            $children = $this->getAllTree($department->id);
+            $children = $this->getAllTree($department->id, $request);
             $count_user = User::query()->where('department_id', $department->id)->count();
             foreach ($children as $item) {
                 $count_user += $item['count_user'];
