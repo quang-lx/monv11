@@ -108,10 +108,10 @@
                                 <div class="sc-table">
 
                                     <el-table :data="data" stripe style="width: 100%"
-                                        @selection-change="handleSelectionChange" ref="dataTable"
+                                         ref="dataTable"
                                         v-loading.body="tableIsLoading" @sort-change="handleSortChange">
-                                        <el-table-column type="selection" width="55">
-                                        </el-table-column>
+                                        <!-- <el-table-column type="selection" width="55">
+                                        </el-table-column> -->
                                         <el-table-column v-for="col_selected in list_selected_col"
                                             :key="col_selected.col_name" :prop="col_selected.col_name"
                                             :label="list_col_label[col_selected.col_name]" min-width="150">
