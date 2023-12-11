@@ -25,13 +25,13 @@ class EloquentDeviceRepository extends BaseRepository implements DeviceRepositor
         if ($request->get('search') !== null) {
             $keyword = $request->get('search');
             $query->where(function ($q) use ($keyword) {
-                $q->orWhere('name', 'LIKE', "%{$keyword}%")
-                    ->orWhere('code', 'LIKE', "%{$keyword}%")
-                    ->orWhere('type', 'LIKE', "%{$keyword}%")
-                    ->orWhere('box', 'LIKE', "%{$keyword}%")
-                    ->orWhere('serial_number', 'LIKE', "%{$keyword}%")
-                    ->orWhere('status', 'LIKE', "%{$keyword}%")
-                    ->orWhere('note', 'LIKE', "%{$keyword}%");
+                $q->orWhere('name', 'ilike', "%{$keyword}%")
+                    ->orWhere('code', 'ilike', "%{$keyword}%")
+                    ->orWhere('type', 'ilike', "%{$keyword}%")
+                    ->orWhere('box', 'ilike', "%{$keyword}%")
+                    ->orWhere('serial_number', 'ilike', "%{$keyword}%")
+                    ->orWhere('status', 'ilike', "%{$keyword}%")
+                    ->orWhere('note', 'ilike', "%{$keyword}%");
 
             });
         }

@@ -55,7 +55,7 @@
                                         <el-table-column prop="code" :label="$t('service.label.code')" width="120">
                                             <template slot-scope="scope">
                                                 <span v-if="scope.row.is_edit">
-                                                    <el-input v-model="scope.row.code" size="small"
+                                                    <el-input  maxlength="255" v-model="scope.row.code" size="small"
                                                               placeholder="Nhập mã dịch vụ" ></el-input>
                                                 </span>
                                                 <span v-else>
@@ -67,7 +67,7 @@
                                         <el-table-column prop="code" :label="$t('service.label.code_lis')" width="120">
                                             <template slot-scope="scope">
                                                 <span v-if="scope.row.is_edit">
-                                                    <el-input v-model="scope.row.code_lis" size="small"
+                                                    <el-input maxlength="255" v-model="scope.row.code_lis" size="small"
                                                               placeholder="Nhập mã dịch vụ gửi LIS" ></el-input>
                                                 </span>
                                                 <span v-else>
@@ -80,7 +80,7 @@
                                         <el-table-column prop="name" :label="$t('service.label.name')" min-width="150">
                                             <template slot-scope="scope">
                                                 <span v-if="scope.row.is_edit">
-                                                    <el-input v-model="scope.row.name" size="small"
+                                                    <el-input maxlength="255" v-model="scope.row.name" size="small"
                                                               placeholder="Nhập tên dịch vụ" ></el-input>
                                                 </span>
                                                 <span v-else>

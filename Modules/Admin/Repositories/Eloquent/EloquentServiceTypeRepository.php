@@ -17,8 +17,8 @@ class EloquentServiceTypeRepository extends BaseRepository implements ServiceTyp
         if ($request->get('search') !== null) {
             $keyword = $request->get('search');
             $query->where(function ($q) use ($keyword) {
-                $q->orWhere('code', 'LIKE', "%{$keyword}%");
-                $q->orWhere('name', 'LIKE', "%{$keyword}%");
+                $q->orWhere('code', 'ilike', "%{$keyword}%");
+                $q->orWhere('name', 'ilike', "%{$keyword}%");
 
             });
         }

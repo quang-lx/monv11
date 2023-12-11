@@ -36,7 +36,7 @@ class News extends Model
         'meta_keywords',
         'meta_title',
         'meta_description',
-        'like',
+        'ilike',
         'view',
         'share',
         'sort',

@@ -63,7 +63,7 @@
                                             <el-form-item :label="$t('device.label.code')"
                                                           prop="code"
                                                           :class="{'el-form-item is-error': form.errors.has('code') }">
-                                                <el-input v-model="modelForm.code" size="small"
+                                                <el-input  maxlength="255" v-model="modelForm.code" size="small"
                                                 placeholder="Nhập mã thiết bị"
                                                 ></el-input>
                                                 <div class="el-form-item__error"
@@ -75,7 +75,7 @@
                                             <el-form-item :label="$t('device.label.name')"
                                                           prop="name"
                                                           :class="{'el-form-item is-error': form.errors.has('name') }">
-                                                <el-input v-model="modelForm.name" size="small"
+                                                <el-input  maxlength="255" v-model="modelForm.name" size="small"
                                                           placeholder="Nhập tên thiết bị"
                                                 ></el-input>
                                                 <div class="el-form-item__error"
@@ -86,7 +86,7 @@
                                         <div class="col-md-4">
                                             <el-form-item :label="$t('device.label.serial number')"
                                                           :class="{'el-form-item is-error': form.errors.has('serial_number') }">
-                                                <el-input v-model="modelForm.serial_number" size="small"
+                                                <el-input  maxlength="255" v-model="modelForm.serial_number" size="small"
                                                           placeholder="Nhập serial number"
                                                           autocomplete="off"></el-input>
                                                 <div class="el-form-item__error"
@@ -100,7 +100,7 @@
                                         <div class="col-md-4">
                                             <el-form-item :label="$t('device.label.type')"
                                                           :class="{'el-form-item is-error': form.errors.has('type') }">
-                                                <el-input v-model="modelForm.type" size="small"
+                                                <el-input  maxlength="255" v-model="modelForm.type" size="small"
                                                           placeholder="Nhập loại thiết bị"
                                                           autocomplete="off"></el-input>
                                                 <div class="el-form-item__error"
@@ -111,7 +111,7 @@
                                         <div class="col-md-4">
                                             <el-form-item :label="$t('device.label.box')"
                                                           :class="{'el-form-item is-error': form.errors.has('box') }">
-                                                <el-input v-model="modelForm.box" size="small"
+                                                <el-input  maxlength="255" v-model="modelForm.box" size="small"
                                                           disabled
 
                                                           autocomplete="off"></el-input>
@@ -125,7 +125,7 @@
                                                           prop="status"
                                                           :class="{'el-form-item is-error': form.errors.has('status') }">
 
-                                                <el-input v-model="modelForm.status" size="small"
+                                                <el-input  maxlength="255" v-model="modelForm.status" size="small"
                                                           disabled
 
                                                           autocomplete="off"></el-input>

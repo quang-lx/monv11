@@ -29,8 +29,8 @@ class PatientFullTransformer extends JsonResource
             'phone_dependant' => $this->phone_dependant,
             'data_sources' => $this->data_sources == Patient::Local ? 'Local' : 'LIS',
 
-            'created_at' => $this->created_at->format('d-m-Y'),
-            'updated_at' => $this->updated_at->format('d-m-Y'),
+            'created_at' => $this->created_at->format('H:i d/m/Y'),
+            'updated_at' => $this->updated_at->format('H:i d/m/Y'),
             'created_by_info' => $user->name . ' - ' . $user->username,
             'current_examination' => $this->current_examination? (new PatientExaminationTransformer($this->current_examination)): [],
             'diagnose' => optional($this->current_examination)->diagnose,

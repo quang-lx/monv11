@@ -9,8 +9,8 @@ class CreateDiseaseRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'code' => 'required'
+            'code'=>"required|unique:disease",
+            'name'=>"required",
         ];
     }
 
@@ -27,8 +27,8 @@ class CreateDiseaseRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'Tên bệnh là bắt buộc',
-            'code.required' => 'Mã bệnh là bắt buộc'
+            '*.required' => 'Thông tin này là bắt buộc',
+            'code.unique' => 'Thông tin này đã tồn tại trên hệ thống',
         ];
     }
 

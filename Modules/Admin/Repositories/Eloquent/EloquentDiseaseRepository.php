@@ -24,8 +24,8 @@ class EloquentDiseaseRepository extends BaseRepository implements DiseaseReposit
         if ($request->get('search') !== null) {
             $keyword = $request->get('search');
             $query->where(function ($q) use ($keyword) {
-                $q->orWhere('name', 'LIKE', "%{$keyword}%")
-                    ->orWhere('code', 'LIKE', "%{$keyword}%");
+                $q->orWhere('name', 'ilike', "%{$keyword}%")
+                    ->orWhere('code', 'ilike', "%{$keyword}%");
             });
         }
 

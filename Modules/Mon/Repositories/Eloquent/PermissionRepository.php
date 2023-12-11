@@ -18,9 +18,9 @@ class PermissionRepository extends BaseRepository implements PermissionRepositor
         if ($request->get('search') !== null) {
             $keyword = $request->get('search');
             $query->where(function ($q) use ($keyword) {
-                $q->where('name', 'LIKE', "%{$keyword}%")
-                    ->orWhere('guard_name', 'LIKE', "%{$keyword}%")
-                    ->orWhere('id', 'LIKE', "%{$keyword}%");
+                $q->where('name', 'ilike', "%{$keyword}%")
+                    ->orWhere('guard_name', 'ilike', "%{$keyword}%")
+                    ->orWhere('id', 'ilike', "%{$keyword}%");
             });
         }
 
@@ -95,9 +95,9 @@ class PermissionRepository extends BaseRepository implements PermissionRepositor
 		if ($request->get('search') !== null) {
 			$keyword = $request->get('search');
 			$query->where(function ($q) use ($keyword) {
-				$q->where('name', 'LIKE', "%{$keyword}%")
-					->orWhere('guard_name', 'LIKE', "%{$keyword}%")
-					->orWhere('id', 'LIKE', "%{$keyword}%");
+				$q->where('name', 'ilike', "%{$keyword}%")
+					->orWhere('guard_name', 'ilike', "%{$keyword}%")
+					->orWhere('id', 'ilike', "%{$keyword}%");
 			});
 		}
 

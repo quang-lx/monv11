@@ -60,6 +60,7 @@
                                                         <el-input v-model="modelForm.name"
                                                                   placeholder="Nhập tên vai trò"
                                                                   size="small"
+                                                                  maxlength="255"
                                                                   @focus="form.errors.clear('name')"></el-input>
                                                         <div class="el-form-item__error"
                                                              v-if="form.errors.has('name')"

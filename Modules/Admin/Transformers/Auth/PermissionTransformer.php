@@ -16,8 +16,8 @@ class PermissionTransformer extends JsonResource
             'group_name' => $this->group_name,
             'title' => $this->title,
             'guard_name' => $this->guard_name,
-            'created_at' => $this->created_at->format('d-m-Y'),
-            'updated_at' => $this->updated_at->format('d-m-Y'),
+            'created_at' => $this->created_at->format('H:i d/m/Y'),
+            'updated_at' => $this->updated_at->format('H:i d/m/Y'),
 	        'urls' => [
 		        'delete_url' => route('api.permissions.destroy', $this->id),
 	        ],
