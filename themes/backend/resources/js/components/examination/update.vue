@@ -38,12 +38,17 @@
 
 <!-- thông tin bệnh nhân-->
         <patient-info :model-form="modelForm.patient" :show_diagnose="false"></patient-info>
+        <examination-info :examination_data="modelForm" :show_diagnose="false"/>
+        <list-index-result />
+
     </div>
 </template>
 
 <script>
     import Form from 'form-backend-validation';
     import PatientInfo from './../patient/patient_info';
+    import ExaminationInfo from './../patient/examination_info';
+    import ListIndexResult from './list_index_result';
 
     export default {
         props: {
@@ -52,7 +57,8 @@
         },
         components: {
             PatientInfo,
-
+            ExaminationInfo,
+            ListIndexResult
         },
 
         data() {
