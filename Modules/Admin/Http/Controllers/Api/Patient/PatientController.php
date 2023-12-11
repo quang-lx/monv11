@@ -255,7 +255,7 @@ class PatientController extends ApiController
 
     public function changeStatus(Request $request)
     {
-        return $this->patientRepository->changeStatus($request->all());
+        // return $this->patientRepository->changeStatus($request->all());
     }
 
 

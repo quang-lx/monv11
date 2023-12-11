@@ -68,8 +68,8 @@ class EloquentPatientRepository extends BaseRepository implements PatientReposit
             $keyword = $request->get('search');
 
             $query->whereHas('testingService', function ($query) use ($keyword) {
-                $query->where('testing_service.name', 'LIKE', "%{$keyword}%")
-                    ->orWhere('testing_service.code', 'LIKE', "%{$keyword}%");
+                $query->where('testing_service.name', 'ilike', "%{$keyword}%")
+                    ->orWhere('testing_service.code', 'ilike', "%{$keyword}%");
             });
         }
 
@@ -125,11 +125,11 @@ class EloquentPatientRepository extends BaseRepository implements PatientReposit
         if ($request->get('search') !== null) {
             $keyword = $request->get('search');
             $query->where(function ($q) use ($keyword) {
-                $q->orWhere('name', 'LIKE', "%{$keyword}%")
-                    ->orWhere('phone', 'LIKE', "%{$keyword}%")
-                    ->orWhere('address', 'LIKE', "%{$keyword}%")
-                    ->orWhere('papers', 'LIKE', "%{$keyword}%")
-                    ->orWhere('job', 'LIKE', "%{$keyword}%");
+                $q->orWhere('name', 'ilike', "%{$keyword}%")
+                    ->orWhere('phone', 'ilike', "%{$keyword}%")
+                    ->orWhere('address', 'ilike', "%{$keyword}%")
+                    ->orWhere('papers', 'ilike', "%{$keyword}%")
+                    ->orWhere('job', 'ilike', "%{$keyword}%");
             });
         }
 

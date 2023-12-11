@@ -63,7 +63,7 @@
                                             <el-form-item :label="$t('servicetype.label.code')"
                                                           prop="code"
                                                           :class="{'el-form-item is-error': form.errors.has('code') }">
-                                                <el-input v-model="modelForm.code" size="small"
+                                                <el-input  maxlength="255" v-model="modelForm.code" size="small"
                                                 placeholder="Nhập mã loại dịch vụ"
                                                 ></el-input>
                                                 <div class="el-form-item__error"
@@ -76,7 +76,7 @@
                                             <el-form-item :label="$t('servicetype.label.name')"
                                                           prop="name"
                                                           :class="{'el-form-item is-error': form.errors.has('name') }">
-                                                <el-input v-model="modelForm.name" size="small"
+                                                <el-input  maxlength="255" v-model="modelForm.name" size="small"
                                                           placeholder="Nhập tên loại dịch vụ"
                                                 ></el-input>
                                                 <div class="el-form-item__error"

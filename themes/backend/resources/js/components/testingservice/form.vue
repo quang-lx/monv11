@@ -63,7 +63,7 @@
                                             <el-form-item :label="$t('service.label.code')"
                                                           prop="code"
                                                           :class="{'el-form-item is-error': form.errors.has('code') }">
-                                                <el-input v-model="modelForm.code" size="small"
+                                                <el-input  maxlength="255" v-model="modelForm.code" size="small"
                                                 placeholder="Nhập mã dịch vụ"
                                                 ></el-input>
                                                 <div class="el-form-item__error"
@@ -75,7 +75,7 @@
                                             <el-form-item :label="$t('service.label.code_lis')"
                                                           prop="code_lis"
                                                           :class="{'el-form-item is-error': form.errors.has('code_lis') }">
-                                                <el-input v-model="modelForm.code_lis" size="small"
+                                                <el-input maxlength="255" v-model="modelForm.code_lis" size="small"
                                                           placeholder="Nhập mã dịch vụ gửi LIS"
                                                 ></el-input>
                                                 <div class="el-form-item__error"
@@ -87,7 +87,7 @@
                                             <el-form-item :label="$t('service.label.name')"
                                                           prop="name"
                                                           :class="{'el-form-item is-error': form.errors.has('name') }">
-                                                <el-input v-model="modelForm.name" size="small"
+                                                <el-input maxlength="255" v-model="modelForm.name" size="small"
                                                           placeholder="Nhập tên dịch vụ"
                                                 ></el-input>
                                                 <div class="el-form-item__error"
@@ -152,7 +152,7 @@
                                         <div class="col-md-3">
                                             <el-form-item :label="$t('service.label.unit')"
                                                           :class="{'el-form-item is-error': form.errors.has('unit') }">
-                                                <el-input v-model="modelForm.unit" size="small"
+                                                <el-input  maxlength="255" v-model="modelForm.unit" size="small"
                                                           autocomplete="off"></el-input>
                                                 <div class="el-form-item__error"
                                                      v-if="form.errors.has('unit')"

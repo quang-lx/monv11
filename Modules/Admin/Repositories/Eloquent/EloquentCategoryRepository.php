@@ -32,7 +32,7 @@ class EloquentCategoryRepository extends BaseRepository implements CategoryRepos
         if ($request->get('search') !== null) {
             $keyword = $request->get('search');
             $query->where(function ($q) use ($keyword) {
-                $q->where('title', 'LIKE', "%{$keyword}%");
+                $q->where('title', 'ilike', "%{$keyword}%");
 
             });
         }

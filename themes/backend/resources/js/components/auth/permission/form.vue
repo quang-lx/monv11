@@ -44,6 +44,7 @@
                                                   :class="{'el-form-item is-error': form.errors.has( 'name') }">
                                         <el-input v-model="modelForm.name"
                                                   :disabled="modelForm.id"
+                                                  maxlength="255"
                                                   @focus="form.errors.clear('name')"></el-input>
                                         <div class="el-form-item__error"
                                              v-if="form.errors.has('name')"
@@ -53,7 +54,7 @@
 
                                     <el-form-item :label="$t('permission.label.title')"
                                                   :class="{'el-form-item is-error': form.errors.has( 'title') }">
-                                        <el-input v-model="modelForm.title"></el-input>
+                                        <el-input  maxlength="255" v-model="modelForm.title"></el-input>
                                         <div class="el-form-item__error"
                                              v-if="form.errors.has('title')"
                                              v-text="form.errors.first('title')"></div>

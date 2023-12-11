@@ -56,14 +56,14 @@
                                     >
                                         <el-form-item :label="$t('user.label.password')"
                                                       :class="{'el-form-item is-error': changepassForm.errors.has('password') }">
-                                            <el-input v-model="modelForm.password" autocomplete="off"
+                                            <el-input v-model="modelForm.password"  maxlength="255" autocomplete="off"
                                                       type="password"></el-input>
                                             <div class="el-form-item__error" v-if="changepassForm.errors.has('password')"
                                                  v-text="changepassForm.errors.first('password')"></div>
                                         </el-form-item>
                                         <el-form-item :label="$t('user.label.password_confirmation')"
                                                       :class="{'el-form-item is-error': changepassForm.errors.has('password_confirmation') }">
-                                            <el-input v-model="modelForm.password_confirmation" autocomplete="off"
+                                            <el-input  maxlength="255" v-model="modelForm.password_confirmation" autocomplete="off"
                                                       type="password"></el-input>
                                             <div class="el-form-item__error"
                                                  v-if="changepassForm.errors.has('password_confirmation')"
@@ -96,7 +96,7 @@
                                                         <div class="col-md-10">
                                                             <el-form-item :label="$t('user.label.username')"
                                                                           :class="{'el-form-item is-error': form.errors.has('username') }">
-                                                                <el-input v-model="modelForm.username"
+                                                                <el-input  maxlength="255" v-model="modelForm.username"
                                                                           autocomplete="off"></el-input>
                                                                 <div class="el-form-item__error"
                                                                      v-if="form.errors.has('username')"
@@ -104,7 +104,7 @@
                                                             </el-form-item>
                                                             <el-form-item :label="$t('user.label.name')"
                                                                           :class="{'el-form-item is-error': form.errors.has('name') }">
-                                                                <el-input v-model="modelForm.name"></el-input>
+                                                                <el-input  maxlength="255" v-model="modelForm.name"></el-input>
                                                                 <div class="el-form-item__error"
                                                                      v-if="form.errors.has('name')"
                                                                      v-text="form.errors.first('name')"></div>
@@ -112,7 +112,7 @@
 
                                                             <el-form-item :label="$t('user.label.email')"
                                                                           :class="{'el-form-item is-error': form.errors.has('email') }">
-                                                                <el-input v-model="modelForm.email"
+                                                                <el-input  maxlength="255" v-model="modelForm.email"
                                                                           autocomplete="off"></el-input>
                                                                 <div class="el-form-item__error"
                                                                      v-if="form.errors.has('email')"
@@ -122,7 +122,7 @@
                                                             <div v-if="modelForm.is_new">
                                                                 <el-form-item :label="$t('user.label.password')"
                                                                               :class="{'el-form-item is-error': form.errors.has('password') }">
-                                                                    <el-input v-model="modelForm.password"
+                                                                    <el-input  maxlength="255" v-model="modelForm.password"
                                                                               autocomplete="off"
                                                                               type="password"></el-input>
                                                                     <div class="el-form-item__error"
@@ -132,7 +132,7 @@
                                                                 <el-form-item
                                                                     :label="$t('user.label.password_confirmation')"
                                                                     :class="{'el-form-item is-error': form.errors.has('password_confirmation') }">
-                                                                    <el-input v-model="modelForm.password_confirmation"
+                                                                    <el-input  maxlength="255" v-model="modelForm.password_confirmation"
                                                                               autocomplete="off"
                                                                               type="password"></el-input>
                                                                     <div class="el-form-item__error"

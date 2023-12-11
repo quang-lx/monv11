@@ -64,7 +64,7 @@
                                         <div class="col-md-4">
                                             <el-form-item :label="$t('patient.label.name')" prop="name"
                                                           :class="{ 'el-form-item is-error': form.errors.has('name') }">
-                                                <el-input v-model="modelForm.name" size="small"
+                                                <el-input  maxlength="255" v-model="modelForm.name" size="small"
                                                           placeholder="Nhập họ và tên"></el-input>
                                                 <div class="el-form-item__error" v-if="form.errors.has('name')"
                                                      v-text="form.errors.first('name')"></div>
@@ -105,7 +105,7 @@
                                         <div class="col-md-4">
                                             <el-form-item :label="$t('patient.label.phone')" prop="phone"
                                                           :class="{ 'el-form-item is-error': form.errors.has('phone') }">
-                                                <el-input v-model="modelForm.phone" size="small"
+                                                <el-input  maxlength="255" v-model="modelForm.phone" size="small"
                                                           placeholder="Nhập số điện thoại"></el-input>
                                                 <div class="el-form-item__error" v-if="form.errors.has('phone')"
                                                      v-text="form.errors.first('phone')"></div>
@@ -115,7 +115,7 @@
                                         <div class="col-md-4">
                                             <el-form-item :label="$t('patient.label.email')" prop="email"
                                                           :class="{ 'el-form-item is-error': form.errors.has('email') }">
-                                                <el-input v-model="modelForm.email" size="small"
+                                                <el-input  maxlength="255" v-model="modelForm.email" size="small"
                                                           placeholder="Nhập email"></el-input>
                                                 <div class="el-form-item__error" v-if="form.errors.has('email')"
                                                      v-text="form.errors.first('email')"></div>
@@ -125,7 +125,7 @@
                                         <div class="col-md-4">
                                             <el-form-item :label="$t('patient.label.papers')" prop="papers"
                                                           :class="{ 'el-form-item is-error': form.errors.has('papers') }">
-                                                <el-input v-model="modelForm.papers" size="small"
+                                                <el-input maxlength="255" v-model="modelForm.papers" size="small"
                                                           placeholder="Nhập giấy tờ tuỳ thân"></el-input>
                                                 <div class="el-form-item__error" v-if="form.errors.has('papers')"
                                                      v-text="form.errors.first('papers')"></div>
@@ -137,7 +137,7 @@
                                         <div class="col-md-4">
                                             <el-form-item :label="$t('patient.label.job')" prop="job"
                                                           :class="{ 'el-form-item is-error': form.errors.has('job') }">
-                                                <el-input v-model="modelForm.job" size="small"
+                                                <el-input  maxlength="255" v-model="modelForm.job" size="small"
                                                           placeholder="Nhập đơn vị làm việc hoặc nghề nghiệp"></el-input>
                                                 <div class="el-form-item__error" v-if="form.errors.has('job')"
                                                      v-text="form.errors.first('job')"></div>
@@ -182,7 +182,7 @@
                                         <div class="col-md-4">
                                             <el-form-item :label="$t('patient.label.dependant')" prop="dependant"
                                                           :class="{ 'el-form-item is-error': form.errors.has('dependant') }">
-                                                <el-input v-model="modelForm.dependant" size="small"
+                                                <el-input maxlength="255" v-model="modelForm.dependant" size="small"
                                                           placeholder="Nhập họ và tên"></el-input>
                                                 <div class="el-form-item__error" v-if="form.errors.has('dependant')"
                                                      v-text="form.errors.first('dependant')"></div>
@@ -193,7 +193,7 @@
                                             <el-form-item :label="$t('patient.label.phone_dependant')"
                                                           prop="phone_dependant"
                                                           :class="{ 'el-form-item is-error': form.errors.has('phone_dependant') }">
-                                                <el-input v-model="modelForm.phone_dependant" size="small"
+                                                <el-input maxlength="255" v-model="modelForm.phone_dependant" size="small"
                                                           placeholder="Nhập số điện thoại"></el-input>
                                                 <div class="el-form-item__error"
                                                      v-if="form.errors.has('phone_dependant')"

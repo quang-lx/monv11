@@ -64,7 +64,7 @@
                                         <div class="col-md-12">
                                             <el-form-item :label="$t('disease.label.code')" prop="code"
                                                 :class="{ 'el-form-item is-error': form.errors.has('code') }">
-                                                <el-input v-model="modelForm.code" size="small"
+                                                <el-input  maxlength="255" v-model="modelForm.code" size="small"
                                                     placeholder="Nhập mã bệnh"></el-input>
                                                 <div class="el-form-item__error" v-if="form.errors.has('code')"
                                                     v-text="form.errors.first('code')"></div>
@@ -73,7 +73,7 @@
                                         <div class="col-md-12">
                                             <el-form-item :label="$t('disease.label.name')" prop="name"
                                                 :class="{ 'el-form-item is-error': form.errors.has('name') }">
-                                                <el-input v-model="modelForm.name" size="small"
+                                                <el-input  maxlength="255" v-model="modelForm.name" size="small"
                                                     placeholder="Nhập tên bệnh"></el-input>
                                                 <div class="el-form-item__error" v-if="form.errors.has('name')"
                                                     v-text="form.errors.first('name')"></div>
@@ -165,7 +165,7 @@ export default {
                     this.loading = false;
                     this.$notify({
                         type: 'success',
-                        title: this.$route.params.diseaseId !== undefined ? 'Cập nhật thành công' : 'Thêm mới thành công',
+                        title: this.$route.params.diseaseId !== undefined ? 'Cập nhật bệnh thành công' : 'Thêm bệnh thành công',
 
                         message: response.message,
                     });
@@ -174,10 +174,10 @@ export default {
                 .catch((error) => {
 
                     this.loading = false;
-                    this.$notify.error({
-                        title: this.$route.params.diseaseId !== undefined ? 'Cập nhật thất bại' : 'Thêm mới thất bại',
-                        message: this.getSubmitError(this.form.errors),
-                    });
+                    // this.$notify.error({
+                    //     title: this.$route.params.diseaseId !== undefined ? 'Cập nhật thất bại' : 'Thêm mới thất bại',
+                    //     message: this.getSubmitError(this.form.errors),
+                    // });
                 });
         },
 

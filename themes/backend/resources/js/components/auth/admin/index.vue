@@ -27,10 +27,6 @@
 
                         </span>
 
-                        <span class="f-action pl-4 f-pointer" @click="show_config = true">
-                            <inline-svg src="/images/list.svg" /> Tuỳ chỉnh
-
-                        </span>
                         <span class="f-action pl-4 f-pointer" @click="exportUsers">
                             <inline-svg src="/images/download.svg" /> Tải xuống
 
@@ -38,6 +34,11 @@
 
                         <span class="f-action pl-4 f-pointer" @click="show_import = true">
                             <inline-svg src="/images/upload.svg" /> Tải lên
+
+                        </span>
+
+                        <span class="f-action pl-4 f-pointer" :style="{ color: '#4B67E2 !important' }" @click="show_config = true">
+                            <inline-svg  src="/images/list_blue.svg" /> Tuỳ chỉnh
 
                         </span>
 

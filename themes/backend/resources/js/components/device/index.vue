@@ -19,7 +19,7 @@
                         <router-link :to="{ name: 'admin.device.create' }" class="f-action ">
                             <i class="el-icon-plus"></i>
 
-                            {{ $t('device.label.create_device') }}
+                            {{ $t('device.label.button_create') }}
 
                         </router-link>
 
@@ -63,7 +63,7 @@
                                             width="150"> </el-table-column>
                                         <el-table-column prop="box" :label="$t('device.label.box')" width="150">
                                         </el-table-column>
-                                        <el-table-column prop="status" :label="$t('device.label.box')" width="150">
+                                        <el-table-column prop="status" :label="$t('device.label.status_column')" width="150">
                                         </el-table-column>
 
 

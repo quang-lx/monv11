@@ -98,6 +98,7 @@
                                                           :class="{'el-form-item is-error': form.errors.has('email') }">
                                                 <el-input v-model="modelForm.email" size="small"
                                                           placeholder="Nhập email"
+                                                          maxlength="255"
                                                           autocomplete="off"></el-input>
                                                 <div class="el-form-item__error"
                                                      v-if="form.errors.has('email')"
@@ -112,6 +113,7 @@
                                                           :class="{'el-form-item is-error': form.errors.has('phone') }">
                                                 <el-input v-model="modelForm.phone" size="small"
                                                           placeholder="Nhập số điện thoại"
+                                                          maxlength="255"
                                                           autocomplete="off"></el-input>
                                                 <div class="el-form-item__error"
                                                      v-if="form.errors.has('phone')"
@@ -252,6 +254,7 @@
                                                         <el-input v-model="modelForm.username" :disabled="!modelForm.is_new"
                                                                   placeholder="Nhập tài khoản đăng nhập"
                                                                   size="small"
+                                                                  maxlength="255"
                                                                   autocomplete="off"></el-input>
                                                     </div>
                                                     <div class="col-sm-3">

@@ -18,7 +18,7 @@ class CategoryTransformer extends JsonResource
         $data = [
             'id' => $this->id,
             'title' => $this->title,
-            'updated_at'=> $this->updated_at->format('d-m-Y'),
+            'updated_at'=> $this->updated_at->format('H:i d/m/Y'),
 
              'type'=> $this->type,
             'slug'=> $this->slug,

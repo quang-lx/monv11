@@ -29,7 +29,7 @@ class NewsTransformer extends JsonResource
 
             'thumbnail' => $this->thumbnail,
 
-            'updated_at'=> $this->updated_at->format('d-m-Y'),
+            'updated_at'=> $this->updated_at->format('H:i d/m/Y'),
             'created_by'=> optional($this->creator)->username,
 
             'type' => $this->type,
@@ -43,7 +43,7 @@ class NewsTransformer extends JsonResource
             'meta_keywords'=> $this->meta_keywords,
             'meta_title'=> $this->meta_title,
             'meta_description'=> $this->meta_description,
-            'like'=> $this->like,
+            'ilike'=> $this->like,
             'view'=> $this->view,
             'share'=> $this->share,
             'sort'=> $this->sort,

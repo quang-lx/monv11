@@ -7,12 +7,14 @@ return [
         'type' => 'Loại thiết bị',
         'box' => 'Box thiết bị',
         'status' => 'Trạng thái',
+        'status_column' => 'Trạng thái thiết bị',
         'serial number' => 'Serial number',
         'note' => 'Ghi chú chi tiết',
 
         'title' => 'Quản lý thiết bị',
 
         'create_device' => 'Thêm mới thiết bị',
+        'button_create' => 'Thêm mới',
         'update_device' => 'Cập nhật thiết bị',
         'import title' => 'Tải lên danh sách',
 
