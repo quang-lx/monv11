@@ -116,7 +116,7 @@ class DiseaseController extends ApiController
                     $disease_model->code = $disease['code'];
                     $disease_model->name = $disease['name'];
                     $disease_model->describe = $disease['describe'];
-                    $disease_model->created_by = Auth::user()->name.' - '.Auth::user()->username;
+                    $disease_model->created_by = Auth::user()->id;
                     $disease_model->save();
                 } catch (\Throwable $th) {
                     Log::info($th->getMessage());
