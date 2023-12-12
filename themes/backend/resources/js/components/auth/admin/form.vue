@@ -275,6 +275,7 @@
                                                 ref="multipleTable"
                                                 :data="roles"
                                                 style="width: 100%"
+                                                @selection-change="handleSelectionChange"
                                                 >
                                                 <el-table-column
                                                     type="selection"
