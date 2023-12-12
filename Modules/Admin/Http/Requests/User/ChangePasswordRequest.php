@@ -40,7 +40,7 @@ class ChangePasswordRequest extends FormRequest
             'password_new.min' => 'Mật khẩu tối thiểu 8 ký tự',
 
             'password_new.regex' => 'Mật khẩu phải bao gồm ký tự chữ và số, không được chứa dấu cách',
-            'password_confirmation.same' => 'Xác nhận mật khẩu không đúng',
+            'password_confirmation.same' => 'Mật khẩu không trùng khớp',
             'password_confirmation.required' => 'Mật khẩu nhập lại là bắt buộc',
 
         ];
@@ -57,7 +57,7 @@ class ChangePasswordRequest extends FormRequest
 
             // Kiểm tra xem password_old có khớp với password của user hay không
             if (!Hash::check($passwordOld, $user->password)) {
-                $validator->errors()->add('password_old', 'Mật khẩu cũ không đúng.');
+                $validator->errors()->add('password_old', 'Mật khẩu cũ nhập vào không chính xác.');
             }
         });
     }

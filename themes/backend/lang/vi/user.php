@@ -52,7 +52,7 @@ return [
     ],
     'message' => [
         'create success' => 'Tạo tài khoản thành công.',
-        'update success' => 'Cập nhật tài khoản thành công.',
+        'update success' => 'Cập nhật thông tin thành công.',
         'delete success' => 'Xóa tài khoản thành công.',
         'change password success' => 'Đổi mật khẩu thành công.',
         'not allow self delete' => 'Không cho phép xóa tài khoản bạn đang đăng nhập.',

@@ -172,11 +172,11 @@ export default {
                 });
         },
 
-        closeImport() {
+      closeImport() {
             this.show_import = false;
             this.loadingImport = 0;
+            this.data_export = []
         },
-
         exportDevices() {
 
             const properties = {

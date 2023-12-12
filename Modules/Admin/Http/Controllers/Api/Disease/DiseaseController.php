@@ -138,6 +138,9 @@ class DiseaseController extends ApiController
     }
 
     public function validateData($disease){
+        if (Disease::where('code', $disease['code'])->first()) {
+            return trans('backend::disease.label.code') . trans('backend::mon.error.unique');
+         }
         if (!$disease['code']) {
            return trans('backend::disease.label.code').trans('backend::mon.error.required');
         }

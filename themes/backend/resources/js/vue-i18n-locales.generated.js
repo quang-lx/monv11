@@ -222,9 +222,9 @@ export default {
                 "import title": "Tải lên danh sách"
             },
             "message": {
-                "create success": "Tạo bệnh thành công.",
-                "update success": "Cập nhật bệnh thành công.",
-                "delete success": "Xóa bệnh thành công.",
+                "create success": "Bệnh đã được thêm thành công.",
+                "update success": "Bệnh đã được sửa thành công.",
+                "delete success": "Bệnh đã được xoá thành công.",
                 "import success": "Tải lên danh sách bệnh thành công."
             }
         },
@@ -269,7 +269,8 @@ export default {
                 "cancelBtn": "Ở lại",
                 "delete": "Xóa",
                 "close": "Đóng",
-                "update": "Cập nhật"
+                "update": "Cập nhật",
+                "add": "Thêm mới"
             },
             "all": "Tất cả",
             "confirm": "Xác nhận",
@@ -282,7 +283,8 @@ export default {
             "error": {
                 "Title": "Lỗi",
                 "Message": "Có lỗi xảy ra.",
-                "required": " không được để trống"
+                "required": " không được để trống",
+                "unique": "  đã tồn tại"
             },
             "modal": {
                 "confirmation-message": "Bạn có chắc chắn muốn xóa bản ghi này không?",
