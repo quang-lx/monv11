@@ -61,10 +61,10 @@ class RoleRepository extends BaseRepository implements RoleInterface {
         if ($request->get('search') !== null) {
             $keyword = $request->get('search');
             $query->where(function ($q) use ($keyword) {
-                $q->where('name', 'LIKE', "%{$keyword}%")
-                    ->orWhere('guard_name', 'LIKE', "%{$keyword}%")
-                    ->orWhere('description', 'LIKE', "%{$keyword}%")
-                    ->orWhere('id', 'LIKE', "%{$keyword}%");
+                $q->where('name', 'ilike', "%{$keyword}%")
+                    ->orWhere('guard_name', 'ilike', "%{$keyword}%")
+                    ->orWhere('description', 'ilike', "%{$keyword}%")
+                    ->orWhere('id', 'ilike', "%{$keyword}%");
             });
         }
 

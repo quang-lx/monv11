@@ -18,32 +18,7 @@ class DevicesErrorExport implements FromView, WithEvents
     public function __construct($list_error, $columns_export)
     {
         $this->list_error = $list_error;
-        $this->columns_export = [
-            [
-                'col_name' => 'code',
-                'name' =>  trans('backend::device.label.code'),
-            ],
-            [
-                'col_name' => 'name',
-                'name' =>  trans('backend::device.label.name'),
-            ],
-            [
-                'col_name' => 'type',
-                'name' =>  trans('backend::device.label.type'),
-            ],
-            [
-                'col_name' => 'serial_number',
-                'name' =>  trans('backend::device.label.serial number'),
-            ],
-            [
-                'col_name' => 'note',
-                'name' =>  trans('backend::device.label.note'),
-            ],
-            [
-                'col_name' => 'error',
-                'name' =>  trans('backend::mon.error.Title'),
-            ]
-        ];
+        $this->columns_export = $columns_export;
     }
 
     public function registerEvents(): array

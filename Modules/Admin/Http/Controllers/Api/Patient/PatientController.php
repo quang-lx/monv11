@@ -252,6 +252,6 @@ class PatientController extends ApiController
             ]
         ];
     }
-
+ 
 
 }

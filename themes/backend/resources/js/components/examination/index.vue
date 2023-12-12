@@ -22,8 +22,8 @@
                             <inline-svg src="/images/filter.svg" /> Bộ lọc
 
                         </span>
-                        <span class="f-action pl-4 f-pointer" @click="show_config = true">
-                            <inline-svg src="/images/list.svg" /> Tuỳ chỉnh
+                        <span class="f-action pl-4 f-pointer" :style="{ color: '#4B67E2 !important' }" @click="show_config = true">
+                            <inline-svg  src="/images/list_blue.svg" /> Tuỳ chỉnh
 
                         </span>
 

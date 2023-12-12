@@ -28,7 +28,7 @@
                             </el-button>
                             <el-button type="primary" @click="onSubmit()" size="small" :loading="loading"
                                        class="btn btn-flat  btn-primary">
-                                {{ $t('mon.button.update') }}
+                                {{ $t('mon.button.save') }}
                             </el-button>
                         </div>
 
@@ -73,7 +73,7 @@
                                                         <div class="col-md-4">
                                                             <el-form-item :label="$t('patient.label.name')" prop="name"
                                                                           :class="{ 'el-form-item is-error': form.errors.has('name') }">
-                                                                <el-input v-model="modelForm.name" size="small"
+                                                                <el-input  maxlength="255" v-model="modelForm.name" size="small"
                                                                           placeholder="Nhập họ và tên"></el-input>
                                                                 <div class="el-form-item__error" v-if="form.errors.has('name')"
                                                                      v-text="form.errors.first('name')"></div>
@@ -124,7 +124,7 @@
                                                         <div class="col-md-4">
                                                             <el-form-item :label="$t('patient.label.email')" prop="email"
                                                                           :class="{ 'el-form-item is-error': form.errors.has('email') }">
-                                                                <el-input v-model="modelForm.email" size="small"
+                                                                <el-input  maxlength="255" v-model="modelForm.email" size="small"
                                                                           placeholder="Nhập email"></el-input>
                                                                 <div class="el-form-item__error" v-if="form.errors.has('email')"
                                                                      v-text="form.errors.first('email')"></div>
@@ -225,7 +225,7 @@
                                                         <div class="col-md-4">
                                                             <el-form-item :label="$t('patient.label.dependant')" prop="dependant"
                                                                           :class="{ 'el-form-item is-error': form.errors.has('dependant') }">
-                                                                <el-input v-model="modelForm.dependant" size="small"
+                                                                <el-input  maxlength="255" v-model="modelForm.dependant" size="small"
                                                                           placeholder="Nhập họ và tên"></el-input>
                                                                 <div class="el-form-item__error" v-if="form.errors.has('dependant')"
                                                                      v-text="form.errors.first('dependant')"></div>
@@ -236,7 +236,7 @@
                                                             <el-form-item :label="$t('patient.label.phone_dependant')"
                                                                           prop="phone_dependant"
                                                                           :class="{ 'el-form-item is-error': form.errors.has('phone_dependant') }">
-                                                                <el-input v-model="modelForm.phone_dependant" size="small"
+                                                                <el-input  maxlength="255" v-model="modelForm.phone_dependant" size="small"
                                                                           placeholder="Nhập số điện thoại"></el-input>
                                                                 <div class="el-form-item__error"
                                                                      v-if="form.errors.has('phone_dependant')"

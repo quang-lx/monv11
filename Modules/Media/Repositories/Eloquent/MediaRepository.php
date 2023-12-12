@@ -129,7 +129,7 @@ class MediaRepository extends BaseRepository implements \Modules\Media\Repositor
         $fileNameOnly = pathinfo($fileName, PATHINFO_FILENAME);
         $extension = pathinfo($fileName, PATHINFO_EXTENSION);
 
-        $models = $this->model->where('filename', 'LIKE', "$fileNameOnly%")->get();
+        $models = $this->model->where('filename', 'ilike', "$fileNameOnly%")->get();
 
         $versionCurrent = $models->reduce(function ($carry, $model) {
             $latestFilename = pathinfo($model->filename, PATHINFO_FILENAME);
@@ -163,7 +163,7 @@ class MediaRepository extends BaseRepository implements \Modules\Media\Repositor
 
         if ($request->get('search') !== null) {
             $term = $request->get('search');
-            $media->where('filename', 'LIKE', "%{$term}%");
+            $media->where('filename', 'ilike', "%{$term}%");
         }
 
         if ($request->get('order_by') !== null && $request->get('order') !== 'null') {

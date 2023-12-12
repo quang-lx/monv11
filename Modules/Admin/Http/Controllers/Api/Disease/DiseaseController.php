@@ -52,7 +52,7 @@ class DiseaseController extends ApiController
     public function store(CreateDiseaseRequest $request)
     {
         $data = $request->all();
-        $data['created_by'] = Auth::user()->name.' - '.Auth::user()->username;
+        $data['created_by'] = Auth::user()->id;
         $this->diseaseRepository->create($data);
 
         return response()->json([
@@ -69,7 +69,9 @@ class DiseaseController extends ApiController
 
     public function update(Disease $disease, UpdateDiseaseRequest $request)
     {
-        $this->diseaseRepository->update($disease, $request->all());
+        $data = $request->all();
+        unset($data['created_by']);
+        $this->diseaseRepository->update($disease, $data);
 
         return response()->json([
             'errors' => false,
@@ -114,7 +116,7 @@ class DiseaseController extends ApiController
                     $disease_model->code = $disease['code'];
                     $disease_model->name = $disease['name'];
                     $disease_model->describe = $disease['describe'];
-                    $disease_model->created_by = Auth::user()->name.' - '.Auth::user()->username;
+                    $disease_model->created_by = Auth::user()->id;
                     $disease_model->save();
                 } catch (\Throwable $th) {
                     Log::info($th->getMessage());

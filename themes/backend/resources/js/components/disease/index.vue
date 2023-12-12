@@ -55,11 +55,14 @@
                                         v-loading.body="tableIsLoading" @sort-change="handleSortChange">
                                         <el-table-column :label="$t('disease.label.stt')" type="index" width="100">
                                         </el-table-column>
-                                        <el-table-column prop="name" :label="$t('disease.label.name')" width="350">
-                                        </el-table-column>
-
                                         <el-table-column prop="code" :label="$t('disease.label.code')" width="350">
                                         </el-table-column>
+                                        <el-table-column prop="name" :label="$t('disease.label.name')" width="250">
+                                        </el-table-column>    
+                                        
+                                        <el-table-column prop="created_by" :label="$t('disease.label.created_by')" >
+                                        </el-table-column>    
+
                                         <el-table-column prop="created_at" :label="$t('disease.label.created_at')">
                                         </el-table-column>
 

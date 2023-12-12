@@ -8,7 +8,10 @@ class CreateDeviceRequest extends FormRequest
 {
     public function rules()
     {
-        return [];
+        return [
+            'code'=>"required|unique:device",
+            'name'=>"required",
+        ];
     }
 
     public function translationRules()
@@ -23,11 +26,14 @@ class CreateDeviceRequest extends FormRequest
 
     public function messages()
     {
-        return [];
+        return [
+            '*.required' => 'Thông tin này là bắt buộc',
+            'code.unique' => 'Thông tin này đã tồn tại trên hệ thống',
+        ];
     }
 
     public function translationMessages()
     {
-        return [];
+        
     }
 }

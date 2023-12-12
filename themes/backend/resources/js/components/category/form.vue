@@ -49,7 +49,7 @@
 
                                                     <el-form-item :label="$t('category.label.title')"
                                                                   :class="{'el-form-item is-error': form.errors.has('title') }">
-                                                        <el-input v-model="modelForm.title"  @change="changeTitleName"></el-input>
+                                                        <el-input  maxlength="255" v-model="modelForm.title"  @change="changeTitleName"></el-input>
                                                         <div class="el-form-item__error"
                                                              v-if="form.errors.has('title')"
                                                              v-text="form.errors.first('title')"></div>

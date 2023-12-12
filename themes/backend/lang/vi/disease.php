@@ -17,8 +17,8 @@ return [
     ],
 
     'message' => [
-        'create success' => 'Tạo bệnh thành công.',
-        'update success' => 'Cập nhật bệnh thành công.',
+        'create success' => 'Bệnh đã được thêm thành công.',
+        'update success' => 'Bệnh đã được sửa thành công.',
         'delete success' => 'Xóa bệnh thành công.',
         'import success' => 'Tải lên danh sách bệnh thành công.',
     ]

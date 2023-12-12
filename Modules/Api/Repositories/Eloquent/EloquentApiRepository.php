@@ -56,7 +56,7 @@ class EloquentApiRepository implements ApiRepository
         $query = News::query();
         if ($request->get('keyword')) {
             $keyword = $request->get('keyword');
-            $query->where('title','like', "%$keyword%");
+            $query->where('title','ilike', "%$keyword%");
         }
         $query->where('type', News::TYPE_NEWS);
         return $query->paginate($request->get('per_page', 10));

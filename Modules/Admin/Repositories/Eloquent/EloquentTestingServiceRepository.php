@@ -100,10 +100,10 @@ class EloquentTestingServiceRepository extends BaseRepository implements Testing
         if ($request->get('search') !== null) {
             $keyword = $request->get('search');
             $query->where(function ($q) use ($keyword) {
-                $q->orWhere('code', 'LIKE', "%{$keyword}%");
-                $q->orWhere('code_lis', 'LIKE', "%{$keyword}%");
-                $q->orWhere('name', 'LIKE', "%{$keyword}%");
-                $q->orWhere('type', 'LIKE', "%{$keyword}%");
+                $q->orWhere('code', 'ilike', "%{$keyword}%");
+                $q->orWhere('code_lis', 'ilike', "%{$keyword}%");
+                $q->orWhere('name', 'ilike', "%{$keyword}%");
+                $q->orWhere('type', 'ilike', "%{$keyword}%");
 
             });
         }

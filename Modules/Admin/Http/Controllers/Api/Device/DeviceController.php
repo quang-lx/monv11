@@ -4,6 +4,7 @@ namespace Modules\Admin\Http\Controllers\Api\Device;
 
 use App\Exports\DevicesErrorExport;
 use App\Exports\DevicesExport;
+use App\Exports\ErrorExport;
 use App\Imports\ImportDevices;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -62,7 +63,7 @@ class DeviceController extends ApiController
 
     public function find(Device $device)
     {
-        return new  DeviceTransformer($device);
+        return new DeviceTransformer($device);
     }
 
     public function update(Device $device, UpdateDeviceRequest $request)
@@ -123,7 +124,8 @@ class DeviceController extends ApiController
             }
         });
         $time_now = Carbon::now()->timestamp;
-        Excel::store(new DevicesErrorExport($list_error), 'public/media/' . 'devices_error_' . $time_now . '.xlsx');
+        $column_export = $this->columnExportError();
+        Excel::store(new ErrorExport($list_error, $column_export), 'public/media/' . 'devices_error_' . $time_now . '.xlsx');
         $fileUrl = url('storage/media/' . 'devices_error_' . $time_now . '.xlsx');
         return response()->json([
             'success' => true,
@@ -134,10 +136,42 @@ class DeviceController extends ApiController
         ]);
     }
 
-    public function validateData($device){
+    public function validateData($device)
+    {
         if (!$device['code']) {
-           return trans('backend::device.label.code').trans('backend::mon.error.required');
+            return trans('backend::device.label.code') . trans('backend::mon.error.required');
         }
         return null;
     }
+
+    public function columnExportError()
+    {
+        return [
+            [
+                'col_name' => 'code',
+                'name' => trans('backend::device.label.code'),
+            ],
+            [
+                'col_name' => 'name',
+                'name' => trans('backend::device.label.name'),
+            ],
+            [
+                'col_name' => 'type',
+                'name' => trans('backend::device.label.type'),
+            ],
+            [
+                'col_name' => 'serial_number',
+                'name' => trans('backend::device.label.serial number'),
+            ],
+            [
+                'col_name' => 'note',
+                'name' => trans('backend::device.label.note'),
+            ],
+            [
+                'col_name' => 'error',
+                'name' => trans('backend::mon.error.Title'),
+            ]
+        ];
+    }
+
 }

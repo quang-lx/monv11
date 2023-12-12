@@ -158,12 +158,12 @@ class UserRepository extends BaseRepository implements UserInterface
             $keyword = $request->get('search');
             $query->where(function ($q) use ($keyword) {
 
-                $q->orWhere('name', 'LIKE', "%{$keyword}%")
-                    ->orWhere('email', 'LIKE', "%{$keyword}%")
-                    ->orWhere('phone', 'LIKE', "%{$keyword}%")
-                    ->orWhere('id', 'LIKE', "%{$keyword}%")
-                    ->orWhere('username', 'LIKE', "%{$keyword}%")
-                    ->orWhere('identification', 'LIKE', "%{$keyword}%");
+                $q->orWhere('name', 'ilike', "%{$keyword}%")
+                    ->orWhere('email', 'ilike', "%{$keyword}%")
+                    ->orWhere('phone', 'ilike', "%{$keyword}%")
+                    ->orWhere('id', 'ilike', "%{$keyword}%")
+                    ->orWhere('username', 'ilike', "%{$keyword}%")
+                    ->orWhere('identification', 'ilike', "%{$keyword}%");
             });
         }
         $exclude_ids = $request->get('exclude_ids', null);
@@ -199,12 +199,12 @@ class UserRepository extends BaseRepository implements UserInterface
 
         if ($request->get('name') !== null) {
             $name = $request->get('name');
-            $query->where('name', 'LIKE', "%{$name}%");
+            $query->where('name', 'ilike', "%{$name}%");
         }
 
         if ($request->get('email') !== null) {
             $email = $request->get('email');
-            $query->where('email', 'LIKE', "%{$email}");
+            $query->where('email', 'ilike', "%{$email}");
         }
 
         if ($request->get('role_name') !== null) {

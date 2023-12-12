@@ -33,10 +33,10 @@ class EloquentNewsRepository extends BaseRepository implements NewsRepository
         if ($request->get('search') !== null) {
             $keyword = $request->get('search');
             $query->where(function ($q) use ($keyword) {
-                $q->orWhere('title', 'LIKE', "%{$keyword}%")
-                    ->orWhere('id', 'LIKE', "%{$keyword}%")
+                $q->orWhere('title', 'ilike', "%{$keyword}%")
+                    ->orWhere('id', 'ilike', "%{$keyword}%")
                     ->orWhereHas('creator', function ($query) use ($keyword) {
-                        $query->where('username', 'like', "%$keyword%");
+                        $query->where('username', 'ilike', "%$keyword%");
                     });
 
             });

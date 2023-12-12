@@ -8,7 +8,12 @@ class UpdateDeviceRequest extends FormRequest
 {
     public function rules()
     {
-        return [];
+        $device = $this->route()->parameter('device');
+
+        return [
+            'code'=>"required|unique:device,code,{$device->id}",
+            'name'=>"required",
+        ];
     }
 
     public function translationRules()
@@ -23,7 +28,10 @@ class UpdateDeviceRequest extends FormRequest
 
     public function messages()
     {
-        return [];
+        return [
+            '*.required' => 'Thông tin này là bắt buộc',
+            'code.unique' => 'Thông tin này đã tồn tại trên hệ thống',
+        ];
     }
 
     public function translationMessages()
