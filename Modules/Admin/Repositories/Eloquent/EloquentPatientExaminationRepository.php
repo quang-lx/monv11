@@ -4,6 +4,7 @@ namespace Modules\Admin\Repositories\Eloquent;
 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Modules\Admin\Repositories\PatientExaminationRepository;
 use Modules\Mon\Entities\PatientExamination;
 use \Modules\Mon\Repositories\Eloquent\BaseRepository;
@@ -49,6 +50,45 @@ class EloquentPatientExaminationRepository extends BaseRepository implements Pat
                     $query->where('started_at', '<', $filter_date_range[0])
                         ->where('finished_at', '<', $filter_date_range[1]);
             });
+        }
+        $status = $request->get('status');
+        if ($status) {
+            $query->where('status', $status);
+
+        }
+        $created_at = $request->get('created_at');
+        if ($created_at && is_array($created_at) && count($created_at) == 2) {
+            $query->whereBetween(DB::raw('DATE(created_at)'), $created_at);
+
+        }
+        $started_at = $request->get('started_at');
+        if ($started_at && is_array($started_at) && count($started_at) == 2) {
+            $query->whereBetween(DB::raw('DATE(started_at)'), $started_at);
+
+        }
+
+        $finished_at = $request->get('finished_at');
+        if ($finished_at && is_array($finished_at) && count($finished_at) == 2) {
+            $query->whereBetween(DB::raw('DATE(finished_at)'), $finished_at);
+
+        }
+
+        $birthday = $request->get('birthday');
+        if ($birthday && is_array($birthday) && count($birthday) == 2) {
+            $query->whereHas('patient', function ($query) use ($birthday){
+                $query->whereBetween(DB::raw('DATE(birthday)'), $birthday);
+
+            });
+
+        }
+
+        $sex = $request->get('sex');
+        if ($sex) {
+            $query->whereHas('patient', function ($query) use ($sex){
+                $query->where('sex', $sex);
+
+            });
+
         }
 
         if ($request->get('order_by') !== null && $request->get('order') !== 'null') {

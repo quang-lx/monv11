@@ -4,7 +4,7 @@
         <el-dialog
             width="40%"
             :show-close="false"
-            :title="$t('patient.label.filter title')"
+            title="Lọc danh sách khám bệnh "
             :destroy-on-close="true"
             :visible.sync="show_filter">
 
@@ -16,18 +16,17 @@
             >
                 <div class="row">
                     <div class="col-sm-6">
-                        <el-form-item :label="$t('patient.label.status')" >
-                            <el-select v-model="search_data.status" size="small"
-                                       :placeholder="$t('patient.label.status')"
-                                       filterable style="width: 100% !important">
-                                <el-option
-                                    v-for="item in listStatus"
-                                    :key="'sex'+ item.value"
-                                    :label="item.label"
-                                    :value="item.value">
-                                </el-option>
-
-                            </el-select>
+                        <el-form-item :label="$t('patient.label.birthday')" style="width: 100% !important;">
+                            <el-date-picker
+                                style="width: 100% !important;"
+                                size="small"
+                                v-model="search_data.birthday"
+                                type="daterange"
+                                value-format="yyyy-MM-dd"
+                                range-separator="-"
+                                :start-placeholder="$t('user.label.from date')"
+                                :end-placeholder="$t('user.label.to date')">
+                            </el-date-picker>
                         </el-form-item>
                     </div>
                     <div class="col-sm-6">
@@ -46,11 +45,11 @@
                         </el-form-item>
                     </div>
                     <div class="col-sm-6">
-                        <el-form-item :label="$t('patient.label.birthday')" style="width: 100% !important;">
+                        <el-form-item :label="$t('patient.label.created_at')" style="width: 100% !important;">
                             <el-date-picker
                                 style="width: 100% !important;"
                                 size="small"
-                                v-model="search_data.time_range"
+                                v-model="search_data.created_at"
                                 type="daterange"
                                 value-format="yyyy-MM-dd"
                                 range-separator="-"
@@ -60,18 +59,49 @@
                         </el-form-item>
                     </div>
                     <div class="col-sm-6">
-                        <el-form-item :label="$t('patient.label.label data_sources')" >
-                            <el-select v-model="search_data.created_by" size="small"
-                                       :placeholder="$t('patient.label.label data_sources')"
+                        <el-form-item :label="$t('patient.label.status')" >
+                            <el-select v-model="search_data.status" size="small"
+                                       :placeholder="$t('patient.label.status')"
                                        filterable style="width: 100% !important">
                                 <el-option
-                                    v-for="item in listDataSource"
-                                    :key="'data_sources'+ item.value"
+                                    v-for="item in listStatus"
+                                    :key="'sex'+ item.value"
                                     :label="item.label"
                                     :value="item.value">
                                 </el-option>
 
                             </el-select>
+                        </el-form-item>
+                    </div>
+
+
+                    <div class="col-sm-6">
+                        <el-form-item :label="$t('examination.label.started_at')" style="width: 100% !important;">
+                            <el-date-picker
+                                style="width: 100% !important;"
+                                size="small"
+                                v-model="search_data.started_at"
+                                type="daterange"
+                                value-format="yyyy-MM-dd"
+                                range-separator="-"
+                                :start-placeholder="$t('user.label.from date')"
+                                :end-placeholder="$t('user.label.to date')">
+                            </el-date-picker>
+                        </el-form-item>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <el-form-item :label="$t('examination.label.finished_at')" style="width: 100% !important;">
+                            <el-date-picker
+                                style="width: 100% !important;"
+                                size="small"
+                                v-model="search_data.finished_at"
+                                type="daterange"
+                                value-format="yyyy-MM-dd"
+                                range-separator="-"
+                                :start-placeholder="$t('user.label.from date')"
+                                :end-placeholder="$t('user.label.to date')">
+                            </el-date-picker>
                         </el-form-item>
                     </div>
                 </div>
@@ -100,22 +130,24 @@
                 show_popup: this.show_filter,
                 search_data: {
                   status: '',
-                  created_by: '',
                   sex: '',
-                  time_range: []
+                  created_at: [],
+                    birthday: [],
+                    started_at: [],
+                    finished_at: [],
                 },
                 loadingFilterPatient: false,
                 listStatus: [
                     {
-                        value: 1,
+                        value: 'init',
                         label: 'Tiếp đón'
                     },
                     {
-                        value: 2,
+                        value: 'processing',
                         label: 'Đang khám'
                     },
                     {
-                        value: 3,
+                        value: 'done',
                         label: 'Hoàn thành'
                     }
                 ],
@@ -129,17 +161,7 @@
                         value: 2,
                         label: 'Nữ'
                     }
-                ],
-                listDataSource: [
-                    {
-                        value: 1,
-                        label: 'Local'
-                    },
-                    {
-                        value: 2,
-                        label: 'Lis'
-                    }
-                ],
+                ]
 
             };
         },
