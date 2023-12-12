@@ -73,7 +73,7 @@
                                                     :to="{ name: 'admin.disease.edit', params: { diseaseId: scope.row.id } }"></edit-button>
                                                 <reload-delete-button :scope="scope"
                                                     message-confirm="Bệnh sẽ bị xoá hoàn toàn khỏi hệ thống, bạn có chắc chắn xoá bệnh này?"
-                                                    title="Xoá bệnh?" :rows="data"
+                                                    title="Xoá bệnh?" title-success="Xoá bệnh thành công" :rows="data"
                                                     @delete-done="queryServer"></reload-delete-button>
                                             </template>
                                         </el-table-column>
@@ -170,11 +170,11 @@ export default {
                 });
         },
 
-        closeImport() {
+      closeImport() {
             this.show_import = false;
             this.loadingImport = 0;
+            this.data_export = []
         },
-
         exportdiseases() {
 
             const properties = {

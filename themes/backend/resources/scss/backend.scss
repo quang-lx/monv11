@@ -220,3 +220,21 @@ aside .sidebar {
   line-height: 20px;
   padding: 10px 0px;
 }
+
+.el-button--primary{
+  color: #FFFFFF;
+    background-color: #007AFF;
+    border-color: #007AFF;
+}
+
+.el-button--primary:hover, .el-button--primary:focus {
+  background: #007AFF;
+  border-color: #007AFF;
+  color: #FFFFFF;
+}
+
+.el-message{
+  -webkit-transform: none;
+  right: 0px;
+  left: auto;
+}

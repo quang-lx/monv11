@@ -13,8 +13,9 @@
                             <img src="/images/icon.svg" alt="">
                         </div>
                         <!-- <input type="file" id="file" ref="file" v-on:change="handleFileUpload()" /> -->
-                        <div class="text-danger mt-2" v-if="data_export?.errors" v-text="data_export?.message"></div>
-                        <el-progress class="mt-2" v-if="loadingImport" :percentage="loadingImport == 1 ? 30 : 100"></el-progress>
+                        <div  class="text-danger mt-2" v-if="data_export?.errors" v-text="data_export?.message"></div>
+                        <el-progress class="mt-2" v-if="loadingImport"
+                            :percentage="loadingImport == 1 ? 30 : 100"></el-progress>
                         <div v-if="loadingImport == 2" class="my-3">
                             <span class="text-success">{{ data_export.total_success }}</span> / {{ data_export.total }} tải
                             lên thành công
@@ -26,7 +27,8 @@
                 </div>
                 <div class="">
                     <ul>
-                        <li class="content_import">Hệ thống sẽ so sánh dữ liệu mà bạn tải lên để thêm mới nhân viên vào hệ thống.
+                        <li class="content_import">Hệ thống sẽ so sánh dữ liệu mà bạn tải lên để thêm mới nhân viên vào hệ
+                            thống.
                             Điều này đồng nghĩa
                             với việc bạn phải chuẩn bị sẵn mẫu dữ liệu mà bạn muốn thêm mới.
                         </li>
@@ -34,15 +36,15 @@
                     </ul>
                 </div>
                 <div class="data_template">
-                        <img src="/images/Paper Download.svg" alt="">
-                        <a target=”_blank” :href="url_template">Dữ liệu mẫu</a>
+                    <img src="/images/Paper Download.svg" alt="">
+                    <a target=”_blank” :href="url_template">Dữ liệu mẫu</a>
                 </div>
             </div>
             <div class="d-flex justify-content-end">
-                <el-button size="small" @click="closePopup">{{
+                <el-button size="small" @click="onClosePopup">{{
                     $t("common.cancel")
                 }}</el-button>
-                <el-button size="small" type="primary" @click="onImportDevices">{{
+                <el-button size="small" :disabled="loadingImport == 1" type="primary" @click="onImport">{{
                     $t("common.upload")
                 }}</el-button>
             </div>
@@ -62,26 +64,37 @@ export default {
         return {
             file_name: '.xlsx',
             modelForm: {
-                file: ""
+                file: ''
             },
         };
     },
     methods: {
-        onImportDevices() {
+        onImport() {
             this.$emit("on-import", this.modelForm.file);
         },
 
         onClosePopup() {
+            this.modelForm.file = '';
+            this.file_name = '.xlsx'
+            this.$refs.file.value = null
             this.$emit("close-popup");
+            this.data_export = []
         },
 
         handleFileUpload() {
-            console.log(this.$refs.file.files[0])
             this.modelForm.file = this.$refs.file.files[0];
             this.file_name = this.$refs.file.files[0].name
         },
     },
-    watch: {},
+    watch: {
+        loadingImport: function () {
+            if (this.loadingImport == 2) {
+                this.modelForm.file = '';
+                this.file_name = '.xlsx'
+                this.$refs.file.value = null
+            }
+        },
+    },
     mounted() {
         // this.getListDevice();
     },

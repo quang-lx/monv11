@@ -27,7 +27,6 @@ class ImportUsers implements ToModel, WithHeadingRow, WithStartRow
 
    public function model(array $row)
    {
-      Log::info([$row[6]]);
       $this->result[] = [
          "name" => $row[1] ?? null,
          "email" => $row[2] ?? null,

@@ -8,7 +8,8 @@ return [
         'cancelBtn' => 'Ở lại',
         'delete' => 'Xóa',
         'close' => 'Đóng',
-        'update' => 'Cập nhật'
+        'update' => 'Cập nhật',
+        'add' => 'Thêm mới'
     ],
     'all' => 'Tất cả',
     'confirm' => 'Xác nhận',
@@ -21,7 +22,8 @@ return [
     'error' => [
         'Title' => 'Lỗi',
         'Message' => 'Có lỗi xảy ra.',
-        'required' => ' không được để trống'
+        'required' => ' không được để trống',
+        'unique' => '  đã tồn tại'
     ],
 
     'modal' => [

@@ -186,13 +186,11 @@ class UserController extends ApiController
                 try {
                     Log::info([$user['birth_day']]);
 
-                    // if (User::where('username', $user['username'])->first()) {
-                    //     throw new \Exception(trans('backend::user.label.username') . ' đã tồn tại');
-                    // }
-                    // $message_error = $this->validateData($user);
-                    // if ($message_error) {
-                    //     throw new \Exception($message_error);
-                    // }
+                    
+                    $message_error = $this->validateData($user);
+                    if ($message_error) {
+                        throw new \Exception($message_error);
+                    }
                     $user_model = new User();
                     $user_model->name = $user['name'];
                     $user_model->email = $user['email'];
@@ -227,6 +225,9 @@ class UserController extends ApiController
 
     public function validateData($user)
     {
+        if (User::where('username', $user['username'])->first()) {
+           return trans('backend::user.label.username') . trans('backend::mon.error.unique');
+        }
         if (!$user['name']) {
             return trans('backend::user.label.name') . trans('backend::mon.error.required');
         }

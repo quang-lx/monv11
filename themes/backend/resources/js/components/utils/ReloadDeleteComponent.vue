@@ -20,6 +20,7 @@
             title: {default: null},
             confirmBtn:  {default: null},
             cancelBtn:  {default: null},
+            titleSuccess: {default: 'Thành công'}
         },
         data() {
             return {
@@ -32,8 +33,8 @@
                 this.$confirm(this.deleteMessage, this.deleteTitle, {
                     confirmButtonText: this.confirmBtn? this.confirmBtn:  this.$t('mon.button.deleteBtn'),
                     cancelButtonText:this.cancelBtn? this.cancelBtn:  this.$t('mon.button.cancelBtn'),
-                    type: 'warning',
-                    confirmButtonClass: 'el-button--danger',
+                    // type: 'warning',
+                    confirmButtonClass: 'el-button--primary',
                 }).then(() => {
                     const vm = this;
                    window.axios.delete(this.scope.row.urls.delete_url)
@@ -42,7 +43,7 @@
 
                                 vm.$notify({
                                     type: 'success',
-                                    title: 'Thành công',
+                                    title: this.titleSuccess,
                                     message: response.data.message,
                                 });
 

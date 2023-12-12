@@ -360,11 +360,11 @@ export default {
             this.show_filter = false;
         },
 
-        closeImport() {
+      closeImport() {
             this.show_import = false;
             this.loadingImport = 0;
+            this.data_export = []
         },
-
         closeConfig() {
             this.show_config = false;
         },

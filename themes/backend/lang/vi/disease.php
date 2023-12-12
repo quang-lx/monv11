@@ -19,7 +19,7 @@ return [
     'message' => [
         'create success' => 'Bệnh đã được thêm thành công.',
         'update success' => 'Bệnh đã được sửa thành công.',
-        'delete success' => 'Xóa bệnh thành công.',
+        'delete success' => 'Bệnh đã được xoá thành công.',
         'import success' => 'Tải lên danh sách bệnh thành công.',
     ]
 

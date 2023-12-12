@@ -80,7 +80,7 @@
                             <div class="card-footer d-flex justify-content-end ">
                                 <el-button type="primary" @click="onSubmit()" size="small" :loading="loading"
                                            class="btn btn-flat  btn-primary">
-                                    {{ $t('mon.button.save') }}
+                                           {{ $route.params.permissionId ? $t('mon.button.update') : $t('mon.button.add')}}
                                 </el-button>
 
                                 <el-button class="btn btn-flat pull-right  btn-cancel" size="small" @click="onCancel()">{{
