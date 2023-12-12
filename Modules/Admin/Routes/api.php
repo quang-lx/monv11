@@ -481,11 +481,7 @@ Route::middleware('auth:api')->prefix('/patients')->group(function (){
 
     ]);
 
-    Route::post('change_status', [
-        'as' => 'api.patient.change_status',
-        'uses' => 'Patient\PatientController@changeStatus',
 
-    ]);
 
 });
 Route::middleware('auth:api')->prefix('/patient-examinations')->group(function (){

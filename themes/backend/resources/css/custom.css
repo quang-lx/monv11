@@ -503,3 +503,29 @@ body:not(.layout-fixed) .main-sidebar {
 .examination-done  input{
     background-color: #A4E381 !important;
 }
+
+.btn-idic-red {
+    background-color: #F9163F !important;
+    border-color: #F9163F !important;
+    color:#ffffff !important;
+    border-radius: 4px !important;
+    font-size: 14px !important;
+    font-style: normal !important;
+    font-weight: 500 !important;
+    height: 34px !important;
+    padding-top: 5px !important;
+}
+.btn-idic-orange {
+    background-color: #FF3B30 !important;
+    border-color: #FF3B30 !important;
+    color:#ffffff !important;
+    border-radius: 4px !important;
+    font-size: 14px !important;
+    font-style: normal !important;
+    font-weight: 500 !important;
+    height: 34px !important;
+    padding-top: 5px !important;
+}
+.btn {
+    min-width: 100px !important;
+}
