@@ -209,7 +209,15 @@ class AdminServiceProvider extends ServiceProvider
                 return $repository;
             }
         );
+        $this->app->bind(
+            'Modules\Admin\Repositories\ExaminationHealthRepository',
+            function () {
+                $repository = new \Modules\Admin\Repositories\Eloquent\EloquentExaminationHealthRepository(new \Modules\Mon\Entities\ExaminationHealth());
+                return $repository;
+            }
+        );
 // add bindings
+
 
 
 

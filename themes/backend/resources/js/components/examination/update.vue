@@ -60,7 +60,7 @@
 <!-- thông tin bệnh nhân-->
         <patient-info :model-form="modelForm.patient" :show_diagnose="false"></patient-info>
         <examination-info :examination_data="modelForm" :show_diagnose="false"/>
-        <list-index-result />
+        <list-index-result :examination_id="modelForm.id" :patient_id="modelForm.parent_id" v-if="modelForm.id"/>
 
     </div>
 </template>
