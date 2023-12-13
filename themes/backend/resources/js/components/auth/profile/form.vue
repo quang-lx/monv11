@@ -287,10 +287,9 @@ export default {
                 .catch((error) => {
 
                     this.loading = false;
-                    // this.$notify.error({
-                    //     title: this.$t('mon.error.Title'),
-                    //     message: this.getSubmitError(this.form.errors),
-                    // });
+                    this.$notify.error({
+                        message: this.getSubmitError(this.form.errors),
+                    });
                 });
         },
         changePassword() {
@@ -311,12 +310,8 @@ export default {
                     this.changePassDialogVisible = false;
                 })
                 .catch((error) => {
-                    console.log(error);
                     this.loadingPassword = false;
-                    this.$notify.error({
-                        title: '',
-                        message: this.getSubmitError(this.changepassForm.errors),
-                    });
+                    this.$message.error(this.getSubmitError(this.changepassForm.errors));
                 });
         },
         onCancel() {
