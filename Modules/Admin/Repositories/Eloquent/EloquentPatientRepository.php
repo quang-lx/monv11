@@ -165,6 +165,7 @@ class EloquentPatientRepository extends BaseRepository implements PatientReposit
                     $examination_service->status = ExaminationService::STATUS_NEW;
                     $examination_service->created_by = Auth::user()->id;
                     $examination_service->save();
+
                 }
 
             }

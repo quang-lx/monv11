@@ -40,6 +40,24 @@ class ExaminationService extends Model
         'ket_luan'
     ];
 
+    /**
+     * The "booted" method of the model.
+     */
+    protected static function booted()
+    {
+        static::created(function (ExaminationService $model) {
+            $list_service_index = ServiceIndex::query()->where('service_id', $model->service_id)->get();
+            foreach ($list_service_index as $index_model) {
+                ExaminationIndex::create([
+                    'service_id' => $model->service_id,
+                    'examination_id' => $model->examination_id,
+                    'service_index_id' => $index_model->id,
+
+                ]);
+            }
+        });
+    }
+
     public function testingService()
     {
         return $this->belongsTo(TestingService::class, 'service_id');
