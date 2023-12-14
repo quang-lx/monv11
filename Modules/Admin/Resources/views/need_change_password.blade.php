@@ -24,8 +24,11 @@
     {!! \Modules\Mon\Support\Facades\Theme::css(
         'vendor/admin-lte/plugins/icheck-bootstrap/icheck-bootstrap.min.css',
     ) !!}
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
 
     <style>
+        /* @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap'); */
+
         .login-page {
             justify-content: normal;
         }
@@ -140,7 +143,7 @@
 
         .sign_in h1 {
             color: rgba(0, 0, 0, 0.80);
-            font-family: Roboto;
+            font-family: 'Roboto', sans-serif;
             font-size: 16px;
             font-style: normal;
             font-weight: 500;
@@ -245,7 +248,7 @@
         .formPassword label {
             color: var(--gray-9, #2F3748);
             /* Body/14/Regular */
-            font-family: Roboto;
+            font-family: 'Roboto', sans-serif;
             font-size: 14px;
             font-style: normal;
             font-weight: 400 !important;

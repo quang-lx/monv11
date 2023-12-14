@@ -12,6 +12,7 @@ class UserTransformer extends JsonResource
 
     public function toArray($request)
     {
+        $user = optional($this->createdBy);
         $data = [
             'id' => $this->id,
             'thumbnail' => $this->thumbnail,
@@ -30,7 +31,7 @@ class UserTransformer extends JsonResource
             'expired_at' => Carbon::parse($this->expired_at)->format('d/m/Y'),
             'created_at' =>  Carbon::parse($this->created_at)->format('H:i d/m/Y'),
             'updated_at' => Carbon::parse($this->updated_at)->format('H:i d/m/Y'),
-            'created_by_name' => optional($this->createdBy)->name,
+            'created_by_name' => $user->name . ' - ' . $user->username,
             'urls' => [
                 'delete_url' => route('api.users.destroy', $this->id),
             ],

@@ -234,7 +234,7 @@ export default {
 .list-group-item-title {
     color: #000;
 
-    font-family: Roboto;
+    font-family:'Roboto', sans-serif;
     font-size: 14px;
     font-style: normal;
     font-weight: 700;
@@ -248,7 +248,7 @@ export default {
 
 .list-group-item .f-config-item-text {
     color: #242424;
-    font-family: Roboto;
+    font-family:'Roboto', sans-serif;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -259,7 +259,7 @@ export default {
     width: 320px;
     color: #000;
 
-    font-family: Roboto;
+    font-family:'Roboto', sans-serif;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -270,7 +270,7 @@ export default {
 .f-config-title {
     color: #252525;
 
-    font-family: Roboto;
+    font-family:'Roboto', sans-serif;
     font-size: 18px;
     font-style: normal;
     font-weight: 500;
