@@ -568,7 +568,32 @@ Route::middleware('auth:api')->prefix('/examination-healths')->group(function ()
         'uses' => 'ExaminationHealth\ExaminationHealthController@destroy',
     ]);
 });
+Route::middleware('auth:api')->prefix('/examinationindices')->group(function (){
+
+    Route::get('/', [
+        'as' => 'api.examinationindex.index',
+        'uses' => 'ExaminationIndex\ExaminationIndexController@index',
+    ]);
+    Route::post('/{examinationindex}/edit', [
+            'as' => 'api.examinationindex.update',
+            'uses' => 'ExaminationIndex\ExaminationIndexController@update',
+        ]);
+   Route::get('/{examinationindex}', [
+              'as' => 'api.examinationindex.find',
+              'uses' => 'ExaminationIndex\ExaminationIndexController@find',
+          ]);
+    Route::post('/', [
+        'as' => 'api.examinationindex.store',
+        'uses' => 'ExaminationIndex\ExaminationIndexController@store',
+    ]);
+
+    Route::delete('/{examinationindex}', [
+        'as' => 'api.examinationindex.destroy',
+        'uses' => 'ExaminationIndex\ExaminationIndexController@destroy',
+    ]);
+});
 // append
+
 
 
 

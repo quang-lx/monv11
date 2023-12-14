@@ -12,6 +12,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property $status
  * @property $status_text
  * @property $created_by
+ * @property $result_at
+ * @property $ket_qua
+ * @property $ket_luan
  * @property $testingService
  * @property $user
  * @package Modules\Mon\Entities
@@ -32,6 +35,9 @@ class ExaminationService extends Model
         'created_by',
         'created_at',
         'updated_at',
+        'result_at',
+        'ket_qua',
+        'ket_luan'
     ];
 
     public function testingService()

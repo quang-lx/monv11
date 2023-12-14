@@ -60,8 +60,46 @@
 <!-- thông tin bệnh nhân-->
         <patient-info :model-form="modelForm.patient" :show_diagnose="false"></patient-info>
         <examination-info :examination_data="modelForm" :show_diagnose="false"/>
-        <list-index-result :examination_id="modelForm.id" :patient_id="modelForm.parent_id" v-if="modelForm.id"/>
+        <list-index-result :examination_id="modelForm.id" :patient_id="modelForm.parent_id" v-if="modelForm.id" />
 
+        <section class="content">
+            <div class="container-fluid">
+                <div class="card">
+                    <el-form :model="modelForm" label-position="top">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <el-form-item :label="$t('patient.label.diagnose')" prop="diagnose"
+                                                  :class="{ 'el-form-item is-error': form.errors.has('diagnose') }">
+                                        <el-input type="textarea" placeholder=""
+
+                                                  :autosize="{ minRows: 5, maxRows: 10 }"
+                                                  v-model="modelForm.diagnose"></el-input>
+
+                                        <div class="el-form-item__error" v-if="form.errors.has('diagnose')"
+                                             v-text="form.errors.first('diagnose')"></div>
+                                    </el-form-item>
+                                </div>
+
+                            </div>
+                        </div>
+                    </el-form>
+                </div>
+            </div>
+        </section>
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+
+                    <div class="card-body">
+                        <service-list :patient_id="modelForm.patient_id"  v-if="modelForm.id"
+                                      @update-service-list="onUpdateServiceList"></service-list>
+
+                    </div><!-- /.card-body -->
+
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -70,6 +108,7 @@
     import PatientInfo from './../patient/patient_info';
     import ExaminationInfo from './../patient/examination_info';
     import ListIndexResult from './list_index_result';
+    import ServiceList from './../patient/service_list';
 
     export default {
         props: {
@@ -79,7 +118,8 @@
         components: {
             PatientInfo,
             ExaminationInfo,
-            ListIndexResult
+            ListIndexResult,
+            ServiceList
         },
 
         data() {
@@ -115,6 +155,28 @@
 
             },
             onSubmit() {
+                this.form = new Form(_.merge(this.modelForm, {}));
+                this.loading = true;
+
+                this.form.post(route('api.patientexamination.update', {patientexamination: this.$route.params.patientexaminationId}))
+                    .then((response) => {
+                        this.loading = false;
+
+                        this.$notify({
+                            type: 'success',
+                            title: this.$route.params.patientexaminationId !== undefined ? 'Cập nhật thành công' : 'Thêm mới thành công',
+                            message: response.message,
+                        });
+
+                    })
+                    .catch((error) => {
+
+                        this.loading = false;
+                        this.$notify.error({
+                            title: this.$route.params.patientexaminationId !== undefined ? 'Cập nhật thất bại' : 'Thêm mới thất bại',
+                            message: this.getSubmitError(this.form.errors),
+                        });
+                    });
 
             },
 
@@ -196,7 +258,10 @@
                             });
                         }
                     });
-            }
+            },
+            onUpdateServiceList(list_service) {
+             },
+
         },
         mounted() {
             this.fetchData();

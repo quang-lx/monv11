@@ -216,7 +216,15 @@ class AdminServiceProvider extends ServiceProvider
                 return $repository;
             }
         );
+        $this->app->bind(
+            'Modules\Admin\Repositories\ExaminationIndexRepository',
+            function () {
+                $repository = new \Modules\Admin\Repositories\Eloquent\EloquentExaminationIndexRepository(new \Modules\Mon\Entities\ExaminationIndex());
+                return $repository;
+            }
+        );
 // add bindings
+
 
 
 

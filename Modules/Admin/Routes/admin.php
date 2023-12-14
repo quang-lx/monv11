@@ -400,7 +400,29 @@ Route::group(['prefix' => '/examinationhealth'], function ( ) {
 
 
 });
+Route::group(['prefix' => '/examinationindex'], function ( ) {
+
+    Route::get('/', [
+        'as' => 'admin.examinationindex.index',
+        'uses' => 'ExaminationIndex\ExaminationIndexController@index',
+        'middleware' => 'permission:admin.examinationindex.index'
+    ]);
+    Route::get('create', [
+        'as' => 'admin.examinationindex.create',
+        'uses' => 'ExaminationIndex\ExaminationIndexController@create',
+        'middleware' => 'permission:admin.examinationindex.create'
+    ]);
+
+    Route::get('{examinationindex}/edit', [
+        'as' => 'admin.examinationindex.edit',
+        'uses' => 'ExaminationIndex\ExaminationIndexController@edit',
+        'middleware' => 'permission:admin.examinationindex.edit'
+    ]);
+
+
+});
 // append
+
 
 
 
