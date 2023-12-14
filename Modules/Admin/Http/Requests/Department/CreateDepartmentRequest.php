@@ -26,7 +26,7 @@ class CreateDepartmentRequest extends FormRequest
     public function messages()  
     {
         return [
-            'name.required' => 'Tên nhóm là bắt buộc',
+            'name.required' => 'Thông tin này là bắt buộc',
             'name.unique' => 'Tên nhóm đã tồn tại'
         ];
     }

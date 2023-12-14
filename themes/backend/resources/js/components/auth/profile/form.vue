@@ -65,7 +65,7 @@
 
                                             <el-button type="primary" @click="onSubmit()" size="small" :loading="loading"
                                                 class="btn btn-flat btn-primary">
-                                                {{ $t('mon.button.update')}}
+                                                {{ $t('mon.button.update') }}
                                             </el-button>
 
                                             <el-button type="danger" size="small" class="btn btn-flat btn-change-pass"
@@ -76,7 +76,8 @@
                                     </div>
                                 </div>
                                 <el-dialog class="popup-change-pass" custom-class="change-pass"
-                                    :visible.sync="changePassDialogVisible" :show-close="true" width="500px">
+                                    :visible.sync="changePassDialogVisible" :show-close="true"
+                                    :before-close="closeChangePass" width="500px">
                                     <h2>Đổi mật khẩu</h2>
                                     <p class="rule">
                                         Mật khẩu phải có tối thiểu 8 ký tự, gồm cả chữ hoa, chữ thường , số và ký tự đặc
@@ -163,9 +164,13 @@
                                                     v-text="form.errors.first('phone')"></div>
                                             </el-form-item>
 
-                                            <el-form-item :label="$t('user.label.birth_day')"
+                                            <el-form-item :label="$t('user.label.birth_day')" prop="birth_day"
                                                 :class="{ 'el-form-item is-error': form.errors.has('birth_day') }">
-                                                <el-input v-model="modelForm.birth_day" autocomplete="off"></el-input>
+                                                <el-date-picker v-model="modelForm.birth_day" type="date" format="dd/MM/yyyy"
+                                                value-format="dd/MM/yyyy"
+                                                    size="small" style="width: 100% !important;"
+                                                    placeholder="Chọn ngày tháng năm sinh">
+                                                </el-date-picker>
                                                 <div class="el-form-item__error" v-if="form.errors.has('birth_day')"
                                                     v-text="form.errors.first('birth_day')"></div>
                                             </el-form-item>
@@ -286,10 +291,10 @@ export default {
                 })
                 .catch((error) => {
 
-                    this.loading = false;
-                    this.$notify.error({
-                        message: this.getSubmitError(this.form.errors),
-                    });
+                    // this.loading = false;
+                    // this.$notify.error({
+                    //     message: this.getSubmitError(this.form.errors),
+                    // });
                 });
         },
         changePassword() {
@@ -385,6 +390,16 @@ export default {
                 });
         },
 
+        closeChangePass() {
+            this.modelFormPass = {
+                password_old: '',
+                password_new: '',
+                password_confirmation: ''
+            }
+            this.changepassForm = new Form()
+            this.changePassDialogVisible = false
+        }
+
 
 
     },
@@ -406,7 +421,7 @@ export default {
     color: var(--gray-9, #2F3748);
     margin-top: 20px;
     /* Title/24/Medium */
-    font-family: Roboto;
+    font-family: 'Roboto', sans-serif;
     font-size: 24px;
     font-style: normal;
     font-weight: 500;
@@ -418,7 +433,7 @@ export default {
     color: var(--gray-6, #64728E);
 
     /* Heading/16/Regular */
-    font-family: Roboto;
+    font-family: 'Roboto', sans-serif;
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -434,7 +449,7 @@ export default {
     color: var(--gray-9, #2F3748);
 
     /* Title/24/Medium */
-    font-family: Roboto;
+    font-family: 'Roboto', sans-serif;
     font-size: 24px;
     font-style: normal;
     font-weight: 500;
@@ -464,7 +479,7 @@ export default {
     color: var(--basic-9, #25282B);
 
     /* Title/24/Bold */
-    font-family: Roboto;
+    font-family: 'Roboto', sans-serif;
     font-size: 24px;
     font-style: normal;
     font-weight: 700;
@@ -476,7 +491,7 @@ export default {
     color: var(--basic-5, #52575C);
 
     /* Body/14/Regular */
-    font-family: Roboto;
+    font-family: 'Roboto', sans-serif;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
