@@ -171,12 +171,12 @@
         </section>
 
         <el-dialog width="30%" :show-close="false" :title="$t('department.label.add department')" :destroy-on-close="true"
-            :visible.sync="showAddDepartment">
+            :visible.sync="showAddDepartment" :before-close="onClosePopup">
 
 
             <el-form ref="addDepartmentForm" :model="addModel" label-position="top" v-loading.body="loadingAdd">
                 <el-form-item label="" :class="{ 'el-form-item is-error': form.errors.has('name') }">
-                    <el-input v-model="addModel.name" size="medium"></el-input>
+                    <el-input maxlength="255" v-model="addModel.name" size="medium"></el-input>
                     <div class="el-form-item__error" v-if="form.errors.has('name')" v-text="form.errors.first('name')">
                     </div>
 
@@ -185,7 +185,7 @@
             </el-form>
 
             <div class="d-flex justify-content-end">
-                <el-button size="small" @click="showAddDepartment = false">{{ $t('common.cancel') }}</el-button>
+                <el-button size="small" @click="onClosePopup">{{ $t('common.cancel') }}</el-button>
                 <el-button size="small" type="primary" @click="confirmAddDepartment">{{ $t('common.add') }}</el-button>
             </div>
         </el-dialog>
@@ -195,7 +195,7 @@
 
             <el-form ref="addDepartmentForm" :model="editModel" label-position="top" v-loading.body="loadingEdit">
                 <el-form-item label="" :class="{ 'el-form-item is-error': form.errors.has('name') }">
-                    <el-input v-model="editModel.name" size="medium"></el-input>
+                    <el-input maxlength="255" v-model="editModel.name" size="medium"></el-input>
                     <div class="el-form-item__error" v-if="form.errors.has('name')" v-text="form.errors.first('name')">
                     </div>
                 </el-form-item>
@@ -593,6 +593,12 @@ export default {
 
         handleSelectionChange(val) {
             this.multipleSelection = val;
+        },
+
+        onClosePopup(){
+            this.showAddDepartment =false
+            this.addModel.name = null
+            this.form = new Form()
         }
 
     },
