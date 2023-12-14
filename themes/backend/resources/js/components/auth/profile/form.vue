@@ -167,7 +167,6 @@
                                             <el-form-item :label="$t('user.label.birth_day')" prop="birth_day"
                                                 :class="{ 'el-form-item is-error': form.errors.has('birth_day') }">
                                                 <el-date-picker v-model="modelForm.birth_day" type="date" format="dd/MM/yyyy"
-                                                value-format="dd/MM/yyyy"
                                                     size="small" style="width: 100% !important;"
                                                     placeholder="Chọn ngày tháng năm sinh">
                                                 </el-date-picker>
