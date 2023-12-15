@@ -92,7 +92,7 @@
                 <div class="card">
 
                     <div class="card-body">
-                        <service-list :patient_id="modelForm.patient_id"  v-if="modelForm.id"
+                        <service-list :patient_id="modelForm.patient_id"  v-if="load_done"
                                       @update-service-list="onUpdateServiceList"></service-list>
 
                     </div><!-- /.card-body -->
@@ -142,7 +142,9 @@
                         {required: true, message: '', trigger: 'submit'}
                     ]
                 },
+                load_done: false,
                 modelForm: {
+                    id: '',
                     patient: {}
                 },
 
@@ -203,6 +205,7 @@
                         .then((response) => {
                             this.loading = false;
                             this.modelForm = response.data.data;
+                            this.load_done = true
                         });
                 }
             },
