@@ -54,7 +54,7 @@
                                                 <span> {{scope.row.service.code}}</span>
                                             </template>
                                         </el-table-column>
-                                        <el-table-column prop="name" :label="$t('service.label.name')" width="150" align="center">
+                                        <el-table-column prop="name" :label="$t('service.label.name')" min-width="150" align="center">
                                             <template slot-scope="scope">
                                                 <span> {{scope.row.service.name}}</span>
                                             </template>
