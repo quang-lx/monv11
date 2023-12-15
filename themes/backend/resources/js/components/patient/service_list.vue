@@ -46,10 +46,10 @@
                                         v-loading.body="tableIsLoading" @sort-change="handleSortChange">
                                         <el-table-column :label="$t('service.label.stt')" type="index" width="100" align="center">
                                         </el-table-column>
-                                        <el-table-column prop="code" label="Số phiếu" width="150" align="center">
+                                        <el-table-column prop="code" label="Số phiếu" width="120" align="center">
                                         </el-table-column>
 
-                                        <el-table-column prop="code" :label="$t('service.label.code')" width="150" align="center">
+                                        <el-table-column prop="code" :label="$t('service.label.code')" width="120" align="center">
                                             <template slot-scope="scope">
                                                 <span> {{scope.row.service.code}}</span>
                                             </template>
