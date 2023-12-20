@@ -153,14 +153,15 @@
                 <tbody>
                     @foreach ($services as $service)
                         <tr>
-                            <th colspan="4" class="font-weight-bold" style="font-size: 12px">
+                            <th>{{ $key += 1 }}</th>
+                            <th colspan="3" class="font-weight-bold" style="font-size: 12px">
                                 {{ $service->testingService->name }}</th>
                         </tr>
-                        @foreach ($service->testingService->serviceIndexes as $key => $serviceIndex)
+                        @foreach ($service->listIndex as $key => $examinationIndex)
                             <tr>
                                 <th>{{ $key += 1 }}</th>
-                                <td>{{ $serviceIndex->name }}</td>
-                                <td>{{ $serviceIndex->name }}</td>
+                                <td>{{ $examinationIndex->indexModel->name }}</td>
+                                <td>{{ 1 }}</td>
                                 <td>200.000</td>
                             </tr>
                         @endforeach

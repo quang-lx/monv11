@@ -56,6 +56,7 @@ class ExaminationService extends Model
                     'service_id' => $model->service_id,
                     'examination_id' => $model->examination_id,
                     'service_index_id' => $index_model->id,
+                    'examination_service_id' => $model->id,
 
                 ]);
             }
@@ -66,6 +67,12 @@ class ExaminationService extends Model
     {
         return $this->belongsTo(TestingService::class, 'service_id');
     }
+
+    public function listIndex()
+    {
+        return $this->belongsTo(ExaminationIndex::class, 'examination_service_id');
+    }
+
     public function patient()
     {
         return $this->belongsTo(Patient::class, 'patient_id');
