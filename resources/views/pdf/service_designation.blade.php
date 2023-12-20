@@ -153,8 +153,7 @@
                 <tbody>
                     @foreach ($services as $stt => $service)
                         <tr>
-                            <th>{{ $stt += 1 }}</th>
-                            <th colspan="3" class="font-weight-bold" style="font-size: 12px">
+                            <th colspan="4" class="font-weight-bold" style="font-size: 12px">
                                 {{ $service->testingService->name }}</th>
                         </tr>
                         @foreach ($service->listIndex as $key => $examinationIndex)
