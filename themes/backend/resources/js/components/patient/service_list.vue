@@ -168,6 +168,7 @@ export default {
     },
     props: {
         patient_id: { default: null },
+        examination_id: { default: null },
     },
     data() {
         return {
@@ -207,6 +208,7 @@ export default {
                 order: this.order_meta.order,
                 search: this.searchQuery,
                 patient: this.patient_id,
+                examination_id: this.examination_id,
 
             };
             window.axios.get(route('api.patient.examinationService', _.merge(properties, customProperties)))

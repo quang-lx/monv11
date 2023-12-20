@@ -92,7 +92,7 @@
                 <div class="card">
 
                     <div class="card-body">
-                        <service-list :patient_id="modelForm.patient_id"  v-if="load_done"
+                        <service-list :patient_id="modelForm.patient_id"  :examination_id="modelForm.id" v-if="load_done"
                                       @update-service-list="onUpdateServiceList"></service-list>
 
                     </div><!-- /.card-body -->

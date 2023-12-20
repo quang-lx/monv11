@@ -72,9 +72,16 @@ class EloquentPatientRepository extends BaseRepository implements PatientReposit
                     ->orWhere('testing_service.code', 'ilike', "%{$keyword}%");
             });
         }
+        if ($request->get('examination_id') !== null) {
+            $examination_id = $request->get('examination_id');
+            $query->where('examination_id', $examination_id);
+        }
 
+        if(!$request->get('examination_id')) {
+            $query->where('examination_id', $patient->current_examination->id);
+        }
         $query->where('patient_id', $patient->id);
-        $query->where('examination_id', $patient->current_examination->id);
+
 
 
         if ($request->get('order_by') !== null && $request->get('order') !== 'null') {
