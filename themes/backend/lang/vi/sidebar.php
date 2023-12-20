@@ -31,6 +31,7 @@ return [
 
 
 
+    'examination service' => 'Danh sách kết quả khám',
     'home' => 'Trang chủ',
     'packages' => 'Gói cước',
     'device' => 'Quản lý thiết bị',

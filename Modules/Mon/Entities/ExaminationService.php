@@ -15,6 +15,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property $result_at
  * @property $ket_qua
  * @property $ket_luan
+ * @property $result_by_id
+ * @property $from_source
+ * @property $result_by
  * @property $testingService
  * @property $user
  * @package Modules\Mon\Entities
@@ -37,7 +40,7 @@ class ExaminationService extends Model
         'updated_at',
         'result_at',
         'ket_qua',
-        'ket_luan'
+        'ket_luan', 'result_by_id', 'from_source','result_by'
     ];
 
     /**
@@ -61,6 +64,10 @@ class ExaminationService extends Model
     public function testingService()
     {
         return $this->belongsTo(TestingService::class, 'service_id');
+    }
+    public function patient()
+    {
+        return $this->belongsTo(Patient::class, 'patient_id');
     }
 
     public function user()

@@ -27,6 +27,7 @@ import ProfileForm from './../components/auth/profile/form.vue';
 
 import ExaminationList from './../components/examination/index.vue';
 import ExaminationForm from './../components/examination/update.vue';
+import ExaminationServiceList from './../components/examination_service/index.vue';
 
 const currentLocale = '/' + window.MonCMS.currentLocale;
 
@@ -241,6 +242,13 @@ export default [
         props: {
             pageTitle: 'examination.label.update_label',
         },
+    },
+
+
+    {
+        path: '/admin/ket-qua-kham',
+        name: 'admin.examinationservice.index',
+        component: ExaminationServiceList,
     },
 
 

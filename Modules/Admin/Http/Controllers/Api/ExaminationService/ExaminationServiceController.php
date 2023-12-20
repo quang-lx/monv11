@@ -4,6 +4,7 @@ namespace Modules\Admin\Http\Controllers\Api\ExaminationService;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Modules\Admin\Transformers\ExaminationServiceListTransformer;
 use Modules\Admin\Transformers\ExaminationServiceTransformer;
 use Modules\Mon\Entities\ExaminationService;
 use Modules\Admin\Http\Requests\ExaminationService\CreateExaminationServiceRequest;
@@ -30,7 +31,7 @@ class ExaminationServiceController extends ApiController
 
     public function index(Request $request)
     {
-        return ExaminationServiceTransformer::collection($this->examinationserviceRepository->serverPagingFor($request));
+        return ExaminationServiceListTransformer::collection($this->examinationserviceRepository->serverPagingFor($request));
     }
 
 

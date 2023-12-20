@@ -358,7 +358,7 @@ Route::group(['prefix' => '/kham-benh'], function ( ) {
 
 
 });
-Route::group(['prefix' => '/examinationservice'], function ( ) {
+Route::group(['prefix' => '/ket-qua-kham'], function ( ) {
 
     Route::get('/', [
         'as' => 'admin.examinationservice.index',

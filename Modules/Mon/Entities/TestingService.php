@@ -42,10 +42,8 @@ class TestingService extends Model
     public function serviceIndexes() {
         return $this->hasMany(ServiceIndex::class, 'service_id');
     }
-    protected function typeName(): Attribute
+    protected function getTypeNameAttribute()
     {
-        return new Attribute(
-            get: fn () => optional($this->serviceType)->name,
-        );
+        return optional($this->serviceType)->name;
     }
 }
