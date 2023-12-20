@@ -256,7 +256,9 @@ class PatientController extends ApiController
 
     public function printServiceDesignation(Patient $patient, Request $request)
     {
-        $view = view('pdf.service_designation', ['patient' => $patient]);
+        $request->per_page = 1000;
+        $services = $this->patientRepository->getCurrentExaminationService($patient, $request);
+        $view = view('pdf.service_designation', ['patient' => $patient, 'services' => $services]);
 
         $pdf = PDF::loadHTML($view);
         $pdf->set_option('isHtml5ParserEnabled', true)->setPaper('A4');

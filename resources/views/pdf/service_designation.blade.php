@@ -151,7 +151,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($patient->current_examination->services as $service)
+                    @foreach ($services as $service)
                         <tr>
                             <th colspan="4" class="font-weight-bold" style="font-size: 12px">
                                 {{ $service->testingService->name }}</th>

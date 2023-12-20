@@ -366,7 +366,7 @@ export default {
             let routeUri = route('api.patient.print_service_designation', { patient: this.patient_id });
             const vm = this;
 
-            const params = {}
+            const params = {examination_id: this.examination_id}
             window.axios.post(routeUri, params, {
                 responseType: 'arraybuffer', // Add this option for binary data (e.g., for downloading files)
             })
