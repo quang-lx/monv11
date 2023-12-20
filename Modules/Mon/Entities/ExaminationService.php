@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property $from_source
  * @property $result_by
  * @property $testingService
+ * @property $resultBy
  * @property $user
  * @package Modules\Mon\Entities
  */
@@ -73,6 +74,10 @@ class ExaminationService extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'created_by');
+    }
+    public function resultBy()
+    {
+        return $this->belongsTo(User::class, 'result_by');
     }
 
     public function getStatusTextAttribute() {

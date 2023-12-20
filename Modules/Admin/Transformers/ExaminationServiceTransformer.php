@@ -22,7 +22,9 @@ class ExaminationServiceTransformer extends JsonResource
             'status_text'=> $this->status_text,
             'status_color'=> $this->status_color,
             'created_by'=> $this->user,
-            'created_by_name'=> optional($this->user)->username. ' - '. optional($this->user)->name,
+            'created_by_name'=>$this->user? (optional($this->user)->username. ' - '. optional($this->user)->name): '',
+            'result_by_info'=>$this->resultBy? (optional($this->resultBy)->username. ' - '. optional($this->resultBy)->name): '',
+
             'created_at'=> $this->created_at->format('H:i d/m/Y'),
             'updated_at'=> $this->updated_at,
             'service' => $this->testingService? (new TestingServiceTransformer($this->testingService)): [],
