@@ -481,6 +481,12 @@ Route::middleware('auth:api')->prefix('/patients')->group(function (){
 
     ]);
 
+    Route::post('/{patient}/print-service-designation', [
+        'as' => 'api.patient.print_service_designation',
+        'uses' => 'Patient\PatientController@printServiceDesignation',
+
+    ]);
+
 
 
 });

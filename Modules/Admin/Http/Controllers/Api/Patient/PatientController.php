@@ -7,22 +7,22 @@ use App\Exports\PatientExport;
 use App\Imports\ImportPatient;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Modules\Admin\Transformers\ExaminationServiceTransformer;
 use Modules\Admin\Transformers\PatientFullTransformer;
 use Modules\Mon\Entities\Patient;
 use Modules\Admin\Http\Requests\Patient\CreatePatientRequest;
 use Modules\Admin\Http\Requests\Patient\UpdatePatientRequest;
 use Modules\Admin\Repositories\PatientRepository;
-use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 use Modules\Admin\Http\Requests\Excel\ExcelUploadRequest;
-use Modules\Admin\Transformers\PatientHasServiceTransformer;
 use Modules\Admin\Transformers\PatientTransformer;
 use Modules\Mon\Http\Controllers\ApiController;
 use Modules\Mon\Auth\Contracts\Authentication;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Modules\Mon\Entities\PatientExamination;
+use Illuminate\Http\Response;
 
 class PatientController extends ApiController
 {
@@ -38,7 +38,8 @@ class PatientController extends ApiController
         $this->patientRepository = $patient;
     }
 
-    public function getPatientViaPhone(Request $request) {
+    public function getPatientViaPhone(Request $request)
+    {
         return PatientTransformer::collection($this->patientRepository->patientSamePhoneNumber($request->get('phone'), $request->get('patient_id')));
     }
 
@@ -142,7 +143,7 @@ class PatientController extends ApiController
         ]);
     }
 
-    public function getExaminationService(Patient $patient,Request $request)
+    public function getExaminationService(Patient $patient, Request $request)
     {
         return ExaminationServiceTransformer::collection($this->patientRepository->getCurrentExaminationService($patient, $request));
     }
@@ -252,6 +253,20 @@ class PatientController extends ApiController
             ]
         ];
     }
- 
+
+    public function printServiceDesignation(Patient $patient, Request $request)
+    {
+        $view = view('pdf.service_designation', ['patient' => $patient]);
+
+        $pdf = PDF::loadHTML($view);
+        $pdf->set_option('isHtml5ParserEnabled', true)->setPaper('A4');
+
+        $pdfContent = $pdf->output();
+
+        // Create a response with the PDF content
+        return response($pdfContent)
+        ->header('Content-Type', 'application/pdf')
+        ->header('Content-Disposition', 'inline; filename=document.pdf');    }
+
 
 }
