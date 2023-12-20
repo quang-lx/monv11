@@ -92,7 +92,7 @@ class EloquentPatientRepository extends BaseRepository implements PatientReposit
             $query->orderBy('updated_at', 'desc');
         }
 
-        return $query->paginate($request->get('per_page', 10));
+        return $query->paginate($request->get('per_page', 1000));
     }
 
     public function serverPagingFor(Request $request, $relations = null)

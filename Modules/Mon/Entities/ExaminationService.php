@@ -70,7 +70,7 @@ class ExaminationService extends Model
 
     public function listIndex()
     {
-        return $this->belongsTo(ExaminationIndex::class, 'examination_service_id');
+        return $this->hasMany(ExaminationIndex::class, 'examination_service_id');
     }
 
     public function patient()
