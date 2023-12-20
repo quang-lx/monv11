@@ -35,7 +35,7 @@ class Patient extends Model
         'updated_at'
     ];
 
-    public $appends = ['current_examination', 'sex_text', 'status_text'];
+    public $appends = ['current_examination'];
     public function user()
     {
         return $this->belongsTo(User::class, 'created_by');

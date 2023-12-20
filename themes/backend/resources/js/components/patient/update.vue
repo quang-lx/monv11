@@ -41,7 +41,7 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
-                <el-tabs v-model="activeName" @tab-click="handleClick">
+                <el-tabs v-model="activeName" >
                     <el-tab-pane label="Thông tin chung" name="first">
 
 
