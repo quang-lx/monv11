@@ -151,9 +151,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($services as $service)
+                    @foreach ($services as $stt => $service)
                         <tr>
-                            <th>{{ $key += 1 }}</th>
+                            <th>{{ $stt += 1 }}</th>
                             <th colspan="3" class="font-weight-bold" style="font-size: 12px">
                                 {{ $service->testingService->name }}</th>
                         </tr>
