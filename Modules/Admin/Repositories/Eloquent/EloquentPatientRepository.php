@@ -31,18 +31,19 @@ class EloquentPatientRepository extends BaseRepository implements PatientReposit
 
     public function update($model, $data)
     {
-        $diagnose = $data['diagnose']?? '';
+        $diagnose = $data['diagnose'] ?? '';
         unset($data['diagnose']);
         $model->update($data);
         $current_examination = $model->current_examination;
-        if($current_examination) {
+        if ($current_examination) {
             $current_examination->diagnose = $diagnose;
             $current_examination->save();
         }
         return $model;
     }
 
-    public function initExamination($model) {
+    public function initExamination($model)
+    {
         $examination = new PatientExamination();
         $examination->patient_id = $model->id;
         $examination->created_by = Auth::user()->id;
@@ -77,7 +78,7 @@ class EloquentPatientRepository extends BaseRepository implements PatientReposit
             $query->where('examination_id', $examination_id);
         }
 
-        if(!$request->get('examination_id')) {
+        if (!$request->get('examination_id')) {
             $query->where('examination_id', $patient->current_examination->id);
         }
         $query->where('patient_id', $patient->id);
@@ -110,7 +111,10 @@ class EloquentPatientRepository extends BaseRepository implements PatientReposit
 
         $status = $request->get('status');
         if ($status !== null) {
-            $query->where('status', $status);
+            $query->whereHas('examinations', function ($query) use ($status) {
+                $query->where('status', $status)->latest()
+                ->limit(1);;
+            });
         }
 
         $data_source = $request->get('data_source');
@@ -147,7 +151,7 @@ class EloquentPatientRepository extends BaseRepository implements PatientReposit
     function patientSamePhoneNumber($phone, $patient_id = null)
     {
         $query = Patient::query()->where('phone', $phone);
-        if($patient_id) {
+        if ($patient_id) {
             $query->where('id', '<>', $patient_id);
         }
         return $query->get();
@@ -155,16 +159,19 @@ class EloquentPatientRepository extends BaseRepository implements PatientReposit
 
 
 
-    public function addService(Patient $patient, Request $request) {
+    public function addService(Patient $patient, Request $request)
+    {
         $current_examination = $patient->current_examination;
         if ($current_examination) {
-            $list_service= $request->get('list_service', []);
+            $list_service = $request->get('list_service', []);
             foreach ($list_service as $service_id) {
-                if(ExaminationService::query()->where([
-                    'patient_id' =>  $patient->id,
-                    'examination_id' =>  $current_examination->id,
-                    'service_id' =>  $service_id
-                ])->count() == 0) {
+                if (
+                    ExaminationService::query()->where([
+                        'patient_id' => $patient->id,
+                        'examination_id' => $current_examination->id,
+                        'service_id' => $service_id
+                    ])->count() == 0
+                ) {
                     $examination_service = new ExaminationService();
                     $examination_service->patient_id = $patient->id;
                     $examination_service->examination_id = $current_examination->id;
@@ -179,33 +186,35 @@ class EloquentPatientRepository extends BaseRepository implements PatientReposit
 
         }
     }
-    public function deleteService(Patient $patient, Request $request) {
+    public function deleteService(Patient $patient, Request $request)
+    {
         $examination_service_id = $request->get('examination_service_id');
         /** @var ExaminationService $model */
         $model = ExaminationService::query()->where([
-            'patient_id' =>  $patient->id,
-            'id' =>  $examination_service_id
+            'patient_id' => $patient->id,
+            'id' => $examination_service_id
         ])->first();
 
         if (!$model) {
             throw new ClassNotFoundError("Dịch vụ không tồn tại");
-        }elseif ($model->status != ExaminationService::STATUS_NEW) {
-            throw new ClassNotFoundError("Không được xoá dịch vụ ở trạng thái ". $model->status_text);
+        } elseif ($model->status != ExaminationService::STATUS_NEW) {
+            throw new ClassNotFoundError("Không được xoá dịch vụ ở trạng thái " . $model->status_text);
         }
         $model->delete();
     }
-    public function cancelService(Patient $patient, Request $request) {
+    public function cancelService(Patient $patient, Request $request)
+    {
         $examination_service_id = $request->get('examination_service_id');
         /** @var ExaminationService $model */
         $model = ExaminationService::query()->where([
-            'patient_id' =>  $patient->id,
-            'id' =>  $examination_service_id
+            'patient_id' => $patient->id,
+            'id' => $examination_service_id
         ])->first();
 
         if (!$model) {
             throw new ClassNotFoundError("Dịch vụ không tồn tại");
-        }elseif ($model->status != ExaminationService::STATUS_PROCESSING) {
-            throw new ClassNotFoundError("Không được xoá dịch vụ ở trạng thái ". $model->status_text);
+        } elseif ($model->status != ExaminationService::STATUS_PROCESSING) {
+            throw new ClassNotFoundError("Không được xoá dịch vụ ở trạng thái " . $model->status_text);
         }
         $model->status = ExaminationService::STATUS_CANCEL;
         $model->save();

@@ -107,15 +107,15 @@
                 loadingFilterPatient: false,
                 listStatus: [
                     {
-                        value: 1,
+                        value: 'init',
                         label: 'Tiếp đón'
                     },
                     {
-                        value: 2,
+                        value: 'processing',
                         label: 'Đang khám'
                     },
                     {
-                        value: 3,
+                        value: 'done',
                         label: 'Hoàn thành'
                     }
                 ],
