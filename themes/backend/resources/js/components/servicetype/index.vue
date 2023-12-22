@@ -24,7 +24,7 @@
                         </router-link>
 
 
-                        <span class="f-action pl-4 f-pointer" @click="exportDevices">
+                        <span class="f-action pl-4 f-pointer" @click="exportServiceType">
                             <inline-svg src="/images/download.svg" /> Tải xuống
 
                         </span>
@@ -97,7 +97,7 @@
         </section>
 
 
-        <popup-import :show_import="show_import" :loadingImport="loadingImport" @on-import="onImportDevices" @close-popup="closeImport" :data_export="data_export"></popup-import>
+        <popup-import :show_import="show_import" :loadingImport="loadingImport" @on-import="onImportDevices" @close-popup="closeImport" url_template="/excel-template/GroupDevice_Template.xlsx" :data_export="data_export"></popup-import>
 
     </div>
 </template>
@@ -168,7 +168,7 @@ export default {
             this.loadingImport = 0;
             this.data_export = []
         },
-        exportDevices() {
+        exportServiceType() {
 
             const properties = {
                 order_by: this.order_meta.order_by,
