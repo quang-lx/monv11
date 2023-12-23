@@ -24,6 +24,7 @@ class UserTransformer extends JsonResource
             'status_text' => $this->expired_at && Carbon::createFromFormat('Y-m-d H:i:s', $this->expired_at)->gt(Carbon::now()) ? 'Đang hoạt động' : 'Không hoạt động',
             'sex_text' => $this->sex == User::MALE ? 'Nam' : 'Nữ',
             'department_id' => $this->department_id,
+            'department_name' => optional($this->department)->name,
             'identification' => $this->identification,
             'roles' => $this->roles,
             'birth_day' => $this->birth_day ? Carbon::parse($this->birth_day)->format('d/m/Y') : null,

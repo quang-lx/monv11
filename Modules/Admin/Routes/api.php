@@ -420,6 +420,18 @@ Route::middleware('auth:api')->prefix('/servicetypes')->group(function (){
         'as' => 'api.servicetype.destroy',
         'uses' => 'ServiceType\ServiceTypeController@destroy',
     ]);
+
+    Route::post('exports', [
+        'as' => 'api.servicetype.exports',
+        'uses' => 'ServiceType\ServiceTypeController@exports',
+    ]);
+
+    Route::post('imports', [
+        'as' => 'api.servicetype.imports',
+        'uses' => 'ServiceType\ServiceTypeController@imports',
+
+    ]);
+
 });
 Route::middleware('auth:api')->prefix('/patients')->group(function (){
 

@@ -124,6 +124,9 @@
                                                 <span v-else-if="col_selected.col_name == 'created_by'">
                                                     {{ scope.row.created_by_name }}
                                                 </span>
+                                                <span v-else-if="col_selected.col_name == 'department_id'">
+                                                    {{ scope.row.department_name }}
+                                                </span>
                                                 <span v-else> {{ scope.row[col_selected.col_name] }}</span>
 
                                             </template>
@@ -311,6 +314,11 @@ export default {
                 {
                     col_name: 'created_by',
                     name: this.$t('user.label.created by'),
+
+                },
+                {
+                    col_name: 'department_id',
+                    name: this.$t('user.label.department_id'),
 
                 }
             ],

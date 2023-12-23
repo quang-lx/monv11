@@ -10,6 +10,12 @@ class EloquentServiceTypeRepository extends BaseRepository implements ServiceTyp
 {
     public function serverPagingFor(Request $request, $relations = null)
     {
+        $query = $this->queryGetData($request, $relations = null);
+        return $query->paginate($request->get('per_page', 10));
+    }
+
+    public function queryGetData($request, $relations = null)
+    {
         $query = $this->newQueryBuilder();
         if ($relations) {
             $query = $query->with($relations);
@@ -31,8 +37,6 @@ class EloquentServiceTypeRepository extends BaseRepository implements ServiceTyp
         } else {
             $query->orderBy('created_at', 'desc');
         }
-
-
-        return $query->paginate($request->get('per_page', 10));
+        return $query;
     }
 }
