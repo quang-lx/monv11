@@ -72,6 +72,7 @@
                                                     <div class="row">
                                                         <div class="col-md-4">
                                                             <el-form-item :label="$t('patient.label.name')" prop="name"
+                                                                          prop="name"
                                                                           :class="{ 'el-form-item is-error': form.errors.has('name') }">
                                                                 <el-input  maxlength="255" v-model="modelForm.name" size="small"
                                                                           placeholder="Nhập họ và tên"></el-input>
@@ -82,6 +83,7 @@
 
                                                         <div class="col-md-4">
                                                             <el-form-item :label="$t('patient.label.sex')" prop="sex"
+                                                                          prop="sex"
                                                                           :class="{ 'el-form-item is-error': form.errors.has('sex') }">
                                                                 <el-select v-model="modelForm.sex" placeholder="Chọn giới tính"
                                                                            size="small">
@@ -97,7 +99,7 @@
 
                                                         <div class="col-md-4">
                                                             <el-form-item :label="$t('patient.label.birthday')" prop="birthday"
-
+                                                                          prop="birthday"
                                                                           :class="{ 'el-form-item is-error': form.errors.has('birthday') }">
                                                                 <el-date-picker v-model="modelForm.birthday" type="date"
                                                                                 format="dd/MM/yyyy" size="small"
@@ -113,6 +115,7 @@
                                                     <div class="row">
                                                         <div class="col-md-4">
                                                             <el-form-item :label="$t('patient.label.phone')" prop="phone"
+                                                                          prop="phone"
                                                                           :class="{ 'el-form-item is-error': form.errors.has('phone') }">
                                                                 <el-input v-model="modelForm.phone" size="small"
                                                                           placeholder="Nhập số điện thoại"></el-input>
