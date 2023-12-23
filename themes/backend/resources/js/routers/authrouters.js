@@ -29,9 +29,16 @@ import ExaminationList from './../components/examination/index.vue';
 import ExaminationForm from './../components/examination/update.vue';
 import ExaminationServiceList from './../components/examination_service/index.vue';
 
+import Dashboard from './../components/dashboard/index.vue';
+
 const currentLocale = '/' + window.MonCMS.currentLocale;
 
 export default [
+    {
+        path: '/',
+        name: 'admin.dashboard.index',
+        component: Dashboard,
+    },
     {
         path: '/admin/auth/permissions',
         name: 'admin.permissions.index',
