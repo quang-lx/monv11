@@ -70,4 +70,8 @@ class Patient extends Model
             'diagnose' => optional($this->current_examination)->diagnose,
         ];
     }
+
+    public function hasExaminationNotDone() {
+        return $this->examinations()->where('status', '<>', PatientExamination::STATUS_DONE)->count();
+    }
 }

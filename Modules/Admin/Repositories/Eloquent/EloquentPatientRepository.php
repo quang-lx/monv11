@@ -52,9 +52,16 @@ class EloquentPatientRepository extends BaseRepository implements PatientReposit
     }
 
 
-
+    /**
+     * @param $patient Patient
+     * @param $data
+     * @return mixed
+     */
     public function reExamination($patient, $data)
     {
+        if ($patient->hasExaminationNotDone()) {
+            throw new \Exception("Bệnh nhân vẫn chưa hoàn thành khám. Không thể tái khám");
+        }
         $this->initExamination($patient);
         return $patient;
     }

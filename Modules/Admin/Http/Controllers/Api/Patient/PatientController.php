@@ -126,12 +126,21 @@ class PatientController extends ApiController
     }
     public function reExamination(Patient $patient, Request $request)
     {
-        $this->patientRepository->reExamination($patient, $request->all());
-        return response()->json([
-            'errors' => false,
-            'id' => $patient->id,
-            'message' => trans('backend::patient.message.reexamination success'),
-        ]);
+        try {
+            $this->patientRepository->reExamination($patient, $request->all());
+            return response()->json([
+                'errors' => false,
+                'id' => $patient->id,
+                'message' => trans('backend::patient.message.reexamination success'),
+            ]);
+        } catch (\Exception $exception) {
+            return response()->json([
+                'errors' => true,
+                'id' => $patient->id,
+                'message' => $exception->getMessage()
+            ]);
+        }
+
     }
     public function destroy(Patient $patient)
     {
