@@ -21,9 +21,10 @@
                                 </div>
 
                                 <el-form
+                                    v-if="examination_service"
                                          :rules="formRules"
                                          ref="modelForm"
-                                         :model="modelForm"
+                                         :model="examination_service"
                                          label-position="top"
                                          v-loading.body="loading"
                                 >
