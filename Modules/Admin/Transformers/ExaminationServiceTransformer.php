@@ -25,6 +25,7 @@ class ExaminationServiceTransformer extends JsonResource
             'status_color'=> $this->status_color,
             'pdf_link'=> $this->pdf_link,
             'created_by'=> $this->user,
+            'patient' => $this->patient? new PatientThinTransformer($this->patient): [],
             'created_by_name'=>$this->user? (optional($this->user)->username. ' - '. optional($this->user)->name): '',
             'result_by_info'=>$this->resultBy? (optional($this->resultBy)->username. ' - '. optional($this->resultBy)->name): '',
 
