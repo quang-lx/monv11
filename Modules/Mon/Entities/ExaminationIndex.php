@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property $result_at
  * @property $ket_qua
  * @property $ket_luan
+ * @property $id_lis
  * @property $examination_service_id
  * @property $result_by
  * @property $resultBy
@@ -24,7 +25,7 @@ class ExaminationIndex extends Model
 
     protected $table = 'examination_service_index';
     protected $fillable = [
-        'service_id','examination_id','service_index_id','result_at','ket_qua','ket_luan', 'result_by', 'examination_service_id'
+        'service_id','examination_id','service_index_id','result_at','ket_qua','ket_luan', 'result_by', 'examination_service_id', 'id_lis'
     ];
     public function resultBy()
     {

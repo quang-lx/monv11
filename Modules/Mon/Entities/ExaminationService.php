@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property $result_by_id
  * @property $from_source
  * @property $pdf_link
+ * @property $id_lis
  * @property $result_by
  * @property $testingService
  * @property $resultBy
@@ -49,7 +50,8 @@ class ExaminationService extends Model
         'updated_at',
         'result_at',
         'ket_qua',
-        'ket_luan', 'result_by_id', 'from_source','result_by', 'pdf_link'
+        'ket_luan', 'result_by_id', 'from_source','result_by', 'pdf_link',
+        'id_lis'
     ];
 
     /**
