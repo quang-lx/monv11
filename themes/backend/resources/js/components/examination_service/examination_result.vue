@@ -34,7 +34,6 @@
                                                           prop="code"
                                                           :class="{'el-form-item is-error': form.errors.has('code') }">
                                                 <el-input disabled maxlength="255" v-model="examination_service.service.code" size="small"
-                                                placeholder="Nhập mã dịch vụ"
                                                 ></el-input>
 
                                             </el-form-item>
@@ -54,7 +53,6 @@
                                                 <el-input
                                                     disabled
                                                     maxlength="255" v-model="examination_service.service.name" size="small"
-                                                          placeholder="Nhập tên dịch vụ"
                                                 ></el-input>
 
                                             </el-form-item>
@@ -66,7 +64,7 @@
                                                 <el-select v-model="examination_service.service.type"
                                                            disabled
                                                            filterable
-                                                           placeholder="Chọn loại dịch vụ" style="width: 100%" size="small">
+                                                            style="width: 100%" size="small">
                                                     <el-option v-for="item in list_service_type" :key="item.id" :label="item.name"
                                                                :value="item.id">
                                                     </el-option>
@@ -81,8 +79,7 @@
                                             <el-form-item :label="$t('service.label.min_value')"
                                                           :class="{'el-form-item is-error': form.errors.has('min_value') }">
                                                 <el-input  v-model="examination_service.service.min_value" size="small" disabled
-                                                                 style="width: 100%"
-                                                          placeholder="Nhập Trẻ em thấp"
+                                                           disabled    style="width: 100%"
                                                           autocomplete="off"></el-input>
 
                                             </el-form-item>
@@ -91,7 +88,7 @@
                                             <el-form-item :label="$t('service.label.max_value')"
                                                           :class="{'el-form-item is-error': form.errors.has('max_value') }">
                                                 <el-input :controls="false" v-model="examination_service.service.max_value" size="small"
-                                                          placeholder="Nhập Trẻ em cao" disabled
+                                                          disabled
                                                                  style="width: 100%"
                                                                  autocomplete="off"></el-input>
 
@@ -121,7 +118,6 @@
                                             <el-form-item :label="$t('service.label.male_min_value')"
                                                           :class="{'el-form-item is-error': form.errors.has('male_min_value') }">
                                                 <el-input disabled v-model="examination_service.male_min_value" size="small"
-                                                          placeholder="Nhập giá nam trị thấp"
                                                                  style="width: 100%; text-align: left"
                                                                  autocomplete="off"></el-input>
 
@@ -131,7 +127,6 @@
                                             <el-form-item :label="$t('service.label.male_max_value')"
                                                           :class="{'el-form-item is-error': form.errors.has('male_max_value') }">
                                                 <el-input disabled v-model="examination_service.male_max_value" size="small"
-                                                          placeholder="Nhập giá trị nam cao"
                                                                  style="width: 100%; text-align: left"
                                                                  autocomplete="off"></el-input>
 
@@ -141,7 +136,6 @@
                                             <el-form-item :label="$t('service.label.female_min_value')"
                                                           :class="{'el-form-item is-error': form.errors.has('female_min_value') }">
                                                 <el-input disabled  v-model="examination_service.female_min_value" size="small"
-                                                          placeholder="Nhập giá trị nữ thấp"
                                                                  style="width: 100%"
                                                                  autocomplete="off"></el-input>
 
@@ -151,7 +145,6 @@
                                             <el-form-item :label="$t('service.label.female_max_value')"
                                                           :class="{'el-form-item is-error': form.errors.has('female_max_value') }">
                                                 <el-input disabled v-model="examination_service.service.female_max_value" size="small"
-                                                          placeholder="Nhập giá trị nữ cao"
                                                                  style="width: 100%"
                                                                  autocomplete="off"></el-input>
 
@@ -203,7 +196,7 @@
                                             <el-form-item label="Trạng thái kết quả"
                                                           :class="{'el-form-item is-error': form.errors.has('status_text') }">
                                                 <el-input disabled v-model="examination_service.status_text" size="small"
-                                                          :style="{ background: examination_service.status_color }"
+                                                         class="examination_service_status"
                                                           style="width: 100%"
                                                           autocomplete="off"></el-input>
 
