@@ -499,6 +499,9 @@ body:not(.layout-fixed) .main-sidebar {
 .examination-processing  input{
     background-color: #E1C14C !important;
 }
+.idic_result input {
+    background: rgba(227, 130, 130, 0.46);
+}
 
 .examination-done  input{
     background-color: #A4E381 !important;

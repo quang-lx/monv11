@@ -30,6 +30,7 @@
 
 <!-- thông tin bệnh nhân-->
         <patient-info :model-form="modelForm.patient" :show_diagnose="false"></patient-info>
+        <examination-result :examination_service="modelForm" ></examination-result>
         <examination-info :examination_data="modelForm" :show_diagnose="false" :show_status="true"/>
 
         <section class="content">
@@ -78,6 +79,7 @@
     import ExaminationInfo from './../patient/examination_info';
     import ListIndexResult from '../examination/list_index_result';
     import ServiceList from './../patient/service_list';
+    import ExaminationResult from './examination_result';
 
     export default {
         props: {
@@ -88,7 +90,8 @@
             PatientInfo,
             ExaminationInfo,
             ListIndexResult,
-            ServiceList
+            ServiceList,
+            ExaminationResult
         },
 
         data() {

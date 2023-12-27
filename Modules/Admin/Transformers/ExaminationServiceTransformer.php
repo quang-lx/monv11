@@ -3,6 +3,7 @@
 namespace Modules\Admin\Transformers;
 
 
+use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 
@@ -29,7 +30,9 @@ class ExaminationServiceTransformer extends JsonResource
             'patient' => $this->patient? new PatientThinTransformer($this->patient): [],
             'created_by_name'=>$this->user? (optional($this->user)->username. ' - '. optional($this->user)->name): '',
             'result_by_info'=>$this->resultBy? (optional($this->resultBy)->username. ' - '. optional($this->resultBy)->name): '',
-
+            'result_at' => $this->result_at? $this->result_at->format('H:i d/m/Y'): '',
+            'ket_qua' => $this->ket_qua,
+            'ket_luan' => $this->ket_luan,
             'created_at'=> $this->created_at->format('H:i d/m/Y'),
             'updated_at'=> $this->updated_at,
             'service' => $this->testingService? (new TestingServiceTransformer($this->testingService)): [],

@@ -37,7 +37,9 @@ class ExaminationService extends Model
 
     const SOURCE_LOCAL = 1;
     const SOURCE_LIS = 2;
-
+    protected $casts = [
+        'result_at' => 'datetime',
+    ];
     public $appends = ['status_text', 'status_color', 'source_text', 'status_class'];
     protected $table = 'examination_service';
     protected $fillable = [
