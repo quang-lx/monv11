@@ -51,10 +51,26 @@ class ExaminationServiceController extends ApiController
         ]);
     }
 
+    public function cancel(ExaminationService $examinationservice)
+    {
+        try {
+            $examinationservice = $this->examinationserviceRepository->cancel($examinationservice);
+            return response()->json([
+                'errors' => false,
+                'model' => new ExaminationServiceListTransformer($examinationservice),
+                'message' => trans('backend::examinationservice.message.cancel success'),
+            ]);
+        } catch (\Exception $exception) {
+            return response()->json([
+                'errors' => true,
+                'message' => $exception->getMessage(),
+            ]);
+        }
 
+    }
     public function find(ExaminationService $examinationservice)
     {
-        return new  ExaminationServiceFullTransformer($examinationservice);
+        return new  ExaminationServiceTransformer($examinationservice);
     }
 
     public function update(ExaminationService $examinationservice, UpdateExaminationServiceRequest $request)

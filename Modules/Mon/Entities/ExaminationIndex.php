@@ -3,6 +3,7 @@
 namespace Modules\Mon\Entities;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class ExaminationIndex
@@ -19,6 +20,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class ExaminationIndex extends Model
 {
+    use SoftDeletes;
 
     protected $table = 'examination_service_index';
     protected $fillable = [

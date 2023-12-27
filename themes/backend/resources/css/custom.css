@@ -529,3 +529,7 @@ body:not(.layout-fixed) .main-sidebar {
 .btn {
     min-width: 100px !important;
 }
+
+.nav-sidebar>.nav-item>.nav-link {
+    padding-left: 16px !important;
+}

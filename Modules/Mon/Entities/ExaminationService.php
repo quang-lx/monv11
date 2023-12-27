@@ -3,6 +3,7 @@
 namespace Modules\Mon\Entities;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class ExaminationService
@@ -17,6 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property $ket_luan
  * @property $result_by_id
  * @property $from_source
+ * @property $pdf_link
  * @property $result_by
  * @property $testingService
  * @property $resultBy
@@ -25,11 +27,17 @@ use Illuminate\Database\Eloquent\Model;
  */
 class ExaminationService extends Model
 {
+    use SoftDeletes;
+
     const STATUS_NEW = 1;
     const STATUS_PROCESSING = 2;
     const STATUS_DONE = 3;
     const STATUS_CANCEL = 4;
-    public $appends = ['status_text', 'status_color'];
+
+    const SOURCE_LOCAL = 1;
+    const SOURCE_LIS = 2;
+
+    public $appends = ['status_text', 'status_color', 'source_text'];
     protected $table = 'examination_service';
     protected $fillable = [
         'patient_id',
@@ -41,7 +49,7 @@ class ExaminationService extends Model
         'updated_at',
         'result_at',
         'ket_qua',
-        'ket_luan', 'result_by_id', 'from_source','result_by'
+        'ket_luan', 'result_by_id', 'from_source','result_by', 'pdf_link'
     ];
 
     /**
@@ -94,6 +102,10 @@ class ExaminationService extends Model
     public function getStatusColorAttribute() {
         return self::mapStatusColor($this->status);
 
+    }
+
+    public function getSourceTextAttribute() {
+        return $this->from_source == self::SOURCE_LIS? 'Lis': 'Local';
     }
     public static function mapStatusText($status) {
         $name = '';

@@ -552,6 +552,10 @@ Route::middleware('auth:api')->prefix('/examinationservices')->group(function ()
               'as' => 'api.examinationservice.find',
               'uses' => 'ExaminationService\ExaminationServiceController@find',
           ]);
+   Route::post('/{examinationservice}/cancel', [
+              'as' => 'api.examinationservice.cancel',
+              'uses' => 'ExaminationService\ExaminationServiceController@cancel',
+          ]);
     Route::post('/', [
         'as' => 'api.examinationservice.store',
         'uses' => 'ExaminationService\ExaminationServiceController@store',

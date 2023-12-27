@@ -28,6 +28,7 @@ import ProfileForm from './../components/auth/profile/form.vue';
 import ExaminationList from './../components/examination/index.vue';
 import ExaminationForm from './../components/examination/update.vue';
 import ExaminationServiceList from './../components/examination_service/index.vue';
+import ExaminationServiceForm from './../components/examination_service/update.vue';
 
 import Dashboard from './../components/dashboard/index.vue';
 
@@ -256,6 +257,14 @@ export default [
         path: '/admin/ket-qua-kham',
         name: 'admin.examinationservice.index',
         component: ExaminationServiceList,
+    },
+    {
+        path: '/admin/ket-qua-kham/:examinationserviceId/cap-nhat',
+        name: 'admin.examinationservice.edit',
+        component: ExaminationServiceForm,
+        props: {
+            pageTitle: 'ExaminationServiceList.label.update_label',
+        },
     },
 
 
