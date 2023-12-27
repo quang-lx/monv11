@@ -17,7 +17,7 @@
                     <div class="col-md-6">
                         <div class="float-right">
 
-                             
+
                         </div>
 
                     </div>
@@ -31,7 +31,6 @@
 <!-- thông tin bệnh nhân-->
         <patient-info :model-form="modelForm.patient" :show_diagnose="false"></patient-info>
         <examination-info :examination_data="modelForm" :show_diagnose="false" :show_status="true"/>
-        <list-index-result :examination_id="modelForm.id" :patient_id="modelForm.patient_id" v-if="modelForm.id" />
 
         <section class="content">
             <div class="container-fluid">
@@ -63,8 +62,7 @@
                 <div class="card">
 
                     <div class="card-body">
-                        <service-list :patient_id="modelForm.patient_id"  v-if="load_done"
-                                      @update-service-list="onUpdateServiceList"></service-list>
+                        <service-list :patient_id="modelForm.patient_id"  v-if="load_done"></service-list>
 
                     </div><!-- /.card-body -->
 

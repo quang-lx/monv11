@@ -503,7 +503,9 @@ body:not(.layout-fixed) .main-sidebar {
 .examination-done  input{
     background-color: #A4E381 !important;
 }
-
+.examination-cancel  input{
+    background-color: rgba(227, 130, 130, 0.46) !important;
+}
 .btn-idic-red {
     background-color: #F9163F !important;
     border-color: #F9163F !important;

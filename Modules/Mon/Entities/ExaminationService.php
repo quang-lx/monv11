@@ -38,7 +38,7 @@ class ExaminationService extends Model
     const SOURCE_LOCAL = 1;
     const SOURCE_LIS = 2;
 
-    public $appends = ['status_text', 'status_color', 'source_text'];
+    public $appends = ['status_text', 'status_color', 'source_text', 'status_class'];
     protected $table = 'examination_service';
     protected $fillable = [
         'patient_id',
@@ -144,5 +144,28 @@ class ExaminationService extends Model
                 break;
         }
         return $color;
+    }
+    public function getStatusClassAttribute() {
+        return self::mapStatusClass($this->status);
+
+    }
+    public static function mapStatusClass($status) {
+        $class= '';
+        switch ($status) {
+            case self::STATUS_NEW:
+                $class = 'examination-init';
+                break;
+            case self::STATUS_PROCESSING:
+                $class = 'examination-processing';
+                break;
+            case self::STATUS_DONE:
+                $class = 'examination-done';
+                break;
+            case self::STATUS_CANCEL:
+                $class = 'examination-cancel';
+                break;
+
+        }
+        return $class;
     }
 }
