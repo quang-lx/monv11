@@ -263,7 +263,7 @@ export default [
         name: 'admin.examinationservice.edit',
         component: ExaminationServiceForm,
         props: {
-            pageTitle: 'ExaminationServiceList.label.update_label',
+            pageTitle: 'examinationservice.label.update_label',
         },
     },
 

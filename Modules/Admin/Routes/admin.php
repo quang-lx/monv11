@@ -371,7 +371,7 @@ Route::group(['prefix' => '/ket-qua-kham'], function ( ) {
         'middleware' => 'permission:admin.examinationservice.create'
     ]);
 
-    Route::get('{examinationservice}/edit', [
+    Route::get('{examinationservice}/cap-nhat', [
         'as' => 'admin.examinationservice.edit',
         'uses' => 'ExaminationService\ExaminationServiceController@edit',
         'middleware' => 'permission:admin.examinationservice.edit'
