@@ -28,7 +28,7 @@
                             </el-button>
                             <el-button type="primary" @click="onSubmit()" size="small" :loading="loading"
                                        class="btn btn-flat  btn-primary">
-                                {{ $t('mon.button.save') }}
+                                       {{ $route.params.patientId ? $t('mon.button.update') : $t('mon.button.add')}}
                             </el-button>
                         </div>
 

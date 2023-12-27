@@ -142,6 +142,7 @@
                                             <el-form-item :label="$t('service.label.ref_value')"
                                                           :class="{'el-form-item is-error': form.errors.has('ref_value') }">
                                                 <el-input-number :controls="false" v-model="modelForm.ref_value" size="small"
+                                                            placeholder="Nhập giá trị tham chiếu"
                                                                  style="width: 100%"
                                                                  autocomplete="off"></el-input-number>
                                                 <div class="el-form-item__error"
@@ -329,8 +330,10 @@
                         });
                         if(this.is_new) {
                             // window.location.href= route('admin.service.edit', {testingservice: response.id})
-                            this.$router.push({name: 'admin.service.edit', params:{testingserviceId: response.id}});
+                            // this.$router.push({name: 'admin.service.edit', params:{testingserviceId: response.id}});
                         }
+                        this.$router.push({name: 'admin.service.index'});
+
                     })
                     .catch((error) => {
                         console.log(error)

@@ -4,7 +4,7 @@
             :visible.sync="show_import">
             <div class="body-dialog">
                 <div class="">
-                    <div>Bấm để tải file lên hệ thống (File tải tối đã 20mb)</div>
+                    <div>Bấm để tải file lên hệ thống (File tải tối đa 20mb)</div>
                     <div class="import">
                         <input type="file" id="file" ref="file" v-on:change="handleFileUpload()" />
                         <div class="text-danger mt-2" v-if="data_export?.errors"

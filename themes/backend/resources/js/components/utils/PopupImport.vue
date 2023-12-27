@@ -4,7 +4,7 @@
             :visible.sync="show_import" :before-close="onClosePopup">
             <div class="body-dialog">
                 <div class="">
-                    <div>Bấm để tải file lên hệ thống (File tải tối đã 20mb)</div>
+                    <div>Bấm để tải file lên hệ thống (File tải tối đa 20mb)</div>
                     <div class="import">
                         <div class="custom-file">
                             <input id="file" ref="file" v-on:change="handleFileUpload()" type="file"

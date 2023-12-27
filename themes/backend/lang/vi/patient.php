@@ -35,7 +35,7 @@ return [
         'label data_sources' => 'Nguồn',
         'label status' => 'Trạng thái bệnh nhân',
 
-        'create_patient' => 'Thêm mới',
+        'create_patient' => 'Thêm mới bệnh nhân',
         'update_patient' => 'Cập nhật bệnh nhân',
         'import title' => 'Tải lên danh sách',
         'filter title' => 'Lọc danh sách bệnh nhân',

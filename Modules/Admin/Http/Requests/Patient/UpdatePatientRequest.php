@@ -12,7 +12,7 @@ class UpdatePatientRequest extends FormRequest
             'name' => 'required',
             'sex' => 'required',
             'birthday' => 'required',
-            'phone' => 'required',
+            'phone' => 'required|numeric',
         ];
     }
 
@@ -29,10 +29,8 @@ class UpdatePatientRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'Họ và tên là bắt buộc',
-            'sex.required' => 'Giới tính là bắt buộc',
-            'birthday.required' => 'Năm sinh là bắt buộc',
-            'phone.required' => 'Số điện thoại là bắt buộc',
+            '*.required' => 'Thông tin này là bắt buộc',
+            'phone.numeric' => 'Thông tin sai định dạng'
         ];
     }
 
