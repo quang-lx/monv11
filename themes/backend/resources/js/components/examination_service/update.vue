@@ -59,7 +59,7 @@
 
 <!-- thông tin bệnh nhân-->
         <patient-info :model-form="modelForm.patient" :show_diagnose="false"></patient-info>
-        <examination-info :examination_data="modelForm" :show_diagnose="false"/>
+        <examination-info :examination_data="modelForm" :show_diagnose="false" :show_status="true"/>
         <list-index-result :examination_id="modelForm.id" :patient_id="modelForm.patient_id" v-if="modelForm.id" />
 
         <section class="content">
@@ -107,7 +107,7 @@
     import Form from 'form-backend-validation';
     import PatientInfo from './../patient/patient_info';
     import ExaminationInfo from './../patient/examination_info';
-    import ListIndexResult from './list_index_result';
+    import ListIndexResult from '../examination/list_index_result';
     import ServiceList from './../patient/service_list';
 
     export default {
