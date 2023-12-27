@@ -26,7 +26,57 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row"  >
+                            <div class="row" v-if="show_status" >
+                                <div class="col-md-3">
+                                    <el-form-item :label="$t('examination.label.started_at')"
+                                                  prop="started_at"
+                                                  :class="{ 'el-form-item is-error': form.errors.has('started_at') }">
+                                        <el-input v-model="modelForm.started_at" size="small"
+                                                  disabled
+                                        ></el-input>
+                                        <div class="el-form-item__error"
+                                             v-if="form.errors.has('started_at')"
+                                             v-text="form.errors.first('started_at')"></div>
+                                    </el-form-item>
+                                </div>
+                                <div class="col-md-3">
+                                    <el-form-item :label="$t('examination.label.finished_at')"
+                                                  prop="started_at"
+                                                  :class="{ 'el-form-item is-error': form.errors.has('finished_at') }">
+                                        <el-input v-model="modelForm.finished_at" size="small"
+                                                  disabled
+                                        ></el-input>
+                                        <div class="el-form-item__error"
+                                             v-if="form.errors.has('finished_at')"
+                                             v-text="form.errors.first('finished_at')"></div>
+                                    </el-form-item>
+                                </div>
+                                <div class="col-md-3">
+                                    <el-form-item :label="$t('examination.label.type')"
+                                                  prop="started_at"
+                                                  :class="{ 'el-form-item is-error': form.errors.has('type') }">
+                                        <el-input v-model="modelForm.type" size="small"
+                                                  disabled
+                                        ></el-input>
+                                        <div class="el-form-item__error"
+                                             v-if="form.errors.has('type')"
+                                             v-text="form.errors.first('type')"></div>
+                                    </el-form-item>
+                                </div>
+                                <div class="col-md-3">
+                                    <el-form-item :label="$t('examination.label.status')"
+                                                  prop="started_at"
+                                                  :class="[{ 'el-form-item is-error': form.errors.has('status') }, modelForm.status_class]">
+                                        <el-input v-model="modelForm.status_text" size="small"
+                                                  disabled
+                                        ></el-input>
+                                        <div class="el-form-item__error"
+                                             v-if="form.errors.has('status')"
+                                             v-text="form.errors.first('status')"></div>
+                                    </el-form-item>
+                                </div>
+                            </div>
+                            <div class="row" v-else >
                                 <div class="col-md-4">
                                     <el-form-item :label="$t('examination.label.started_at')"
                                                   prop="started_at"
@@ -101,6 +151,7 @@ export default {
     props: {
         examination_data: { default: {} },
         show_diagnose: {default: null},
+        show_status: {default:false}
     },
     data() {
         return {

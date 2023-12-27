@@ -60,7 +60,7 @@
 <!-- thông tin bệnh nhân-->
         <patient-info :model-form="modelForm.patient" :show_diagnose="false"></patient-info>
         <examination-info :examination_data="modelForm" :show_diagnose="false"/>
-        <list-index-result :examination_id="modelForm.id" :patient_id="modelForm.parent_id" v-if="modelForm.id" />
+        <list-index-result :examination_id="modelForm.id" :patient_id="modelForm.patient_id" v-if="modelForm.id" />
 
         <section class="content">
             <div class="container-fluid">
@@ -71,7 +71,7 @@
                                 <div class="col-md-12">
                                     <el-form-item :label="$t('patient.label.diagnose')" prop="diagnose"
                                                   :class="{ 'el-form-item is-error': form.errors.has('diagnose') }">
-                                        <el-input type="textarea" placeholder=""
+                                        <el-input type="textarea" placeholder="" disabled
 
                                                   :autosize="{ minRows: 5, maxRows: 10 }"
                                                   v-model="modelForm.diagnose"></el-input>
