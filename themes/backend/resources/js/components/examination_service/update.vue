@@ -63,7 +63,7 @@
                 <div class="card">
 
                     <div class="card-body">
-                        <examination-service-index :lis_data="modelForm.list_index"  v-if="load_done"></examination-service-index>
+                        <examination-service-index :examination_service_id="modelForm.id"  v-if="load_done"></examination-service-index>
 
                     </div><!-- /.card-body -->
 

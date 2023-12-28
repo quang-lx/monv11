@@ -4,6 +4,7 @@ namespace Modules\Admin\Http\Controllers\Api\ExaminationIndex;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Modules\Admin\Transformers\ExaminationIndexTransformer;
 use Modules\Mon\Entities\ExaminationIndex;
 use Modules\Admin\Http\Requests\ExaminationIndex\CreateExaminationIndexRequest;
 use Modules\Admin\Http\Requests\ExaminationIndex\UpdateExaminationIndexRequest;

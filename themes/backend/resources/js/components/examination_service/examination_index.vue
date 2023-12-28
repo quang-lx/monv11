@@ -2,17 +2,29 @@
     <div>
 
 
-
-                <div class="row justify-content-between mb-2">
-                    <div class="col-md-4 d-flex flex-row align-items-center">
-                        <span>Danh sách chỉ số con</span>
-                        <el-input suffix-icon="el-icon-search" @keyup.native="performSearch" placeholder="Tìm kiếm chỉ số"
-                                  size="small" v-model="searchQuery">
-                        </el-input>
-                    </div>
-
+        <div class="row justify-content-between mb-2">
+            <div class="col-md-6">
+                <div class="row d-flex flex-row align-items-center">
+                    <span class="col-3">Danh sách chỉ số con</span>
+                    <el-input class="col-5" suffix-icon="el-icon-search" @keyup.native="performSearch"
+                              placeholder="Tìm kiếm chỉ số" size="small" v-model="searchQuery">
+                    </el-input>
 
                 </div>
+
+            </div>
+            <div class="col-md-6 d-flex flex-row align-items-center d-flex justify-content-end">
+
+
+                <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange"
+                               :current-page.sync="meta.current_page" :page-sizes="[25, 50, 75, 100]"
+                               :page-size="parseInt(meta.per_page)" layout="sizes, prev, pager, next" :total="meta.total"
+                               v-if="meta.total > 25">
+                </el-pagination>
+
+            </div>
+
+        </div>
 
                 <div class="row">
 
@@ -176,12 +188,13 @@ export default {
 
     },
     props: {
-        lis_data : {default: null}
+        examination_service_id : {default: null}
     },
     data() {
         return {
 
 
+            lis_data: [],
             columnsSearch: [],
 
             loadingImport: 0,
@@ -193,13 +206,36 @@ export default {
     },
     methods: {
 
+        queryServer(customProperties) {
 
+            const properties = {
+                page: this.meta.current_page,
+                per_page: this.meta.per_page,
+                order_by: this.order_meta.order_by,
+                order: this.order_meta.order,
+                search: this.searchQuery,
+                examination_service_id: this.examination_service_id,
+
+
+            };
+
+            window.axios.get(route('api.examinationindex.index', _.merge(properties, customProperties)))
+                .then((response) => {
+                    this.tableIsLoading = false;
+                    this.tableIsLoading = false;
+                    this.lis_data = response.data.data;
+                    this.meta = response.data.meta;
+                    this.links = response.data.links;
+                    this.order_meta.order_by = properties.order_by;
+                    this.order_meta.order = properties.order;
+
+                });
+        },
 
 
     },
     mounted() {
-
-
+        this.fetchData();
 
     },
     watch: {
