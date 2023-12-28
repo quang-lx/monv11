@@ -14,6 +14,9 @@ class ExaminationIndexTransformer extends JsonResource
     {
         $data = [
             'id' => $this->id,
+            'ket_qua' => $this->ket_qua,
+            'ket_luan' => $this->ket_luan,
+            'index_data' => new ServiceIndexTransformer($this->indexModel),
 
 
              'urls' => [

@@ -63,7 +63,7 @@
                 <div class="card">
 
                     <div class="card-body">
-                        <service-list :patient_id="modelForm.patient_id"  v-if="load_done" :show_add_icon="false" :show_print="false"></service-list>
+                        <examination-service-index :lis_data="modelForm.list_index"  v-if="load_done"></examination-service-index>
 
                     </div><!-- /.card-body -->
 
@@ -78,7 +78,7 @@
     import PatientInfo from './../patient/patient_info';
     import ExaminationInfo from './../patient/examination_info';
     import ListIndexResult from '../examination/list_index_result';
-    import ServiceList from './../patient/service_list';
+    import ExaminationServiceIndex from './examination_index';
     import ExaminationResult from './examination_result';
 
     export default {
@@ -90,7 +90,7 @@
             PatientInfo,
             ExaminationInfo,
             ListIndexResult,
-            ServiceList,
+            ExaminationServiceIndex,
             ExaminationResult
         },
 

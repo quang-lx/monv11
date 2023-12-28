@@ -4,6 +4,7 @@ namespace Modules\Admin\Http\Controllers\Api\ExaminationService;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Modules\Admin\Transformers\ExaminationServiceFullTransformer;
 use Modules\Admin\Transformers\ExaminationServiceListTransformer;
 use Modules\Admin\Transformers\ExaminationServiceTransformer;
 use Modules\Mon\Entities\ExaminationService;
@@ -70,7 +71,7 @@ class ExaminationServiceController extends ApiController
     }
     public function find(ExaminationService $examinationservice)
     {
-        return new  ExaminationServiceTransformer($examinationservice);
+        return new  ExaminationServiceFullTransformer($examinationservice);
     }
 
     public function update(ExaminationService $examinationservice, UpdateExaminationServiceRequest $request)
