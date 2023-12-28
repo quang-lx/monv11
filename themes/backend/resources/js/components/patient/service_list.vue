@@ -10,7 +10,7 @@
                     <el-input class="col-5" suffix-icon="el-icon-search" @keyup.native="performSearch"
                         placeholder="Tìm kiếm dịch vụ" size="small" v-model="searchQuery">
                     </el-input>
-                    <span class="f-action pl-4 f-pointer" @click="printServiceDesignation">
+                    <span class="f-action pl-4 f-pointer" @click="printServiceDesignation" v-if="show_print">
                         <inline-svg src="/images/PrinterOutlined.svg" />
                     </span>
                 </div>
@@ -170,6 +170,7 @@ export default {
         patient_id: { default: null },
         examination_id: { default: null },
         show_add_icon: { default: true },
+        show_print: { default: true },
     },
     data() {
         return {
