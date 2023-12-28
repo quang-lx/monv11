@@ -339,7 +339,7 @@ export default {
         },
 
         onCancelService(id, idx) {
-            this.$confirm("Bạn có chắc chắn huỷ dịch vụ này?", 'Huỷ dịch vụ', {
+            this.$confirm("Dịch vụ sẽ bị huỷ, bạn có chắc chắn huỷ dịch vụ này?", 'Huỷ dịch vụ', {
                 confirmButtonText: "Huỷ",
                 cancelButtonText:"Không",
                 // type: 'warning',

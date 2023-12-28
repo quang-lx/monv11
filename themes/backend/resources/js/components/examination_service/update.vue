@@ -63,7 +63,7 @@
                 <div class="card">
 
                     <div class="card-body">
-                        <service-list :patient_id="modelForm.patient_id"  v-if="load_done"></service-list>
+                        <service-list :patient_id="modelForm.patient_id"  v-if="load_done" :show_add_icon="false"></service-list>
 
                     </div><!-- /.card-body -->
 

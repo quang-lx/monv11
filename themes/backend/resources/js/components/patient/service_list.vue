@@ -18,7 +18,7 @@
             </div>
             <div class="col-md-6 d-flex flex-row align-items-center d-flex justify-content-end">
 
-                <span class="f-action pl-4 f-pointer" @click="() => { show_add_service_form = true, getServiceOptions() }">
+                <span class="f-action pl-4 f-pointer" @click="() => { show_add_service_form = true, getServiceOptions() }" v-if="show_add_icon">
                     <inline-svg src="/images/add.svg" /> {{ $t('common.add') }}
 
                 </span>
@@ -169,6 +169,7 @@ export default {
     props: {
         patient_id: { default: null },
         examination_id: { default: null },
+        show_add_icon: { default: true },
     },
     data() {
         return {
