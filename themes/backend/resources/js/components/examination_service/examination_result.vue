@@ -271,8 +271,7 @@
 <script>
     import Form from 'form-backend-validation';
     import _ from "lodash";
-    import VuePdfEmbed from 'vue-pdf-embed'
-
+    import VuePdfEmbed from 'vue-pdf-embed/dist/vue2-pdf-embed'
     export default {
         props: {
             examination_service: {default: {}},

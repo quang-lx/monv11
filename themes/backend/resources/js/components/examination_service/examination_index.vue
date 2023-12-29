@@ -40,7 +40,7 @@
                                         <el-table-column   :label="$t('common.stt')" width="75" type="index" > </el-table-column>
 
 
-                                        <el-table-column prop="code" :label="$t('service.label.code')" width="120">
+                                        <el-table-column :label="$t('service.label.code')" width="120">
                                             <template slot-scope="scope">
 
                                                 <span>
@@ -49,7 +49,7 @@
                                                 </span>
                                             </template>
                                         </el-table-column>
-                                        <el-table-column prop="code" :label="$t('service.label.code_lis')" width="120">
+                                        <el-table-column   :label="$t('service.label.code_lis')" width="120">
                                             <template slot-scope="scope">
 
                                                 <span>
