@@ -14,7 +14,7 @@ class EloquentExaminationIndexRepository extends BaseRepository implements Exami
         if ($relations) {
             $query = $query->with($relations);
         }
-
+        $query->with(['indexModel']);
         if ($request->get('examination_service_id') !== null) {
             $examination_service_id = $request->get('examination_service_id');
             $query->where('examination_service_id', $examination_service_id);
