@@ -3,7 +3,7 @@
 
 
         <div class="row justify-content-between mb-2">
-            <div class="col-md-6">
+            <div class="col-md-8">
                 <div class="row d-flex flex-row align-items-center">
                     <span class="col-3">Danh sách chỉ số con</span>
                     <el-input class="col-5" suffix-icon="el-icon-search" @keyup.native="performSearch"
@@ -13,7 +13,7 @@
                 </div>
 
             </div>
-            <div class="col-md-6 d-flex flex-row align-items-center d-flex justify-content-end">
+            <div class="col-md-4 d-flex flex-row align-items-center d-flex justify-content-end">
 
 
                 <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange"
