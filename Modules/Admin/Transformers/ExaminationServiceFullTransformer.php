@@ -25,7 +25,7 @@ class ExaminationServiceFullTransformer extends JsonResource
             'status_text'=> $this->status_text,
             'status_color'=> $this->status_color,
             'status_class'=> $this->status_class,
-            'pdf_link'=> $this->pdf_link,
+            'pdf_link'=> $this->pdf_link? sprintf('data:application/pdf;base64,%s', $this->pdf_link): null,
             'created_by'=> $this->user,
             'patient' => $this->patient? new PatientThinTransformer($this->patient): [],
             'created_by_name'=>$this->user? (optional($this->user)->username. ' - '. optional($this->user)->name): '',
