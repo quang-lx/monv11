@@ -55,7 +55,7 @@
                                     <el-form-item :label="$t('examination.label.type')"
                                                   prop="started_at"
                                                   :class="{ 'el-form-item is-error': form.errors.has('type') }">
-                                        <el-input v-model="modelForm.type" size="small"
+                                        <el-input v-model="modelForm.type_text" size="small"
                                                   disabled
                                         ></el-input>
                                         <div class="el-form-item__error"
