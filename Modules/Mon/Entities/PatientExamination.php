@@ -118,7 +118,7 @@ class PatientExamination extends Model
             case self::TYPE_NEW:
                 $class = 'Khám mới';
                 break;
-            case self::TYPE_AGAIN:
+            default:
                 $class = 'Tái khám';
                 break;
 

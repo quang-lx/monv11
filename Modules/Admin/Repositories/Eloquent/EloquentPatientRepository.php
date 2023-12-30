@@ -48,6 +48,8 @@ class EloquentPatientRepository extends BaseRepository implements PatientReposit
         $examination->patient_id = $model->id;
         $examination->created_by = Auth::user()->id;
         $examination->status = PatientExamination::STATUS_INIT;
+        $type = PatientExamination::query()->where('patient_id', $model->id)->count();
+        $examination->type = $type == 0 ? PatientExamination::TYPE_NEW: PatientExamination::TYPE_AGAIN;
         $examination->save();
     }
 

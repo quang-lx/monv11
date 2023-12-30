@@ -17,6 +17,7 @@ class ExaminationFullTransformer extends JsonResource
         $data = [
             'id' => $this->id,
             'status' => $this->status,
+            'type_text' => $this->type_text,
             'status_text' => $this->status_text,
             'status_color' => $this->status_color,
             'started_at' => optional($this->started_at)->format('H:i d/m/Y'),

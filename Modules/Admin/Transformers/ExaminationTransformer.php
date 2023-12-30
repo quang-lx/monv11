@@ -16,6 +16,8 @@ class ExaminationTransformer extends JsonResource
 
         $data = [
             'id' => $this->id,
+            'type' => $this->type,
+            'type_text' => $this->type_text,
             'status' => $this->status,
             'status_text' => $this->status_text,
             'status_color' => $this->status_color,
