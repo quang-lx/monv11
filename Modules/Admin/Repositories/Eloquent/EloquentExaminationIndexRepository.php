@@ -21,7 +21,18 @@ class EloquentExaminationIndexRepository extends BaseRepository implements Exami
         }
 
 
+        if ($request->get('search') !== null) {
+            $keyword = $request->get('search');
+            $query->orWhereHas('indexModel', function ($query) use ($keyword){
+                $query->where(function ($q) use ($keyword) {
+                    $q->orWhere('code', 'ilike', "%{$keyword}%");
+                    $q->orWhere('code_lis', 'ilike', "%{$keyword}%");
+                    $q->orWhere('name', 'ilike', "%{$keyword}%");
+                    $q->orWhere('type', 'ilike', "%{$keyword}%");
+                });
+            });
 
+        }
         if ($request->get('order_by') !== null && $request->get('order') !== 'null') {
             $order = $request->get('order') === 'ascending' ? 'asc' : 'desc';
 
