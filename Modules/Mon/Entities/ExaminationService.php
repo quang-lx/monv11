@@ -89,6 +89,10 @@ class ExaminationService extends Model
     {
         return $this->belongsTo(Patient::class, 'patient_id');
     }
+  public function examination()
+    {
+        return $this->belongsTo(PatientExamination::class, 'examination_id');
+    }
 
     public function user()
     {

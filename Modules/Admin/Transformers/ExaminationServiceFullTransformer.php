@@ -37,6 +37,7 @@ class ExaminationServiceFullTransformer extends JsonResource
             'updated_at'=> $this->updated_at,
             'service' => $this->testingService? (new TestingServiceTransformer($this->testingService)): [],
             'list_index' => $this->listIndex?  ExaminationIndexTransformer::collection($this->listIndex): [],
+            'examination_info' => $this->examination?  new ExaminationThinTransformer($this->examination): [],
 
              'urls' => [
                 'delete_url' => route('api.examinationservice.destroy', $this->id),

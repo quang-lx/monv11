@@ -31,7 +31,7 @@
 <!-- thông tin bệnh nhân-->
         <patient-info :model-form="modelForm.patient" :show_diagnose="false"></patient-info>
         <examination-result :examination_service="modelForm" ></examination-result>
-        <examination-info :examination_data="modelForm" :show_diagnose="false" :show_status="true"/>
+        <examination-info :examination_data="modelForm.examination_info" :show_diagnose="false" :show_status="true"/>
 
         <section class="content">
             <div class="container-fluid">
