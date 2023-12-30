@@ -23,7 +23,7 @@ class EloquentExaminationIndexRepository extends BaseRepository implements Exami
 
         if ($request->get('search') !== null) {
             $keyword = $request->get('search');
-            $query->orWhereHas('indexModel', function ($query) use ($keyword){
+            $query->whereHas('indexModel', function ($query) use ($keyword){
                 $query->where(function ($q) use ($keyword) {
                     $q->orWhere('code', 'ilike', "%{$keyword}%");
                     $q->orWhere('code_lis', 'ilike', "%{$keyword}%");
