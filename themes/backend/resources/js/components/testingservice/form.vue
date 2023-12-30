@@ -141,10 +141,10 @@
                                         <div class="col-md-3">
                                             <el-form-item :label="$t('service.label.ref_value')"
                                                           :class="{'el-form-item is-error': form.errors.has('ref_value') }">
-                                                <el-input-number :controls="false" v-model="modelForm.ref_value" size="small"
+                                                <el-input :controls="false" v-model="modelForm.ref_value" size="small"
                                                             placeholder="Nhập giá trị tham chiếu"
                                                                  style="width: 100%"
-                                                                 autocomplete="off"></el-input-number>
+                                                                 autocomplete="off"></el-input>
                                                 <div class="el-form-item__error"
                                                      v-if="form.errors.has('ref_value')"
                                                      v-text="form.errors.first('ref_value')"></div>
