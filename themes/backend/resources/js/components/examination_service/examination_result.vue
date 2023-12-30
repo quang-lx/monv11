@@ -17,7 +17,7 @@
                                         <path fill-rule="evenodd" clip-rule="evenodd" d="M9.08916 4.04907C8.67749 4.04907 8.34375 4.39083 8.34375 4.81256C8.34375 5.2343 8.67749 5.57606 9.08916 5.57606C9.50139 5.57606 9.83531 5.2343 9.83531 4.81256C9.83531 4.39083 9.50139 4.04907 9.08916 4.04907Z" fill="#252525"/>
                                         <path fill-rule="evenodd" clip-rule="evenodd" d="M7.78516 8.07529H8.8106V13.9483H9.74283V7.14307H7.78516V8.07529Z" fill="#252525"/>
                                     </svg>
-                                    <span class="f-text-title pl-1"> Kết quả khám</span>
+                                    <span class="f-text-title pl-1 pr-2"> Kết quả khám</span>
                                     <div  v-if="examination_service.status == 3" @click="show_result_popup = true" class="ml-2" style="cursor:pointer">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="18" viewBox="0 0 20 18" fill="none">
                                             <path d="M16.875 7.30441H15.9821C15.8839 7.30441 15.8036 7.38477 15.8036 7.48298V8.37584C15.8036 8.47405 15.8839 8.55441 15.9821 8.55441H16.875C16.9732 8.55441 17.0536 8.47405 17.0536 8.37584V7.48298C17.0536 7.38477 16.9732 7.30441 16.875 7.30441ZM17.5893 4.98298H14.9107V0.250837C14.9107 0.152623 14.8304 0.0722656 14.7321 0.0722656H5.26786C5.16964 0.0722656 5.08929 0.152623 5.08929 0.250837V4.98298H2.41071C1.42411 4.98298 0.625 5.78209 0.625 6.76869V14.0901C0.625 14.4852 0.944196 14.8044 1.33929 14.8044H5.08929V17.7508C5.08929 17.8491 5.16964 17.9294 5.26786 17.9294H14.7321C14.8304 17.9294 14.9107 17.8491 14.9107 17.7508V14.8044H18.6607C19.0558 14.8044 19.375 14.4852 19.375 14.0901V6.76869C19.375 5.78209 18.5759 4.98298 17.5893 4.98298ZM6.60714 1.59012H13.3929V4.98298H6.60714V1.59012ZM13.3929 16.4116H6.60714V10.2508H13.3929V16.4116ZM17.8571 13.2866H14.9107V8.73298H5.08929V13.2866H2.14286V6.76869C2.14286 6.62137 2.26339 6.50084 2.41071 6.50084H17.5893C17.7366 6.50084 17.8571 6.62137 17.8571 6.76869V13.2866Z" fill="black"/>
@@ -252,7 +252,7 @@
         </section>
 
         <el-dialog title="In kết quả" :visible.sync="show_result_popup" top="2vh">
-            <div v-if="examination_service.pdf_link" style="max-height: 750px !important; overflow: scroll">
+            <div v-if="examination_service.pdf_link" style="max-height: 85vh !important; overflow: scroll">
                 <vue-pdf-embed :source="examination_service.pdf_link"  />
 
             </div>
