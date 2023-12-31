@@ -1,5 +1,18 @@
 <template>
     <div>
+        <div class="row">
+            <div class="col-12 d-flex align-items-center justify-content-end">
+                <el-date-picker
+                    v-model="date_search"
+                    type="datetimerange"
+                    :picker-options="picker_option"
+                    range-separator="-"
+                    start-placeholder="Start date"
+                    end-placeholder="End date"
+                    align="right">
+                </el-date-picker>
+            </div>
+        </div>
         <div class="row box-dashboard d-flex">
             <div class="col-12">
                 <h3 class="title-box">Kết quả hôm nay</h3>
@@ -286,6 +299,83 @@ export default {
 
     data() {
         return {
+            date_search: "",
+            picker_option: {
+                shortcuts: [
+                    {
+                        text: 'Hôm nay',
+                        onClick(picker) {
+                            const end = new Date();
+                            const start = new Date();
+
+                            picker.$emit('pick', [start, end]);
+                        }
+                    },
+                    {
+                    text: 'Hôm qua',
+                    onClick(picker) {
+                        const end = new Date();
+                        const start = new Date();
+                        start.setTime(start.getTime() - 3600 * 1000 * 24 *1);
+                        picker.$emit('pick', [start, end]);
+                    }
+                },
+                    {
+                    text: '1 tuần',
+                    onClick(picker) {
+                        const end = new Date();
+                        const start = new Date();
+                        start.setTime(start.getTime() - 3600 * 1000 * 24 * 7);
+                        picker.$emit('pick', [start, end]);
+                    }
+                },
+                    {
+                        text: '2 tuần',
+                        onClick(picker) {
+                            const end = new Date();
+                            const start = new Date();
+                            start.setTime(start.getTime() - 3600 * 1000 * 24 * 14);
+                            picker.$emit('pick', [start, end]);
+                        }
+                    },
+                    {
+                    text: '1 tháng',
+                    onClick(picker) {
+                        const end = new Date();
+                        const start = new Date();
+                        start.setTime(start.getTime() - 3600 * 1000 * 24 * 30);
+                        picker.$emit('pick', [start, end]);
+                    }
+                },
+                    {
+                    text: '3 tháng',
+                    onClick(picker) {
+                        const end = new Date();
+                        const start = new Date();
+                        start.setTime(start.getTime() - 3600 * 1000 * 24 * 90);
+                        picker.$emit('pick', [start, end]);
+                    }
+                },
+                    {
+                        text: '6 tháng',
+                        onClick(picker) {
+                            const end = new Date();
+                            const start = new Date();
+                            start.setTime(start.getTime() - 3600 * 1000 * 24 * 180);
+                            picker.$emit('pick', [start, end]);
+                        }
+                    },
+                    {
+                        text: '1 năm',
+                        onClick(picker) {
+                            const end = new Date();
+                            const start = new Date();
+                            start.setTime(start.getTime() - 3600 * 1000 * 24 * 365);
+                            picker.$emit('pick', [start, end]);
+                        }
+                    },
+                ]
+            },
             dataBar: {
                 labels: ['E10', 'E11', 'E12', 'E13', 'E14', 'E15', 'E16', 'E17', 'E18', 'E19'],
                 data: [110, 70, 70, 90, 55, 30, 90, 115, 90, 95],
