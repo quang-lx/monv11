@@ -4,18 +4,20 @@
             <div class="col-12 d-flex align-items-center justify-content-end">
                 <el-date-picker
                     v-model="date_search"
-                    type="datetimerange"
+                    type="daterange"
                     :picker-options="picker_option"
                     range-separator="-"
-                    start-placeholder="Start date"
-                    end-placeholder="End date"
+                    start-placeholder="Từ ngày"
+                    end-placeholder="Đến ngày"
+                    format="dd/MM/yyyy"
+                    value-format="dd/MM/yyyy"
                     align="right">
                 </el-date-picker>
             </div>
         </div>
         <div class="row box-dashboard d-flex">
             <div class="col-12">
-                <h3 class="title-box">Kết quả hôm nay</h3>
+                <h3 class="title-box">Tổng quan khám chữa bệnh <span v-if="date_search">{{date_search[0]}} - {{date_search[1]}}</span></h3>
             </div>
 
             <div class="small-box d-flex align-items-center justify-content-between"
