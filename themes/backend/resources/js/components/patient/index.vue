@@ -63,6 +63,8 @@
                                     <el-table :data="data" stripe style="width: 100%" ref="dataTable"
                                         v-loading.body="tableIsLoading" @sort-change="handleSortChange"
                                         @selection-change="handleSelectionChange">
+                                        <el-table-column :label="$t('disease.label.stt')" type="index" width="100">
+                                        </el-table-column>
                                         <el-table-column v-for="col_selected in list_selected_col"
                                             :key="col_selected.col_name" :prop="col_selected.col_name"
                                             :label="list_col_label[col_selected.col_name]" min-width="150">
@@ -112,7 +114,7 @@
                                     </div>
                                     <div class="pagination-wrap" style="text-align: center; padding-top: 20px;" v-else>
                                         <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange"
-                                            :current-page.sync="meta.current_page" :page-sizes="[25, 50, 75, 100]"
+                                            :current-page.sync="meta.current_page" :page-sizes="[20, 40, 60, 80, 100]"
                                             :page-size="parseInt(meta.per_page)"
                                             layout="total, sizes, prev, pager, next, jumper" :total="meta.total">
                                         </el-pagination>
@@ -132,7 +134,7 @@
             url_template="/excel-template/Patient_Template.xlsx" @close-popup="closeImport"
             :data_export="data_export"></popup-import>
 
-        <filter-form :show_filter="show_filter" @on-filter="onFilter" @close-popup="closeFilter"></filter-form>
+        <filter-form :show_filter="show_filter" @on-filter="onFilter" @close-filter="closeFilter"></filter-form>
 
         <config-display-component :list_all_col="full_col_name" table_name="patient" :show_config="show_config"
             @on-save-config="onSaveConfigDisplay" @close-popup="closeConfig"></config-display-component>

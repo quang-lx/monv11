@@ -8,7 +8,11 @@ class UpdateServiceTypeRequest extends FormRequest
 {
     public function rules()
     {
-        return [];
+        $servicetype = $this->route()->parameter('servicetype');
+        return [
+            'code' => "required|unique:service_type,code,{$servicetype->id}",
+            'name' => "required",
+        ];
     }
 
     public function translationRules()
@@ -23,7 +27,10 @@ class UpdateServiceTypeRequest extends FormRequest
 
     public function messages()
     {
-        return [];
+        return [
+            '*.required' => 'Thông tin này là bắt buộc',
+            'code.unique' => 'Thông tin này đã tồn tại trên hệ thống',
+        ];
     }
 
     public function translationMessages()

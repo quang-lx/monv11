@@ -12,12 +12,15 @@ class ServiceTypeTransformer extends JsonResource
 
     public function toArray($request)
     {
+        $user = optional($this->user);
+ 
         $data = [
             'id' => $this->id,
             'code' => $this->code,
             'name' => $this->name,
             'description' => $this->description,
             'created_at' => $this->created_at->format('H:i d/m/Y'),
+            'created_by_info' => $user->name . ' - ' . $user->username,
 
 
              'urls' => [

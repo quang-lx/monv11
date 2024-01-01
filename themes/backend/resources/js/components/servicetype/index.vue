@@ -53,10 +53,12 @@
 
                                     <el-table :data="data" stripe style="width: 100%" ref="dataTable"
                                         v-loading.body="tableIsLoading" @sort-change="handleSortChange">
+                                        <el-table-column :label="$t('disease.label.stt')" type="index" width="100">
+                                        </el-table-column>
                                         <el-table-column prop="code" :label="$t('servicetype.label.code')" width="200"></el-table-column>
 
                                         <el-table-column prop="name" :label="$t('servicetype.label.name')" min-width="250"> </el-table-column>
-                                        <el-table-column prop="type" :label="$t('common.created_at')" min-width="200"></el-table-column>
+                                        <el-table-column prop="created_at" :label="$t('common.created_at')" min-width="200"></el-table-column>
 
 
                                         <el-table-column prop="actions" :label="$t('common.action')" width="100"
@@ -65,8 +67,8 @@
                                                 <edit-button
                                                     :to="{ name: 'admin.servicetype.edit', params: { servicetypeId: scope.row.id } }"></edit-button>
                                                 <reload-delete-button :scope="scope"
-                                                    message-confirm="Các thông tin này sẽ bị xóa và không thể hoàn tác."
-                                                    title="XÓA DỊCH VỤ?" :rows="data"
+                                                    message-confirm="Loại dịch vụ sẽ bị xoá hoàn toàn khỏi hệ thống, bạn có chắc chắn xoá loại dịch vụ này?"
+                                                    title="Xoá loại dịch vụ?" :rows="data"
                                                     @delete-done="queryServer"></reload-delete-button>
                                             </template>
                                         </el-table-column>
@@ -81,7 +83,7 @@
                                     </div>
                                     <div class="pagination-wrap" style="text-align: center; padding-top: 20px;" v-else>
                                         <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange"
-                                            :current-page.sync="meta.current_page" :page-sizes="[25, 50, 75, 100]"
+                                            :current-page.sync="meta.current_page" :page-sizes="[20, 40, 60, 80, 100]"
                                             :page-size="parseInt(meta.per_page)"
                                             layout="total, sizes, prev, pager, next, jumper" :total="meta.total">
                                         </el-pagination>

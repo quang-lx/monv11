@@ -56,7 +56,7 @@
             <div class="d-flex justify-content-end">
                 <el-button size="small" @click="setDefault">{{ $t('common.default') }}</el-button>
                 <el-button size="small" @click="closeResetPopup">{{ $t('common.cancel') }}</el-button>
-                <el-button size="small" type="primary" @click="onSearchUser">{{ $t('common.apply') }}</el-button>
+                <el-button size="small" :disabled="!Object.keys(this.search_data).some(key => this.search_data[key] !== null)" type="primary" @click="onSearchUser">{{ $t('common.apply') }}</el-button>
             </div>
         </el-dialog>
     </div>
@@ -74,10 +74,10 @@ export default {
         return {
             show_popup: this.show_config,
             search_data: {
-                status: '',
-                created_by: '',
-                sex: '',
-                time_range: []
+                status: null,
+                created_by: null,
+                sex: null,
+                time_range: null
             },
             loadingFilterUser: false,
             listStatus: [

@@ -90,7 +90,7 @@
                                     </div>
                                     <div class="pagination-wrap" style="text-align: center; padding-top: 20px;" v-else>
                                         <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange"
-                                            :current-page.sync="meta.current_page" :page-sizes="[25, 50, 75, 100]"
+                                            :current-page.sync="meta.current_page" :page-sizes="[20, 40, 60, 80, 100]"
                                             :page-size="parseInt(meta.per_page)"
                                             layout="total, sizes, prev, pager, next, jumper" :total="meta.total">
                                         </el-pagination>
@@ -106,7 +106,9 @@
         </section>
 
 
-        <popup-import :show_import="show_import" :loadingImport="loadingImport" @on-import="onImportDevices" @close-popup="closeImport" url_template="/excel-template/Device_Template.xlsx" :data_export="data_export"></popup-import>
+        <popup-import :show_import="show_import" :loadingImport="loadingImport" @on-import="onImportDevices" @close-popup="closeImport" url_template="/excel-template/Device_Template.xlsx"
+        content="Hệ thống sẽ so sánh dữ liệu mà bạn tải lên để thêm mới thiết bị vào hệ thống."
+        :data_export="data_export"></popup-import>
 
     </div>
 </template>

@@ -8,7 +8,10 @@ class CreateServiceTypeRequest extends FormRequest
 {
     public function rules()
     {
-        return [];
+        return [
+            'code' => "required|unique:service_type",
+            'name' => "required",
+        ];
     }
 
     public function translationRules()
@@ -23,7 +26,10 @@ class CreateServiceTypeRequest extends FormRequest
 
     public function messages()
     {
-        return [];
+        return [
+            '*.required' => 'Thông tin này là bắt buộc',
+            'code.unique' => 'Thông tin này đã tồn tại trên hệ thống',
+        ];
     }
 
     public function translationMessages()

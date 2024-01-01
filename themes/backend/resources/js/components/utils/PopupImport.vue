@@ -27,8 +27,10 @@
                 </div>
                 <div class="">
                     <ul>
-                        <li class="content_import">Hệ thống sẽ so sánh dữ liệu mà bạn tải lên để thêm mới nhân viên vào hệ
-                            thống.
+                        <li class="content_import">
+                            {{ content }}
+                            <!-- Hệ thống sẽ so sánh dữ liệu mà bạn tải lên để thêm mới nhân viên vào hệ
+                            thống. -->
                             Điều này đồng nghĩa
                             với việc bạn phải chuẩn bị sẵn mẫu dữ liệu mà bạn muốn thêm mới.
                         </li>
@@ -58,7 +60,8 @@ export default {
         show_import: { default: false },
         loadingImport: { default: 0 },
         url_template: { default: 0 },
-        data_export: { default: [] }
+        data_export: { default: [] },
+        content: { default: '' },
     },
     data() {
         return {

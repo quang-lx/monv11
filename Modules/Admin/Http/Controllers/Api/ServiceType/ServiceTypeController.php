@@ -14,6 +14,7 @@ use Modules\Admin\Http\Requests\ServiceType\CreateServiceTypeRequest;
 use Modules\Admin\Http\Requests\ServiceType\UpdateServiceTypeRequest;
 use Modules\Admin\Repositories\ServiceTypeRepository;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 use Modules\Admin\Http\Requests\Excel\ExcelUploadRequest;
@@ -49,7 +50,10 @@ class ServiceTypeController extends ApiController
 
     public function store(CreateServiceTypeRequest $request)
     {
-        $this->servicetypeRepository->create($request->all());
+        $data = $request->all();
+        $data['created_by'] = Auth::user()->id;
+
+        $this->servicetypeRepository->create($data);
 
         return response()->json([
             'errors' => false,

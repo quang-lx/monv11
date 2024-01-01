@@ -16,6 +16,11 @@ class ServiceType extends Model
 
     protected $table = 'service_type';
     protected $fillable = [
-        'code', 'name', 'description'
+        'code', 'name', 'description', 'created_by'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
 }

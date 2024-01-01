@@ -106,7 +106,7 @@
                                             @size-change="handleSizeChange"
                                             @current-change="handleCurrentChange"
                                             :current-page.sync="meta.current_page"
-                                            :page-sizes="[25, 50, 75, 100]"
+                                            :page-sizes="[20, 40, 60, 80, 100]"
                                             :page-size="parseInt(meta.per_page)"
                                             :layout="pagingSetting.layout"
                                             :total="meta.total">

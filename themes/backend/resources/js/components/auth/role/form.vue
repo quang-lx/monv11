@@ -5,10 +5,10 @@
                 <div class="row mb-2">
                     <div class="col-md-6">
                         <div class="float-left d-flex align-items-center">
+                            <i class="el-icon-arrow-left f-icon-bound-breadcrumb mr-2" @click="gotoPage({name: 'admin.roles.index'})"></i>
                             <span class="f-breadcrumb">{{ $t(pageTitle) }}</span>
 
                         </div>
-
                     </div>
                     <div class="col-md-6">
                         <div class="float-right">
