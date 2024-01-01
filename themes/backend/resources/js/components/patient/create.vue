@@ -22,7 +22,7 @@
                             </el-button>
                             <el-button type="primary" @click="onSubmit()" size="small" :loading="loading"
                                        class="btn btn-flat  btn-primary">
-                                {{ $t('mon.button.save') }}
+                                       {{ $route.params.patientId ? $t('mon.button.update') : $t('mon.button.add')}}
                             </el-button>
                         </div>
 
@@ -307,8 +307,10 @@
                             message: response.message,
                         });
                         this.show_same_patient = false;
+                        this.$router.push({name: 'admin.patient.index'});
+
                         if (this.is_new) {
-                            this.$router.push({name: 'admin.patient.edit', params: {patientId: response.id}});
+                            // this.$router.push({name: 'admin.patient.edit', params: {patientId: response.id}});
                         }
                     })
                     .catch((error) => {
@@ -367,8 +369,9 @@
                                 message: response.data.message,
                             });
                             this.show_same_patient = false;
+                            this.$router.push({name: 'admin.patient.index'});
 
-                            this.$router.push({name: 'admin.patient.edit', params: {patientId: id}});
+                            // this.$router.push({name: 'admin.patient.edit', params: {patientId: id}});
 
                         } else {
                             this.$notify({

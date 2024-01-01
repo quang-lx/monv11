@@ -38,8 +38,9 @@
 
                         </span>
 
-                        <span class="f-action pl-4 f-pointer" :style="{ color: '#4B67E2 !important' }" @click="show_config = true">
-                            <inline-svg  src="/images/list_blue.svg" /> Tuỳ chỉnh
+                        <span class="f-action pl-4 f-pointer" :style="{ color: '#4B67E2 !important' }"
+                            @click="show_config = true">
+                            <inline-svg src="/images/list_blue.svg" /> Tuỳ chỉnh
 
                         </span>
 
@@ -69,11 +70,12 @@
                                             :key="col_selected.col_name" :prop="col_selected.col_name"
                                             :label="list_col_label[col_selected.col_name]" min-width="150">
                                             <template slot-scope="scope">
-                                                    <span v-if="col_selected.col_name == 'sex'">{{
-                                                        scope.row.sex_text }}</span>
-                                                    <span v-else-if="col_selected.col_name == 'status'" class="status_border" :style="{ background: scope.row.current_examination.status_color }">{{
+                                                <span v-if="col_selected.col_name == 'sex'">{{
+                                                    scope.row.sex_text }}</span>
+                                                <span v-else-if="col_selected.col_name == 'status'" class="status_border"
+                                                    :style="{ background: scope.row.current_examination.status_color }">{{
                                                         scope.row.current_examination.status_text }}</span>
-                                                    <span v-else> {{ scope.row[col_selected.col_name] }}</span>
+                                                <span v-else> {{ scope.row[col_selected.col_name] }}</span>
                                             </template>
 
 
@@ -83,18 +85,31 @@
                                         <el-table-column prop="actions" :label="$t('common.action')" width="150"
                                             fixed="right">
                                             <template slot-scope="scope">
-                                                <i @click="onReExamination(scope.row.id, scope.row.name)" role="button" class=" mr-2" v-if="scope.row.current_examination.status == 'done'">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="23" height="24" viewBox="0 0 23 24" fill="none">
-                                                        <path d="M21.0638 3.99805V9.99805M21.0638 9.99805H15.3177M21.0638 9.99805L16.6296 5.63806C15.3086 4.2578 13.5938 3.36325 11.7435 3.0892C9.89329 2.81516 8.00787 3.17648 6.37138 4.1187C4.7349 5.06092 3.43602 6.53301 2.67047 8.31313C1.90492 10.0932 1.71418 12.085 2.12699 13.9881C2.5398 15.8913 3.5338 17.6028 4.9592 18.8647C6.3846 20.1267 8.16417 20.8707 10.0298 20.9846C11.8953 21.0986 13.7458 20.5764 15.3024 19.4966C16.859 18.4168 18.0374 16.838 18.6599 14.9981" stroke="black" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    </svg>
+                                                <el-tooltip placement="top">
+                                                    <div slot="content">Tái khám</div>
+                                                    <i @click="onReExamination(scope.row.id, scope.row.name)" role="button"
+                                                        class=" mr-2" v-if="scope.row.current_examination.status == 'done'">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="24"
+                                                            viewBox="0 0 23 24" fill="none">
+                                                            <path
+                                                                d="M21.0638 3.99805V9.99805M21.0638 9.99805H15.3177M21.0638 9.99805L16.6296 5.63806C15.3086 4.2578 13.5938 3.36325 11.7435 3.0892C9.89329 2.81516 8.00787 3.17648 6.37138 4.1187C4.7349 5.06092 3.43602 6.53301 2.67047 8.31313C1.90492 10.0932 1.71418 12.085 2.12699 13.9881C2.5398 15.8913 3.5338 17.6028 4.9592 18.8647C6.3846 20.1267 8.16417 20.8707 10.0298 20.9846C11.8953 21.0986 13.7458 20.5764 15.3024 19.4966C16.859 18.4168 18.0374 16.838 18.6599 14.9981"
+                                                                stroke="black" stroke-width="1.6" stroke-linecap="round"
+                                                                stroke-linejoin="round" />
+                                                        </svg>
 
-                                                </i>
-                                                <i disabled role="button" class=" mr-2" v-if="scope.row.current_examination.status != 'done'">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="23" height="24" viewBox="0 0 23 24" fill="none">
-                                                        <path d="M21.0638 3.99805V9.99805M21.0638 9.99805H15.3177M21.0638 9.99805L16.6296 5.63806C15.3086 4.2578 13.5938 3.36325 11.7435 3.0892C9.89329 2.81516 8.00787 3.17648 6.37138 4.1187C4.7349 5.06092 3.43602 6.53301 2.67047 8.31313C1.90492 10.0932 1.71418 12.085 2.12699 13.9881C2.5398 15.8913 3.5338 17.6028 4.9592 18.8647C6.3846 20.1267 8.16417 20.8707 10.0298 20.9846C11.8953 21.0986 13.7458 20.5764 15.3024 19.4966C16.859 18.4168 18.0374 16.838 18.6599 14.9981" stroke="black" stroke-opacity="0.4" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    </svg>
+                                                    </i>
+                                                    <i disabled role="button" class=" mr-2"
+                                                        v-if="scope.row.current_examination.status != 'done'">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="24"
+                                                            viewBox="0 0 23 24" fill="none">
+                                                            <path
+                                                                d="M21.0638 3.99805V9.99805M21.0638 9.99805H15.3177M21.0638 9.99805L16.6296 5.63806C15.3086 4.2578 13.5938 3.36325 11.7435 3.0892C9.89329 2.81516 8.00787 3.17648 6.37138 4.1187C4.7349 5.06092 3.43602 6.53301 2.67047 8.31313C1.90492 10.0932 1.71418 12.085 2.12699 13.9881C2.5398 15.8913 3.5338 17.6028 4.9592 18.8647C6.3846 20.1267 8.16417 20.8707 10.0298 20.9846C11.8953 21.0986 13.7458 20.5764 15.3024 19.4966C16.859 18.4168 18.0374 16.838 18.6599 14.9981"
+                                                                stroke="black" stroke-opacity="0.4" stroke-width="1.6"
+                                                                stroke-linecap="round" stroke-linejoin="round" />
+                                                        </svg>
 
-                                                </i>
+                                                    </i>
+                                                </el-tooltip>
                                                 <edit-button
                                                     :to="{ name: 'admin.patient.edit', params: { patientId: scope.row.id } }"></edit-button>
                                                 <reload-delete-button :scope="scope"
@@ -296,7 +311,7 @@ export default {
                 });
         },
 
-      closeImport() {
+        closeImport() {
             this.show_import = false;
             this.loadingImport = 0;
             this.data_export = []
@@ -351,13 +366,13 @@ export default {
         },
 
         onReExamination(id, name) {
-            this.$confirm("Bệnh có chắc chắn tái khám bệnh nhân "+ name+"?", "Tái khám", {
+            this.$confirm("Bệnh có chắc chắn tái khám bệnh nhân " + name + "?", "Tái khám", {
                 confirmButtonText: "Có",
-                cancelButtonText:"Không",
-                type: 'info',
+                cancelButtonText: "Không",
+                // type: 'info',
 
             }).then(() => {
-                window.axios.post(route('api.patient.reExamination', {patient: id}))
+                window.axios.post(route('api.patient.reExamination', { patient: id }))
                     .then((response) => {
                         if (!response.data.errors) {
                             this.$notify({
@@ -367,7 +382,7 @@ export default {
                             });
                             this.show_same_patient = false;
 
-                            this.$router.push({name: 'admin.patient.edit', params: {patientId: id}});
+                            // this.$router.push({ name: 'admin.patient.edit', params: { patientId: id } });
 
                         } else {
                             this.$notify({
@@ -396,9 +411,7 @@ export default {
 }
 </script>
 
-<style scoped>
-.disabled {
+<style scoped>.disabled {
     pointer-events: none;
 
-}
-</style>
+}</style>
