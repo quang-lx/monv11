@@ -129,7 +129,7 @@
                                     </div>
                                     <div class="pagination-wrap" style="text-align: center; padding-top: 20px;" v-else>
                                         <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange"
-                                            :current-page.sync="meta.current_page" :page-sizes="[25, 50, 75, 100]"
+                                            :current-page.sync="meta.current_page" :page-sizes="[20, 40, 60, 80, 100]"
                                             :page-size="parseInt(meta.per_page)"
                                             layout="total, sizes, prev, pager, next, jumper" :total="meta.total">
                                         </el-pagination>

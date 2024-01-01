@@ -20,8 +20,8 @@
             title: {default: null},
             confirmBtn:  {default: null},
             cancelBtn:  {default: null},
-            titleSuccess: {default: 'Thành công'},
-            titleError: {default: 'Thất bại'}
+            titleSuccess: {default: 'Xoá thành công'},
+            titleError: {default: 'Xoá thất bại'}
         },
         data() {
             return {

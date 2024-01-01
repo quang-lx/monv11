@@ -137,9 +137,20 @@ class EloquentPatientRepository extends BaseRepository implements PatientReposit
         }
 
         $time_range = $request->get('time_range');
+        
+        
         if ($time_range !== null && count($time_range) > 0) {
+            $birthday_start_date = Carbon::parse($time_range[0])->startOfDay();
+            $birthday_end_date = Carbon::parse($time_range[1])->endOfDay();
+            $query->whereBetween('birthday', [$birthday_start_date, $birthday_end_date]);
+        }
 
-            $query->whereBetween('birthday', $time_range);
+        $created_at = $request->get('created_at');
+       
+        if ($created_at !== null && count($created_at) > 0) {
+            $created_at_start_date = Carbon::parse($created_at[0])->startOfDay();
+            $created_at_end_date = Carbon::parse($created_at[1])->endOfDay();
+            $query->whereBetween('created_at', [$created_at_start_date, $created_at_end_date]);
         }
 
         if ($request->get('search') !== null) {

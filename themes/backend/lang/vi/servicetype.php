@@ -14,9 +14,9 @@ return [
     ],
 
     'message' => [
-        'create success' => 'Tạo loại dịch vụ thành công.',
-        'update success' => 'Cập nhật loại dịch vụ thành công.',
-        'delete success' => 'Xóa loại dịch vụ thành công.',
+        'create success' => 'Loại dịch vụ đã được thêm thành công.',
+        'update success' => 'Loại dịch vụ đã được sửa thành công.',
+        'delete success' => 'Loại dịch vụ đã được xoá thành công.',
         'import success' => 'Tải lên danh sách loại dịch vụ thành công.',
     ]
 
