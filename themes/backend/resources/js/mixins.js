@@ -8,7 +8,7 @@ const mixin = {
             },
             meta: {
                 current_page: 1,
-                per_page: 25,
+                per_page: 20,
             },
             order_meta: {
                 order_by: '',
@@ -44,7 +44,7 @@ const mixin = {
         },
         fetchData() {
             this.tableIsLoading = true;
-            this.queryServer({per_page: 25});
+            this.queryServer({per_page: 20});
         },
 
         handleSizeChange(event) {

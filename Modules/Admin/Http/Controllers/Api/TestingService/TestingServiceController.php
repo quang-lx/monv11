@@ -87,7 +87,7 @@ class TestingServiceController extends ApiController
         $result = $this->testingserviceRepository->destroy($testingservice);
 
         return response()->json([
-            'errors' => $result? $result:false,
+            'errors' => $result? false :true,
             'message' => $result? trans('backend::service.message.delete success'): trans('backend::common.server error'),
         ]);
     }

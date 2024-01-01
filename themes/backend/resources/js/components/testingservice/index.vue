@@ -53,6 +53,8 @@
 
                                     <el-table :data="data" stripe style="width: 100%" ref="dataTable"
                                         v-loading.body="tableIsLoading" @sort-change="handleSortChange">
+                                        <el-table-column :label="$t('disease.label.stt')" type="index" width="100">
+                                        </el-table-column>
                                         <el-table-column prop="code" :label="$t('service.label.code')" width="120"></el-table-column>
                                         <el-table-column prop="code" :label="$t('service.label.code_lis')" width="120"></el-table-column>
 
@@ -80,7 +82,7 @@
                                                     :to="{ name: 'admin.service.edit', params: { testingserviceId: scope.row.id } }"></edit-button>
                                                 <reload-delete-button :scope="scope"
                                                     message-confirm="Các thông tin này sẽ bị xóa và không thể hoàn tác."
-                                                    title="XÓA DỊCH VỤ?" :rows="data"
+                                                    title="Xoá dịch vụ?" :rows="data"
                                                     @delete-done="queryServer"></reload-delete-button>
                                             </template>
                                         </el-table-column>
@@ -153,7 +155,7 @@ export default {
 
 
         queryServer(customProperties) {
-
+            console.log(123123123123);
             const properties = {
                 page: this.meta.current_page,
                 per_page: this.meta.per_page,

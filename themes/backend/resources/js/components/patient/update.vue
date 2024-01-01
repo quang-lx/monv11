@@ -99,7 +99,7 @@
                                                             <el-form-item :label="$t('patient.label.birthday')" prop="birthday"
                                                                           :class="{ 'el-form-item is-error': form.errors.has('birthday') }">
                                                                 <el-date-picker v-model="modelForm.birthday" type="date"
-                                                                                format="dd/MM/yyyy" size="small"
+                                                                                format="dd/MM/yyyy" value-format="yyyy-MM-dd" size="small"
                                                                                 style="width: 100% !important;"
                                                                                 placeholder="Chọn ngày tháng năm sinh">
                                                                 </el-date-picker>
@@ -166,6 +166,7 @@
                                                             <el-form-item :label="$t('patient.label.label status')" prop="status"
                                                                           :class="{ 'el-form-item is-error': form.errors.has('status') }">
                                                                 <el-input :disabled="$route.params.patientId"
+                                                               :class="[{styleDone: modelForm.current_examination.status =='done'}]"
                                                                           v-model="modelForm.current_examination.status_text" size="small"></el-input>
                                                             </el-form-item>
                                                         </div>
@@ -401,8 +402,10 @@
                             message: response.message,
                         });
                         this.show_same_patient = false;
+                        this.$router.push({name: 'admin.patient.index'});
+
                         if (this.is_new) {
-                            this.$router.push({name: 'admin.patient.edit', params: {patientId: response.id}});
+                            // this.$router.push({name: 'admin.patient.edit', params: {patientId: response.id}});
                         }
                     })
                     .catch((error) => {

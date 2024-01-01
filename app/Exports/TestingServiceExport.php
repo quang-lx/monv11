@@ -26,6 +26,10 @@ class TestingServiceExport implements FromView, WithEvents
                 'name' =>  trans('backend::service.label.code'),
             ],
             [
+                'col_name' => 'code_lis',
+                'name' =>  trans('backend::service.label.code_lis'),
+            ],
+            [
                 'col_name' => 'name',
                 'name' =>  trans('backend::service.label.name'),
             ],
