@@ -213,14 +213,15 @@ export default {
                     name: this.$t('patient.label.phone'),
 
                 },
-                {
-                    col_name: 'patient.papers',
-                    name: this.$t('patient.label.papers'),
-
-                },
+                 
                 {
                     col_name: 'code',
                     name: 'Số phiếu',
+
+                },
+                {
+                    col_name: 'service.code',
+                    name: this.$t('service.label.code'),
 
                 },
                 {
