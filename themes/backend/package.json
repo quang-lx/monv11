@@ -13,7 +13,7 @@
     "admin-lte": "^3.2",
     "animate.css": ">=4.1",
     "bootstrap": "~4.6.2",
-    "chart.js": "^4.4.0",
+    "chart.js": "^4.4.1",
     "chartjs-plugin-datalabels": "^2.2.0",
     "codemirror": "^6.0.1",
     "datatables.net": "^1.13.6",
