@@ -32,7 +32,7 @@
                     <div class="col-sm-6">
                         <el-form-item :label="$t('patient.label.sex')" >
                             <el-select v-model="search_data.sex" size="small"
-                                       :placeholder="$t('patient.label.sex')"
+                                       placeholder="Chọn giới tính"
                                        filterable style="width: 100% !important">
                                 <el-option
                                     v-for="item in listSex"
@@ -44,6 +44,40 @@
                             </el-select>
                         </el-form-item>
                     </div>
+
+                    <div class="col-sm-6">
+                        <el-form-item label="Loại dịch vụ" style="width: 100% !important;">
+                            <el-select v-model="search_data.service_type" size="small"
+                                       placeholder="Chọn loại dịch vụ"
+                                       filterable style="width: 100% !important">
+                                <el-option
+                                    v-for="item in listServiceType"
+                                    :key="'sex'+ item.id"
+                                    :label="item.name"
+                                    :value="item.id">
+                                </el-option>
+
+                            </el-select>
+                        </el-form-item>
+                    </div>
+                    <div class="col-sm-6">
+                        <el-form-item label="Trạng thái" >
+                            <el-select v-model="search_data.status" size="small"
+                                       placeholder="Chọn trạng thái"
+                                       filterable style="width: 100% !important">
+                                <el-option
+                                    v-for="item in listStatus"
+                                    :key="'sex'+ item.value"
+                                    :label="item.label"
+                                    :value="item.value">
+                                </el-option>
+
+                            </el-select>
+                        </el-form-item>
+                    </div>
+
+
+
                     <div class="col-sm-6">
                         <el-form-item :label="$t('patient.label.created_at')" style="width: 100% !important;">
                             <el-date-picker
@@ -59,49 +93,78 @@
                         </el-form-item>
                     </div>
                     <div class="col-sm-6">
-                        <el-form-item :label="$t('patient.label.status')" >
-                            <el-select v-model="search_data.status" size="small"
-                                       :placeholder="$t('patient.label.status')"
+                        <el-form-item label="Thời gian trả kết quả" style="width: 100% !important;">
+                            <el-date-picker
+                                style="width: 100% !important;"
+                                size="small"
+                                v-model="search_data.result_at"
+                                type="daterange"
+                                value-format="yyyy-MM-dd"
+                                range-separator="-"
+                                :start-placeholder="$t('user.label.from date')"
+                                :end-placeholder="$t('user.label.to date')">
+                            </el-date-picker>
+                        </el-form-item>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <el-form-item label="Người chỉ định" >
+                            <el-select v-model="search_data.created_by" size="small"
+                                       placeholder="Chọn người chỉ định"
                                        filterable style="width: 100% !important">
                                 <el-option
-                                    v-for="item in listStatus"
+                                    v-for="item in listUser"
+                                    :key="'sex'+ item.id"
+                                    :label="item.created_by_name"
+                                    :value="item.id">
+                                </el-option>
+
+                            </el-select>
+                        </el-form-item>
+                    </div>
+                    <div class="col-sm-6">
+                        <el-form-item label="Người trả kết quả" >
+                            <el-select v-model="search_data.result_by" size="small"
+                                       placeholder="Chọn người trả kết quả"
+                                       filterable style="width: 100% !important">
+                                <el-option
+                                    v-for="item in listUser"
+                                    :key="'sex'+ item.id"
+                                    :label="item.created_by_name"
+                                    :value="item.id">
+                                </el-option>
+
+                            </el-select>
+                        </el-form-item>
+                    </div>
+                    <div class="col-sm-6">
+                        <el-form-item label="Dịch vụ" >
+                            <el-select v-model="search_data.service_id" size="small"
+                                       placeholder="Chọn dịch vụ"
+                                       filterable style="width: 100% !important">
+                                <el-option
+                                    v-for="item in listService"
+                                    :key="'sex'+ item.id"
+                                    :label="item.name"
+                                    :value="item.id">
+                                </el-option>
+
+                            </el-select>
+                        </el-form-item>
+                    </div>
+                    <div class="col-sm-6">
+                        <el-form-item label="Nguồn dữ liệu" >
+                            <el-select v-model="search_data.from_source" size="small"
+                                       placeholder="Chọn nguồn dữ liệu"
+                                       filterable style="width: 100% !important">
+                                <el-option
+                                    v-for="item in listSource"
                                     :key="'sex'+ item.value"
                                     :label="item.label"
                                     :value="item.value">
                                 </el-option>
 
                             </el-select>
-                        </el-form-item>
-                    </div>
-
-
-                    <div class="col-sm-6">
-                        <el-form-item :label="$t('examination.label.started_at')" style="width: 100% !important;">
-                            <el-date-picker
-                                style="width: 100% !important;"
-                                size="small"
-                                v-model="search_data.started_at"
-                                type="daterange"
-                                value-format="yyyy-MM-dd"
-                                range-separator="-"
-                                :start-placeholder="$t('user.label.from date')"
-                                :end-placeholder="$t('user.label.to date')">
-                            </el-date-picker>
-                        </el-form-item>
-                    </div>
-
-                    <div class="col-sm-6">
-                        <el-form-item :label="$t('examination.label.finished_at')" style="width: 100% !important;">
-                            <el-date-picker
-                                style="width: 100% !important;"
-                                size="small"
-                                v-model="search_data.finished_at"
-                                type="daterange"
-                                value-format="yyyy-MM-dd"
-                                range-separator="-"
-                                :start-placeholder="$t('user.label.from date')"
-                                :end-placeholder="$t('user.label.to date')">
-                            </el-date-picker>
                         </el-form-item>
                     </div>
                 </div>
@@ -133,22 +196,41 @@
                   sex: '',
                   created_at: [],
                     birthday: [],
-                    started_at: [],
-                    finished_at: [],
+                    result_at: [],
+                    created_by: null,
+                    result_by: null,
+                    service_type: null,
                 },
                 loadingFilterPatient: false,
+                listServiceType: [],
+                listService: [],
+                listUser: [],
                 listStatus: [
                     {
-                        value: 'init',
-                        label: 'Tiếp đón'
+                        value: 1,
+                        label: 'Mới'
                     },
                     {
-                        value: 'processing',
-                        label: 'Đang khám'
+                        value: 2,
+                        label: 'Đang thực hiện'
                     },
                     {
-                        value: 'done',
-                        label: 'Hoàn thành'
+                        value: 3,
+                        label: 'Đã có kết quả'
+                    },
+                    {
+                        value: 4,
+                        label: 'Đã huỷ'
+                    }
+                ],
+                listSource: [
+                    {
+                        value: 1,
+                        label: 'Local'
+                    },
+                    {
+                        value: 2,
+                        label: 'Lis'
                     }
                 ],
                 listSex: [
@@ -173,17 +255,67 @@
             setDefault() {
                 this.search_data = {
                     status: '',
-                    created_by: '',
                     sex: '',
-                    time_range: []
+                    created_at: [],
+                    birthday: [],
+                    result_at: [],
+                    created_by: null,
+                    result_by: null,
+                    service_type: null,
                 }
-            }
+            },
+            getServiceType() {
+
+                const properties = {
+                    page: 1,
+                    per_page: 10000
+
+                };
+
+                window.axios.get(route('api.servicetype.index', properties))
+                    .then((response) => {
+
+                        this.listServiceType = response.data.data;
+
+                    });
+            },
+            getService() {
+
+                const properties = {
+                    page: 1,
+                    per_page: 10000
+
+                };
+
+                window.axios.get(route('api.service.index', properties))
+                    .then((response) => {
+
+                        this.listService = response.data.data;
+
+                    });
+            },
+            getUser() {
+
+                const properties = {
+                    page: 1,
+                    per_page: 10000
+
+                };
+
+                window.axios.get(route('api.users.index', properties))
+                    .then((response) => {
+
+                        this.listUser = response.data.data;
+
+                    });
+            },
+        },
+        mounted() {
+            this.getServiceType();
+            this.getService();
+            this.getUser();
 
         },
-        watch: {
-
-        },
-
 
     }
 </script>

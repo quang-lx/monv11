@@ -213,7 +213,7 @@ export default {
                     name: this.$t('patient.label.phone'),
 
                 },
-                 
+
                 {
                     col_name: 'code',
                     name: 'Số phiếu',
