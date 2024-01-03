@@ -1,6 +1,8 @@
 <template>
     <div>
-        <el-dialog title="Rename Folder" :visible.sync="dialogFormVisible" width="30%">
+        <el-dialog
+ :close-on-click-modal="false"
+ title="Rename Folder" :visible.sync="dialogFormVisible" width="30%">
             <el-form :model="folder" v-loading.body="loading" @submit.native.prevent="onSubmit()">
                 <el-form-item label="Folder name" :class="{'el-form-item is-error': form.errors.has('name') }">
                     <el-input v-model="folder.name" auto-complete="off" autofocus></el-input>

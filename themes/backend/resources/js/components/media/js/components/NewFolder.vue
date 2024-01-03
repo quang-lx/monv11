@@ -4,7 +4,9 @@
             <i class="fa fa-plus"></i> {{ $t('media.folders.create_resource') }}
         </el-button>
 
-        <el-dialog :title="$t('media.folders.create_resource')" :visible.sync="dialogFormVisible"
+        <el-dialog
+ :close-on-click-modal="false"
+ :title="$t('media.folders.create_resource')" :visible.sync="dialogFormVisible"
                    width="30%">
             <el-form :model="folder" v-loading.body="loading" @submit.native.prevent="onSubmit()">
                 <el-form-item :label="$t('media.folders.folder_name')"

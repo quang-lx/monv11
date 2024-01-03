@@ -44,6 +44,8 @@
                             </div><!-- /.card-header -->
                             <div class="card-body">
                                 <el-dialog
+ :close-on-click-modal="false"
+
                                     :title="($t('user.label.change_password') + ': ' + modelForm.username)"
                                     :visible.sync="changePassDialogVisible"
                                     width="30%"

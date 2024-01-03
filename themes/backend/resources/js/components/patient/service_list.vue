@@ -140,7 +140,9 @@
 
 
 
-        <el-dialog :title="$t('service.label.add service title')" :visible.sync="show_add_service_form">
+        <el-dialog
+ :close-on-click-modal="false"
+ :title="$t('service.label.add service title')" :visible.sync="show_add_service_form">
 
             <el-select v-model="service_selecteds" multiple filterable remote reserve-keyword
                 :placeholder="$t('common.search')">

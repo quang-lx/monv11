@@ -1,6 +1,8 @@
 <template>
     <div>
-        <el-dialog width="40%" :show-close="true" :title="$t('device.label.import title')" :destroy-on-close="true"
+        <el-dialog
+ :close-on-click-modal="false"
+ width="40%" :show-close="true" :title="$t('device.label.import title')" :destroy-on-close="true"
             :visible.sync="show_import" :before-close="onClosePopup">
             <div class="body-dialog">
                 <div class="">

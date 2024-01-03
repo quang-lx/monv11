@@ -59,7 +59,9 @@
                     </div>
                 </div>
 
-        <el-dialog :title="$t('role.label.add user title')" :visible.sync="show_add_user_form">
+        <el-dialog
+ :close-on-click-modal="false"
+ :title="$t('role.label.add user title')" :visible.sync="show_add_user_form">
 
             <el-select
                 v-model="user_selecteds"

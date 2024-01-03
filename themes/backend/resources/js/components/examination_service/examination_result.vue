@@ -251,7 +251,9 @@
             </div>
         </section>
 
-        <el-dialog title="In kết quả" :visible.sync="show_result_popup" top="2vh">
+        <el-dialog
+ :close-on-click-modal="false"
+ title="In kết quả" :visible.sync="show_result_popup" top="2vh">
             <div v-if="examination_service.pdf_link" style="max-height: 75vh !important; overflow: scroll">
                 <vue-pdf-embed :source="examination_service.pdf_link"  />
 

@@ -4,6 +4,8 @@
             <div>{{$t('media.insert')}}&nbsp &nbsp<i class="el-icon-upload el-icon-right"></i></div>
         </el-button>
         <el-dialog
+ :close-on-click-modal="false"
+
                 :visible.sync="dialogVisible"
 
                 :before-close="handleClose">

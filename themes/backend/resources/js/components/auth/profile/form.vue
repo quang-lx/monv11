@@ -75,7 +75,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <el-dialog class="popup-change-pass" custom-class="change-pass"
+                                <el-dialog
+ :close-on-click-modal="false"
+ class="popup-change-pass" custom-class="change-pass"
                                     :visible.sync="changePassDialogVisible" :show-close="true"
                                     :before-close="closeChangePass" width="500px">
                                     <h2>Đổi mật khẩu</h2>

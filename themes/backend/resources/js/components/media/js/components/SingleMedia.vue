@@ -15,6 +15,8 @@
         </div>
 
         <el-dialog
+ :close-on-click-modal="false"
+
                 :visible.sync="dialogVisible"
                 fullscreen
                 :before-close="handleClose">

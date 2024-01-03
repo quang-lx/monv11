@@ -2,6 +2,8 @@
     <div>
 
         <el-dialog
+ :close-on-click-modal="false"
+
             width="40%"
             :show-close="false"
             title="Lọc danh sách khám bệnh "

@@ -1,7 +1,9 @@
 <template>
     <div>
 
-        <el-dialog width="40%" :title="$t('user.label.filter title')" :destroy-on-close="true"
+        <el-dialog
+ :close-on-click-modal="false"
+ width="40%" :title="$t('user.label.filter title')" :destroy-on-close="true"
             @close="closePopup" :visible.sync="show_popup">
 
 

@@ -1,6 +1,8 @@
 <template>
     <div>
-        <el-dialog title="Move Media" :visible.sync="dialogFormVisible" width="30%;z-index:3008" class="move-media-dialog"  @open="fetchFolders">
+        <el-dialog
+ :close-on-click-modal="false"
+ title="Move Media" :visible.sync="dialogFormVisible" width="30%;z-index:3008" class="move-media-dialog"  @open="fetchFolders">
             <el-form v-loading.body="loading" @submit.native.prevent="onSubmit()">
                 <el-form-item label="To" :class="{'el-form-item is-error': form.errors.has('destinationFolder') }">
                     <el-select v-model="destinationFolder" placeholder="Select">

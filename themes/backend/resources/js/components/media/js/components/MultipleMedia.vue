@@ -33,6 +33,8 @@
             <el-button type="button" @click="dialogVisible = true">{{ $t('media.Browse') }}</el-button>
         </div>
         <el-dialog
+ :close-on-click-modal="false"
+
                 :visible.sync="dialogVisible"
                 fullscreen
                 :before-close="handleClose">

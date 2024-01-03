@@ -173,7 +173,9 @@
             </div>
         </section>
 
-        <el-dialog width="30%" :show-close="false" :title="$t('department.label.add department')" :destroy-on-close="true"
+        <el-dialog
+ :close-on-click-modal="false"
+ width="30%" :show-close="false" :title="$t('department.label.add department')" :destroy-on-close="true"
             :visible.sync="showAddDepartment" :before-close="onClosePopup">
 
 
@@ -192,7 +194,9 @@
                 <el-button size="small" type="primary" @click="confirmAddDepartment">{{ $t('common.add') }}</el-button>
             </div>
         </el-dialog>
-        <el-dialog width="30%" :show-close="false" :title="$t('department.label.edit department')" :destroy-on-close="true"
+        <el-dialog
+ :close-on-click-modal="false"
+ width="30%" :show-close="false" :title="$t('department.label.edit department')" :destroy-on-close="true"
             :visible.sync="showEditDepartment">
 
 
