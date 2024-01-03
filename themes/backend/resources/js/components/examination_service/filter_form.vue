@@ -200,6 +200,7 @@
                     created_by: null,
                     result_by: null,
                     service_type: null,
+                    from_source: null,
                 },
                 loadingFilterPatient: false,
                 listServiceType: [],
@@ -262,6 +263,8 @@
                     created_by: null,
                     result_by: null,
                     service_type: null,
+                    from_source: null,
+
                 }
             },
             getServiceType() {
