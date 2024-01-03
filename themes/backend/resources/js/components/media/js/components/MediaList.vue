@@ -159,7 +159,6 @@
 
             </div>
             <el-dialog
- :close-on-click-modal="false"
 
                 title="Crop ảnh"
                 :visible.sync="cropVisible"
