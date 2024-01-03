@@ -19,7 +19,7 @@ class PatientThinTransformer extends JsonResource
             'name' => $this->name,
             'sex' => $this->sex,
             'sex_text' => $this->sex == 1 ? 'Nam' : 'Nữ',
-            'birthday' => $this->birthday? \DateTime::createFromFormat('Y-m-d H:i:s', $this->birthday)->format('Y-m-d'): '',
+            'birthday' => $this->birthday? \DateTime::createFromFormat('Y-m-d H:i:s', $this->birthday)->format('d/m/Y'): '',
             'phone' => $this->phone,
             'email' => $this->email,
             'papers' => $this->papers,

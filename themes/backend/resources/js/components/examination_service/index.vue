@@ -49,6 +49,7 @@
                                     <el-table :data="data" stripe style="width: 100%" ref="dataTable"
                                         v-loading.body="tableIsLoading" @sort-change="handleSortChange"
                                         @selection-change="handleSelectionChange">
+                                        <el-table-column :label="$t('disease.label.stt')" type="index" width="100"></el-table-column>
                                         <el-table-column v-for="col_selected in list_selected_col"
                                             :key="col_selected.col_name" :prop="col_selected.col_name"
                                             :label="list_col_label[col_selected.col_name]" min-width="150">
@@ -218,8 +219,8 @@ export default {
 
                 },
                 {
-                    col_name: 'service.code',
-                    name: this.$t('service.label.code'),
+                    col_name: 'code',
+                    name: 'Số phiếu',
 
                 },
                 {
