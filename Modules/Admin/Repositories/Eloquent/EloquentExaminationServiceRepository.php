@@ -67,6 +67,13 @@ class EloquentExaminationServiceRepository extends BaseRepository implements Exa
             });
 
         }
+        if ($request->get('sex') !== null) {
+            $sex = $request->get('sex');
+            $query->whereHas('patient', function ($query) use ($sex) {
+                $query->whereBetween('sex', $sex);
+
+            });
+        }
         if ($request->get('status') !== null) {
             $status = $request->get('status');
             $query->where('status', $status);
