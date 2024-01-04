@@ -2,6 +2,7 @@
 
 namespace Modules\Admin\Repositories;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Modules\Mon\Entities\PatientExamination;
 
@@ -9,6 +10,8 @@ class DashboardRepository
 {
     public function summaryKCB(Request $request) {
         list($from_date, $to_date) = $request->get('date_search');
+        $from_date = Carbon::createFromFormat('d/m/Y', $from_date);
+        $to_date = Carbon::createFromFormat('d/m/Y', $to_date);
         $query = PatientExamination::query()->whereBetween('created_at', [$from_date, $to_date]);
         $total = $query->count();
         $not_done = (clone $query)->where('status', '<>', PatientExamination::STATUS_DONE)->count();
