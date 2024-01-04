@@ -120,7 +120,7 @@
                                                   :class="{ 'el-form-item is-error': form.errors.has('diagnose') }">
                                         <el-input type="textarea" placeholder=""
                                                   disabled
-                                                  :autosize="{ minRows: 5, maxRows: 10 }"
+                                                  :autosize="{ minRows: 3, maxRows: 10 }"
                                                   v-model="modelForm.diagnose"></el-input>
 
                                         <div class="el-form-item__error" v-if="form.errors.has('diagnose')"
