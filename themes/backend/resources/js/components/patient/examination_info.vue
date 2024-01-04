@@ -149,7 +149,10 @@ export default {
 
     },
     props: {
-        examination_data: { default: {} },
+        examination_data: {
+            type: Object,
+            default: () => ({})
+        },
         show_diagnose: {default: null},
         show_status: {default:false}
     },
