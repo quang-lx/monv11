@@ -8,7 +8,7 @@
             title="Lọc danh sách khám bệnh "
             :destroy-on-close="true"
             :close-on-click-modal="false"
-            @close="show_filter= false"
+            @close="closePopup"
             :visible.sync="show_filter">
 
 
