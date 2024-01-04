@@ -30,35 +30,10 @@
 
 <!-- thông tin bệnh nhân-->
         <patient-info :model-form="modelForm.patient" :show_diagnose="false"></patient-info>
-        <examination-info :examination_data="modelForm.examination_info" :show_diagnose="false" :show_status="true"/>
+        <examination-info :examination_data="modelForm.examination_info" :show_diagnose="true" :show_status="true"/>
 
 
 
-        <section class="content">
-            <div class="container-fluid">
-                <div class="card">
-                    <el-form :model="modelForm" label-position="top">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <el-form-item :label="$t('patient.label.diagnose')" prop="diagnose"
-                                                  :class="{ 'el-form-item is-error': form.errors.has('diagnose') }">
-                                        <el-input type="textarea" placeholder="" disabled
-
-                                                  :autosize="{ minRows: 3, maxRows: 10 }"
-                                                  v-model="modelForm.diagnose"></el-input>
-
-                                        <div class="el-form-item__error" v-if="form.errors.has('diagnose')"
-                                             v-text="form.errors.first('diagnose')"></div>
-                                    </el-form-item>
-                                </div>
-
-                            </div>
-                        </div>
-                    </el-form>
-                </div>
-            </div>
-        </section>
 
         <examination-result :examination_service="modelForm" ></examination-result>
 
