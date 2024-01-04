@@ -70,7 +70,7 @@
                                         <el-table-column prop="actions" :label="$t('common.action')" width="150"
                                             fixed="right">
                                             <template slot-scope="scope">
-                                                <i @click="onDowloadPDF(scope.row.id, scope.$index)" role="button" class=" mr-2" v-if="scope.row.status == 3">
+                                                <i @click="onDowloadPDF(scope.row.id, scope.$index)" role="button" class=" mr-2" v-if="scope.row.status == 3 && scope.row.pdf_link">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                                         <path d="M11.8335 15.9909C11.8535 16.0165 11.8791 16.0373 11.9084 16.0515C11.9376 16.0657 11.9697 16.0731 12.0022 16.0731C12.0348 16.0731 12.0669 16.0657 12.0961 16.0515C12.1253 16.0373 12.1509 16.0165 12.171 15.9909L15.171 12.1954C15.2808 12.0561 15.1817 11.8499 15.0022 11.8499H13.0174V2.78557C13.0174 2.66772 12.921 2.57129 12.8031 2.57129H11.196C11.0781 2.57129 10.9817 2.66772 10.9817 2.78557V11.8472H9.00223C8.82277 11.8472 8.72366 12.0534 8.83348 12.1927L11.8335 15.9909ZM21.8058 15.0534H20.1987C20.0808 15.0534 19.9844 15.1499 19.9844 15.2677V19.3927H4.02009V15.2677C4.02009 15.1499 3.92366 15.0534 3.8058 15.0534H2.19866C2.0808 15.0534 1.98438 15.1499 1.98438 15.2677V20.5713C1.98438 21.0454 2.36741 21.4284 2.84152 21.4284H21.1629C21.6371 21.4284 22.0201 21.0454 22.0201 20.5713V15.2677C22.0201 15.1499 21.9237 15.0534 21.8058 15.0534Z" fill="black"/>
                                                     </svg>
@@ -337,7 +337,13 @@ export default {
     },
     methods: {
         onDowloadPDF(id, idx) {
+            const downloadLink = document.createElement("a");
 
+            downloadLink.href = this.data[idx].pdf_link;
+
+            downloadLink.download = "ket_qua.pdf";
+
+            downloadLink.click();
         },
 
         onCancelService(id, idx) {

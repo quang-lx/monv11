@@ -23,7 +23,7 @@ class ExaminationServiceListTransformer extends JsonResource
             'source_text'=> $this->source_text,
             'status_text'=> $this->status_text,
             'status_color'=> $this->status_color,
-            'pdf_link'=> $this->pdf_link,
+            'pdf_link'=> $this->pdf_link? sprintf('data:application/pdf;base64,%s', $this->pdf_link): null,
             'created_by'=> $this->user,
             'result_by'=> $this->result_by,
             'created_by_name'=>$this->user? (optional($this->user)->username. ' - '. optional($this->user)->name): '',
