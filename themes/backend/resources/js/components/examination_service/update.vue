@@ -32,7 +32,7 @@
         <patient-info :model-form="modelForm.patient" :show_diagnose="false"></patient-info>
         <examination-info :examination_data="modelForm.examination_info" :show_diagnose="false" :show_status="true"/>
 
-        <examination-result :examination_service="modelForm" ></examination-result>
+
 
         <section class="content">
             <div class="container-fluid">
@@ -45,7 +45,7 @@
                                                   :class="{ 'el-form-item is-error': form.errors.has('diagnose') }">
                                         <el-input type="textarea" placeholder="" disabled
 
-                                                  :autosize="{ minRows: 5, maxRows: 10 }"
+                                                  :autosize="{ minRows: 3, maxRows: 10 }"
                                                   v-model="modelForm.diagnose"></el-input>
 
                                         <div class="el-form-item__error" v-if="form.errors.has('diagnose')"
@@ -59,6 +59,9 @@
                 </div>
             </div>
         </section>
+
+        <examination-result :examination_service="modelForm" ></examination-result>
+
         <div class="row">
             <div class="col-12">
                 <div class="card">
