@@ -5,15 +5,26 @@
             <div class="container-fluid">
                 <div class="card">
                     <div class="card-body">
+                        <div class="f-box-title  d-flex align-items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="16" viewBox="0 0 20 16" fill="none">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M0.747451 0.494141H19.2474C19.5265 0.494141 19.7527 0.720355 19.7527 0.999404V14.7494C19.7527 15.0285 19.5265 15.2547 19.2474 15.2547H0.747451C0.468402 15.2547 0.242188 15.0285 0.242188 14.7494V0.999404C0.242188 0.720355 0.468402 0.494141 0.747451 0.494141ZM18.742 14.2439V1.50465H1.2527V14.2439H18.742Z" fill="#252525"/>
+                                <path d="M2.99219 8.5027L2.997 7.49219L17.0075 7.5589L17.0027 8.56942L2.99219 8.5027Z" fill="#252525"/>
+                                <path d="M2.99219 10.5632L2.997 9.55273L17.0075 9.61945L17.0027 10.63L2.99219 10.5632Z" fill="#252525"/>
+                                <path d="M2.99219 12.6257L2.997 11.6152L17.0075 11.6819L17.0027 12.6925L2.99219 12.6257Z" fill="#252525"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M3.49745 2.99414H9.74745C10.0265 2.99414 10.2527 3.22035 10.2527 3.4994V5.9994C10.2527 6.27845 10.0265 6.50467 9.74745 6.50467H3.49745C3.2184 6.50467 2.99219 6.27845 2.99219 5.9994V3.4994C2.99219 3.22035 3.2184 2.99414 3.49745 2.99414ZM9.24195 5.4939V4.00465H4.0027V5.4939H9.24195Z" fill="#252525"/>
+                            </svg>
+                            <span class="f-text-title pl-1 pr-2"> Chỉ số con</span>
+
+                        </div>
+
                         <div class="row justify-content-between mb-2">
                             <div class="col-md-8">
-                                <div class="row d-flex flex-row align-items-center f-box-title">
-                                    <span class="col-4">Danh sách chỉ số con</span>
+
                                     <el-input class="col-5" suffix-icon="el-icon-search" @keyup.native="performSearch"
                                               placeholder="Tìm kiếm chỉ số" size="small" v-model="searchQuery">
                                     </el-input>
 
-                                </div>
+
 
                             </div>
                             <div class="col-md-4 d-flex flex-row align-items-center d-flex justify-content-end">
