@@ -2,8 +2,13 @@
     <div>
         <div class="row">
             <div class="col-12 d-flex align-items-center justify-content-end">
-                <el-date-picker v-model="date_search" type="daterange" :picker-options="picker_option" range-separator="-"
-                    start-placeholder="Từ ngày" end-placeholder="Đến ngày" format="dd/MM/yyyy" value-format="dd/MM/yyyy"
+                <el-date-picker
+                    @change="getAllData"
+                    v-model="date_search" type="daterange"
+                                :picker-options="picker_option"
+                                range-separator="-"
+                    start-placeholder="Từ ngày" end-placeholder="Đến ngày"
+                                format="dd/MM/yyyy" value-format="dd/MM/yyyy"
                     align="right">
                 </el-date-picker>
             </div>
@@ -17,7 +22,7 @@
                 <div class="small-box d-flex align-items-center justify-content-between"
                     style="background-color: var(--dark-blue, #015E99);">
                     <div class="inner">
-                        <h3>500</h3>
+                        <h3>{{summary_kcb.total}}</h3>
                         <p>Lượt liên thông <br>
                             dữ liệu KCB</p>
                     </div>
@@ -43,9 +48,9 @@
                     style="background: var(--Blue, #1790C9);">
                     <div class="inner">
                         <h3 class="d-flex align-items-center">
-                            <span>53</span>
+                            <span>{{summary_kcb.not_done}}</span>
                             <div class="border-index"></div>
-                            <span>20%</span>
+                            <span>{{summary_kcb.not_done_percent}}%</span>
                         </h3>
                         <p>Chưa hoàn
                             thành khám </p>
@@ -73,9 +78,9 @@
                     style="background: var(--cyan, #119DB5);">
                     <div class="inner">
                         <h3 class="d-flex align-items-center">
-                            <span>30</span>
+                            <span>{{summary_kcb.new_kcb}}</span>
                             <div class="border-index"></div>
-                            <span>20%</span>
+                            <span>{{summary_kcb.new_percent}}%</span>
                         </h3>
                         <p>Lượt khám mới</p>
                     </div>
@@ -102,9 +107,9 @@
                     style="background: var(--cyan, #65A7F5);">
                     <div class="inner">
                         <h3 class="d-flex align-items-center">
-                            <span>50</span>
+                            <span>{{summary_kcb.again_kcb}}</span>
                             <div class="border-index"></div>
-                            <span>80%</span>
+                            <span>{{summary_kcb.again_percent}}%</span>
                         </h3>
                         <p>Lượt tái khám</p>
                     </div>
@@ -393,6 +398,7 @@ import {
     PointElement
 } from 'chart.js'
 import { Bar, Doughnut, Line as LineChart } from 'vue-chartjs'
+import _ from "lodash";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement, ChartDataLabels, LineElement, PointElement)
 
@@ -411,7 +417,17 @@ export default {
 
     data() {
         return {
-            date_search: "",
+            date_search: [new Date(), new Date()],
+            summary_kcb: {
+                total: '__',
+                not_done: '__',
+                not_done_percent: '__',
+                new_kcb: '__',
+                new_percent: '__',
+                again_kcb: '__',
+                again_percent: '__',
+
+            },
             picker_option: {
                 shortcuts: [
                     {
@@ -777,6 +793,26 @@ methods: {
             data: data,
             options: options
         });
+    },
+
+    getKCB() {
+
+        const properties = {
+
+            date_search: this.date_search,
+
+        };
+
+        window.axios.get(route('api.dashboard.summaryKCB', properties))
+            .then((response) => {
+
+                this.summary_kcb = response.data;
+
+            });
+    },
+
+    getAllData() {
+        this.getKCB()
     }
 
 
@@ -785,6 +821,7 @@ mounted() {
 
     this.renderBarChartServiceType();
     this.renderBarChartDisease();
+
 
 },
 computed: { }
