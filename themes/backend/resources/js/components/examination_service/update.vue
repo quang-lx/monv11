@@ -37,18 +37,9 @@
 
         <examination-result :examination_service="modelForm" ></examination-result>
 
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
 
-                    <div class="card-body">
-                        <examination-service-index :examination_service_id="modelForm.id"  v-if="load_done"></examination-service-index>
+        <examination-service-index :examination_service_id="modelForm.id"  v-if="load_done"></examination-service-index>
 
-                    </div><!-- /.card-body -->
-
-                </div>
-            </div>
-        </div>
     </div>
 </template>
 
