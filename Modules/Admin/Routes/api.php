@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->prefix('/dashboard')->group(function (){
 
     Route::get('/', [
-        'as' => 'api.dashboard.index',
+        'as' => 'api.dashboard.summaryKCB',
         'uses' => 'DashboardApiController@summaryKCB',
     ]);
 

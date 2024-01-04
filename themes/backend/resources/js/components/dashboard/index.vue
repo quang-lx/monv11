@@ -417,7 +417,7 @@ export default {
 
     data() {
         return {
-            date_search: [new Date(), new Date()],
+            date_search: [],
             summary_kcb: {
                 total: '__',
                 not_done: '__',
@@ -818,7 +818,11 @@ methods: {
 
 },
 mounted() {
-
+    let current_date = new Date()
+    let date_format = current_date.getFullYear() + '/' + ("0" + (current_date.getMonth()+1)).slice(-2) + "/" +
+        ("0" + current_date.getDate()).slice(-2)
+    this.date_search = [date_format, date_format]
+    this.getAllData()
     this.renderBarChartServiceType();
     this.renderBarChartDisease();
 
