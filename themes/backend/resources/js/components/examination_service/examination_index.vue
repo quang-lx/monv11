@@ -18,16 +18,16 @@
                         </div>
 
                         <div class="row justify-content-between mb-2">
-                            <div class="col-md-8">
+                            <div class="col-md-4">
 
-                                    <el-input class="col-5" suffix-icon="el-icon-search" @keyup.native="performSearch"
+                                    <el-input   suffix-icon="el-icon-search" @keyup.native="performSearch"
                                               placeholder="Tìm kiếm chỉ số" size="small" v-model="searchQuery">
                                     </el-input>
 
 
 
                             </div>
-                            <div class="col-md-4 d-flex flex-row align-items-center d-flex justify-content-end">
+                            <div class="col-md-8 d-flex flex-row align-items-center d-flex justify-content-end">
 
 
                                 <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange"
@@ -56,7 +56,7 @@
                                                          type="index"></el-table-column>
 
 
-                                        <el-table-column :label="$t('service.label.code')" width="120">
+                                        <el-table-column label="Mã chỉ số" width="120">
                                             <template slot-scope="scope">
 
                                                 <span>
@@ -65,18 +65,7 @@
                                                 </span>
                                             </template>
                                         </el-table-column>
-                                        <el-table-column :label="$t('service.label.code_lis')" width="120">
-                                            <template slot-scope="scope">
-
-                                                <span>
-                                                     {{scope.row.index_data.code_lis}}
-
-                                                </span>
-                                            </template>
-                                        </el-table-column>
-
-                                        <el-table-column prop="name" :label="$t('service.label.name')"
-                                                         min-width="150">
+                                        <el-table-column label="Tên chỉ số" width="120">
                                             <template slot-scope="scope">
 
                                                 <span>
@@ -85,6 +74,8 @@
                                                 </span>
                                             </template>
                                         </el-table-column>
+
+                                        
 
                                         <el-table-column prop="min_value" :label="$t('service.label.min_value')"
                                                          width="150">
