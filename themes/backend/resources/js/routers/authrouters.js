@@ -36,7 +36,7 @@ const currentLocale = '/' + window.MonCMS.currentLocale;
 
 export default [
     {
-        path: '/',
+        path: '/admin',
         name: 'admin.dashboard.index',
         component: Dashboard,
     },

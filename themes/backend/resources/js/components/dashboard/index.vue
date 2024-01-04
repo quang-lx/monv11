@@ -15,7 +15,7 @@
         </div>
         <div class="row box-dashboard d-flex">
             <div class="col-12">
-                <h3 class="title-box">Tổng quan khám chữa bệnh <span v-if="date_search">{{ date_search[0] }} -
+                <h3 class="title-box">Kết quả <span v-if="date_search">{{ date_search[0] }} -
                         {{ date_search[1] }}</span></h3>
             </div>
             <div class="w-20">
@@ -104,7 +104,7 @@
             </div>
             <div class="w-20">
                 <div class="small-box d-flex align-items-center justify-content-between"
-                    style="background: var(--cyan, #65A7F5);">
+                    style="background:#65A7F5">
                     <div class="inner">
                         <h3 class="d-flex align-items-center">
                             <span>{{summary_kcb.again_kcb}}</span>
@@ -867,16 +867,20 @@ computed: { }
     line-height: 24px;
     letter-spacing: 0.08px;
     padding: 20px 0px 20px 20px;
-    margin-right: 10px;
+    margin-right: 5px;
 }
 
 .small-box .inner h3 {
-    font-size: 32px;
+    font-size: 26px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
     letter-spacing: 0.32px;
     margin-bottom: 0px;
+}
+
+.small-box .inner p{
+    margin-bottom: 0px !important;
 }
 
 .svg-icon {
