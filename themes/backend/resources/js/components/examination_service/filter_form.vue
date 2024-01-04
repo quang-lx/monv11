@@ -4,10 +4,11 @@
         <el-dialog
 
             width="40%"
-            :show-close="false"
+            :show-close="true"
             title="Lọc danh sách khám bệnh "
             :destroy-on-close="true"
             :close-on-click-modal="false"
+            @close="show_filter= false"
             :visible.sync="show_filter">
 
 
