@@ -56,7 +56,7 @@
                                             <template slot-scope="scope">
                                                     <span v-if="col_selected.col_name == 'patient.sex'">{{
                                                         scope.row.patient.sex_text }}</span>
-                                                <span v-if="col_selected.col_name == 'from_source'">{{
+                                                <span v-else-if="col_selected.col_name == 'from_source'">{{
                                                         scope.row.source_text }}</span>
                                                     <span v-else-if="col_selected.col_name == 'status'"   :style="{ color: scope.row.status_color }">{{
                                                         scope.row.status_text }}</span>
