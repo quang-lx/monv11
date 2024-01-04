@@ -8,7 +8,7 @@
 
                         <div class="float-left d-flex align-items-center">
                             <i class="el-icon-arrow-left f-icon-bound-breadcrumb mr-2"
-                               @click="gotoPage({ name: 'admin.patientexamination.index' })"></i>
+                               @click="gotoPage({ name: 'admin.examinationservice.index' })"></i>
                             <span class="f-breadcrumb">{{ $t(pageTitle) }}</span>
 
                         </div>
@@ -30,8 +30,9 @@
 
 <!-- thông tin bệnh nhân-->
         <patient-info :model-form="modelForm.patient" :show_diagnose="false"></patient-info>
-        <examination-result :examination_service="modelForm" ></examination-result>
         <examination-info :examination_data="modelForm.examination_info" :show_diagnose="false" :show_status="true"/>
+
+        <examination-result :examination_service="modelForm" ></examination-result>
 
         <section class="content">
             <div class="container-fluid">
@@ -75,7 +76,7 @@
 
 <script>
     import Form from 'form-backend-validation';
-    import PatientInfo from './../patient/patient_info';
+    import PatientInfo from './patient_info';
     import ExaminationInfo from './../patient/examination_info';
     import ListIndexResult from '../examination/list_index_result';
     import ExaminationServiceIndex from './examination_index';
