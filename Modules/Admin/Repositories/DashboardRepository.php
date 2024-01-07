@@ -20,7 +20,7 @@ class DashboardRepository
         $new_percent = $total> 0 ? round(($new_kcb/$total * 100)): 0;
 
         $again_kcb = $total - $new_kcb;
-        $again_percent = 100 - $again_kcb;
+        $again_percent = 100 - $new_percent;
 
         return [
           'total' => $total,
