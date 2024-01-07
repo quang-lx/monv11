@@ -96,7 +96,7 @@
 
                                                     <div class="row" >
                                                         <div class="col-md-4">
-                                                            <el-form-item :label="$t('patient.label.created_at')" prop="created_at"
+                                                            <el-form-item :label="$t('patient.label.label created_at')" prop="created_at"
                                                                           :class="{ 'el-form-item is-error': form.errors.has('created_at') }">
                                                                 <el-input disabled
                                                                           v-model="modelForm.created_at" size="small"></el-input>
@@ -113,7 +113,7 @@
                                                         </div>
 
                                                         <div class="col-md-4">
-                                                            <el-form-item :label="$t('patient.label.label data_sources')"
+                                                            <el-form-item :label="$t('patient.label.data_sources')"
                                                                           prop="data_sources"
                                                                           :class="{ 'el-form-item is-error': form.errors.has('data_sources') }">
                                                                 <el-input disabled

@@ -64,7 +64,8 @@
                                     <el-table :data="data" stripe style="width: 100%" ref="dataTable"
                                         v-loading.body="tableIsLoading" @sort-change="handleSortChange"
                                         @selection-change="handleSelectionChange">
-                                        <el-table-column :label="$t('disease.label.stt')" type="index" width="100">
+                                        <el-table-column :label="$t('disease.label.stt')" :index="indexMethod" type="index"
+                                            width="100">
                                         </el-table-column>
                                         <el-table-column v-for="col_selected in list_selected_col"
                                             :key="col_selected.col_name" :prop="col_selected.col_name"
@@ -147,6 +148,7 @@
 
         <popup-import :show_import="show_import" :loadingImport="loadingImport" @on-import="onImportPatients"
             url_template="/excel-template/Patient_Template.xlsx" @close-popup="closeImport"
+            content="Điều này đồng nghĩa với việc bạn phải chuẩn bị sẵn mẫu dữ liệu mà bạn muốn thêm mới."
             :data_export="data_export"></popup-import>
 
         <filter-form :show_filter="show_filter" @on-filter="onFilter" @close-filter="closeFilter"></filter-form>
@@ -397,6 +399,11 @@ export default {
             });
 
         },
+        indexMethod(index) {
+            if (!this.tableIsLoading) {
+                return index + (this.meta.current_page - 1) * this.meta.per_page + 1;
+            }
+        }
 
     },
     mounted() {
@@ -411,7 +418,8 @@ export default {
 }
 </script>
 
-<style scoped>.disabled {
+<style scoped>
+.disabled {
     pointer-events: none;
 
 }</style>

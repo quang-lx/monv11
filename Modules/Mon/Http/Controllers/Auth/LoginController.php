@@ -167,7 +167,7 @@ class LoginController extends WebController
         $user = User::where('username', $request->input('username'))->first();
 
         if (!$user) {
-            return back()->withErrors(['username' => 'Tên người dùng hoặc mật khẩu không chính xác.'])->withInput();
+            return back()->withErrors(['username' => 'Thông tin này là bắt buộc.'])->withInput();
         }
 
         if ($user->status == User::STATUS_INACTIVE) {

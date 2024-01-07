@@ -18,10 +18,9 @@ class CreateUserRequest extends FormRequest
 
         $rules = [
 
-            'username'=>"required|unique:users",
+            'username'=>"unique:users",
             'name'=>"required",
             'sex'=>"required",
-            'department_id'=>"required",
             'active_at'=>"required",
             'expired_at'=>"required",
 

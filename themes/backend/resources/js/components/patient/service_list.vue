@@ -18,7 +18,8 @@
             </div>
             <div class="col-md-6 d-flex flex-row align-items-center d-flex justify-content-end">
 
-                <span class="f-action pl-4 f-pointer" @click="() => { show_add_service_form = true, getServiceOptions() }" v-if="show_add_icon">
+                <span class="f-action pl-4 f-pointer" @click="() => { show_add_service_form = true, getServiceOptions() }"
+                    v-if="show_add_icon">
                     <inline-svg src="/images/add.svg" /> {{ $t('common.add') }}
 
                 </span>
@@ -46,7 +47,8 @@
 
                             <el-table :data="data" stripe style="width: 100%" ref="dataTable"
                                 v-loading.body="tableIsLoading" @sort-change="handleSortChange">
-                                <el-table-column :label="$t('service.label.stt')" type="index" width="100" align="center">
+                                <el-table-column :label="$t('service.label.stt')" :index="indexMethod" type="index"
+                                    width="100" align="center">
                                 </el-table-column>
                                 <el-table-column prop="code" label="Số phiếu" width="120" align="center">
                                 </el-table-column>
@@ -140,9 +142,8 @@
 
 
 
-        <el-dialog
- :close-on-click-modal="false"
- :title="$t('service.label.add service title')" :visible.sync="show_add_service_form">
+        <el-dialog :close-on-click-modal="false" :title="$t('service.label.add service title')"
+            :visible.sync="show_add_service_form">
 
             <el-select v-model="service_selecteds" multiple filterable remote reserve-keyword
                 :placeholder="$t('common.search')">
@@ -370,7 +371,7 @@ export default {
             let routeUri = route('api.patient.print_service_designation', { patient: this.patient_id });
             const vm = this;
 
-            const params = {examination_id: this.examination_id}
+            const params = { examination_id: this.examination_id }
             window.axios.post(routeUri, params, {
                 responseType: 'arraybuffer', // Add this option for binary data (e.g., for downloading files)
             })
@@ -388,6 +389,11 @@ export default {
                         message: error.data.message,
                     });
                 })
+        },
+        indexMethod(index) {
+            if (!this.tableIsLoading) {
+                return index + (this.meta.current_page - 1) * this.meta.per_page + 1;
+            }
         }
 
 

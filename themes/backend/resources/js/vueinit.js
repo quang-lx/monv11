@@ -8,7 +8,7 @@ import ElementUI from 'element-ui';
 
 import DataTables from 'vue-data-tables';
 import VueEvents from 'vue-events';
-import locale from 'element-ui/lib/locale/lang/vi';
+import locale from './vi-datatable';
 import Locale from './vue-i18n-locales.generated';
 import router from './routers';
 import '../scss/backend.scss'

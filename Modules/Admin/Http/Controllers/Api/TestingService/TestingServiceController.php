@@ -98,7 +98,6 @@ class TestingServiceController extends ApiController
         Excel::import($import, $request->file('file'));
         $data_service = $import->getDataImport();
         $list_error = [];
-
         foreach ($data_service as $key => $row) {
             try {
                 $row_error = $row;

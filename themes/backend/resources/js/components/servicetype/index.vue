@@ -53,12 +53,16 @@
 
                                     <el-table :data="data" stripe style="width: 100%" ref="dataTable"
                                         v-loading.body="tableIsLoading" @sort-change="handleSortChange">
-                                        <el-table-column :label="$t('disease.label.stt')" type="index" width="100">
+                                        <el-table-column :label="$t('disease.label.stt')" :index="indexMethod" type="index"
+                                            width="100">
                                         </el-table-column>
-                                        <el-table-column prop="code" :label="$t('servicetype.label.code')" width="200"></el-table-column>
+                                        <el-table-column prop="code" :label="$t('servicetype.label.code')"
+                                            width="200"></el-table-column>
 
-                                        <el-table-column prop="name" :label="$t('servicetype.label.name')" min-width="250"> </el-table-column>
-                                        <el-table-column prop="created_at" :label="$t('common.created_at')" min-width="200"></el-table-column>
+                                        <el-table-column prop="name" :label="$t('servicetype.label.name')" min-width="250">
+                                        </el-table-column>
+                                        <el-table-column prop="created_at" :label="$t('common.created_at')"
+                                            min-width="200"></el-table-column>
 
 
                                         <el-table-column prop="actions" :label="$t('common.action')" width="100"
@@ -99,7 +103,9 @@
         </section>
 
 
-        <popup-import :show_import="show_import" :loadingImport="loadingImport" @on-import="onImportDevices" @close-popup="closeImport" url_template="/excel-template/GroupDevice_Template.xlsx" :data_export="data_export"></popup-import>
+        <popup-import :show_import="show_import" :loadingImport="loadingImport" @on-import="onImportDevices"
+            @close-popup="closeImport" url_template="/excel-template/GroupDevice_Template.xlsx"
+            :data_export="data_export"></popup-import>
 
     </div>
 </template>
@@ -165,7 +171,7 @@ export default {
                 });
         },
 
-      closeImport() {
+        closeImport() {
             this.show_import = false;
             this.loadingImport = 0;
             this.data_export = []
@@ -215,6 +221,11 @@ export default {
                     this.loading = false;
                 });
         },
+        indexMethod(index) {
+            if (!this.tableIsLoading) {
+                return index + (this.meta.current_page - 1) * this.meta.per_page + 1;
+            }
+        }
 
 
 

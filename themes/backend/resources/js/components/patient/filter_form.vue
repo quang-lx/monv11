@@ -1,9 +1,7 @@
 <template>
     <div>
 
-        <el-dialog
- :close-on-click-modal="false"
- width="40%" :show-close="false" :title="$t('patient.label.filter title')" :destroy-on-close="true"
+        <el-dialog width="40%" :show-close="true" :title="$t('patient.label.filter title')" :destroy-on-close="true"
             :visible.sync="show_filter" :before-close="onCloseFilter">
 
 
@@ -14,7 +12,7 @@
                     <div class="col-sm-6">
                         <el-form-item :label="$t('patient.label.birthday')" style="width: 100% !important;">
                             <el-date-picker style="width: 100% !important;" size="small" v-model="search_data.time_range"
-                                type="daterange" value-format="yyyy-MM-dd" range-separator="-"
+                                type="daterange" value-format="yyyy-MM-dd" format="dd/MM/yyyy" range-separator="-"
                                 :start-placeholder="$t('user.label.from date')" :end-placeholder="$t('user.label.to date')">
                             </el-date-picker>
                         </el-form-item>
@@ -52,8 +50,7 @@
                     <div class="col-sm-6">
                         <el-form-item :label="$t('patient.label.data_sources')">
                             <el-select v-model="search_data.created_by" size="small"
-                                :placeholder="$t('patient.label.data_sources')" filterable
-                                style="width: 100% !important">
+                                :placeholder="$t('patient.label.data_sources')" filterable style="width: 100% !important">
                                 <el-option v-for="item in listDataSource" :key="'data_sources' + item.value"
                                     :label="item.label" :value="item.value">
                                 </el-option>
@@ -68,7 +65,7 @@
 
             <div class="d-flex justify-content-end">
                 <el-button size="small" @click="setDefault">{{ $t('common.default') }}</el-button>
-                <el-button size="small" @click="closePopup">{{ $t('common.cancel') }}</el-button>
+                <el-button size="small" @click="onCloseFilter">{{ $t('common.cancel') }}</el-button>
                 <el-button size="small"
                     :disabled="!Object.keys(this.search_data).some(key => this.search_data[key] !== null)" type="primary"
                     @click="onSearchPatient">{{ $t('common.apply') }}</el-button>
