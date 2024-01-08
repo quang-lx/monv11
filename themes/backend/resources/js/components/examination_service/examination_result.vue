@@ -190,6 +190,15 @@
 
                                     <div class="row">
                                         <div class="col-md-3">
+                                            <el-form-item label="Người chỉ định">
+                                                <el-input disabled v-model="examination_service.created_by_name" size="small"
+                                                          style="width: 100%"
+                                                          autocomplete="off"></el-input>
+
+                                            </el-form-item>
+                                        </div>
+
+                                        <div class="col-md-3">
                                             <el-form-item label="Thời gian chỉ định">
                                                 <el-input disabled v-model="examination_service.created_at" size="small"
                                                           style="width: 100%"
@@ -201,6 +210,15 @@
                                             <el-form-item label="Nguồn dữ liệu"
                                                           :class="{'el-form-item is-error': form.errors.has('source_text') }">
                                                 <el-input disabled v-model="examination_service.source_text" size="small"
+                                                          style="width: 100%"
+                                                          autocomplete="off"></el-input>
+
+                                            </el-form-item>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <el-form-item label="Trạng thái kết quả"
+                                                          :class="{'el-form-item is-error': form.errors.has('status_text') }">
+                                                <el-input disabled v-model="examination_service.status_text" size="small"
                                                           style="width: 100%"
                                                           autocomplete="off"></el-input>
 
