@@ -54,7 +54,7 @@
                                                 </el-form-item>
                                             </div>
                                             <div class="col-md-3">
-                                                <el-form-item label="Nhập chiều cao (cm)">
+                                                <el-form-item label="Chiều cao (cm)">
                                                     <el-input-number :controls="false" v-model="item.height"
                                                                      size="small"
                                                                      style="width: 100%"
@@ -64,7 +64,7 @@
 
                                             </div>
                                             <div class="col-md-3">
-                                                <el-form-item label="Nhập cân nặng (kg)">
+                                                <el-form-item label="Cân nặng (kg)">
                                                     <el-input-number :controls="false" v-model="item.weight"
                                                                      size="small"
                                                                      style="width: 100%"

@@ -287,6 +287,12 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <list-index-result   :patient_id="$route.params.patientId"  />
+
+                                    </div>
+                                </div>
                                 <div class="row" v-if="!is_new">
                                     <div class="col-12">
                                         <div class="card">
@@ -326,6 +332,7 @@
     import ServiceList from './service_list';
     import ExaminationList from './examination_list';
      import SamePatientUpdate from './same_patient_update';
+    import ListIndexResult from '../examination/list_index_result';
 
     export default {
         props: {
@@ -334,7 +341,7 @@
         },
         components: {
             ServiceList,
-
+            ListIndexResult,
             SamePatientUpdate,
             ExaminationList
         },
