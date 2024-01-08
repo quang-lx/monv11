@@ -56,7 +56,7 @@
                                                     <span v-if="col_selected.col_name == 'patient.sex'">{{
                                                         scope.row.patient.sex_text }}</span>
                                                     <span v-if="col_selected.col_name == 'patient.name'"> <a href="#" @click.prevent="gotoPatient(scope.row.patient_id)">{{
-                                                        scope.row.patient.sex_text }}</a></span>
+                                                        scope.row.patient.name }}</a></span>
                                                     <span v-else-if="col_selected.col_name == 'status'" class="status_border" :style="{ background: scope.row.status_color }">{{
                                                         scope.row.status_text }}</span>
                                                     <span v-else> {{getObjetValue(scope.row, col_selected.col_name)  }}</span>
