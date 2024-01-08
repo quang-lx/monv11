@@ -1,8 +1,7 @@
 <template>
     <div>
 
-        <section class="content">
-            <div class="container-fluid">
+
                 <div class="card">
                     <el-form :model="modelForm" label-position="top">
                         <div class="card-body">
@@ -194,8 +193,6 @@
                         </div>
                     </el-form>
                 </div>
-            </div>
-        </section>
 
     </div>
 </template>
