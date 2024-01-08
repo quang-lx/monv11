@@ -33,4 +33,8 @@ class DashboardApiController extends ApiController
     public function summaryPatient(Request $request) {
         return  $this->dashboard_repo->summaryPatient($request);
     }
+
+    public function summarySex(Request $request) {
+        return  $this->dashboard_repo->summarySex($request);
+    }
 }

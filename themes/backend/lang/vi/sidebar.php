@@ -27,18 +27,17 @@ return [
 
     'category' => 'Quản lý danh mục',
     'testing service' => 'Danh mục dịch vụ xét nghiệm',
-    'examination' => 'Danh sách khám bệnh',
+    'examination' => 'Quản lý lượt khám bệnh',
 
 
 
-    'examination service' => 'Danh sách kết quả khám',
+    'examination service' => 'Quản lý kết quả khám',
     'home' => 'Trang chủ',
     'packages' => 'Gói cước',
     'device' => 'Quản lý thiết bị',
     'disease' => 'Danh mục bệnh',
     'service type' => 'Danh mục loại dịch vụ',
-    'patient' => 'Quản lý bệnh nhân'
-
-
+    'patient' => 'Quản lý bệnh nhân',
+    'dashboard' => 'Báo cáo'
 
 ];

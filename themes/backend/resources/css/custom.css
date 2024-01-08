@@ -477,6 +477,15 @@ body:not(.layout-fixed) .main-sidebar {
     -webkit-mask: url("/images/user-square.svg") no-repeat center / contain;
 }
 
+.profile-2user{
+    -webkit-mask: url("/images/profile-2user.svg") no-repeat center / contain;
+}
+
+.document{
+    -webkit-mask: url("/images/document.svg") no-repeat center / contain;
+}
+
+
 .fa-angle-double-right::before{
     content: '' !important;
 }

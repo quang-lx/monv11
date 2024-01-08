@@ -15,6 +15,7 @@ class Patient extends Model
     const Local = 1;
     const LIS = 2;
 
+    const FEMALE = 0;
     const MALE = 1;
 
 
