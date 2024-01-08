@@ -8,7 +8,7 @@
 
             <div class="row">
                 <div class="col-12">
-                    Bệnh nhân có số điện thoại trùng với bệnh nhân cũ, bạn có muốn chọn bệnh nhân Tái khám?
+                    Bệnh nhân có số điện thoại và giấy tờ tuỳ thân trùng với bệnh nhân cũ, bạn có muốn chọn bệnh nhân Tái khám?
                 </div>
             </div>
             <div class="row my-2 ml-3">

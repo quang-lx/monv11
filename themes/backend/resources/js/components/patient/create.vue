@@ -62,6 +62,24 @@
 
                                     <div class="row">
                                         <div class="col-md-4">
+                                            <el-form-item :label="$t('patient.label.phone')" prop="phone"
+                                                          :class="{ 'el-form-item is-error': form.errors.has('phone') }">
+                                                <el-input  maxlength="255" v-model="modelForm.phone" size="small"
+                                                           placeholder="Nhập số điện thoại"></el-input>
+                                                <div class="el-form-item__error" v-if="form.errors.has('phone')"
+                                                     v-text="form.errors.first('phone')"></div>
+                                            </el-form-item>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <el-form-item :label="$t('patient.label.papers')" prop="papers"
+                                                          :class="{ 'el-form-item is-error': form.errors.has('papers') }">
+                                                <el-input maxlength="255" v-model="modelForm.papers" size="small"
+                                                          placeholder="Nhập giấy tờ tuỳ thân"></el-input>
+                                                <div class="el-form-item__error" v-if="form.errors.has('papers')"
+                                                     v-text="form.errors.first('papers')"></div>
+                                            </el-form-item>
+                                        </div>
+                                        <div class="col-md-4">
                                             <el-form-item :label="$t('patient.label.name')" prop="name"
                                                           :class="{ 'el-form-item is-error': form.errors.has('name') }">
                                                 <el-input  maxlength="255" v-model="modelForm.name" size="small"
@@ -71,6 +89,10 @@
                                             </el-form-item>
                                         </div>
 
+
+                                    </div>
+
+                                    <div class="row">
                                         <div class="col-md-4">
                                             <el-form-item :label="$t('patient.label.sex')" prop="sex"
                                                           :class="{ 'el-form-item is-error': form.errors.has('sex') }">
@@ -99,18 +121,6 @@
                                                      v-text="form.errors.first('birthday')"></div>
                                             </el-form-item>
                                         </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <el-form-item :label="$t('patient.label.phone')" prop="phone"
-                                                          :class="{ 'el-form-item is-error': form.errors.has('phone') }">
-                                                <el-input  maxlength="255" v-model="modelForm.phone" size="small"
-                                                          placeholder="Nhập số điện thoại"></el-input>
-                                                <div class="el-form-item__error" v-if="form.errors.has('phone')"
-                                                     v-text="form.errors.first('phone')"></div>
-                                            </el-form-item>
-                                        </div>
 
                                         <div class="col-md-4">
                                             <el-form-item :label="$t('patient.label.email')" prop="email"
@@ -122,15 +132,7 @@
                                             </el-form-item>
                                         </div>
 
-                                        <div class="col-md-4">
-                                            <el-form-item :label="$t('patient.label.papers')" prop="papers"
-                                                          :class="{ 'el-form-item is-error': form.errors.has('papers') }">
-                                                <el-input maxlength="255" v-model="modelForm.papers" size="small"
-                                                          placeholder="Nhập giấy tờ tuỳ thân"></el-input>
-                                                <div class="el-form-item__error" v-if="form.errors.has('papers')"
-                                                     v-text="form.errors.first('papers')"></div>
-                                            </el-form-item>
-                                        </div>
+
                                     </div>
 
                                     <div class="row">
@@ -258,6 +260,9 @@
                     birthday: [
                         {required: true, message: '', trigger: 'submit'}
                     ],
+                    papers: [
+                        {required: true, message: '', trigger: 'submit'}
+                    ],
                     phone: [
                         {required: true, message: '', trigger: 'submit'}
                     ]
@@ -326,7 +331,8 @@
                 let routeUri = '';
                 if (this.modelForm.phone) {
                     this.loading = true;
-                    routeUri = route('api.patient.getPatientViaPhone', {phone: this.modelForm.phone});
+                    routeUri = route('api.patient.getPatientViaPhone', {phone: this.modelForm.phone,
+                        papers: this.modelForm.papers});
                     window.axios.get(routeUri)
                         .then((response) => {
                             this.loading = false;

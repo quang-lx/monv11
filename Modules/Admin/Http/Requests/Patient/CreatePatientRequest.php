@@ -13,6 +13,7 @@ class CreatePatientRequest extends FormRequest
             'sex' => 'required',
             'birthday' => 'required',
             'phone' => 'required|numeric',
+            'papers' => 'required',
         ];
     }
 
