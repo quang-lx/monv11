@@ -96,7 +96,7 @@ class EloquentPatientExaminationRepository extends BaseRepository implements Pat
 
             $query->orderBy($request->get('order_by'), $order);
         } else {
-            $query->orderBy('updated_at', 'desc');
+            $query->orderBy('status');
         }
 
 
