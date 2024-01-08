@@ -315,7 +315,7 @@ export default {
         },
 
         gotoPatient(id) {
-            window.location.href= route('admin.patient.edit', {patientId: id})
+            window.location.href= route('admin.patient.edit', {patient: id})
 
         },
         onStartExamination(id, index) {
