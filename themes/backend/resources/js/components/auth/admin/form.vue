@@ -133,7 +133,6 @@
                                         </div>
                                         <div class="col-md-4">
                                             <el-form-item :label="$t('user.label.department_id')"
-                                                          prop="department_id"
                                                           :class="{'el-form-item is-error': form.errors.has('department_id') }">
 
                                                 <el-select v-model="modelForm.department_id"

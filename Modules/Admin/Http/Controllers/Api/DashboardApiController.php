@@ -30,4 +30,7 @@ class DashboardApiController extends ApiController
     public function summaryKCB(Request $request) {
         return  $this->dashboard_repo->summaryKCB($request);
     }
+    public function summaryPatient(Request $request) {
+        return  $this->dashboard_repo->summaryPatient($request);
+    }
 }

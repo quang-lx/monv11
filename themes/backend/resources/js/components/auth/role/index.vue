@@ -45,7 +45,7 @@
                                         ref="dataTable"
                                         v-loading.body="tableIsLoading"
                                         @sort-change="handleSortChange">
-                                        <el-table-column   :label="$t('common.stt')" width="75" type="index" > </el-table-column>
+                                        <el-table-column   :label="$t('common.stt')" width="75" :index="indexMethod" type="index" > </el-table-column>
                                         <el-table-column prop="name" :label="$t('role.label.name')"  >
 
                                         </el-table-column>
@@ -141,6 +141,11 @@
             this.fetchData();
 
         },
+        indexMethod(index) {
+            if (!this.tableIsLoading) {
+                return index + (this.meta.current_page - 1) * this.meta.per_page + 1;
+            }
+        }
     }
 </script>
 

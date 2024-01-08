@@ -53,25 +53,37 @@
 
                                     <el-table :data="data" stripe style="width: 100%" ref="dataTable"
                                         v-loading.body="tableIsLoading" @sort-change="handleSortChange">
-                                        <el-table-column :label="$t('disease.label.stt')" type="index" width="100">
+                                        <el-table-column :label="$t('disease.label.stt')" :index="indexMethod" type="index"
+                                            width="100">
                                         </el-table-column>
-                                        <el-table-column prop="code" :label="$t('service.label.code')" width="120"></el-table-column>
-                                        <el-table-column prop="code" :label="$t('service.label.code_lis')" width="120"></el-table-column>
+                                        <el-table-column prop="code" :label="$t('service.label.code')"
+                                            width="120"></el-table-column>
+                                        <el-table-column prop="code" :label="$t('service.label.code_lis')"
+                                            width="120"></el-table-column>
 
-                                        <el-table-column prop="name" :label="$t('service.label.name')" min-width="150"> </el-table-column>
+                                        <el-table-column prop="name" :label="$t('service.label.name')" min-width="150">
+                                        </el-table-column>
                                         <el-table-column prop="type" :label="$t('service.label.type')" width="150">
                                             <template slot-scope="scope">
                                                 <span>{{ scope.row.type_name }}</span>
                                             </template>
                                         </el-table-column>
-                                        <el-table-column prop="min_value" :label="$t('service.label.min_value')" width="150"> </el-table-column>
-                                        <el-table-column prop="max_value" :label="$t('service.label.max_value')" width="150"> </el-table-column>
-                                        <el-table-column prop="ref_value" :label="$t('service.label.ref_value')" width="150"> </el-table-column>
-                                        <el-table-column prop="unit" :label="$t('service.label.unit')" width="100"> </el-table-column>
-                                        <el-table-column prop="male_min_value" :label="$t('service.label.male_min_value')" width="150"> </el-table-column>
-                                        <el-table-column prop="male_max_value" :label="$t('service.label.male_max_value')" width="150"> </el-table-column>
-                                        <el-table-column prop="female_min_value" :label="$t('service.label.female_min_value')" width="150"> </el-table-column>
-                                        <el-table-column prop="female_max_value" :label="$t('service.label.female_max_value')" width="150"> </el-table-column>
+                                        <el-table-column prop="min_value" :label="$t('service.label.min_value')"
+                                            width="150"> </el-table-column>
+                                        <el-table-column prop="max_value" :label="$t('service.label.max_value')"
+                                            width="150"> </el-table-column>
+                                        <el-table-column prop="ref_value" :label="$t('service.label.ref_value')"
+                                            width="150"> </el-table-column>
+                                        <el-table-column prop="unit" :label="$t('service.label.unit')" width="100">
+                                        </el-table-column>
+                                        <el-table-column prop="male_min_value" :label="$t('service.label.male_min_value')"
+                                            width="150"> </el-table-column>
+                                        <el-table-column prop="male_max_value" :label="$t('service.label.male_max_value')"
+                                            width="150"> </el-table-column>
+                                        <el-table-column prop="female_min_value"
+                                            :label="$t('service.label.female_min_value')" width="150"> </el-table-column>
+                                        <el-table-column prop="female_max_value"
+                                            :label="$t('service.label.female_max_value')" width="150"> </el-table-column>
 
 
 
@@ -113,7 +125,9 @@
         </section>
 
 
-        <popup-import :show_import="show_import" :loadingImport="loadingImport" @on-import="onImportDevices" @close-popup="closeImport" :data_export="data_export" url_template="/excel-template/Service_Template.xlsx"></popup-import>
+        <popup-import :show_import="show_import" :loadingImport="loadingImport" @on-import="onImportDevices"
+            @close-popup="closeImport" :data_export="data_export"
+            url_template="/excel-template/Service_Template.xlsx"></popup-import>
 
     </div>
 </template>
@@ -178,7 +192,7 @@ export default {
                 });
         },
 
-      closeImport() {
+        closeImport() {
             this.show_import = false;
             this.loadingImport = 0;
             this.data_export = []
@@ -229,6 +243,12 @@ export default {
                 });
         },
 
+        indexMethod(index) {
+            if (!this.tableIsLoading) {
+                return index + (this.meta.current_page - 1) * this.meta.per_page + 1;
+            }
+        }
+
 
 
     },
@@ -244,9 +264,7 @@ export default {
 }
 </script>
 
-<style scoped>
-.disabled {
+<style scoped>.disabled {
     pointer-events: none;
 
-}
-</style>
+}</style>

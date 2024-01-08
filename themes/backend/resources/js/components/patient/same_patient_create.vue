@@ -3,7 +3,7 @@
 
         <el-dialog
  :close-on-click-modal="false"
- width="40%" :show-close="false" :title="$t('patient.label.same patient')" :destroy-on-close="true"
+ width="40%" :show-close="true" :title="$t('patient.label.same patient')" :destroy-on-close="true"
             :visible.sync="show_same_patient">
 
             <div class="row">

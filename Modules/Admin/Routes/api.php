@@ -14,9 +14,14 @@ use Illuminate\Support\Facades\Route;
 */
 Route::middleware('auth:api')->prefix('/dashboard')->group(function (){
 
-    Route::get('/', [
+    Route::get('/summaryKCB', [
         'as' => 'api.dashboard.summaryKCB',
         'uses' => 'DashboardApiController@summaryKCB',
+    ]);
+
+    Route::get('/summaryPatient', [
+        'as' => 'api.dashboard.summaryPatient',
+        'uses' => 'DashboardApiController@summaryPatient',
     ]);
 
 });

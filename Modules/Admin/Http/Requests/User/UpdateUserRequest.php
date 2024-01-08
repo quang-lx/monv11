@@ -21,11 +21,10 @@ class UpdateUserRequest extends FormRequest
 
         $rules = [
 
-            'username' => "required|unique:users,username,{$user->id}",
+            'username' => "unique:users,username,{$user->id}",
 
             'name'=>"required",
             'sex'=>"required",
-            'department_id'=>"required",
             'active_at'=>"required",
             'expired_at'=>"required",
 

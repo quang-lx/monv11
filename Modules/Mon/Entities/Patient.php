@@ -15,6 +15,8 @@ class Patient extends Model
     const Local = 1;
     const LIS = 2;
 
+    const MALE = 1;
+
 
     protected $table = 'patient';
     protected $fillable = [

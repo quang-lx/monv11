@@ -191,7 +191,7 @@
                         <p>Trẻ em</p>
                         <div class="account_percent">
                             <span>Chiếm</span>
-                            <b>7.2%</b>
+                            <b>{{summary_patient.children_percent}}%</b>
                         </div>
                     </div>
                     <div class="svg-icon">
@@ -220,11 +220,11 @@
             <div class="w-20">
                 <div class="small-box d-flex align-items-center justify-content-between bg-white">
                     <div class="inner text-dark">
-                        <h3>{{summary_patient.phu_nu}}</h3>
+                        <h3>{{summary_patient.female}}</h3>
                         <p>Phụ nữ</p>
                         <div class="account_percent">
                             <span>Chiếm</span>
-                            <b>25.2%</b>
+                            <b>{{summary_patient.female_percent}}%</b>
                         </div>
                     </div>
                     <div class="svg-icon">
@@ -252,11 +252,11 @@
             <div class="w-20">
                 <div class="small-box d-flex align-items-center justify-content-between bg-white">
                     <div class="inner text-dark">
-                        <h3>{{summary_patient.nguoi_cao_tuoi}}</h3>
+                        <h3>{{summary_patient.old}}</h3>
                         <p>Người cao tuổi</p>
                         <div class="account_percent">
                             <span>Chiếm</span>
-                            <b>4.7%</b>
+                            <b>{{summary_patient.old_percent}}%</b>
                         </div>
                     </div>
                     <div class="svg-icon">
@@ -284,11 +284,11 @@
             <div class="w-20">
                 <div class="small-box d-flex align-items-center justify-content-between bg-white">
                     <div class="inner text-dark">
-                        <h3>{{summary_patient.nam}}</h3>
+                        <h3>{{summary_patient.male}}</h3>
                         <p>Nam</p>
                         <div class="account_percent">
                             <span>Chiếm</span>
-                            <b>70%</b>
+                            <b>{{summary_patient.male_percent}}%</b>
                         </div>
                     </div>
                     <div class="svg-icon">
@@ -433,11 +433,15 @@ export default {
             },
             summary_patient: {
                 total: '__',
-                phu_nu: '__',
+                female: '__',
+                female_percent: '__',
                 children: '__',
-                nguoi_cao_tuoi: '__',
-                nam: '__'
+                children_percent: '__',
 
+                male: '__',
+                male_percent: '__',
+                old: '__',
+               old_percent: '__',
             },
             picker_option: {
                 shortcuts: [
@@ -821,9 +825,25 @@ methods: {
 
             });
     },
+    getSummaryPatient() {
+
+        const properties = {
+
+            date_search: this.date_search,
+
+        };
+
+        window.axios.get(route('api.dashboard.summaryPatient', properties))
+            .then((response) => {
+
+                this.summary_patient = response.data;
+
+            });
+    },
 
     getAllData() {
         this.getKCB()
+        this.getSummaryPatient()
     }
 
 

@@ -22,7 +22,7 @@
                                                   d="M7.78516 8.07529H8.8106V13.9483H9.74283V7.14307H7.78516V8.07529Z"
                                                   fill="#252525"/>
                                         </svg>
-                                        <span class="f-text-title pl-1"> Thông tin khám bệnh</span>
+                                        <span class="f-text-title pl-1"> Thông tin khám hiện tại</span>
                                     </div>
                                 </div>
                             </div>
