@@ -315,7 +315,7 @@ export default {
         },
 
         gotoPatient(id) {
-            this.$router.push({name: 'admin.patient.edit', params:{patientId: id}});
+            window.location.href= route('admin.patient.edit', {patientId: id})
 
         },
         onStartExamination(id, index) {
