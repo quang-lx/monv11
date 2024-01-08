@@ -151,8 +151,11 @@
                 <div class="small-box d-flex align-items-center justify-content-between"
                     style="background: var(--dark-blue, #015E99);">
                     <div class="inner">
-                        <h3>2.788</h3>
-                        <p>Tổng số nhân khẩu</p>
+                        <h3>{{summary_patient.total}}</h3>
+                        <span>
+                            Tổng số
+                        </span>
+                        <b>bệnh nhân</b>
                     </div>
                     <div class="svg-icon">
                         <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -184,7 +187,7 @@
 
                 <div class="small-box d-flex align-items-center justify-content-between bg-white">
                     <div class="inner text-dark">
-                        <h3>200</h3>
+                        <h3>{{summary_patient.children}}</h3>
                         <p>Trẻ em</p>
                         <div class="account_percent">
                             <span>Chiếm</span>
@@ -217,7 +220,7 @@
             <div class="w-20">
                 <div class="small-box d-flex align-items-center justify-content-between bg-white">
                     <div class="inner text-dark">
-                        <h3>700</h3>
+                        <h3>{{summary_patient.phu_nu}}</h3>
                         <p>Phụ nữ</p>
                         <div class="account_percent">
                             <span>Chiếm</span>
@@ -249,7 +252,7 @@
             <div class="w-20">
                 <div class="small-box d-flex align-items-center justify-content-between bg-white">
                     <div class="inner text-dark">
-                        <h3>130</h3>
+                        <h3>{{summary_patient.nguoi_cao_tuoi}}</h3>
                         <p>Người cao tuổi</p>
                         <div class="account_percent">
                             <span>Chiếm</span>
@@ -281,7 +284,7 @@
             <div class="w-20">
                 <div class="small-box d-flex align-items-center justify-content-between bg-white">
                     <div class="inner text-dark">
-                        <h3>200</h3>
+                        <h3>{{summary_patient.nam}}</h3>
                         <p>Nam</p>
                         <div class="account_percent">
                             <span>Chiếm</span>
@@ -426,6 +429,14 @@ export default {
                 new_percent: '__',
                 again_kcb: '__',
                 again_percent: '__',
+
+            },
+            summary_patient: {
+                total: '__',
+                phu_nu: '__',
+                children: '__',
+                nguoi_cao_tuoi: '__',
+                nam: '__'
 
             },
             picker_option: {
