@@ -324,7 +324,8 @@
                         <h3 class="title-box">Biểu đồ tỷ lệ giới tính</h3>
                     </div>
                     <div class="col-12">
-                        <Doughnut :data="dataDoughnutSex" type='doughnut' :options="optionsDoughnut" :plugins="plugins" />
+                        <Doughnut :data="dataDoughnutSex" type='doughnut' :options="optionsDoughnut"
+                            :plugins="configPlugins('Tổng số người')" />
                     </div>
                 </div>
             </div>
@@ -334,7 +335,8 @@
                         <h3 class="title-box">Biểu đồ theo nhóm tuổi</h3>
                     </div>
                     <div class="col-12">
-                        <Doughnut :data="dataDoughnutAge" type='doughnut' :options="optionsDoughnut" :plugins="plugins" />
+                        <Doughnut :data="dataDoughnutAge" type='doughnut' :options="optionsDoughnut"
+                            :plugins="configPlugins('Tổng số người')" />
                     </div>
                 </div>
             </div>
@@ -345,7 +347,7 @@
                     </div>
                     <div class="col-12">
                         <Doughnut :data="dataDoughnutService" type='doughnut' :options="optionsDoughnut"
-                            :plugins="plugins" />
+                            :plugins="configPlugins('Tổng số dịch vụ')" />
                     </div>
                 </div>
             </div>
@@ -356,7 +358,7 @@
                     </div>
                     <div class="col-12">
                         <Doughnut :data="dataDoughnutServiceType" type='doughnut' :options="optionsDoughnut"
-                            :plugins="plugins" />
+                            :plugins="configPlugins('Tổng số dịch vụ')" />
                     </div>
                 </div>
             </div>
@@ -520,44 +522,44 @@ export default {
             },
 
             dataDoughnutSex: {
-                labels: ['Nữ', 'Nam'],
+                labels: [],
                 datasets: [
                     {
-                        backgroundColor: ['#1790C9', '#119DB5'],
-                        data: [44, 56],
+                        backgroundColor: [],
+                        data: [],
                         borderJoinStyle: 'round',
                         weight: 250
                     }
                 ]
             },
             dataDoughnutAge: {
-                labels: ['0-6', '7-12', '13-18', '19-40', '41-60', 'Trên 60'],
+                labels: [],
                 datasets: [
                     {
-                        backgroundColor: ['#E17126', '#617882', '#119DB5', '#015E99', '#1790C9', '#FFC000'],
-                        data: [2, 14, 28, 37, 14, 5],
+                        backgroundColor: [],
+                        data: [],
                         borderJoinStyle: 'round',
                         weight: 250
                     }
                 ]
             },
             dataDoughnutService: {
-                labels: ['MH1', 'MH2', 'MH3', 'MH4', 'Còn lại'],
+                labels: [],
                 datasets: [
                     {
-                        backgroundColor: ['#E17126', '#617882', '#119DB5', '#015E99', '#1790C9'],
-                        data: [9, 14, 28, 37, 14],
+                        backgroundColor: [],
+                        data: [],
                         borderJoinStyle: 'round',
                         weight: 250
                     }
                 ]
             },
             dataDoughnutServiceType: {
-                labels: ['Đông máu', 'Thần kinh', 'Nước tiểu', 'Sinh hoá', 'Còn lại'],
+                labels: [],
                 datasets: [
                     {
-                        backgroundColor: ['#E17126', '#617882', '#119DB5', '#015E99', '#1790C9'],
-                        data: [12, 14, 28, 37, 14],
+                        backgroundColor: [],
+                        data: [],
                         borderJoinStyle: 'round',
                         weight: 250
                     }
@@ -652,46 +654,6 @@ export default {
 
 
             },
-
-            plugins: [{
-                id: 'text',
-                beforeDraw: function (chart, a, b) {
-                    var width = chart.width,
-                        height = chart.height,
-                        ctx = chart.ctx;
-
-                    ctx.restore();
-                    var fontSize = (height / 360).toFixed(2);
-                    ctx.font = fontSize + "em sans-serif";
-                    ctx.textBaseline = "middle";
-
-                    var text = 'Tổng số',
-                        textX = Math.round((width - width * 0.3 - ctx.measureText(text).width) / 2),
-                        textY = height / 2 - 10;
-
-                    ctx.fillText(text, textX, textY);
-                    ctx.save();
-
-                    ctx = chart.ctx;
-
-                    ctx.restore();
-                    var fontSize = (height / 360).toFixed(2);
-                    ctx.font = fontSize + "em sans-serif";
-                    ctx.textBaseline = "middle";
-                    let sum = 0;
-
-                    let dataArr = chart.data.datasets[0].data;
-                    dataArr.map(data => {
-                        sum += data;
-                    });
-                    var text = sum,
-                        textX = Math.round((width - width * 0.3 - ctx.measureText(text).width) / 2),
-                        textY = height / 2 + 10;
-
-                    ctx.fillText(text, textX, textY);
-                    ctx.save();
-                }
-            }],
 
             optionsBar: {
                 responsive: true,
@@ -878,23 +840,96 @@ export default {
 
         getSummarySex() {
             const properties = {
-
                 date_search: this.date_search,
 
             };
-
             window.axios.get(route('api.dashboard.summarySex', properties))
                 .then((response) => {
-
                     this.dataDoughnutSex = response.data;
-
                 });
+        },
+
+        getSummaryAge() {
+            const properties = {
+                date_search: this.date_search,
+            };
+
+            window.axios.get(route('api.dashboard.summaryAge', properties))
+                .then((response) => {
+                    this.dataDoughnutAge = response.data;
+                });
+        },
+
+        getSummaryService() {
+            const properties = {
+                date_search: this.date_search,
+            };
+
+            window.axios.get(route('api.dashboard.summaryService', properties))
+                .then((response) => {
+                    this.dataDoughnutService = response.data;
+                });
+        },
+
+        getSummaryServiceType() {
+            const properties = {
+                date_search: this.date_search,
+            };
+
+            window.axios.get(route('api.dashboard.summaryServiceType', properties))
+                .then((response) => {
+                    this.dataDoughnutServiceType = response.data;
+                });
+        },
+
+        configPlugins(text) {
+            return [{
+                id: 'text',
+                beforeDraw: function (chart, a, b) {
+                    var width = chart.width,
+                        height = chart.height,
+                        ctx = chart.ctx;
+
+                    ctx.restore();
+                    var fontSize = (height / 420).toFixed(2);
+                    ctx.font = fontSize + "em sans-serif";
+                    ctx.textBaseline = "middle";
+
+                    ctx.fillText(text,
+                        chart?.getDatasetMeta(0)?.data?.[0]?.x - ctx.measureText(text).width / 2,
+                        chart?.getDatasetMeta(0)?.data?.[0]?.y - 10
+                    );
+                    ctx.save();
+
+                    ctx = chart.ctx;
+
+                    ctx.restore();
+                    var fontSize = (height / 320).toFixed(2);
+                    ctx.font = fontSize + "em sans-serif";
+                    ctx.textBaseline = "middle";
+                    let sum = 0;
+
+                    let dataArr = chart.data.datasets[0].data;
+                    dataArr.map(data => {
+                        sum += data;
+                    });
+
+                    ctx.fillText(sum,
+                        chart?.getDatasetMeta(0)?.data?.[0]?.x,
+                        chart?.getDatasetMeta(0)?.data?.[0]?.y + 5
+                    )
+                    ctx.save();
+                }
+            }]
         },
 
         getAllData() {
             this.getKCB()
             this.getSummaryPatient()
             this.getSummarySex()
+            this.getSummaryAge()
+            this.getSummaryService()
+            this.getSummaryServiceType()
         }
 
 

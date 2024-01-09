@@ -29,6 +29,21 @@ Route::middleware('auth:api')->prefix('/dashboard')->group(function (){
         'uses' => 'DashboardApiController@summarySex',
     ]);
 
+    Route::get('/summaryAge', [
+        'as' => 'api.dashboard.summaryAge',
+        'uses' => 'DashboardApiController@summaryAge',
+    ]);
+
+    Route::get('/summaryService', [
+        'as' => 'api.dashboard.summaryService',
+        'uses' => 'DashboardApiController@summaryService',
+    ]);
+
+    Route::get('/summaryServiceType', [
+        'as' => 'api.dashboard.summaryServiceType',
+        'uses' => 'DashboardApiController@summaryServiceType',
+    ]);
+
 });
 Route::middleware('auth:api')->get('/admin', function (Request $request) {
     return $request->user();
