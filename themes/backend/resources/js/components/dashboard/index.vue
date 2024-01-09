@@ -2,14 +2,9 @@
     <div>
         <div class="row">
             <div class="col-12 d-flex align-items-center justify-content-end">
-                <el-date-picker
-                    @change="getAllData"
-                    v-model="date_search" type="daterange"
-                                :picker-options="picker_option"
-                                range-separator="-"
-                    start-placeholder="Từ ngày" end-placeholder="Đến ngày"
-                                format="dd/MM/yyyy" value-format="dd/MM/yyyy"
-                    align="right">
+                <el-date-picker @change="getAllData" v-model="date_search" type="daterange" :picker-options="picker_option"
+                    range-separator="-" start-placeholder="Từ ngày" end-placeholder="Đến ngày" format="dd/MM/yyyy"
+                    value-format="dd/MM/yyyy" align="right">
                 </el-date-picker>
             </div>
         </div>
@@ -22,7 +17,7 @@
                 <div class="small-box d-flex align-items-center justify-content-between"
                     style="background-color: var(--dark-blue, #015E99);">
                     <div class="inner">
-                        <h3>{{summary_kcb.total}}</h3>
+                        <h3>{{ summary_kcb.total }}</h3>
                         <p>Lượt liên thông <br>
                             dữ liệu KCB</p>
                     </div>
@@ -48,9 +43,9 @@
                     style="background: var(--Blue, #1790C9);">
                     <div class="inner">
                         <h3 class="d-flex align-items-center">
-                            <span>{{summary_kcb.not_done}}</span>
+                            <span>{{ summary_kcb.not_done }}</span>
                             <div class="border-index"></div>
-                            <span>{{summary_kcb.not_done_percent}}%</span>
+                            <span>{{ summary_kcb.not_done_percent }}%</span>
                         </h3>
                         <p>Chưa hoàn
                             thành khám </p>
@@ -78,9 +73,9 @@
                     style="background: var(--cyan, #119DB5);">
                     <div class="inner">
                         <h3 class="d-flex align-items-center">
-                            <span>{{summary_kcb.new_kcb}}</span>
+                            <span>{{ summary_kcb.new_kcb }}</span>
                             <div class="border-index"></div>
-                            <span>{{summary_kcb.new_percent}}%</span>
+                            <span>{{ summary_kcb.new_percent }}%</span>
                         </h3>
                         <p>Lượt khám mới</p>
                     </div>
@@ -103,13 +98,12 @@
                 </div>
             </div>
             <div class="w-20">
-                <div class="small-box d-flex align-items-center justify-content-between"
-                    style="background:#65A7F5">
+                <div class="small-box d-flex align-items-center justify-content-between" style="background:#65A7F5">
                     <div class="inner">
                         <h3 class="d-flex align-items-center">
-                            <span>{{summary_kcb.again_kcb}}</span>
+                            <span>{{ summary_kcb.again_kcb }}</span>
                             <div class="border-index"></div>
-                            <span>{{summary_kcb.again_percent}}%</span>
+                            <span>{{ summary_kcb.again_percent }}%</span>
                         </h3>
                         <p>Lượt tái khám</p>
                     </div>
@@ -151,7 +145,7 @@
                 <div class="small-box d-flex align-items-center justify-content-between"
                     style="background: var(--dark-blue, #015E99);">
                     <div class="inner">
-                        <h3>{{summary_patient.total}}</h3>
+                        <h3>{{ summary_patient.total }}</h3>
                         <span>
                             Tổng số
                         </span>
@@ -187,11 +181,11 @@
 
                 <div class="small-box d-flex align-items-center justify-content-between bg-white">
                     <div class="inner text-dark">
-                        <h3>{{summary_patient.children}}</h3>
+                        <h3>{{ summary_patient.children }}</h3>
                         <p>Trẻ em</p>
                         <div class="account_percent">
                             <span>Chiếm</span>
-                            <b>{{summary_patient.children_percent}}%</b>
+                            <b>{{ summary_patient.children_percent }}%</b>
                         </div>
                     </div>
                     <div class="svg-icon">
@@ -220,11 +214,11 @@
             <div class="w-20">
                 <div class="small-box d-flex align-items-center justify-content-between bg-white">
                     <div class="inner text-dark">
-                        <h3>{{summary_patient.female}}</h3>
+                        <h3>{{ summary_patient.female }}</h3>
                         <p>Phụ nữ</p>
                         <div class="account_percent">
                             <span>Chiếm</span>
-                            <b>{{summary_patient.female_percent}}%</b>
+                            <b>{{ summary_patient.female_percent }}%</b>
                         </div>
                     </div>
                     <div class="svg-icon">
@@ -252,11 +246,11 @@
             <div class="w-20">
                 <div class="small-box d-flex align-items-center justify-content-between bg-white">
                     <div class="inner text-dark">
-                        <h3>{{summary_patient.old}}</h3>
+                        <h3>{{ summary_patient.old }}</h3>
                         <p>Người cao tuổi</p>
                         <div class="account_percent">
                             <span>Chiếm</span>
-                            <b>{{summary_patient.old_percent}}%</b>
+                            <b>{{ summary_patient.old_percent }}%</b>
                         </div>
                     </div>
                     <div class="svg-icon">
@@ -284,11 +278,11 @@
             <div class="w-20">
                 <div class="small-box d-flex align-items-center justify-content-between bg-white">
                     <div class="inner text-dark">
-                        <h3>{{summary_patient.male}}</h3>
+                        <h3>{{ summary_patient.male }}</h3>
                         <p>Nam</p>
                         <div class="account_percent">
                             <span>Chiếm</span>
-                            <b>{{summary_patient.male_percent}}%</b>
+                            <b>{{ summary_patient.male_percent }}%</b>
                         </div>
                     </div>
                     <div class="svg-icon">
@@ -330,7 +324,8 @@
                         <h3 class="title-box">Biểu đồ tỷ lệ giới tính</h3>
                     </div>
                     <div class="col-12">
-                        <Doughnut :data="dataDoughnutSex" type='doughnut' :options="optionsDoughnut" />
+                        <Doughnut :data="dataDoughnutSex" type='doughnut' :options="optionsDoughnut"
+                            :plugins="configPlugins('Tổng số người')" />
                     </div>
                 </div>
             </div>
@@ -340,7 +335,8 @@
                         <h3 class="title-box">Biểu đồ theo nhóm tuổi</h3>
                     </div>
                     <div class="col-12">
-                        <Doughnut :data="dataDoughnutAge" type='doughnut' :options="optionsDoughnut" />
+                        <Doughnut :data="dataDoughnutAge" type='doughnut' :options="optionsDoughnut"
+                            :plugins="configPlugins('Tổng số người')" />
                     </div>
                 </div>
             </div>
@@ -350,7 +346,8 @@
                         <h3 class="title-box">Biểu đồ theo dịch vụ khám</h3>
                     </div>
                     <div class="col-12">
-                        <Doughnut :data="dataDoughnutService" type='doughnut' :options="optionsDoughnut" />
+                        <Doughnut :data="dataDoughnutService" type='doughnut' :options="optionsDoughnut"
+                            :plugins="configPlugins('Tổng số dịch vụ')" />
                     </div>
                 </div>
             </div>
@@ -360,7 +357,8 @@
                         <h3 class="title-box">Biểu đồ loại dịch vụ khám</h3>
                     </div>
                     <div class="col-12">
-                        <Doughnut :data="dataDoughnutServiceType" type='doughnut' :options="optionsDoughnut" />
+                        <Doughnut :data="dataDoughnutServiceType" type='doughnut' :options="optionsDoughnut"
+                            :plugins="configPlugins('Tổng số dịch vụ')" />
                     </div>
                 </div>
             </div>
@@ -432,7 +430,6 @@ export default {
 
             },
             summary_patient: {
-                total: '__',
                 female: '__',
                 female_percent: '__',
                 children: '__',
@@ -441,7 +438,7 @@ export default {
                 male: '__',
                 male_percent: '__',
                 old: '__',
-               old_percent: '__',
+                old_percent: '__',
             },
             picker_option: {
                 shortcuts: [
@@ -525,44 +522,44 @@ export default {
             },
 
             dataDoughnutSex: {
-                labels: ['Nữ', 'Nam'],
+                labels: [],
                 datasets: [
                     {
-                        backgroundColor: ['#1790C9', '#119DB5'],
-                        data: [44, 56],
+                        backgroundColor: [],
+                        data: [],
                         borderJoinStyle: 'round',
                         weight: 250
                     }
                 ]
             },
             dataDoughnutAge: {
-                labels: ['0-6', '7-12', '13-18', '19-40', '41-60', 'Trên 60'],
+                labels: [],
                 datasets: [
                     {
-                        backgroundColor: ['#E17126', '#617882', '#119DB5', '#015E99', '#1790C9', '#FFC000'],
-                        data: [2, 14, 28, 37, 14, 5],
+                        backgroundColor: [],
+                        data: [],
                         borderJoinStyle: 'round',
                         weight: 250
                     }
                 ]
             },
             dataDoughnutService: {
-                labels: ['MH1', 'MH2', 'MH3', 'MH4', 'Còn lại'],
+                labels: [],
                 datasets: [
                     {
-                        backgroundColor: ['#E17126', '#617882', '#119DB5', '#015E99', '#1790C9'],
-                        data: [9, 14, 28, 37, 14],
+                        backgroundColor: [],
+                        data: [],
                         borderJoinStyle: 'round',
                         weight: 250
                     }
                 ]
             },
             dataDoughnutServiceType: {
-                labels: ['Đông máu', 'Thần kinh', 'Nước tiểu', 'Sinh hoá', 'Còn lại'],
+                labels: [],
                 datasets: [
                     {
-                        backgroundColor: ['#E17126', '#617882', '#119DB5', '#015E99', '#1790C9'],
-                        data: [12, 14, 28, 37, 14],
+                        backgroundColor: [],
+                        data: [],
                         borderJoinStyle: 'round',
                         weight: 250
                     }
@@ -631,8 +628,10 @@ export default {
                             useBorderRadius: false,
                             borderRadius: 50,
                             padding: 20,
+                            boxWidth: 50,
                         },
                     },
+
                     datalabels: {
                         display: 'true',
                         color: 'black',
@@ -641,224 +640,311 @@ export default {
                             // weight: '500'
                         },
 
-                        formatter: (value) => {
-                            return value + '%';
+                        formatter: (value, ctx) => {
+                            let sum = 0;
+                            let dataArr = ctx.chart.data.datasets[0].data;
+                            dataArr.map(data => {
+                                sum += data;
+                            });
+                            let percentage = (value * 100 / sum).toFixed() + "%";
+                            return percentage;
                         },
                     },
-                    doughnutTotal: {
-                        text: "231312",
-                        color: '#000000',
-                        font: {
-                            size: '20',
-                            weight: 'bold',
-                        },
                 },
+
+
             },
-
-
-        },
 
             optionsBar: {
-            responsive: true,
+                responsive: true,
                 maintainAspectRatio: false
-        },
+            },
 
-        optionsLine: {
-            responsive: true,
+            optionsLine: {
+                responsive: true,
                 maintainAspectRatio: false,
-                    plugins: {
-                legend: {
-                    display: true,
+                plugins: {
+                    legend: {
+                        display: true,
                         position: 'bottom',
-                            labels: {
-                        usePointStyle: true,
+                        labels: {
+                            usePointStyle: true,
                             useBorderRadius: false,
-                                borderRadius: 50,
-                                    padding: 20,
+                            borderRadius: 50,
+                            padding: 20,
                         },
+                    },
                 },
-            },
 
-            interaction: {
-                mode: 'index',
+                interaction: {
+                    mode: 'index',
                     intersect: false
-            },
-            scales: {
-                x: {
-                    display: true,
-                        title: {
-                        display: true,
-                        }
                 },
-                y: {
-                    display: true,
-                        title: {
+                scales: {
+                    x: {
                         display: true,
+                        title: {
+                            display: true,
                         }
+                    },
+                    y: {
+                        display: true,
+                        title: {
+                            display: true,
+                        }
+                    }
                 }
             }
         }
-    }
-},
-methods: {
+    },
+    methods: {
 
-    renderBarChartServiceType() {
-        // Get the canvas element
-        const canvas = this.$refs.barChartServiceType;
-        const ctx = canvas.getContext('2d');
+        renderBarChartServiceType() {
+            // Get the canvas element
+            const canvas = this.$refs.barChartServiceType;
+            const ctx = canvas.getContext('2d');
 
-        // Create a linear gradient
-        const gradient = ctx.createLinearGradient(0, 0, 0, 300);
-        gradient.addColorStop(0, '#1976CC');
-        gradient.addColorStop(1, '#0FABCD');
+            // Create a linear gradient
+            const gradient = ctx.createLinearGradient(0, 0, 0, 300);
+            gradient.addColorStop(0, '#1976CC');
+            gradient.addColorStop(1, '#0FABCD');
 
-        // Dummy data for demonstration
-        const data = {
-            labels: this.dataBar.labels,
-            datasets: [{
-                label: 'Sample Data',
-                data: this.dataBar.data,
-                backgroundColor: gradient, // Use the linear gradient as the background color
-                borderColor: 'rgba(75, 192, 192, 1)',
-                borderWidth: 1,
-                barPercentage: 0.5,
-            }]
-        };
+            // Dummy data for demonstration
+            const data = {
+                labels: this.dataBar.labels,
+                datasets: [{
+                    label: 'Sample Data',
+                    data: this.dataBar.data,
+                    backgroundColor: gradient, // Use the linear gradient as the background color
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1,
+                    barPercentage: 0.5,
+                }]
+            };
 
-        // Chart configuration
-        const options = {
-            maintainAspectRatio: false,
-            responsive: true,
+            // Chart configuration
+            const options = {
+                maintainAspectRatio: false,
+                responsive: true,
 
-            scales: {
-                y: {
-                    beginAtZero: true
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    },
+                    x: {
+                        barThickness: 40, // Điều chỉnh độ cao của thanh
+                    },
                 },
-                x: {
-                    barThickness: 40, // Điều chỉnh độ cao của thanh
-                },
-            },
-            plugins: {
-                legend: {
-                    display: false,
-                },
-                datalabels: {
-                    display: false,
+                plugins: {
+                    legend: {
+                        display: false,
+                    },
+                    datalabels: {
+                        display: false,
+                    }
                 }
-            }
-        };
+            };
 
-        // Create the bar chart
-        new ChartJS(ctx, {
-            type: 'bar',
-            data: data,
-            options: options
-        });
-    },
+            // Create the bar chart
+            new ChartJS(ctx, {
+                type: 'bar',
+                data: data,
+                options: options
+            });
+        },
 
-    renderBarChartDisease() {
-        // Get the canvas element
-        const canvas = this.$refs.barChartDisease;
-        const ctx = canvas.getContext('2d');
+        renderBarChartDisease() {
+            // Get the canvas element
+            const canvas = this.$refs.barChartDisease;
+            const ctx = canvas.getContext('2d');
 
-        // Create a linear gradient
-        const gradient = ctx.createLinearGradient(0, 0, 0, 300);
-        gradient.addColorStop(0, '#1976CC');
-        gradient.addColorStop(1, '#0FABCD');
+            // Create a linear gradient
+            const gradient = ctx.createLinearGradient(0, 0, 0, 300);
+            gradient.addColorStop(0, '#1976CC');
+            gradient.addColorStop(1, '#0FABCD');
 
-        // Dummy data for demonstration
-        const data = {
-            labels: this.dataBar.labels,
-            datasets: [{
-                label: 'Sample Data',
-                data: this.dataBar.data,
-                backgroundColor: gradient, // Use the linear gradient as the background color
-                borderColor: 'rgba(75, 192, 192, 1)',
-                borderWidth: 1,
-                barPercentage: 0.5,
-            }]
-        };
+            // Dummy data for demonstration
+            const data = {
+                labels: this.dataBar.labels,
+                datasets: [{
+                    label: 'Sample Data',
+                    data: this.dataBar.data,
+                    backgroundColor: gradient, // Use the linear gradient as the background color
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1,
+                    barPercentage: 0.5,
+                }]
+            };
 
-        // Chart configuration
-        const options = {
-            maintainAspectRatio: false,
-            responsive: true,
+            // Chart configuration
+            const options = {
+                maintainAspectRatio: false,
+                responsive: true,
 
-            scales: {
-                y: {
-                    beginAtZero: true
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    },
+                    x: {
+                        barThickness: 40, // Điều chỉnh độ cao của thanh
+                    },
                 },
-                x: {
-                    barThickness: 40, // Điều chỉnh độ cao của thanh
-                },
-            },
-            plugins: {
-                legend: {
-                    display: false,
-                },
-                datalabels: {
-                    display: false,
+                plugins: {
+                    legend: {
+                        display: false,
+                    },
+                    datalabels: {
+                        display: false,
+                    }
                 }
-            }
-        };
+            };
 
-        // Create the bar chart
-        new ChartJS(ctx, {
-            type: 'bar',
-            data: data,
-            options: options
-        });
-    },
-
-    getKCB() {
-
-        const properties = {
-
-            date_search: this.date_search,
-
-        };
-
-        window.axios.get(route('api.dashboard.summaryKCB', properties))
-            .then((response) => {
-
-                this.summary_kcb = response.data;
-
+            // Create the bar chart
+            new ChartJS(ctx, {
+                type: 'bar',
+                data: data,
+                options: options
             });
+        },
+
+        getKCB() {
+
+            const properties = {
+
+                date_search: this.date_search,
+
+            };
+
+            window.axios.get(route('api.dashboard.summaryKCB', properties))
+                .then((response) => {
+
+                    this.summary_kcb = response.data;
+
+                });
+        },
+        getSummaryPatient() {
+
+            const properties = {
+
+                date_search: this.date_search,
+
+            };
+
+            window.axios.get(route('api.dashboard.summaryPatient', properties))
+                .then((response) => {
+
+                    this.summary_patient = response.data;
+
+                });
+        },
+
+        getSummarySex() {
+            const properties = {
+                date_search: this.date_search,
+
+            };
+            window.axios.get(route('api.dashboard.summarySex', properties))
+                .then((response) => {
+                    this.dataDoughnutSex = response.data;
+                });
+        },
+
+        getSummaryAge() {
+            const properties = {
+                date_search: this.date_search,
+            };
+
+            window.axios.get(route('api.dashboard.summaryAge', properties))
+                .then((response) => {
+                    this.dataDoughnutAge = response.data;
+                });
+        },
+
+        getSummaryService() {
+            const properties = {
+                date_search: this.date_search,
+            };
+
+            window.axios.get(route('api.dashboard.summaryService', properties))
+                .then((response) => {
+                    this.dataDoughnutService = response.data;
+                });
+        },
+
+        getSummaryServiceType() {
+            const properties = {
+                date_search: this.date_search,
+            };
+
+            window.axios.get(route('api.dashboard.summaryServiceType', properties))
+                .then((response) => {
+                    this.dataDoughnutServiceType = response.data;
+                });
+        },
+
+        configPlugins(text) {
+            return [{
+                id: 'text',
+                beforeDraw: function (chart, a, b) {
+                    var width = chart.width,
+                        height = chart.height,
+                        ctx = chart.ctx;
+
+                    ctx.restore();
+                    var fontSize = (height / 420).toFixed(2);
+                    ctx.font = fontSize + "em sans-serif";
+                    ctx.textBaseline = "middle";
+
+                    ctx.fillText(text,
+                        chart?.getDatasetMeta(0)?.data?.[0]?.x - ctx.measureText(text).width / 2,
+                        chart?.getDatasetMeta(0)?.data?.[0]?.y - 10
+                    );
+                    ctx.save();
+
+                    ctx = chart.ctx;
+
+                    ctx.restore();
+                    var fontSize = (height / 320).toFixed(2);
+                    ctx.font = fontSize + "em sans-serif";
+                    ctx.textBaseline = "middle";
+                    let sum = 0;
+
+                    let dataArr = chart.data.datasets[0].data;
+                    dataArr.map(data => {
+                        sum += data;
+                    });
+
+                    ctx.fillText(sum,
+                        chart?.getDatasetMeta(0)?.data?.[0]?.x,
+                        chart?.getDatasetMeta(0)?.data?.[0]?.y + 5
+                    )
+                    ctx.save();
+                }
+            }]
+        },
+
+        getAllData() {
+            this.getKCB()
+            this.getSummaryPatient()
+            this.getSummarySex()
+            this.getSummaryAge()
+            this.getSummaryService()
+            this.getSummaryServiceType()
+        }
+
+
     },
-    getSummaryPatient() {
+    mounted() {
+        let current_date = new Date()
+        let date_format = ("0" + current_date.getDate()).slice(-2) + '/' + ("0" + (current_date.getMonth() + 1)).slice(-2) + '/' + current_date.getFullYear()
+        this.date_search = [date_format, date_format]
+        this.getAllData()
+        this.renderBarChartServiceType();
+        this.renderBarChartDisease();
 
-        const properties = {
 
-            date_search: this.date_search,
-
-        };
-
-        window.axios.get(route('api.dashboard.summaryPatient', properties))
-            .then((response) => {
-
-                this.summary_patient = response.data;
-
-            });
     },
-
-    getAllData() {
-        this.getKCB()
-        this.getSummaryPatient()
-    }
-
-
-},
-mounted() {
-    let current_date = new Date()
-    let date_format =  ("0" + current_date.getDate()).slice(-2) + '/' + ("0" + (current_date.getMonth()+1)).slice(-2) + '/' +  current_date.getFullYear()
-    this.date_search = [date_format, date_format]
-    this.getAllData()
-    this.renderBarChartServiceType();
-    this.renderBarChartDisease();
-
-
-},
-computed: { }
+    computed: {}
 }
 </script>
 
@@ -910,7 +996,7 @@ computed: { }
     margin-bottom: 0px;
 }
 
-.small-box .inner p{
+.small-box .inner p {
     margin-bottom: 0px !important;
 }
 

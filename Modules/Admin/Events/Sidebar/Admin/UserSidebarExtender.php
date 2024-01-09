@@ -37,7 +37,7 @@ class UserSidebarExtender extends AbstractAdminSidebar
                 $item->authorize(
                     $this->auth->hasAccess('admin.admins.index')
                 );
-//                $item->item(trans('backend::sidebar.permissions'), function (Item $item) {
+                //                $item->item(trans('backend::sidebar.permissions'), function (Item $item) {
 //
 //                    $item->weight(0);
 //
@@ -69,7 +69,7 @@ class UserSidebarExtender extends AbstractAdminSidebar
             });
 
             $group->item(trans('backend::sidebar.patient'), function (Item $item) {
-                $item->icon('fas custom-icon route-square');
+                $item->icon('fas custom-icon profile-2user');
                 $item->weight(10);
                 $item->authorize(
                     $this->auth->hasAccess('admin.patient.index')
@@ -87,7 +87,7 @@ class UserSidebarExtender extends AbstractAdminSidebar
 
             });
             $group->item(trans('backend::sidebar.examination service'), function (Item $item) {
-                $item->icon('fas custom-icon route-square');
+                $item->icon('fas custom-icon warning-2');
                 $item->weight(10);
                 $item->authorize(
                     $this->auth->hasAccess('admin.examinationservice.index')
@@ -96,7 +96,7 @@ class UserSidebarExtender extends AbstractAdminSidebar
 
             });
             $group->item(trans('backend::sidebar.device'), function (Item $item) {
-                $item->icon('fas custom-icon device-icon');
+                $item->icon('fas custom-icon document');
                 $item->weight(10);
                 $item->authorize(
                     $this->auth->hasAccess('admin.device.index')
@@ -145,6 +145,16 @@ class UserSidebarExtender extends AbstractAdminSidebar
 
             });
 
+            $group->item(trans('backend::sidebar.dashboard'), function (Item $item) {
+                $item->icon('fas custom-icon user-square');
+                $item->weight(10);
+                $item->authorize(
+                    $this->auth->hasAccess('admin.dashboard.index')
+                );
+                $item->route('admin.dashboard.index');
+                $item->isActiveWhen('/admin');
+
+            });
 
         });
 
