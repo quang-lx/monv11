@@ -145,6 +145,9 @@
         <el-dialog :close-on-click-modal="false" :title="$t('service.label.add service title')"
             :visible.sync="show_add_service_form">
 
+            <el-input suffix-icon="el-icon-search" @keyup.native="searchTree" placeholder="Tìm kiếm"
+                      size="small" v-model="searchQuery">
+            </el-input>
 
             <el-tree
                 :data="tree_data"
@@ -199,11 +202,17 @@ export default {
             defaultProps: {
                 children: 'children',
                 label: 'label'
-            }
+            },
+            searchQuery: ''
 
         };
     },
     methods: {
+        searchTree: _.debounce(function (query) {
+
+            this.getServiceOptions();
+        }, 300),
+
         deleteRow(index) {
             this.data.splice(index, 1);
         },
@@ -274,6 +283,7 @@ export default {
             const properties = {
                 page: 1,
                 per_page: 9000,
+                q: this.searchQuery
             };
 
             window.axios.get(route('api.service.tree', properties))

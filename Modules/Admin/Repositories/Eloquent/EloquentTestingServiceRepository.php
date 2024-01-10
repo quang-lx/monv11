@@ -141,7 +141,7 @@ class EloquentTestingServiceRepository extends BaseRepository implements Testing
                 'label' => $type_model->name,
             ];
             $children = [];
-            $type_model->services()->chunkById(200, function ($services) use ($children) {
+            $type_model->services()->chunkById(200, function ($services) use (&$children) {
                 /** @var TestingService $service */
                 foreach ($services as $service) {
                     $children[] = [
