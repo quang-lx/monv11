@@ -160,8 +160,8 @@
 
 
             <span slot="footer" class="dialog-footer">
-                <el-button @click="show_add_service_form = false">{{ $t('common.cancel') }}</el-button>
-                <el-button type="primary" @click="confirmAddService">{{ $t('common.add') }}</el-button>
+                <el-button size="medium" @click="show_add_service_form = false">{{ $t('common.cancel') }}</el-button>
+                <el-button  size="medium" type="primary" @click="confirmAddService">{{ $t('common.add') }}</el-button>
             </span>
         </el-dialog>
 
