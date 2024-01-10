@@ -137,7 +137,7 @@ class DashboardRepository
         $data = [];
         $backgroundColor = [];
 
-        $examination_service = $query->groupBy('service_id')->select('service_id', DB::raw('count(*) as total'))->get();
+        $examination_service = $query->groupBy('service_id')->select('service_id', DB::raw('count(*) as total'))->orderBy(DB::raw('count(*)'))->limit(8)->get();
         foreach ($examination_service as $key => $service) {
             $labels[] = TestingService::find($service['service_id'])->code;
             $data[] = $service['total'];
@@ -168,7 +168,7 @@ class DashboardRepository
         $data = [];
         $backgroundColor = [];
 
-        $examination_service = $query->groupBy('service_id')->select('service_id', DB::raw('count(*) as total'))->get();
+        $examination_service = $query->groupBy('service_id')->select('service_id', DB::raw('count(*) as total'))->orderBy(DB::raw('count(*)'))->limit(8)->get();
         foreach ($examination_service as $key => $service) {
             $labels[] = TestingService::find($service['service_id'])->serviceType->code;
             $data[] = $service['total'];
