@@ -148,14 +148,16 @@
             <el-input suffix-icon="el-icon-search" @keyup.native="searchTree" placeholder="Tìm kiếm" class="mb-3"
                       size="small" v-model="searchQuery">
             </el-input>
+            <div style="max-height: 60vh !important; overflow: scroll">
+                <el-tree
+                    :data="tree_data"
+                    show-checkbox
+                    node-key="id"
+                    v-model="service_selecteds"
+                    :props="defaultProps">
+                </el-tree>
+            </div>
 
-            <el-tree
-                :data="tree_data"
-                show-checkbox
-                node-key="id"
-                v-model="service_selecteds"
-                :props="defaultProps">
-            </el-tree>
 
             <span slot="footer" class="dialog-footer">
                 <el-button @click="show_add_service_form = false">{{ $t('common.cancel') }}</el-button>
