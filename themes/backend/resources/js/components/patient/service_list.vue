@@ -153,7 +153,9 @@
                     :data="tree_data"
                     show-checkbox
                     node-key="id"
-                    v-model="service_selecteds"
+                    ref="tree_service"
+                    @check-change="changeService"
+
                     :props="defaultProps">
                 </el-tree>
             </div>
@@ -210,6 +212,9 @@ export default {
         };
     },
     methods: {
+        changeService(data, checked, indeterminate) {
+            this.service_selecteds = this.$refs.tree_service.getCheckedKeys(true)
+        },
         searchTree: _.debounce(function (query) {
 
             this.getServiceOptions();
