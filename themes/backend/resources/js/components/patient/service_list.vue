@@ -436,4 +436,7 @@ export default {
 .el-tree-node__content > .el-tree-node__expand-icon {
     margin: 60px !important;
 }
+    .el-tree-node__content > .is-disabled {
+        display:none !important;;
+    }
 </style>
