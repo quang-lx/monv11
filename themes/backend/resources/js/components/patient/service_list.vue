@@ -145,7 +145,7 @@
         <el-dialog :close-on-click-modal="false" :title="$t('service.label.add service title')"
             :visible.sync="show_add_service_form">
 
-            <el-input suffix-icon="el-icon-search" @keyup.native="searchTree" placeholder="Tìm kiếm"
+            <el-input suffix-icon="el-icon-search" @keyup.native="searchTree" placeholder="Tìm kiếm" class="mb-3"
                       size="small" v-model="searchQuery">
             </el-input>
 

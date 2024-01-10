@@ -138,11 +138,17 @@ class EloquentTestingServiceRepository extends BaseRepository implements Testing
         foreach ($list_type as $type_model) {
             $row = [
                 'id' => $type_model->id,
-                'disabled' => true,
+//                'disabled' => true,
                 'label' => $type_model->name,
             ];
             $children = [];
-            $type_model->services()->chunkById(200, function ($services) use (&$children) {
+            $type_model->services()->where(function ($query)use ($keyword) {
+                if($keyword) {
+                    $query->where('name', 'ilike', "%$keyword%")
+                        ->orWhere('code', 'ilike', "%$keyword%");
+                }
+
+            })->chunkById(200, function ($services) use (&$children) {
                 /** @var TestingService $service */
                 foreach ($services as $service) {
                     $children[] = [
