@@ -145,11 +145,14 @@
         <el-dialog :close-on-click-modal="false" :title="$t('service.label.add service title')"
             :visible.sync="show_add_service_form">
 
-            <el-select v-model="service_selecteds" multiple filterable remote reserve-keyword
-                :placeholder="$t('common.search')">
-                <el-option v-for="item in options" :key="item.id" :label="item.name" :value="item.id">
-                </el-option>
-            </el-select>
+
+            <el-tree
+                :data="tree_data"
+                show-checkbox
+                node-key="id"
+                v-model="service_selecteds"
+                :props="defaultProps">
+            </el-tree>
 
             <span slot="footer" class="dialog-footer">
                 <el-button @click="show_add_service_form = false">{{ $t('common.cancel') }}</el-button>
@@ -192,6 +195,11 @@ export default {
             show_add_service_form: false,
             service_selecteds: [],
             options: [],
+            tree_data: [],
+            defaultProps: {
+                children: 'children',
+                label: 'label'
+            }
 
         };
     },
@@ -268,13 +276,10 @@ export default {
                 per_page: 9000,
             };
 
-            window.axios.get(route('api.service.index', properties))
+            window.axios.get(route('api.service.tree', properties))
                 .then((response) => {
-                    let data = this.data.map((item) => item.service_id);
 
-                    this.options = response.data.data.filter(item => {
-                        return !data.includes(item.id)
-                    })
+                    this.tree_data = response.data
                 });
         },
 

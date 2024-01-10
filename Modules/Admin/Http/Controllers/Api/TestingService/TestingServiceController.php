@@ -66,6 +66,14 @@ class TestingServiceController extends ApiController
     }
 
 
+    public function getTree(Request $request)
+    {
+        $data = $this->testingserviceRepository->getTree($request);
+
+        return response()->json($data);
+    }
+
+
     public function find(TestingService $testingservice)
     {
         return new  TestingServiceTransformer($testingservice);

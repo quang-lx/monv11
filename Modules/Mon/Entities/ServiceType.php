@@ -23,4 +23,7 @@ class ServiceType extends Model
     {
         return $this->belongsTo(User::class, 'created_by');
     }
+    public function services() {
+        return $this->hasMany(TestingService::class, 'type');
+    }
 }

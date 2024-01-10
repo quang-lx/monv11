@@ -341,6 +341,10 @@ Route::middleware('auth:api')->prefix('/service')->group(function (){
         'as' => 'api.service.index',
         'uses' => 'TestingService\TestingServiceController@index',
     ]);
+    Route::get('/type/tree', [
+        'as' => 'api.service.tree',
+        'uses' => 'TestingService\TestingServiceController@getTree',
+    ]);
     Route::post('/{testingservice}/edit', [
             'as' => 'api.service.update',
             'uses' => 'TestingService\TestingServiceController@update',

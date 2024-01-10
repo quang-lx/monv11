@@ -7,8 +7,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Modules\Admin\Repositories\TestingServiceRepository;
 use Modules\Mon\Entities\ServiceIndex;
+use Modules\Mon\Entities\ServiceType;
 use Modules\Mon\Entities\TestingService;
-use \Modules\Mon\Repositories\Eloquent\BaseRepository;
+use Modules\Mon\Repositories\Eloquent\BaseRepository;
 
 class EloquentTestingServiceRepository extends BaseRepository implements TestingServiceRepository
 {
@@ -57,6 +58,7 @@ class EloquentTestingServiceRepository extends BaseRepository implements Testing
 
         return $model;
     }
+
     public function syncServiceIndex($model, $list_service_index)
     {
         $list_service_id = [];
@@ -85,6 +87,7 @@ class EloquentTestingServiceRepository extends BaseRepository implements Testing
         ServiceIndex::query()->where('service_id', $model->id)
             ->whereNotIn('id', $list_service_id)->delete();
     }
+
     public function serverPagingFor(Request $request, $relations = null)
     {
         $query = $this->queryGetTestingService($request, $relations);
@@ -117,5 +120,41 @@ class EloquentTestingServiceRepository extends BaseRepository implements Testing
             $query->orderBy('created_at', 'desc');
         }
         return $query;
+    }
+
+    public function getTree(Request $request)
+    {
+        $output_tree = [];
+        $keyword = $request->get('q');
+        $query_type = ServiceType::query();
+        if ($keyword) {
+            $query_type->whereHas('services', function ($query) use ($keyword) {
+                $query->where('name', 'ilike', "%$keyword%")
+                    ->orWhere('code', 'ilike', "%$keyword%");
+            });
+        }
+        $list_type = $query_type->get();
+        /** @var ServiceType $type_model */
+        foreach ($list_type as $type_model) {
+            $row = [
+                'id' => $type_model->id,
+                'label' => $type_model->name,
+            ];
+            $children = [];
+            $type_model->services()->chunkById(200, function ($services) use ($children) {
+                /** @var TestingService $service */
+                foreach ($services as $service) {
+                    $children[] = [
+                        'id' => $service->id,
+                        'label' => $service->name,
+                    ];
+                }
+
+            });
+            $row['children'] = $children;
+            $output_tree[] = $row;
+
+        }
+        return $output_tree;
     }
 }
