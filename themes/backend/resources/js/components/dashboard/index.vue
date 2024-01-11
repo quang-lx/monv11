@@ -915,7 +915,7 @@ export default {
                     });
 
                     ctx.fillText(sum,
-                        chart?.getDatasetMeta(0)?.data?.[0]?.x,
+                        chart?.getDatasetMeta(0)?.data?.[0]?.x - ctx.measureText(sum).width / 2,
                         chart?.getDatasetMeta(0)?.data?.[0]?.y + 5
                     )
                     ctx.save();
