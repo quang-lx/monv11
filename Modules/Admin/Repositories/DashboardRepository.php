@@ -189,6 +189,30 @@ class DashboardRepository
         
     }
 
+    public function barChartService(Request $request)
+    {
+        list($from_date, $to_date) = $request->get('date_search');
+        $from_date = Carbon::createFromFormat('d/m/Y', $from_date);
+        $to_date = Carbon::createFromFormat('d/m/Y', $to_date);
+        $query = ExaminationService::query()->whereBetween('created_at', [$from_date, $to_date]);
+        $labels = [];
+        $data = [];
+        $backgroundColor = [];
+
+        $examination_service = $query->groupBy('service_id')->select('service_id', DB::raw('count(*) as total'))->orderBy(DB::raw('count(*)'))->limit(10)->get();
+        foreach ($examination_service as $key => $service) {
+            $labels[] = TestingService::find($service['service_id'])->code;
+            $data[] = $service['total'];
+            $backgroundColor[] = $this->rand_color();
+        }
+
+        return [
+            'labels' => $labels,
+            'data' => $data
+        ];
+        
+    }
+
     public function rand_color() {
         return '#' . str_pad(dechex(mt_rand(0, 0xFFFFFF)), 6, '0', STR_PAD_LEFT);
     }

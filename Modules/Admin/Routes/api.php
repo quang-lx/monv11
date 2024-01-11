@@ -44,6 +44,11 @@ Route::middleware('auth:api')->prefix('/dashboard')->group(function (){
         'uses' => 'DashboardApiController@summaryServiceType',
     ]);
 
+    Route::get('/barChartService', [
+        'as' => 'api.dashboard.barChartService',
+        'uses' => 'DashboardApiController@barChartService',
+    ]);
+
 });
 Route::middleware('auth:api')->get('/admin', function (Request $request) {
     return $request->user();

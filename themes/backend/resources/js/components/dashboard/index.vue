@@ -368,7 +368,7 @@
                 <h3 class="title-box">Biểu đồ 10 dịch vụ khám nhiều nhất</h3>
             </div>
             <div class="col-11" style="height: 400px;">
-                <canvas ref="barChartServiceType"></canvas>
+                <canvas ref="barChartService"></canvas>
             </div>
         </div>
 
@@ -517,8 +517,13 @@ export default {
                 ]
             },
             dataBar: {
-                labels: ['E10', 'E11', 'E12', 'E13', 'E14', 'E15', 'E16', 'E17', 'E18', 'E19'],
-                data: [110, 70, 70, 90, 55, 30, 90, 115, 90, 95],
+                labels: [],
+                data: [],
+            },
+
+            dataBarService: {
+                labels: [],
+                data: [],
             },
 
             dataDoughnutSex: {
@@ -694,14 +699,16 @@ export default {
                         }
                     }
                 }
-            }
+            },
+
+            barChartServiceInstance: null
         }
     },
     methods: {
 
-        renderBarChartServiceType() {
+        renderBarChartService() {
             // Get the canvas element
-            const canvas = this.$refs.barChartServiceType;
+            const canvas = this.$refs.barChartService;
             const ctx = canvas.getContext('2d');
 
             // Create a linear gradient
@@ -711,10 +718,10 @@ export default {
 
             // Dummy data for demonstration
             const data = {
-                labels: this.dataBar.labels,
+                labels: this.dataBarService.labels,
                 datasets: [{
                     label: 'Sample Data',
-                    data: this.dataBar.data,
+                    data: this.dataBarService.data,
                     backgroundColor: gradient, // Use the linear gradient as the background color
                     borderColor: 'rgba(75, 192, 192, 1)',
                     borderWidth: 1,
@@ -746,7 +753,7 @@ export default {
             };
 
             // Create the bar chart
-            new ChartJS(ctx, {
+            this.barChartServiceInstance = new ChartJS(ctx, {
                 type: 'bar',
                 data: data,
                 options: options
@@ -882,6 +889,17 @@ export default {
                 });
         },
 
+        getBarChartService() {
+            const properties = {
+                date_search: this.date_search,
+            };
+
+            window.axios.get(route('api.dashboard.barChartService', properties))
+                .then((response) => {
+                    this.dataBarService = response.data;
+                });
+        },
+
         configPlugins(text) {
             return [{
                 id: 'text',
@@ -930,7 +948,15 @@ export default {
             this.getSummaryAge()
             this.getSummaryService()
             this.getSummaryServiceType()
-        }
+            this.getBarChartService()
+        },
+
+        destroyChart() {
+            // Destroy the existing chart instance if it exists
+            if (this.barChartServiceInstance) {
+                this.barChartServiceInstance.destroy();
+            }
+        },
 
 
     },
@@ -939,12 +965,22 @@ export default {
         let date_format = ("0" + current_date.getDate()).slice(-2) + '/' + ("0" + (current_date.getMonth() + 1)).slice(-2) + '/' + current_date.getFullYear()
         this.date_search = [date_format, date_format]
         this.getAllData()
-        this.renderBarChartServiceType();
+        this.renderBarChartService();
         this.renderBarChartDisease();
 
 
     },
-    computed: {}
+    watch: {
+        dataBarService: {
+            deep: true,
+            handler(newData) {
+                // Rerender the chart when dataBar changes
+ 
+                this.destroyChart();
+                this.renderBarChartService();
+            },
+        },
+    }
 }
 </script>
 
