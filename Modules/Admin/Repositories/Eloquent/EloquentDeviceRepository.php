@@ -3,7 +3,7 @@
 namespace Modules\Admin\Repositories\Eloquent;
 
 use Illuminate\Http\Request;
-use Modules\Admin\Events\Category\DeviceWasUpdated;
+use Modules\Admin\Events\DeviceWasUpdated;
 use Modules\Admin\Events\DeviceWasCreated;
 use Modules\Admin\Repositories\DeviceRepository;
 use \Modules\Mon\Repositories\Eloquent\BaseRepository;

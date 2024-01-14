@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Admin\Events\Category;
+namespace Modules\Admin\Events;
 
 use Modules\Media\Repositories\StoringMedia;
 use Modules\Mon\Entities\Device;

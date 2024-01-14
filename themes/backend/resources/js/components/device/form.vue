@@ -151,8 +151,7 @@
                                             </el-form-item>
                                         </div>
                                         <div class="col-8">
-                                            <el-form-item label="Tải lên file"
-                                                          :class="{'el-form-item is-error': form.errors.has( 'doc_no') }">
+
                                                 <multiple-media zone="device_collection"
                                                             label="Tải lên file"
                                                             @multipleFileSelected="selectMultipleFile($event, 'modelForm')"
@@ -161,7 +160,6 @@
                                                             entity="Modules\Mon\Entities\Device"
                                                             :entity-id="$route.params.deviceId"></multiple-media>
 
-                                            </el-form-item>
 
                                         </div>
                                     </div>
