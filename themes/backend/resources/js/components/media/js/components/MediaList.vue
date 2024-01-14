@@ -21,15 +21,6 @@
                 <div class="row mb-2">
                     <div class="col-md-6">
 
-                        <new-folder :parent-id="folderId"></new-folder>
-
-                        <el-button-group style="width: 30%">
-
-                            <el-button type="danger" :disabled="selectedMedia.length === 0"
-                                       @click.prevent="batchDelete" :loading="filesAreDeleting">
-                                {{ $t('mon.button.delete') }}
-                            </el-button>
-                        </el-button-group>
 
                     </div>
                     <div class="offset-md-2 col-md-4 float-right">
@@ -94,7 +85,7 @@
                                         </el-table-column>
                                         <el-table-column label="" width="150">
                                             <template slot-scope="scope">
-                                                <img :src="scope.row.small_thumb" alt="" v-if="scope.row.is_image"/>
+                                                <img :src="scope.row.full_url" alt="" v-if="scope.row.is_image"  style="max-width: 120px !important;"/>
                                                 <i :class="`fa ${scope.row.fa_icon}`" style="font-size: 38px;"
                                                    v-if="! scope.row.is_image && ! scope.row.is_folder"></i>
                                                 <i class="fa fa-folder" style="font-size: 38px;"
