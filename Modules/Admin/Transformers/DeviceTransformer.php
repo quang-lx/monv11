@@ -21,6 +21,7 @@ class DeviceTransformer extends JsonResource
             'note' => $this->note,
             'box' => $this->box,
             'status' => $this->status,
+            'doc_no' => $this->doc_no,
 
              'urls' => [
                 'delete_url' => route('api.device.destroy', $this->id),

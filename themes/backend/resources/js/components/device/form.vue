@@ -138,6 +138,34 @@
 
                                     </div>
                                     <div class="row">
+                                        <div class="col-4">
+                                            <el-form-item label="Số giấy tờ"
+                                                          :class="{'el-form-item is-error': form.errors.has( 'doc_no') }">
+                                                <el-input v-model="modelForm.doc_no"
+                                                          size="small"
+                                                          placeholder="Nhập số giấy tờ"
+                                                           ></el-input>
+                                                <div class="el-form-item__error"
+                                                     v-if="form.errors.has('doc_no')"
+                                                     v-text="form.errors.first('doc_no')"></div>
+                                            </el-form-item>
+                                        </div>
+                                        <div class="col-8">
+                                            <el-form-item label="Tải lên file"
+                                                          :class="{'el-form-item is-error': form.errors.has( 'doc_no') }">
+                                                <multiple-media zone="device_collection"
+                                                            label="Tải lên file"
+                                                            @multipleFileSelected="selectMultipleFile($event, 'modelForm')"
+                                                            @fileUnselected="unselectFile($event, 'modelForm')"
+                                                            @fileSorted="fileSorted($event, 'modelForm')"
+                                                            entity="Modules\Mon\Entities\Device"
+                                                            :entity-id="$route.params.deviceId"></multiple-media>
+
+                                            </el-form-item>
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
                                         <div class="col-12">
                                             <el-form-item :label="$t('device.label.note')"
                                                           :class="{'el-form-item is-error': form.errors.has( 'note') }">
@@ -173,11 +201,16 @@
 
 <script>
     import Form from 'form-backend-validation';
-
+    import MultipleMedia from '../media/js/components/MultipleMedia';
+    import MultipleFileSelector from '../../mixins/MultipleFileSelector.js';
     export default {
         props: {
             locales: {default: null},
             pageTitle: {default: null, String},
+        },
+        mixins: [  MultipleFileSelector],
+        components: {
+            MultipleMedia
         },
         data() {
             return {

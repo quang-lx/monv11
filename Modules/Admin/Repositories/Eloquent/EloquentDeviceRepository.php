@@ -3,6 +3,8 @@
 namespace Modules\Admin\Repositories\Eloquent;
 
 use Illuminate\Http\Request;
+use Modules\Admin\Events\Category\DeviceWasUpdated;
+use Modules\Admin\Events\DeviceWasCreated;
 use Modules\Admin\Repositories\DeviceRepository;
 use \Modules\Mon\Repositories\Eloquent\BaseRepository;
 
@@ -39,4 +41,21 @@ class EloquentDeviceRepository extends BaseRepository implements DeviceRepositor
         $query->orderBy('updated_at', 'desc');
         return $query;
     }
+
+    public function create($data)
+    {
+        $model = $this->model->create($data);
+        event(new DeviceWasCreated($model, $data));
+
+        return $model;
+    }
+
+    public function update($model, $data)
+    {
+        $model = $model->update($data);
+        event(new DeviceWasUpdated($model, $data));
+
+        return $model;
+    }
+
 }
