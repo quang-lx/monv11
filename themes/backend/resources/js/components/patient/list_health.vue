@@ -239,8 +239,8 @@
 
         },
         watch: {
-            modelForm: function () {
-                this.$emit("change-value", this.modelForm);
+            list_index: function () {
+                this.$emit("change-value", this.list_index);
             },
         },
 
