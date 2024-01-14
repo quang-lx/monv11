@@ -239,9 +239,12 @@
 
         },
         watch: {
-            list_index: function () {
-                this.$emit("change-value", this.list_index);
-            },
+            list_index: {
+                handler: function (val, oldVal) {
+                    this.$emit("change-value", this.list_index);
+                },
+                deep: true
+            } 
         },
 
     }
