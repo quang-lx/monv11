@@ -64,7 +64,7 @@
                                                     <el-date-picker
                                                         v-model="item.create_date"
                                                         :disabled="!item.is_edit"
-                                                        type="date"
+                                                        type="datetime"
                                                         style="width: 100%"
                                                         size="small"
                                                         format="dd/MM/yyyy"
