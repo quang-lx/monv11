@@ -160,6 +160,7 @@
 
                                     </div>
 
+                                    <list-health @change-value="changeHealth"/>
 
 
 
@@ -233,6 +234,7 @@
     import ServiceList from './service_list';
     import SamePatientCreate from './same_patient_create';
     import SamePatientUpdate from './same_patient_update';
+    import ListHealth from './list_health'
 
     export default {
         props: {
@@ -242,7 +244,8 @@
         components: {
             ServiceList,
             SamePatientCreate,
-            SamePatientUpdate
+            SamePatientUpdate,
+            ListHealth
         },
 
         data() {
@@ -275,6 +278,7 @@
                     email: '',
                     papers: '',
                     job: '',
+                    list_health: [],
 
 
                     list_service: []
@@ -404,6 +408,9 @@
                 this.show_same_patient = false;
             },
 
+            changeHealth(data) {
+                this.modelForm.list_health = data
+            }
 
         },
         mounted() {

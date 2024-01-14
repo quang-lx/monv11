@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Modules\Admin\Repositories\PatientRepository;
+use Modules\Mon\Entities\ExaminationHealth;
 use Modules\Mon\Entities\ExaminationService;
 use Modules\Mon\Entities\PatientExamination;
 use Modules\Mon\Entities\PatientHasService;
@@ -24,9 +25,18 @@ class EloquentPatientRepository extends BaseRepository implements PatientReposit
         $data['data_sources'] = Patient::Local;
         $model = $this->model->create($data);
         $this->initExamination($model);
-
+        $list_health = $data['list_health'];
+        if(!empty($list_health)) {
+            $this->insertHealth($list_health, $model);
+        }
 
         return $model;
+    }
+    public function insertHealth($list_health, Patient $patient) {
+        foreach ($list_health as $health) {
+            $health['patient_id'] = $patient->id;
+            ExaminationHealth::create($health);
+        }
     }
 
     public function update($model, $data)
