@@ -45,8 +45,8 @@
                                                         type="date"
                                                         style="width: 100%"
                                                         size="small"
-                                                        format="dd/MM/yyyy"
-                                                        value-format="yyyy-MM-dd"
+                                                        format="HH:mm dd/MM/yyyy"
+                                                        value-format="yyyy-MM-dd HH:mm:ss"
                                                         placeholder="Chọn ngày">
                                                     </el-date-picker>
 

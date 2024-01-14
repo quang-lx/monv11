@@ -17,9 +17,9 @@
 
                                     <div class="d-flex flex-row">
                                         <span class=" mr-3">Thời gian</span>
-                                        <el-date-picker size="small" v-model="filter_date_range" type="daterange" range-separator="-"
-                                                        start-placeholder="Từ ngày" end-placeholder="Đến ngày" format="dd/MM/yyyy"
-                                                        value-format="yyyy-MM-dd" @change="fetchData({})">
+                                        <el-date-picker size="small" v-model="filter_date_range" type="datetimerange" range-separator="-"
+                                                        start-placeholder="Từ ngày" end-placeholder="Đến ngày" format="HH:mm dd/MM/yyyy"
+                                                        value-format="yyyy-MM-dd HH:mm:ss" @change="fetchData({})">
                                         </el-date-picker>
                                     </div>
 
