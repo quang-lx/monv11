@@ -45,6 +45,7 @@
                                                         type="date"
                                                         style="width: 100%"
                                                         size="small"
+                                                        type="datetime"
                                                         format="HH:mm dd/MM/yyyy"
                                                         value-format="yyyy-MM-dd HH:mm:ss"
                                                         placeholder="Chọn ngày">
