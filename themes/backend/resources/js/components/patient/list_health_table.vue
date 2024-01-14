@@ -3,8 +3,30 @@
 
 
                 <div class="card">
+
                     <el-form :model="modelForm" label-position="top">
                         <div class="card-body">
+                            <div class="row justify-content-between mb-2">
+                                <div class="col-md-6">
+                                    <div class="row d-flex flex-row align-items-center">
+
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6 d-flex flex-row align-items-center d-flex justify-content-end">
+
+                                    <div class="d-flex flex-row">
+                                        <span class=" mr-3">Thời gian</span>
+                                        <el-date-picker size="small" v-model="filter_date_range" type="daterange" range-separator="-"
+                                                        start-placeholder="Chọn thời gian khám" end-placeholder="" format="dd/MM/yyyy"
+                                                        value-format="yyyy-MM-dd" @change="fetchData({})">
+                                        </el-date-picker>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
                             <div class="row">
                                 <div class="col-md-8">
                                     <div class="f-box-title  d-flex align-items-center">
@@ -115,8 +137,48 @@
                                         </el-form-item>
                                     </div>
                                     <div class="col-md-1 d-flex justify-content-end align-items-center">
+                                        <span v-if="item.is_edit">
+                                                <i @click="saveRow(index)" style="cursor:pointer">
+                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25"
+                                                          viewBox="0 0 24 25" fill="none">
+                                                          <g clip-path="url(#clip0_1458_161437)">
+                                                            <path
+                                                                d="M7 22.5H9V24.5H7V22.5ZM11 22.5H13V24.5H11V22.5ZM15 22.5H17V24.5H15V22.5ZM17 2.5H5C4.46957 2.5 3.96086 2.71071 3.58579 3.08579C3.21071 3.46086 3 3.96957 3 4.5V18.5C3 19.0304 3.21071 19.5391 3.58579 19.9142C3.96086 20.2893 4.46957 20.5 5 20.5H19C20.1 20.5 21 19.6 21 18.5V6.5L17 2.5ZM19 18.5H5V4.5H16.17L19 7.33V18.5ZM12 11.5C10.34 11.5 9 12.84 9 14.5C9 16.16 10.34 17.5 12 17.5C13.66 17.5 15 16.16 15 14.5C15 12.84 13.66 11.5 12 11.5ZM6 5.5H15V9.5H6V5.5Z"
+                                                                fill="#6C757D"/>
+                                                          </g>
+                                                          <defs>
+                                                            <clipPath id="clip0_1458_161437">
+                                                              <rect width="24" height="24" fill="white" transform="translate(0 0.5)"/>
+                                                            </clipPath>
+                                                          </defs>
+                                                        </svg>
+                                                </i>
+                                            <i @click="discardRow(index)" style="cursor:pointer">
 
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25"
+                                                             viewBox="0 0 24 25" fill="none">
+                                                          <path
+                                                              d="M18.2983 6.21022C18.2058 6.11752 18.0959 6.04397 17.9749 5.99379C17.8539 5.94361 17.7242 5.91778 17.5933 5.91778C17.4623 5.91778 17.3326 5.94361 17.2116 5.99379C17.0907 6.04397 16.9808 6.11752 16.8883 6.21022L11.9983 11.0902L7.10827 6.20022C7.01569 6.10764 6.90578 6.0342 6.78481 5.9841C6.66385 5.93399 6.5342 5.9082 6.40327 5.9082C6.27234 5.9082 6.14269 5.93399 6.02173 5.9841C5.90076 6.0342 5.79085 6.10764 5.69827 6.20022C5.60569 6.29281 5.53225 6.40272 5.48214 6.52368C5.43204 6.64464 5.40625 6.77429 5.40625 6.90522C5.40625 7.03615 5.43204 7.1658 5.48214 7.28677C5.53225 7.40773 5.60569 7.51764 5.69827 7.61022L10.5883 12.5002L5.69827 17.3902C5.60569 17.4828 5.53225 17.5927 5.48214 17.7137C5.43204 17.8346 5.40625 17.9643 5.40625 18.0952C5.40625 18.2262 5.43204 18.3558 5.48214 18.4768C5.53225 18.5977 5.60569 18.7076 5.69827 18.8002C5.79085 18.8928 5.90076 18.9662 6.02173 19.0163C6.14269 19.0665 6.27234 19.0922 6.40327 19.0922C6.5342 19.0922 6.66385 19.0665 6.78481 19.0163C6.90578 18.9662 7.01569 18.8928 7.10827 18.8002L11.9983 13.9102L16.8883 18.8002C16.9809 18.8928 17.0908 18.9662 17.2117 19.0163C17.3327 19.0665 17.4623 19.0922 17.5933 19.0922C17.7242 19.0922 17.8538 19.0665 17.9748 19.0163C18.0958 18.9662 18.2057 18.8928 18.2983 18.8002C18.3909 18.7076 18.4643 18.5977 18.5144 18.4768C18.5645 18.3558 18.5903 18.2262 18.5903 18.0952C18.5903 17.9643 18.5645 17.8346 18.5144 17.7137C18.4643 17.5927 18.3909 17.4828 18.2983 17.3902L13.4083 12.5002L18.2983 7.61022C18.6783 7.23022 18.6783 6.59022 18.2983 6.21022Z"
+                                                              fill="#FF0707"/>
+                                                        </svg>
+                                            </i>
+                                        </span>
+                                        <span v-else>
+                                            <i @click="editRow(index)" style="cursor:pointer">
 
+                                              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="23"
+                                                   viewBox="0 0 20 23" fill="none">
+                                                  <path fill-rule="evenodd" clip-rule="evenodd"
+                                                        d="M13.5205 0.937258C14.6873 0.788062 15.8677 1.26518 17.0671 2.39373L17.0685 2.39503C18.2719 3.53312 18.8198 4.68762 18.7376 5.8635C18.6581 6.99975 17.9994 7.96146 17.2483 8.75501M17.2483 8.75501L9.04239 17.4407C8.81106 17.6926 8.49957 17.906 8.20427 18.0639C7.90518 18.2238 7.55921 18.3606 7.23442 18.4184L7.22943 18.4193L4.01058 18.969C3.23001 19.1036 2.48151 18.9086 1.94831 18.4029C1.41586 17.898 1.18057 17.1616 1.26773 16.3771L1.26799 16.3749L1.63959 13.1208C1.68275 12.7971 1.80297 12.4468 1.94468 12.143C2.08588 11.8402 2.27853 11.5191 2.50651 11.2764L2.50797 11.2749L10.718 2.58489C11.4695 1.79102 12.3931 1.08143 13.5205 0.937258M11.8078 3.61556C11.8077 3.61569 11.8079 3.61542 11.8078 3.61556L3.59978 12.3035C3.59961 12.3036 3.59995 12.3033 3.59978 12.3035C3.51781 12.3909 3.40521 12.5602 3.30412 12.7769C3.20486 12.9898 3.14524 13.1867 3.12737 13.3133L2.75856 16.5428C2.75852 16.5431 2.75848 16.5435 2.75845 16.5438C2.71594 16.9287 2.83557 17.1771 2.98048 17.3145C3.12478 17.4513 3.37628 17.5563 3.75572 17.4909L3.75687 17.4907L6.97398 16.9412C7.09925 16.9185 7.29227 16.8505 7.49703 16.741C7.70461 16.6301 7.86076 16.5104 7.93893 16.4246L7.94789 16.4148L16.158 7.72489C16.8266 7.01855 17.1982 6.37489 17.2412 5.7589C17.2815 5.18244 17.0445 4.43718 16.0386 3.48564C15.0383 2.54465 14.2839 2.35185 13.7108 2.42514C13.0984 2.50345 12.4761 2.90968 11.8078 3.61556Z"
+                                                        fill="#2F3748"/>
+                                                  <path fill-rule="evenodd" clip-rule="evenodd"
+                                                        d="M9.77528 3.80885C10.1846 3.74509 10.568 4.02518 10.6318 4.43446C11.0089 6.85508 12.9734 8.70768 15.4159 8.95369C15.828 8.9952 16.1285 9.36294 16.087 9.77507C16.0454 10.1872 15.6777 10.4876 15.2656 10.4461C12.148 10.1321 9.63255 7.76475 9.14967 4.66537C9.08591 4.25609 9.366 3.87262 9.77528 3.80885Z"
+                                                        fill="#2F3748"/>
+                                                  <path fill-rule="evenodd" clip-rule="evenodd"
+                                                        d="M0.25 21.5C0.25 21.0858 0.585786 20.75 1 20.75H19C19.4142 20.75 19.75 21.0858 19.75 21.5C19.75 21.9142 19.4142 22.25 19 22.25H1C0.585786 22.25 0.25 21.9142 0.25 21.5Z"
+                                                        fill="#2F3748"/>
+                                                </svg>
+                                            </i>
                                                     <i @click="deleteRow(index)"
                                                        style="cursor:pointer; padding-left: 8px">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="23"
@@ -141,6 +203,7 @@
                                                     </i>
 
 
+                                            </span>
 
 
                                     </div>
@@ -167,7 +230,8 @@
 
         },
         props: {
-
+            examination_id: {default: null},
+            patient_id: {default: null},
         },
         data() {
             return {
@@ -175,6 +239,7 @@
                 form: new Form(),
                 list_index: [],
                 old_data: [],
+                filter_date_range: null,
 
             };
         },
@@ -217,13 +282,67 @@
                 }).then(() => {
                     if (!this.list_index[index].id) {
                         this.list_index.splice(index, 1);
+                    } else {
+                        const vm = this;
+                        let routeUri = route('api.examinationhealth.destroy', {examinationhealth: this.list_index[index].id});
+                        window.axios.delete(routeUri)
+                            .then((response) => {
+                                if (response.data.errors === false) {
+
+                                    vm.$notify({
+                                        type: 'success',
+                                        title: 'Thành công',
+                                        message: response.data.message,
+                                    });
+                                    this.list_index.splice(index, 1);
+
+                                }
+                            })
+                            .catch((error) => {
+
+                                this.$notify({
+                                    type: 'error',
+                                    title: 'Thất bại',
+                                    message: error.data.message,
+                                });
+                            });
                     }
 
                 }).catch(() => {
 
                 });
             },
+            saveRow(index) {
+                let routeUri = route('api.examinationhealth.store');
+                const vm = this;
+                if (this.list_index[index].id) {
+                    routeUri = route('api.examinationhealth.update', {examinationhealth: this.list_index[index].id});
+                }
+                const params = _.merge(this.list_index[index], {
+                    patient_id: this.patient_id,
+                    examination_id: this.examination_id
+                })
+                window.axios.post(routeUri, params)
+                    .then((response) => {
+                        if (response.data.errors === false) {
+                            vm.$notify({
+                                type: 'success',
+                                title: 'Thành công',
+                                message: response.data.message,
+                            });
+                            this.list_index[index].id = response.data.id
+                            this.list_index[index].is_edit = 0
+                        }
+                    })
+                    .catch((error) => {
 
+                        vm.$notify({
+                            type: 'error',
+                            title: 'Thất bại',
+                            message: error.data.message,
+                        });
+                    });
+            },
             discardRow(index) {
                 if (this.old_data[index]) {
                     this.list_index.splice(index, 1, this.old_data[index])
@@ -233,18 +352,34 @@
 
             },
 
+            fetchData() {
+                const properties = {
+                    page: this.meta.current_page,
+                    per_page: this.meta.per_page,
+                    order_by: this.order_meta.order_by,
+                    order: this.order_meta.order,
+                    examination_id: this.examination_id,
+                    patient_id: this.patient_id,
+                    filter_date_range: this.filter_date_range,
+
+                };
+
+                window.axios.get(route('api.examinationhealth.index', _.merge(properties, {})))
+                    .then((response) => {
+                        this.tableIsLoading = false;
+                        this.tableIsLoading = false;
+                        this.list_index = response.data.data;
+                        this.meta = response.data.meta;
+                        this.links = response.data.links;
+                        this.order_meta.order_by = properties.order_by;
+                        this.order_meta.order = properties.order;
+                        this.show_filter = false;
+                    });
+            },
 
         },
         mounted() {
-
-        },
-        watch: {
-            list_index: {
-                handler: function (val, oldVal) {
-                    this.$emit("change-value", this.list_index);
-                },
-                deep: true
-            }
+            this.fetchData();
         },
 
     }

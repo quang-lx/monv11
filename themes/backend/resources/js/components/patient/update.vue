@@ -303,7 +303,6 @@
                                 </div>
                             </div>
                         </div>
-                        <list-index-result :patient_id="$route.params.patientId"/>
 
                         <div class="row" v-if="!is_new">
                             <div class="col-12">
@@ -323,7 +322,9 @@
                     <el-tab-pane label="Lịch sử khám chữa bệnh" name="second">
                         <examination-list :patient_id="$route.params.patientId "></examination-list>
                     </el-tab-pane>
-
+                    <el-tab-pane label="Chỉ số sức khoẻ" name="three">
+                        <list-health-table :patient_id="$route.params.patientId "></list-health-table>
+                    </el-tab-pane>
                 </el-tabs>
             </div>
         </section>
@@ -341,7 +342,7 @@
     import ServiceList from './service_list';
     import ExaminationList from './examination_list';
     import SamePatientUpdate from './same_patient_update';
-    import ListIndexResult from '../examination/list_index_result';
+    import ListHealthTable from './list_health_table';
 
     export default {
         props: {
@@ -350,7 +351,7 @@
         },
         components: {
             ServiceList,
-            ListIndexResult,
+            ListHealthTable,
             SamePatientUpdate,
             ExaminationList
         },

@@ -13,8 +13,8 @@
                     </div>
                     <div class="col-md-6 d-flex flex-row align-items-center d-flex justify-content-end">
 
-                        <div class="d-flex flex-column">
-                            <span class=" mb-1">Thời gian khám</span>
+                        <div class="d-flex flex-row">
+                            <span class=" mr-3">Thời gian khám</span>
                             <el-date-picker size="small" v-model="filter_date_range" type="daterange" range-separator="-"
                                 start-placeholder="Chọn thời gian khám" end-placeholder="" format="dd/MM/yyyy"
                                 value-format="yyyy-MM-dd" @change="queryServer({})">
