@@ -17,7 +17,7 @@
                                 <span class="el-icon-error remove-media" @click="unSelectMedia(media.id)"></span>
                             </figure>
                             <figure  v-else>
-                                <img :src="media.medium_thumb" alt="" v-if="media.is_image"/>
+                                <img :src="media.full_url" alt="" v-if="media.is_image"/>
                                 <i :class="`fa ${media.fa_icon}`" style="font-size: 60px;" v-if="! media.is_image"></i>
                                 <span v-if="! media.is_image" style="display:block;">{{ media.filename }}</span>
                                 <span class="el-icon-error remove-media" @click="unSelectMedia(media.id)"></span>

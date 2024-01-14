@@ -52,7 +52,7 @@ class EloquentDeviceRepository extends BaseRepository implements DeviceRepositor
 
     public function update($model, $data)
     {
-        $model = $model->update($data);
+        $model->update($data);
         event(new DeviceWasUpdated($model, $data));
 
         return $model;
