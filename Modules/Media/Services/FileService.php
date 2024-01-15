@@ -43,7 +43,8 @@ class FileService {
 			'visibility' => 'public',
 			'mimetype' => $savedFile->mimetype,
 		]);
-        chmod($path,0777);
+		Log::info($path.'/'.$savedFile->filename);
+        chmod($path.'/'.$savedFile->filename,0777);
 		if (in_array(strtolower($file->getClientOriginalExtension()), [ 'jpg', 'jpeg', 'gif', 'png' ])) {
 //			$this->createThumbnails($savedFile);
 		}
