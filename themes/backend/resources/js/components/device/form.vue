@@ -151,14 +151,20 @@
                                             </el-form-item>
                                         </div>
                                         <div class="col-8">
-
+                                            <el-form-item label="Tải lên file"
+                                                          :class="{'el-form-item is-error': form.errors.has( 'medias_multi.device_collection.files') }">
                                                 <multiple-media zone="device_collection"
+                                                                :show_label = "false"
                                                             label="Tải lên file"
                                                             @multipleFileSelected="selectMultipleFile($event, 'modelForm')"
                                                             @fileUnselected="unselectFile($event, 'modelForm')"
                                                             @fileSorted="fileSorted($event, 'modelForm')"
                                                             entity="Modules\Mon\Entities\Device"
                                                             :entity-id="$route.params.deviceId"></multiple-media>
+                                                <div class="el-form-item__error"
+                                                     v-if="form.errors.has('medias_multi.device_collection.files')"
+                                                     v-text="form.errors.first('medias_multi.device_collection.files')"></div>
+                                            </el-form-item>
 
 
                                         </div>

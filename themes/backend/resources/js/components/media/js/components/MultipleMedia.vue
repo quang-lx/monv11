@@ -1,6 +1,6 @@
 <template>
     <div>
-        <label class="el-form-item__label">{{ getFieldLabel() }}</label>
+        <label class="el-form-item__label" v-if="show_label">{{ getFieldLabel() }}</label>
         <div class="jsThumbnailImageWrapper jsSingleThumbnailWrapper" v-if="hasSelectedMedia" >
             <draggable :list="this.selectedMedia" :options="{group:'images'}" @start="drag=true" @end="drag=false"  @change="changeOrder">
                 <div style="display:flex">
@@ -65,6 +65,7 @@
             entity: { type: String, required: true },
             entityId: { default: null },
             label: { type: String },
+            show_label: {default: true}
         },
         components: {
             'upload-zone': UploadZone,
