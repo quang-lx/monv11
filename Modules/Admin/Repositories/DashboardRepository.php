@@ -83,10 +83,16 @@ class DashboardRepository
         list($from_date, $to_date) = $request->get('date_search');
         $from_date = Carbon::createFromFormat('d/m/Y', $from_date);
         $to_date = Carbon::createFromFormat('d/m/Y', $to_date);
-        $query = Patient::query()->whereBetween('created_at', [$from_date, $to_date]);
+        $query = PatientExamination::query()->whereBetween('created_at', [$from_date, $to_date]);
 
-        $mane = (clone $query)->where('sex', Patient::MALE)->count();
-        $female = (clone $query)->where('sex', Patient::FEMALE)->count();
+        $mane = (clone $query)->whereHas('patient', function ($query) {
+            $query->where('sex', Patient::MALE);
+        })->count();
+
+        $female = (clone $query)->whereHas('patient', function ($query) {
+            $query->where('sex', Patient::FEMALE);
+        })->count();
+        
         return [
             'labels' => ['Nữ', 'Nam'],
             'datasets' => [
