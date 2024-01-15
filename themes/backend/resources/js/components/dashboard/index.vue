@@ -131,7 +131,7 @@
                 <h3 class="title-box">Số lượt khám chưa bệnh</h3>
             </div>
             <div class="col-12">
-                <LineChart height="400" :data="dataLine" :options="optionsLine" />
+                <LineChart height="400" :data="dataLineChartNumberExamination" :options="optionsLine" />
             </div>
         </div>
 
@@ -570,54 +570,9 @@ export default {
                     }
                 ]
             },
-            dataLine: {
-                labels: ['01/08', '02/08', '03/08', '04/08', '05/08', '06/08', '07/08', '08/08', '09/08', '10/08'],
-                datasets: [
-                    {
-                        label: 'Trẻ em',
-                        borderColor: '#0381FE',
-                        backgroundColor: '#0381FE',
-                        data: [900, 1200, 800, 200, 900, 500, 1000, 1500, 2000, 2500],
-                        fill: false,
-                        datalabels: {
-                            display: false,
-                        },
-                        pointHoverRadius: 6
-                    },
-                    {
-                        label: 'Phụ nữ',
-                        borderColor: '#FB8532',
-                        backgroundColor: '#FB8532',
-                        data: [300, 500, 2000, 1400, 2000, 900, 1200, 800, 200, 900],
-                        fill: false,
-                        datalabels: {
-                            display: false,
-                        },
-                        pointHoverRadius: 6
-                    },
-                    {
-                        label: 'Người cao tuổi',
-                        borderColor: '#52C41A',
-                        backgroundColor: '#52C41A',
-                        data: [500, 1000, 1500, 2000, 2500, 300, 500, 2000, 1400, 2000],
-                        fill: false,
-                        datalabels: {
-                            display: false,
-                        },
-                        pointHoverRadius: 6
-                    },
-                    {
-                        label: 'Đàn ông',
-                        borderColor: '#E8E8E8',
-                        backgroundColor: '#E8E8E8',
-                        data: [2000, 2500, 300, 500, 2000, 1500, 800, 1000, 1700, 500],
-                        fill: false,
-                        datalabels: {
-                            display: false,
-                        },
-                        pointHoverRadius: 6
-                    }
-                ]
+            dataLineChartNumberExamination: {
+                labels: [],
+                datasets: []
             },
             optionsDoughnut: {
                 responsive: true,
@@ -900,6 +855,17 @@ export default {
                 });
         },
 
+        getLineChartNumberExamination() {
+            const properties = {
+                date_search: this.date_search,
+            };
+
+            window.axios.get(route('api.dashboard.lineChartNumberExamination', properties))
+                .then((response) => {
+                    this.dataLineChartNumberExamination = response.data;
+                });
+        },
+
         configPlugins(text) {
             return [{
                 id: 'text',
@@ -949,6 +915,7 @@ export default {
             this.getSummaryService()
             this.getSummaryServiceType()
             this.getBarChartService()
+            this.getLineChartNumberExamination()
         },
 
         destroyChart() {

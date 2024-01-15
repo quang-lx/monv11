@@ -105,14 +105,32 @@ class DashboardRepository
         list($from_date, $to_date) = $request->get('date_search');
         $from_date = Carbon::createFromFormat('d/m/Y', $from_date);
         $to_date = Carbon::createFromFormat('d/m/Y', $to_date);
-        $query = Patient::query()->whereBetween('created_at', [$from_date, $to_date]);
+        $query = PatientExamination::query()->whereBetween('created_at', [$from_date, $to_date]);
 
-        $total_0_to_6_age = (clone $query)->whereBetween('birthday', [Carbon::now()->subYears(6), Carbon::now()->subYears(0)])->count();
-        $total_7_to_12_age = (clone $query)->whereBetween('birthday', [Carbon::now()->subYears(12), Carbon::now()->subYears(7)])->count();
-        $total_13_to_18_age = (clone $query)->whereBetween('birthday', [Carbon::now()->subYears(18), Carbon::now()->subYears(13)])->count();
-        $total_19_to_40_age = (clone $query)->whereBetween('birthday', [Carbon::now()->subYears(40), Carbon::now()->subYears(19)])->count();
-        $total_41_to_60_age = (clone $query)->whereBetween('birthday', [Carbon::now()->subYears(60), Carbon::now()->subYears(41)])->count();
-        $total_greater_than_60_age = (clone $query)->where('birthday', '<=', Carbon::now()->subYears(60))->count();
+        $total_0_to_6_age = (clone $query)->whereHas('patient', function ($query) {
+            $query->whereBetween('birthday', [Carbon::now()->subYears(6), Carbon::now()->subYears(0)]);
+        })->selectRaw('distinct patient_id')->count();
+
+        $total_7_to_12_age = (clone $query)->whereHas('patient', function ($query) {
+            $query->whereBetween('birthday', [Carbon::now()->subYears(12), Carbon::now()->subYears(7)]);
+        })->selectRaw('distinct patient_id')->count();
+
+        $total_13_to_18_age = (clone $query)->whereHas('patient', function ($query) {
+            $query->whereBetween('birthday', [Carbon::now()->subYears(18), Carbon::now()->subYears(13)]);
+        })->selectRaw('distinct patient_id')->count();
+
+        $total_19_to_40_age = (clone $query)->whereHas('patient', function ($query) {
+            $query->whereBetween('birthday', [Carbon::now()->subYears(40), Carbon::now()->subYears(19)]);
+        })->selectRaw('distinct patient_id')->count();
+
+        $total_41_to_60_age = (clone $query)->whereHas('patient', function ($query) {
+            $query->whereBetween('birthday', [Carbon::now()->subYears(60), Carbon::now()->subYears(41)]);
+        })->selectRaw('distinct patient_id')->count();
+
+        $total_greater_than_60_age = (clone $query)->whereHas('patient', function ($query) {
+            $query->where('birthday', '<=', Carbon::now()->subYears(60));
+        })->selectRaw('distinct patient_id')->count();
+
 
         return [
             'labels' => ['0-6', '7-12', '13-18', '19-40', '41-60', 'Trên 60'],
@@ -133,16 +151,24 @@ class DashboardRepository
         $from_date = Carbon::createFromFormat('d/m/Y', $from_date);
         $to_date = Carbon::createFromFormat('d/m/Y', $to_date);
         $query = ExaminationService::query()->whereBetween('created_at', [$from_date, $to_date]);
+        $query_remaining = ExaminationService::query()->whereBetween('created_at', [$from_date, $to_date]);
         $labels = [];
         $data = [];
         $backgroundColor = [];
+        $service_id_top_3 = [];
 
-        $examination_service = $query->groupBy('service_id')->select('service_id', DB::raw('count(*) as total'))->orderBy(DB::raw('count(*)'))->limit(8)->get();
+        $examination_service = $query->groupBy('service_id')->select('service_id', DB::raw('count(*) as total'))->orderBy(DB::raw('count(*)'))->limit(3)->get();
         foreach ($examination_service as $key => $service) {
             $labels[] = TestingService::find($service['service_id'])->code;
             $data[] = $service['total'];
             $backgroundColor[] = $this->rand_color();
+            $service_id_top_3[] = $service['service_id'];
         }
+
+        $examination_service_remaining = $query_remaining->whereNotIn('id', $service_id_top_3)->select(DB::raw('count(*) as total'))->first();
+        $labels[] = 'Còn lại';
+        $data[] = $examination_service_remaining['total'];
+        $backgroundColor[] = $this->rand_color();
 
         return [
             'labels' => $labels,
@@ -155,7 +181,7 @@ class DashboardRepository
                 ]
             ]
         ];
-        
+
     }
 
     public function summaryServiceType(Request $request)
@@ -164,17 +190,25 @@ class DashboardRepository
         $from_date = Carbon::createFromFormat('d/m/Y', $from_date);
         $to_date = Carbon::createFromFormat('d/m/Y', $to_date);
         $query = ExaminationService::query()->whereBetween('created_at', [$from_date, $to_date]);
+        $query_remaining = ExaminationService::query()->whereBetween('created_at', [$from_date, $to_date]);
         $labels = [];
         $data = [];
         $backgroundColor = [];
+        $service_id_top_3 = [];
 
         $examination_service = $query->groupBy('service_id')->select('service_id', DB::raw('count(*) as total'))->orderBy(DB::raw('count(*)'))->limit(8)->get();
         foreach ($examination_service as $key => $service) {
             $labels[] = TestingService::find($service['service_id'])->serviceType->code;
             $data[] = $service['total'];
             $backgroundColor[] = $this->rand_color();
+            $service_id_top_3[] = $service['service_id'];
         }
-        
+
+        $examination_service_remaining = $query_remaining->whereNotIn('id', $service_id_top_3)->select(DB::raw('count(*) as total'))->first();
+        $labels[] = 'Còn lại';
+        $data[] = $examination_service_remaining['total'];
+        $backgroundColor[] = $this->rand_color();
+
         return [
             'labels' => $labels,
             'datasets' => [
@@ -186,7 +220,7 @@ class DashboardRepository
                 ]
             ]
         ];
-        
+
     }
 
     public function barChartService(Request $request)
@@ -197,24 +231,107 @@ class DashboardRepository
         $query = ExaminationService::query()->whereBetween('created_at', [$from_date, $to_date]);
         $labels = [];
         $data = [];
-        $backgroundColor = [];
 
         $examination_service = $query->groupBy('service_id')->select('service_id', DB::raw('count(*) as total'))->orderBy(DB::raw('count(*)'))->limit(10)->get();
         foreach ($examination_service as $key => $service) {
             $labels[] = TestingService::find($service['service_id'])->code;
             $data[] = $service['total'];
-            $backgroundColor[] = $this->rand_color();
         }
 
         return [
             'labels' => $labels,
             'data' => $data
         ];
-        
+
     }
 
-    public function rand_color() {
+    public function rand_color()
+    {
         return '#' . str_pad(dechex(mt_rand(0, 0xFFFFFF)), 6, '0', STR_PAD_LEFT);
+    }
+
+    public function lineChartNumberExamination(Request $request)
+    {
+        list($from_date, $to_date) = $request->get('date_search');
+        $from_date = Carbon::createFromFormat('d/m/Y', $from_date);
+        $to_date = Carbon::createFromFormat('d/m/Y', $to_date);
+        $date_range = [];
+        $data_label = [];
+        $currentDate = Carbon::parse($from_date);
+        $datasets = [];
+
+        while ($currentDate->lte(Carbon::parse($to_date))) {
+            $date_range[] = $currentDate->format('d/m/Y');
+            $data_label[] = $currentDate->format('d/m');
+            $currentDate->addDay();
+        }
+
+
+        $query = $this->queryGePatientExaminationRangeTime($from_date, $to_date);
+
+        $children = (clone $query)->whereHas('patient', function ($query) {
+            $query->where('birthday', '>=', Carbon::now()->subYears(16));
+        })->groupBy(DB::raw('DATE(created_at)'), 'patient_id')->get();
+        $datasets[] = $this->mapDataRangeTime($date_range, $children, '#0381FE', 'Trẻ em');
+
+        $male = (clone $query)->whereHas('patient', function ($query) {
+            $query->where('sex', '=', Patient::MALE);
+        })->groupBy(DB::raw('DATE(created_at)'), 'patient_id')->get();
+        $datasets[] = $this->mapDataRangeTime($date_range, $male, '#FB8532', 'Phụ nữ');
+
+        $old = (clone $query)->whereHas('patient', function ($query) {
+            $query->where('birthday', '<=', Carbon::now()->subYears(60));
+        })->groupBy(DB::raw('DATE(created_at)'), 'patient_id')->get();
+        $datasets[] = $this->mapDataRangeTime($date_range, $old, '#52C41A', 'Người cao tuổi');
+
+        $female = (clone $query)->whereHas('patient', function ($query) {
+            $query->where('sex', '=', Patient::FEMALE);
+        })->groupBy(DB::raw('DATE(created_at)'), 'patient_id')->get();
+        $datasets[] = $this->mapDataRangeTime($date_range, $female, '#E8E8E8', 'Đàn ông');
+
+
+        return [
+            'labels' => $data_label,
+            'datasets' => $datasets
+        ];
+
+
+    }
+
+
+    public static function queryGePatientExaminationRangeTime($from_date, $to_date)
+    {
+        $query = PatientExamination::select(DB::raw('DATE(created_at) as created_at'), DB::raw('COUNT(*) as total'))
+            ->whereBetween('created_at', [$from_date, $to_date]);
+        return $query;
+    }
+
+    public function mapDataRangeTime($date_range, $list_data, $color, $label)
+    {
+        $result = [];
+        Log::info($list_data);
+        foreach ($date_range as $date) {
+            $result[$date] = 0; // Khởi tạo số đơn hàng bằng 0 cho mỗi ngày
+        }
+
+        foreach ($list_data as $data) {
+            Log::info(Carbon::createFromFormat('Y-m-d H:i:s', $data->created_at)->format('d/m/Y'));
+            $created_at = Carbon::createFromFormat('Y-m-d H:i:s', $data->created_at)->format('d/m/Y');
+            $result[$created_at] = $data->total;
+        }
+
+        return
+            [
+                'label' => $label,
+                'borderColor' => $color,
+                'backgroundColor' => $color,
+                'data' => array_values($result),
+                'fill' => false,
+                'datalabels' => [
+                    'display' => false,
+                ],
+                'pointHoverRadius' => 6
+            ];
     }
 
 

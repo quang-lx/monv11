@@ -44,4 +44,8 @@ class DashboardApiController extends ApiController
     public function barChartService(Request $request) {
         return  $this->dashboard_repo->barChartService($request);
     }
+
+    public function lineChartNumberExamination(Request $request) {
+        return  $this->dashboard_repo->lineChartNumberExamination($request);
+    }
 }
