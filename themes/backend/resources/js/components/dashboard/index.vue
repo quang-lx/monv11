@@ -324,7 +324,7 @@
                         <h3 class="title-box">Biểu đồ tỷ lệ giới tính</h3>
                     </div>
                     <div class="col-12">
-                        <Doughnut :data="dataDoughnutSex" type='doughnut' :options="optionsDoughnut"
+                        <Doughnut :data="dataDoughnutSex" type='doughnut' v-if="dataDoughnutSex"  :options="optionsDoughnut"
                             :plugins="configPlugins('Tổng số người')" />
                     </div>
                 </div>
@@ -335,7 +335,7 @@
                         <h3 class="title-box">Biểu đồ theo nhóm tuổi</h3>
                     </div>
                     <div class="col-12">
-                        <Doughnut :data="dataDoughnutAge" type='doughnut' :options="optionsDoughnut"
+                        <Doughnut :data="dataDoughnutAge" v-if="dataDoughnutAge" type='doughnut' :options="optionsDoughnut"
                             :plugins="configPlugins('Tổng số người')" />
                     </div>
                 </div>
@@ -346,7 +346,7 @@
                         <h3 class="title-box">Biểu đồ theo dịch vụ khám</h3>
                     </div>
                     <div class="col-12">
-                        <Doughnut :data="dataDoughnutService" type='doughnut' :options="optionsDoughnut"
+                        <Doughnut :data="dataDoughnutService"  v-if="dataDoughnutService"  type='doughnut' :options="optionsDoughnut"
                             :plugins="configPlugins('Tổng số dịch vụ')" />
                     </div>
                 </div>
@@ -357,7 +357,7 @@
                         <h3 class="title-box">Biểu đồ loại dịch vụ khám</h3>
                     </div>
                     <div class="col-12">
-                        <Doughnut :data="dataDoughnutServiceType" type='doughnut' :options="optionsDoughnut"
+                        <Doughnut :data="dataDoughnutServiceType" v-if="dataDoughnutServiceType"  type='doughnut' :options="optionsDoughnut"
                             :plugins="configPlugins('Tổng số dịch vụ')" />
                     </div>
                 </div>
@@ -526,50 +526,10 @@ export default {
                 data: [],
             },
 
-            dataDoughnutSex: {
-                labels: [],
-                datasets: [
-                    {
-                        backgroundColor: [],
-                        data: [],
-                        borderJoinStyle: 'round',
-                        weight: 250
-                    }
-                ]
-            },
-            dataDoughnutAge: {
-                labels: [],
-                datasets: [
-                    {
-                        backgroundColor: [],
-                        data: [],
-                        borderJoinStyle: 'round',
-                        weight: 250
-                    }
-                ]
-            },
-            dataDoughnutService: {
-                labels: [],
-                datasets: [
-                    {
-                        backgroundColor: [],
-                        data: [],
-                        borderJoinStyle: 'round',
-                        weight: 250
-                    }
-                ]
-            },
-            dataDoughnutServiceType: {
-                labels: [],
-                datasets: [
-                    {
-                        backgroundColor: [],
-                        data: [],
-                        borderJoinStyle: 'round',
-                        weight: 250
-                    }
-                ]
-            },
+            dataDoughnutSex: null,
+            dataDoughnutAge: null,
+            dataDoughnutService: null,
+            dataDoughnutServiceType: null,
             dataLineChartNumberExamination: {
                 labels: [],
                 datasets: []

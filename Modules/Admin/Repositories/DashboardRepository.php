@@ -92,7 +92,9 @@ class DashboardRepository
         $female = (clone $query)->whereHas('patient', function ($query) {
             $query->where('sex', Patient::FEMALE);
         })->count();
-        
+        if (array_sum([$female, $mane]) == 0) {
+            return null;
+        }
         return [
             'labels' => ['Nữ', 'Nam'],
             'datasets' => [
@@ -137,13 +139,17 @@ class DashboardRepository
             $query->where('birthday', '<=', Carbon::now()->subYears(60));
         })->selectRaw('distinct patient_id')->count();
 
+        $data = [$total_0_to_6_age, $total_7_to_12_age, $total_13_to_18_age, $total_19_to_40_age, $total_41_to_60_age, $total_greater_than_60_age];
+        if (array_sum($data) == 0) {
+            return null;
+        }
 
         return [
             'labels' => ['0-6', '7-12', '13-18', '19-40', '41-60', 'Trên 60'],
             'datasets' => [
                 [
                     'backgroundColor' => ['#E17126', '#617882', '#119DB5', '#015E99', '#1790C9', '#FFC000'],
-                    'data' => [$total_0_to_6_age, $total_7_to_12_age, $total_13_to_18_age, $total_19_to_40_age, $total_41_to_60_age, $total_greater_than_60_age],
+                    'data' => $data,
                     'borderJoinStyle' => 'round',
                     'weight' => 250
                 ]
@@ -175,6 +181,10 @@ class DashboardRepository
         $labels[] = 'Còn lại';
         $data[] = $examination_service_remaining['total'];
         $backgroundColor[] = $this->rand_color();
+
+        if (array_sum($data) == 0) {
+            return null;
+        }
 
         return [
             'labels' => $labels,
@@ -214,6 +224,10 @@ class DashboardRepository
         $labels[] = 'Còn lại';
         $data[] = $examination_service_remaining['total'];
         $backgroundColor[] = $this->rand_color();
+
+        if (array_sum($data) == 0) {
+            return null;
+        }
 
         return [
             'labels' => $labels,
@@ -315,13 +329,11 @@ class DashboardRepository
     public function mapDataRangeTime($date_range, $list_data, $color, $label)
     {
         $result = [];
-        Log::info($list_data);
         foreach ($date_range as $date) {
             $result[$date] = 0; // Khởi tạo số đơn hàng bằng 0 cho mỗi ngày
         }
 
         foreach ($list_data as $data) {
-            Log::info(Carbon::createFromFormat('Y-m-d H:i:s', $data->created_at)->format('d/m/Y'));
             $created_at = Carbon::createFromFormat('Y-m-d H:i:s', $data->created_at)->format('d/m/Y');
             $result[$created_at] = $data->total;
         }
