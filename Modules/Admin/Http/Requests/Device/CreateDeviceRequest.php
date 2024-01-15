@@ -11,6 +11,7 @@ class CreateDeviceRequest extends FormRequest
         return [
             'code'=>"required|unique:device",
             'name'=>"required",
+            'medias_multi.device_collection.files' => 'array|max:5'
         ];
     }
 
@@ -29,11 +30,12 @@ class CreateDeviceRequest extends FormRequest
         return [
             '*.required' => 'Thông tin này là bắt buộc',
             'code.unique' => 'Thông tin này đã tồn tại trên hệ thống',
+            'medias_multi.device_collection.files.max' => 'Tối đa 5 file'
         ];
     }
 
     public function translationMessages()
     {
-        
+
     }
 }

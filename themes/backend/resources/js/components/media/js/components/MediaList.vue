@@ -79,10 +79,7 @@
                                         v-loading.body="tableIsLoading"
                                         @sort-change="handleSortChange"
                                         @selection-change="handleSelectionChange">
-                                        <el-table-column
-                                            type="selection"
-                                            width="55">
-                                        </el-table-column>
+
                                         <el-table-column label="" width="150">
                                             <template slot-scope="scope">
                                                 <img :src="scope.row.full_url" alt="" v-if="scope.row.is_image"  style="max-width: 120px !important;"/>

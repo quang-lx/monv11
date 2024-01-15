@@ -13,6 +13,8 @@ class UpdateDeviceRequest extends FormRequest
         return [
             'code'=>"required|unique:device,code,{$device->id}",
             'name'=>"required",
+            'medias_multi.device_collection.files' => 'array|max:5'
+
         ];
     }
 
@@ -31,6 +33,8 @@ class UpdateDeviceRequest extends FormRequest
         return [
             '*.required' => 'Thông tin này là bắt buộc',
             'code.unique' => 'Thông tin này đã tồn tại trên hệ thống',
+            'medias_multi.device_collection.files.max' => 'Tối đa 5 file'
+
         ];
     }
 
