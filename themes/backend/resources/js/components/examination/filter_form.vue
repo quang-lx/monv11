@@ -160,7 +160,7 @@
                         label: 'Nam'
                     },
                     {
-                        value: 2,
+                        value: 0,
                         label: 'Nữ'
                     }
                 ]
