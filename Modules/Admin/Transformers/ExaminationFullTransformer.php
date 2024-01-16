@@ -23,6 +23,7 @@ class ExaminationFullTransformer extends JsonResource
             'started_at' => optional($this->started_at)->format('H:i d/m/Y'),
             'finished_at' => optional($this->finished_at)->format('H:i d/m/Y'),
             'diagnose' => $this->diagnose,
+            'disease_id' => $this->disease_id,
             'patient_id' => $this->patient_id,
             'type' => $this->type_text,
             'count_service' => $this->services->count(),

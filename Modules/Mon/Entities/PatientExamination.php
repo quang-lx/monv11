@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property $type
  * @property $type_text
  * @property $patient
+ * @property $disease_id
  * @property $createdBy
  * @package Modules\Mon\Entities
  */
@@ -36,7 +37,7 @@ class PatientExamination extends Model
     ];
     protected $table = 'patient_examination';
     protected $fillable = [
-       'patient_id', 'started_at', 'finished_at', 'status', 'diagnose', 'created_by', 'type'
+       'patient_id', 'started_at', 'finished_at', 'status', 'diagnose', 'created_by', 'type', 'disease_id'
     ];
 
     public function createdBy () {

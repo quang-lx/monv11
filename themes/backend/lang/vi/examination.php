@@ -11,6 +11,7 @@ return [
         'created_by' => 'Người tạo',
         'service' => 'Dịch vụ',
         'type' => 'Loại khám',
+        'disease_id' => 'Chẩn đoán',
         'create_examination' => 'Thêm mới',
         'update_label' => 'Chi tiết khám bệnh',
 

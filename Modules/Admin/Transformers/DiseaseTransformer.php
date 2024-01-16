@@ -18,6 +18,7 @@ class DiseaseTransformer extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'code' => $this->code,
+            'display_text' => $this->code.' - '. $this->name,
             'describe' => $this->describe,
             'created_by'=> $user->name . ' - ' . $user->username,
             'created_at' => $this->created_at->format('H:i d/m/Y'),

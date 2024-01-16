@@ -25,6 +25,7 @@ class ExaminationTransformer extends JsonResource
             'started_at' => optional($this->started_at)->format('H:i d/m/y'),
             'finished_at' =>  optional($this->finished_at)->format('H:i d/m/y'),
             'diagnose' => $this->diagnose,
+            'disease_id' => $this->disease_id,
             'patient_id' => $this->patient_id,
             'count_service' => $this->services->count(),
             'patient' => $this->patient? new PatientThinTransformer($this->patient): [],
