@@ -119,21 +119,11 @@
                                     <el-form-item :label="$t('examination.label.disease_id')" prop="disease_id"
                                                   :class="{ 'el-form-item is-error': form.errors.has('disease_id') }">
 
-                                        <el-select
-                                            v-model="modelForm.disease_id"
-                                            filterable
-                                            remote
-                                            reserve-keyword
-                                            placeholder="Chọn chuẩn đoán"
-                                            :remote-method="searchDisease"
-                                            :loading="loading">
-                                            <el-option
-                                                v-for="item in list_disease"
-                                                :key="item.id"
-                                                :label="item.display_text"
-                                                :value="item.id">
-                                            </el-option>
-                                        </el-select>
+                                        <el-input  placeholder=""
+                                                  disabled
+
+                                                  v-model="modelForm.display_text"></el-input>
+
 
                                         <div class="el-form-item__error" v-if="form.errors.has('disease_id')"
                                              v-text="form.errors.first('disease_id')"></div>

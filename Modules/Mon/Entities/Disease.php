@@ -16,4 +16,8 @@ class Disease extends Model
     {
         return $this->belongsTo(User::class, 'created_by');
     }
+    public function getDisplayTextAttribute() {
+        return   $this->code.' - '. $this->name;
+
+    }
 }

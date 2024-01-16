@@ -50,6 +50,9 @@ class PatientExamination extends Model
     public function services() {
         return $this->hasMany(ExaminationService::class, 'examination_id');
     }
+    public function disease() {
+        return $this->belongsTo(Disease::class, 'disease_id');
+    }
 
     public function getStatusTextAttribute() {
         return self::mapStatusText($this->status);
