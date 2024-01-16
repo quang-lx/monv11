@@ -14,7 +14,7 @@ class ExcelUploadRequest extends FormRequest
     public function rules()
     {
         return [
-            'file' => 'required|file|mimes:xlsx,xls|max:20480', // 5120 kilobytes = 5 megabytes
+            'file' => 'file|mimes:xlsx,xls|max:20480|ends_with:.xlsx,.xls', // 5120 kilobytes = 5 megabytes
         ];
     }
 
@@ -37,8 +37,8 @@ class ExcelUploadRequest extends FormRequest
     public function messages()
     {
         return [
-            'file.required' => 'Trường thông tin bắt buộc',
             'file.mimes' => 'File không đúng định dạng. Vui lòng thử lại',
+            'file.ends_with' => 'File không đúng định dạng. Vui lòng thử lại',
             'file.max' => 'Dung lượng file không được quá 20mb',
         ];
     }
