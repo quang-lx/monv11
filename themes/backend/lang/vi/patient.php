@@ -36,7 +36,7 @@ return [
         'label status' => 'Trạng thái bệnh nhân',
 
         'create_patient' => 'Thêm mới bệnh nhân',
-        'update_patient' => 'Cập nhật bệnh nhân',
+        'update_patient' => 'Chỉnh sửa bệnh nhân',
         'import title' => 'Tải lên danh sách',
         'filter title' => 'Lọc danh sách bệnh nhân',
         'create new' => 'Tạo mới bệnh nhân',
@@ -50,7 +50,7 @@ return [
         'delete service success' => 'Xoá dịch vụ thành công.',
         'cancel service success' => 'Huỷ dịch vụ thành công.',
         'create success' => 'Tạo bệnh nhân thành công.',
-        'update success' => 'Cập nhật bệnh nhân thành công.',
+        'update success' => 'Chỉnh sửa bệnh nhân thành công.',
         'delete success' => 'Xóa bệnh nhân thành công.',
         'import success' => 'Tải lên danh sách bệnh nhân thành công.',
         're-examination fail' => 'Bệnh nhân chưa hoàn thành khám không thể tái khám.',

@@ -22,7 +22,7 @@ return [
         'start success' => 'Bắt đầu khám thành công',
         'finish success' => 'Hoàn thành khám thành công',
         'create success' => 'Tạo bệnh nhân thành công.',
-        'update success' => 'Cập nhật bệnh nhân thành công.',
+        'update success' => 'Chỉnh sửa bệnh nhân thành công.',
         'delete success' => 'Xóa bệnh nhân thành công.',
     ]
 
