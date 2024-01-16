@@ -555,6 +555,3 @@ body:not(.layout-fixed) .main-sidebar {
 .el-tree-node__content > label.el-checkbox {
     margin: 6px !important;
 }
-.el-tree-node__content > .is-disabled {
-    display:none !important;;
-}

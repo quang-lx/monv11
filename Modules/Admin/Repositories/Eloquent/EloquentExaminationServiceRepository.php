@@ -53,15 +53,20 @@ class EloquentExaminationServiceRepository extends BaseRepository implements Exa
                             ->orWhere('phone', 'ilike', "%{$keyword}%")
                             ->orWhere('address', 'ilike', "%{$keyword}%")
                             ->orWhere('papers', 'ilike', "%{$keyword}%")
-                            ->orWhere('job', 'ilike', "%{$keyword}%");
+                            ->orWhere('job', 'ilike', "%{$keyword}%")
+                            ->orWhere('id', 'ilike', "%{$keyword}%");
                     });
                 });
                 $query->orWhereHas('testingService', function ($query) use ($keyword) {
                     $query->where(function ($q) use ($keyword) {
                         $q->orWhere('code', 'ilike', "%{$keyword}%");
-                        $q->orWhere('code_lis', 'ilike', "%{$keyword}%");
-                        $q->orWhere('name', 'ilike', "%{$keyword}%");
-                        $q->orWhere('type', 'ilike', "%{$keyword}%");
+
+                    });
+                });
+                $query->orWhereHas('examination', function ($query) use ($keyword) {
+                    $query->where(function ($q) use ($keyword) {
+                        $q->orWhere('id', 'ilike', "%{$keyword}%");
+
                     });
                 });
             });
