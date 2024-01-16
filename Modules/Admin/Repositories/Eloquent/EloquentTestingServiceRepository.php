@@ -138,7 +138,7 @@ class EloquentTestingServiceRepository extends BaseRepository implements Testing
         foreach ($list_type as $type_model) {
             $row = [
                 'id' => $type_model->id,
-                'disabled' => true,
+//                'disabled' => true,
                 'label' => $type_model->name,
             ];
             $children = [];
