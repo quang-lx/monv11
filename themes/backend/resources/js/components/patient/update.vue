@@ -285,15 +285,27 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12">
-                                                    <el-form-item :label="$t('patient.label.diagnose')" prop="diagnose"
-                                                                  :class="{ 'el-form-item is-error': form.errors.has('diagnose') }">
-                                                        <el-input type="textarea" placeholder=""
-                                                                  :autosize="{ minRows: 5, maxRows: 10 }"
-                                                                  v-model="modelForm.diagnose"></el-input>
+                                                    <el-form-item :label="$t('examination.label.disease_id')" prop="disease_id"
+                                                                  :class="{ 'el-form-item is-error': form.errors.has('disease_id') }">
 
-                                                        <div class="el-form-item__error"
-                                                             v-if="form.errors.has('diagnose')"
-                                                             v-text="form.errors.first('diagnose')"></div>
+                                                        <el-select
+                                                            v-model="modelForm.disease_id"
+                                                            filterable
+                                                            remote
+                                                            reserve-keyword
+                                                            placeholder="Chọn chuẩn đoán"
+                                                            :remote-method="searchDisease"
+                                                            :loading="loading">
+                                                            <el-option
+                                                                v-for="item in list_disease"
+                                                                :key="item.id"
+                                                                :label="item.display_text"
+                                                                :value="item.id">
+                                                            </el-option>
+                                                        </el-select>
+
+                                                        <div class="el-form-item__error" v-if="form.errors.has('disease_id')"
+                                                             v-text="form.errors.first('disease_id')"></div>
                                                     </el-form-item>
                                                 </div>
 
@@ -394,6 +406,7 @@
                 },
 
                 value1: '',
+                list_disease: [],
 
                 sexs: [
                     {
@@ -410,6 +423,22 @@
             };
         },
         methods: {
+            searchDisease: _.debounce(function (query) {
+                this.loading = true;
+                const properties = {
+                    page: 1,
+                    per_page: 20,
+                    search: query
+                };
+
+                window.axios.get(route('api.disease.index', properties))
+                    .then((response) => {
+                        this.loading = false;
+                        this.list_disease = response.data.data;
+
+                    });
+            }, 300),
+
             onSave() {
 
                 this.form = new Form(_.merge(this.modelForm, {}));

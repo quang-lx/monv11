@@ -172,7 +172,7 @@ export default {
         return {
             form: new Form(),
             list_disease: [],
-            load: false
+            loading: false
 
         };
     },
