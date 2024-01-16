@@ -114,6 +114,7 @@
                                                           :class="{ 'el-form-item is-error': form.errors.has('birthday') }">
                                                 <el-date-picker v-model="modelForm.birthday" type="date"
                                                                 format="dd/MM/yyyy" size="small"
+                                                                value-format="yyyy-MM-dd"
                                                                 style="width: 100% !important;"
                                                                 placeholder="Chọn ngày tháng năm sinh">
                                                 </el-date-picker>

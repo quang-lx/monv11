@@ -43,6 +43,8 @@ class EloquentPatientRepository extends BaseRepository implements PatientReposit
     {
         $diagnose = $data['diagnose'] ?? '';
         unset($data['diagnose']);
+        unset($data['updated_at']);
+        unset($data['created_at']);
         $model->update($data);
         $current_examination = $model->current_examination;
         if ($current_examination) {

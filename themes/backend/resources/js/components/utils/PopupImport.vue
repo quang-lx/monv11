@@ -1,9 +1,7 @@
 <template>
     <div>
-        <el-dialog
- :close-on-click-modal="false"
- width="40%" :show-close="true" :title="$t('device.label.import title')" :destroy-on-close="true"
-            :visible.sync="show_import" :before-close="onClosePopup">
+        <el-dialog :close-on-click-modal="false" width="40%" :show-close="true" :title="$t('device.label.import title')"
+            :destroy-on-close="true" :visible.sync="show_import" :before-close="onClosePopup">
             <div class="body-dialog">
                 <div class="">
                     <div>Bấm để tải file lên hệ thống (File tải tối đa 20mb)</div>
@@ -11,10 +9,14 @@
                         <div class="custom-file">
                             <input id="file" ref="file" v-on:change="handleFileUpload()" type="file"
                                 class="custom-file-input">
-                            <label class="custom-file-label" for="file">{{ file_name }}</label>
+                            <label :class="{ 'file-error': isEmpty }" class="custom-file-label" for="file">{{ file_name
+                            }}</label>
                             <img src="/images/icon.svg" alt="">
                         </div>
                         <!-- <input type="file" id="file" ref="file" v-on:change="handleFileUpload()" /> -->
+                        <div class="text-danger mt-2" v-if="isEmpty">
+                            Trường thông tin bắt buộc
+                        </div>
                         <div  class="text-danger mt-2" v-if="data_export?.errors" v-text="data_export?.message"></div>
                         <el-progress class="mt-2" v-if="loadingImport"
                             :percentage="loadingImport == 1 ? 30 : 100"></el-progress>
@@ -71,10 +73,15 @@ export default {
             modelForm: {
                 file: ''
             },
+            isEmpty: false
         };
     },
     methods: {
         onImport() {
+            if (!this.modelForm.file) {
+                this.isEmpty = true;
+                return
+            }
             this.$emit("on-import", this.modelForm.file);
         },
 
@@ -99,6 +106,15 @@ export default {
                 this.$refs.file.value = null
             }
         },
+
+        modelForm: {
+            handler(val) {
+                if (this.modelForm.file) {
+                    this.isEmpty = false
+                }
+            },
+            deep: true
+        }
     },
     mounted() {
         // this.getListDevice();
@@ -167,5 +183,9 @@ a {
     align-items: center;
     gap: 10px;
     margin-top: 10px;
+}
+
+.file-error {
+    border: 1px solid red
 }
 </style>
