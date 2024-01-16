@@ -22,7 +22,7 @@ class PatientTransformer extends JsonResource
             'sex_text' => $this->sex == 1 ? 'Nam' : 'Nữ',
             'status_text' => PatientExamination::mapStatusText($current_examination->status),
             'status' => $current_examination->status,
-            'birthday' => \DateTime::createFromFormat('Y-m-d H:i:s', $this->birthday)->format('d-m-Y'),
+            'birthday' => \DateTime::createFromFormat('Y-m-d H:i:s', $this->birthday)->format('d/m/Y'),
             'phone' => $this->phone,
             'email' => $this->email,
             'papers' => $this->papers,
