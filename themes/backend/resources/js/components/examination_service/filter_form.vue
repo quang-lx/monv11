@@ -118,7 +118,7 @@
                                 <el-option
                                     v-for="item in listUser"
                                     :key="'sex'+ item.id"
-                                    :label="item.created_by_name"
+                                    :label="item.name_display"
                                     :value="item.id">
                                 </el-option>
 
@@ -133,7 +133,7 @@
                                 <el-option
                                     v-for="item in listUser"
                                     :key="'sex'+ item.id"
-                                    :label="item.created_by_name"
+                                    :label="item.name_display"
                                     :value="item.id">
                                 </el-option>
 

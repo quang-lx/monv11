@@ -18,6 +18,7 @@ class UserTransformer extends JsonResource
             'thumbnail' => $this->thumbnail,
             'username' => $this->username,
             'name' => $this->name,
+            'name_display' => $this->name . ' - ' . $this->username,
             'email' => $this->email,
             'phone' => $this->phone,
             'sex' => $this->sex,
