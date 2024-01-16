@@ -26,6 +26,7 @@ class ExaminationThinTransformer extends JsonResource
             'finished_at' =>  optional($this->finished_at)->format('H:i d/m/y'),
             'diagnose' => $this->diagnose,
             'disease_id' => $this->disease_id,
+            'display_text' => optional($this->disease)->display_text,
             'patient_id' => $this->patient_id,
             'created_by_info' => $user->name . ' - ' . $user->username,
 
