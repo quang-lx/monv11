@@ -42,7 +42,7 @@
 
                         </div>
 
-                        
+
                         <div class="sc-table">
 
                             <el-table :data="data" stripe style="width: 100%" ref="dataTable"
@@ -386,6 +386,7 @@ export default {
         },
 
         detailService(id) {
+            window.location.href= route('admin.examinationservice.edit', {examinationserviceId: id})
 
         },
 
