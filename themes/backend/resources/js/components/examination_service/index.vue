@@ -216,7 +216,7 @@ export default {
             full_col_name: [
 
                 {
-                    col_name: 'id',
+                    col_name: 'patient.id',
                     name: this.$t('patient.label.id'),
 
                 },

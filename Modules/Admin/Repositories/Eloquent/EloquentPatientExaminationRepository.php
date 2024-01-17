@@ -63,6 +63,24 @@ class EloquentPatientExaminationRepository extends BaseRepository implements Pat
             $query->where('status', $status);
 
         }
+
+        if ($request->get('search') !== null) {
+            $keyword = $request->get('search');
+            $query->where(function ($query) use ($keyword) {
+                $query->whereHas('patient', function ($query) use ($keyword) {
+                    $query->where(function ($q) use ($keyword) {
+                        $q->orWhere('name', 'ilike', "%{$keyword}%")
+                            ->orWhere('phone', 'ilike', "%{$keyword}%")
+                            ->orWhere('address', 'ilike', "%{$keyword}%")
+                            ->orWhere('papers', 'ilike', "%{$keyword}%")
+                            ->orWhere('id', 'ilike', "%{$keyword}%");
+                    });
+                });
+
+            });
+
+        }
+
         $created_at = $request->get('created_at');
         if ($created_at && is_array($created_at) && count($created_at) == 2) {
             $query->whereBetween(DB::raw('DATE(created_at)'), $created_at);
