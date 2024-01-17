@@ -386,7 +386,7 @@ export default {
         },
 
         detailService(id) {
-            window.location.href= route('admin.examinationservice.edit', {examinationserviceId: id})
+            window.location.href= route('admin.examinationservice.edit', {examinationservice: id})
 
         },
 
