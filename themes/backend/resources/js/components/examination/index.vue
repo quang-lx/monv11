@@ -49,12 +49,17 @@
                                     <el-table :data="data" stripe style="width: 100%" ref="dataTable"
                                         v-loading.body="tableIsLoading" @sort-change="handleSortChange"
                                         @selection-change="handleSelectionChange">
+                                        <el-table-column :label="$t('disease.label.stt')" :index="indexMethod" type="index"
+                                                         width="60">
+                                        </el-table-column>
                                         <el-table-column v-for="col_selected in list_selected_col"
                                             :key="col_selected.col_name" :prop="col_selected.col_name"
                                             :label="list_col_label[col_selected.col_name]" min-width="150">
                                             <template slot-scope="scope">
                                                     <span v-if="col_selected.col_name == 'patient.sex'">{{
                                                         scope.row.patient.sex_text }}</span>
+                                                        <span v-if="col_selected.col_name == 'diagnose'">{{
+                                                        scope.row.display_text }}</span>
                                                     <span v-if="col_selected.col_name == 'patient.name'"> <a href="#" @click.prevent="gotoPatient(scope.row.patient_id)">{{
                                                         scope.row.patient.name }}</a></span>
                                                     <span v-else-if="col_selected.col_name == 'status'" class="status_border" :style="{ background: scope.row.status_color }">{{
@@ -171,7 +176,7 @@ export default {
             full_col_name: [
 
                 {
-                    col_name: 'id',
+                    col_name: 'patient.id',
                     name: this.$t('patient.label.id'),
 
                 },

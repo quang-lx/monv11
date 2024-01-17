@@ -65,7 +65,7 @@
                                         v-loading.body="tableIsLoading" @sort-change="handleSortChange"
                                         @selection-change="handleSelectionChange">
                                         <el-table-column :label="$t('disease.label.stt')" :index="indexMethod" type="index"
-                                            width="100">
+                                            width="60">
                                         </el-table-column>
                                         <el-table-column v-for="col_selected in list_selected_col"
                                             :key="col_selected.col_name" :prop="col_selected.col_name"
