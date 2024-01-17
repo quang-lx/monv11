@@ -291,10 +291,9 @@
                                                         <el-select
                                                             v-model="modelForm.disease_id"
                                                             filterable
-                                                            remote
-                                                            reserve-keyword
+                                                            clearable
                                                             placeholder="Chọn chuẩn đoán"
-                                                            :remote-method="searchDisease"
+
                                                             :loading="loading">
                                                             <el-option
                                                                 v-for="item in list_disease"
@@ -423,11 +422,11 @@
             };
         },
         methods: {
-            searchDisease: _.debounce(function (query) {
+            searchDisease(){
                 this.loading = true;
                 const properties = {
                     page: 1,
-                    per_page: 20,
+                    per_page: 9000,
                     search: query
                 };
 
@@ -437,7 +436,7 @@
                         this.list_disease = response.data.data;
 
                     });
-            }, 300),
+            },
 
             onSave() {
 
@@ -563,7 +562,9 @@
 
         },
         mounted() {
+            this.searchDisease();
             this.fetchData();
+            
 
         },
         computed: {
