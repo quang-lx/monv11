@@ -184,6 +184,7 @@ export default {
         examination_id: { default: null },
         show_add_icon: { default: true },
         show_print: { default: true },
+        show_action: { default: true },
     },
     data() {
         return {

@@ -24,7 +24,7 @@
                                         <span class="f-text-title pl-1"> Chỉ số sức khoẻ</span>
                                     </div>
                                 </div>
-                                <div class="col-md-4 d-flex flex-row align-items-center d-flex justify-content-end">
+                                <div class="col-md-4 d-flex flex-row align-items-center d-flex justify-content-end"   v-if="show_action">
                                     <span class="f-action pl-4 f-pointer" @click="addItem">
                                         <inline-svg src="/images/add.svg"/>  {{ $t('common.add') }}
 
@@ -115,7 +115,7 @@
                                         </el-form-item>
                                     </div>
                                     <div class="col-md-1 d-flex justify-content-end align-items-center">
-                                        <span v-if="item.is_edit">
+                                        <span v-if="item.is_edit"   v-if="show_action">
                                                 <i @click="saveRow(index)" style="cursor:pointer">
                                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25"
                                                           viewBox="0 0 24 25" fill="none">
@@ -131,7 +131,7 @@
                                                           </defs>
                                                         </svg>
                                                 </i>
-                                            <i @click="discardRow(index)" style="cursor:pointer">
+                                            <i @click="discardRow(index)" style="cursor:pointer"   v-if="show_action">
 
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25"
                                                              viewBox="0 0 24 25" fill="none">
@@ -142,7 +142,7 @@
                                             </i>
                                         </span>
                                         <span v-else>
-                                            <i @click="editRow(index)" style="cursor:pointer">
+                                            <i @click="editRow(index)"   v-if="show_action" style="cursor:pointer">
 
                                               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="23"
                                                    viewBox="0 0 20 23" fill="none">
@@ -158,6 +158,7 @@
                                                 </svg>
                                             </i>
                                                     <i @click="deleteRow(index)"
+                                                       v-if="show_action"
                                                        style="cursor:pointer; padding-left: 8px">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="23"
                                                              viewBox="0 0 20 23" fill="none">
@@ -210,6 +211,7 @@
         props: {
             examination_id: {default: null},
             patient_id: {default: null},
+            show_action: {default: true}
         },
         data() {
             return {

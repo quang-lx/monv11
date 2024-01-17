@@ -73,25 +73,19 @@
         <examination-info :examination_data="modelForm" :show_diagnose="false" v-if="modelForm.id"/>
         <section class="content">
             <div class="container-fluid">
-                <list-index-result :examination_id="modelForm.id" :patient_id="modelForm.patient_id"
+                <list-index-result :examination_id="modelForm.id" :patient_id="modelForm.patient_id" :show_action="modelForm.status != 'done'"
                                    v-if="modelForm.id"/>
             </div>
         </section>
 
 
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-
-                    <div class="card-body">
+        <section class="content">
+            <div class="container-fluid">
                         <service-list :patient_id="modelForm.patient_id" :examination_id="modelForm.id" v-if="load_done"
-                                      @update-service-list="onUpdateServiceList"></service-list>
-
-                    </div><!-- /.card-body -->
-
-                </div>
+                                      @update-service-list="onUpdateServiceList" :show_add_icon="modelForm.status != 'done'"></service-list>
             </div>
-        </div>
+        </section>
+
     </div>
 </template>
 
