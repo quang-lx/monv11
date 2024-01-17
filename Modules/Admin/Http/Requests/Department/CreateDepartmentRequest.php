@@ -3,14 +3,29 @@
 namespace Modules\Admin\Http\Requests\Department;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 
 class CreateDepartmentRequest extends FormRequest
 {
     public function rules()
     {
         return [
-            'name' => "required|unique:department",
+            'name' => [
+                'required',
+                function ($attribute, $value, $fail) {
+                    $name = strtolower($value);
+                    $existingRecord = DB::table('department')
+                        ->whereRaw("LOWER(name) = ?", [$name])
+                        ->first();
+    
+                    if ($existingRecord) {
+                        $fail('Tên nhóm đã tồn tại');
+                    }
+                },
+            ],
         ];
+    
     }
 
     public function translationRules()

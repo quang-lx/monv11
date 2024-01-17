@@ -37,8 +37,9 @@
 
                         </span>
 
-                        <span class="f-action pl-4 f-pointer" :style="{ color: '#4B67E2 !important' }" @click="show_config = true">
-                            <inline-svg  src="/images/list_blue.svg" /> Tuỳ chỉnh
+                        <span class="f-action pl-4 f-pointer" :style="{ color: '#4B67E2 !important' }"
+                            @click="show_config = true">
+                            <inline-svg src="/images/list_blue.svg" /> Tuỳ chỉnh
 
                         </span>
 
@@ -108,8 +109,7 @@
                             <div class="card-body">
                                 <div class="sc-table">
 
-                                    <el-table :data="data" stripe style="width: 100%"
-                                         ref="dataTable"
+                                    <el-table :data="data" stripe style="width: 100%" ref="dataTable"
                                         v-loading.body="tableIsLoading" @sort-change="handleSortChange">
                                         <!-- <el-table-column type="selection" width="55">
                                         </el-table-column> -->
@@ -173,10 +173,8 @@
             </div>
         </section>
 
-        <el-dialog
- :close-on-click-modal="false"
- width="30%" :show-close="false" :title="$t('department.label.add department')" :destroy-on-close="true"
-            :visible.sync="showAddDepartment" :before-close="onClosePopup">
+        <el-dialog :close-on-click-modal="false" width="30%" :title="$t('department.label.add department')"
+            :destroy-on-close="true" :visible.sync="showAddDepartment" :before-close="onClosePopup">
 
 
             <el-form ref="addDepartmentForm" :model="addModel" label-position="top" v-loading.body="loadingAdd">
@@ -194,10 +192,8 @@
                 <el-button size="small" type="primary" @click="confirmAddDepartment">{{ $t('common.add') }}</el-button>
             </div>
         </el-dialog>
-        <el-dialog
- :close-on-click-modal="false"
- width="30%" :show-close="false" :title="$t('department.label.edit department')" :destroy-on-close="true"
-            :visible.sync="showEditDepartment">
+        <el-dialog :close-on-click-modal="false" width="30%" :show-close="false"
+            :title="$t('department.label.edit department')" :destroy-on-close="true" :visible.sync="showEditDepartment">
 
 
             <el-form ref="addDepartmentForm" :model="editModel" label-position="top" v-loading.body="loadingEdit">
@@ -373,7 +369,7 @@ export default {
             this.show_filter = false;
         },
 
-      closeImport() {
+        closeImport() {
             this.show_import = false;
             this.loadingImport = 0;
             this.data_export = []
@@ -390,7 +386,7 @@ export default {
             if (this.parent_selected) {
                 this.$confirm('Thành viên trong nhóm sẽ chuyển về nhóm “Chưa xếp nhóm”', 'Bạn có chắc chắn xóa nhóm này?', {
                     confirmButtonText: 'Xoá',
-                    cancelButtonText: 'Huỷ',
+                    cancelButtonText: 'Ở lại',
                     type: 'warning'
                 }).then(() => {
                     this.deleteDepartment()
@@ -608,8 +604,8 @@ export default {
             this.multipleSelection = val;
         },
 
-        onClosePopup(){
-            this.showAddDepartment =false
+        onClosePopup() {
+            this.showAddDepartment = false
             this.addModel.name = null
             this.form = new Form()
         }

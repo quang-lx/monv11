@@ -54,10 +54,12 @@
                             <el-button class="btn btn-flat  btn-cancel " size="small" @click="onCancel()">
                                 {{ $t('mon.button.cancel') }}
                             </el-button>
+
                             <el-button type="primary" @click="onSubmit()" size="small" :loading="loading"
-                                       class="btn btn-flat  btn-primary">
-                                {{ $t('mon.button.save') }}
+                                class="btn btn-flat  btn-primary">
+                                {{ $route.params.patientexaminationId ? $t('mon.button.update') : $t('mon.button.add')}}
                             </el-button>
+
                         </div>
 
                     </div>
@@ -209,6 +211,8 @@
                             title: this.$route.params.patientexaminationId !== undefined ? 'Cập nhật thành công' : 'Thêm mới thành công',
                             message: response.message,
                         });
+
+                        this.$router.push({name: 'admin.patientexamination.index'});
 
                     })
                     .catch((error) => {
