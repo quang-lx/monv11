@@ -62,8 +62,8 @@ class UsersExport implements FromView, WithEvents
                 'name' =>  trans('backend::user.label.status'),
             ],
             [
-                'col_name' => 'created_by',
-                'name' =>  trans('backend::user.label.created_by'),
+                'col_name' => 'created_by_name',
+                'name' =>  trans('backend::user.label.created by'),
             ],
         ];
     }
@@ -132,6 +132,10 @@ class UsersExport implements FromView, WithEvents
 
             if ($col_name == 'status') {
                 $col_name = 'status_text';
+            }
+
+            if ($col_name == 'created_by') {
+                $col_name = 'created_by_name';
             }
 
             $columns_export[] = [

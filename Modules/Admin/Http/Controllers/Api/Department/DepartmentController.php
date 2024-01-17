@@ -28,7 +28,7 @@ class DepartmentController extends ApiController
     }
 
     public function countNotAssign(Request $request) {
-        return Department::query()->where('not_assign', 1)->count();
+        return Department::query()->where('not_assign', 0)->count();
     }
     public function tree(Request $request)
     {

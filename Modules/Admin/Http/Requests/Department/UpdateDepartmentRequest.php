@@ -3,6 +3,7 @@
 namespace Modules\Admin\Http\Requests\Department;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\DB;
 
 class UpdateDepartmentRequest extends FormRequest
 {
@@ -10,7 +11,20 @@ class UpdateDepartmentRequest extends FormRequest
     {
         $department = $this->route()->parameter('department');
         return [
-            'name' => "required|unique:department,name,{$department->id}",
+            'name' => [
+                'required',
+                function ($attribute, $value, $fail) use ($department) {
+                    $name = strtolower($value);
+                    $existingRecord = DB::table('department')
+                        ->whereRaw("LOWER(name) = ?", [$name])
+                        ->where('id', '!=', $department->id)
+                        ->first();
+
+                    if ($existingRecord) {
+                        $fail('Tên nhóm đã tồn tại');
+                    }
+                },
+            ],
         ];
     }
 
