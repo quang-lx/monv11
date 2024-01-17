@@ -73,16 +73,55 @@
         <examination-info :examination_data="modelForm" :show_diagnose="false" v-if="modelForm.id"/>
         <section class="content">
             <div class="container-fluid">
-                <list-index-result :examination_id="modelForm.id" :patient_id="modelForm.patient_id" :show_action="modelForm.status != 'done'"
+                <list-index-result :examination_id="modelForm.id" :patient_id="modelForm.patient_id"
+                                   :show_action="modelForm.status != 'done'"
                                    v-if="modelForm.id"/>
+
+            </div>
+        </section>
+        <section class="content">
+            <div class="container-fluid">
+                <div class="card">
+                    <el-form :rules="formRules" ref="modelForm" :model="modelForm" label-position="top"
+                             v-loading.body="loading">
+                        <div class="card-body">
+                            <div class="col-md-12">
+                                <el-form-item :label="$t('examination.label.disease_id')" prop="disease_id"
+                                              :class="{ 'el-form-item is-error': form.errors.has('disease_id') }">
+
+                                    <el-select
+                                        v-model="modelForm.disease_id"
+                                        filterable
+                                        clearable
+                                        placeholder="Chọn chuẩn đoán"
+
+                                        :loading="loading">
+                                        <el-option
+                                            v-for="item in list_disease"
+                                            :key="item.id"
+                                            :label="item.display_text"
+                                            :value="item.id">
+                                        </el-option>
+                                    </el-select>
+
+                                    <div class="el-form-item__error" v-if="form.errors.has('disease_id')"
+                                         v-text="form.errors.first('disease_id')"></div>
+                                </el-form-item>
+                            </div>
+
+                        </div>
+                    </el-form>
+                </div>
+
             </div>
         </section>
 
 
         <section class="content">
             <div class="container-fluid">
-                        <service-list :patient_id="modelForm.patient_id" :examination_id="modelForm.id" v-if="load_done"
-                                      @update-service-list="onUpdateServiceList" :show_add_icon="modelForm.status != 'done'"></service-list>
+                <service-list :patient_id="modelForm.patient_id" :examination_id="modelForm.id" v-if="load_done"
+                              @update-service-list="onUpdateServiceList"
+                              :show_add_icon="modelForm.status != 'done'"></service-list>
             </div>
         </section>
 
@@ -133,17 +172,32 @@
                     id: '',
                     patient: {}
                 },
-
+                list_disease: [],
 
             };
         },
         methods: {
+            searchDisease() {
+                this.loading = true;
+                const properties = {
+                    page: 1,
+                    per_page: 9000
+
+                };
+
+                window.axios.get(route('api.disease.index', properties))
+                    .then((response) => {
+                        this.loading = false;
+                        this.list_disease = response.data.data;
+
+                    });
+            },
             onSave() {
 
 
             },
             onSubmit() {
-                this.form = new Form(_.merge(this.modelForm, {}));
+                this.form = new Form(_.merge( {disease_id: this.modelForm.disease_id}));
                 this.loading = true;
 
                 this.form.post(route('api.patientexamination.update', {patientexamination: this.$route.params.patientexaminationId}))
@@ -253,6 +307,7 @@
 
         },
         mounted() {
+            this.searchDisease();
             this.fetchData();
 
         },
