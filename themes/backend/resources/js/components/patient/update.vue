@@ -426,8 +426,8 @@
                 this.loading = true;
                 const properties = {
                     page: 1,
-                    per_page: 9000,
-                    search: query
+                    per_page: 9000
+
                 };
 
                 window.axios.get(route('api.disease.index', properties))
@@ -564,7 +564,7 @@
         mounted() {
             this.searchDisease();
             this.fetchData();
-            
+
 
         },
         computed: {
