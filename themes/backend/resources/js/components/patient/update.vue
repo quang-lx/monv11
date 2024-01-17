@@ -440,7 +440,7 @@
 
             onSave() {
 
-                this.form = new Form(_.merge(this.modelForm, {disease_id: this.current_examination.disease_id}));
+                this.form = new Form(_.merge(this.modelForm, {disease_id: this.modelForm.current_examination.disease_id}));
                 this.loading = true;
 
                 this.form.post(this.getRoute(this.$route.params.patientId))
