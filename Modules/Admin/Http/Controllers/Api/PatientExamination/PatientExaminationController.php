@@ -69,7 +69,7 @@ class PatientExaminationController extends ApiController
 
         return response()->json([
             'errors' => false,
-            'message' => trans('backend::patientexamination.message.update success'),
+            'message' => 'Cập nhật thành công',
         ]);
     }
 

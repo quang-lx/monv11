@@ -74,7 +74,7 @@
         <section class="content">
             <div class="container-fluid">
                 <list-index-result :examination_id="modelForm.id" :patient_id="modelForm.patient_id"
-                                   :show_action="modelForm.status != 'done'"
+                                   :show_action="modelForm.status != 'processing'"
                                    v-if="modelForm.id"/>
 
             </div>
