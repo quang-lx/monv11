@@ -3,23 +3,28 @@
 
 
 
-        <div class="row justify-content-between mb-2">
-            <div class="col-md-8">
-                <div class="row d-flex flex-row align-items-center">
-                    <span class="col-3">Danh sách dịch vụ</span>
-                    <el-input class="col-5" suffix-icon="el-icon-search" @keyup.native="performSearch"
-                        placeholder="Tìm kiếm dịch vụ" size="small" v-model="searchQuery">
-                    </el-input>
-                    <span class="f-action pl-4 f-pointer" @click="printServiceDesignation" v-if="show_print">
+
+
+                <div class="card">
+
+                    <div class="card-body">
+                        <div class="row justify-content-between mb-2">
+                            <div class="col-md-8">
+                                <div class="row d-flex flex-row align-items-center">
+                                    <span class="col-3">Danh sách dịch vụ</span>
+                                    <el-input class="col-5" suffix-icon="el-icon-search" @keyup.native="performSearch"
+                                              placeholder="Tìm kiếm dịch vụ" size="small" v-model="searchQuery">
+                                    </el-input>
+                                    <span class="f-action pl-4 f-pointer" @click="printServiceDesignation" v-if="show_print">
                         <inline-svg src="/images/PrinterOutlined.svg" />
                     </span>
-                </div>
+                                </div>
 
-            </div>
-            <div class="col-md-4 d-flex flex-row align-items-center d-flex justify-content-end">
+                            </div>
+                            <div class="col-md-4 d-flex flex-row align-items-center d-flex justify-content-end">
 
                 <span class="f-action pl-4 f-pointer" @click="() => { show_add_service_form = true, getServiceOptions() }"
-                    v-if="show_add_icon">
+                      v-if="show_add_icon">
                     <inline-svg src="/images/add.svg" /> {{ $t('common.add') }}
 
                 </span>
@@ -27,22 +32,17 @@
 
 
 
-                <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange"
-                    :current-page.sync="meta.current_page" :page-sizes="[20, 40, 60, 80, 100]"
-                    :page-size="parseInt(meta.per_page)" layout="sizes, prev, pager, next" :total="meta.total"
-                    v-if="meta.total > 25">
-                </el-pagination>
+                                <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange"
+                                               :current-page.sync="meta.current_page" :page-sizes="[20, 40, 60, 80, 100]"
+                                               :page-size="parseInt(meta.per_page)" layout="sizes, prev, pager, next" :total="meta.total"
+                                               v-if="meta.total > 25">
+                                </el-pagination>
 
-            </div>
+                            </div>
 
-        </div>
+                        </div>
 
-        <div class="row">
-
-            <div class="col-md-12">
-                <div class="card">
-
-                    <div class="card-body">
+                        
                         <div class="sc-table">
 
                             <el-table :data="data" stripe style="width: 100%" ref="dataTable"
@@ -137,8 +137,7 @@
                         </div>
                     </div><!-- /.card-body -->
                 </div>
-            </div>
-        </div>
+        >
 
 
 
