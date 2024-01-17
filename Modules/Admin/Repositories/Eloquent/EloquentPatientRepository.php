@@ -41,7 +41,7 @@ class EloquentPatientRepository extends BaseRepository implements PatientReposit
 
     public function update($model, $data)
     {
-        $disease_id = $data['disease_id'] ?? '';
+        $disease_id = $data['disease_id'] ?? null;
         unset($data['diagnose']);
         unset($data['disease_id']);
         unset($data['updated_at']);

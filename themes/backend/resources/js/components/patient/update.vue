@@ -289,7 +289,7 @@
                                                                   :class="{ 'el-form-item is-error': form.errors.has('disease_id') }">
 
                                                         <el-select
-                                                            v-model="modelForm.disease_id"
+                                                            v-model="modelForm.current_examination.disease_id"
                                                             filterable
                                                             clearable
                                                             placeholder="Chọn chuẩn đoán"
@@ -440,7 +440,7 @@
 
             onSave() {
 
-                this.form = new Form(_.merge(this.modelForm, {}));
+                this.form = new Form(_.merge(this.modelForm, {disease_id: this.current_examination.disease_id}));
                 this.loading = true;
 
                 this.form.post(this.getRoute(this.$route.params.patientId))
