@@ -140,21 +140,7 @@
                             </el-select>
                         </el-form-item>
                     </div>
-                    <div class="col-sm-6">
-                        <el-form-item label="Dịch vụ" >
-                            <el-select v-model="search_data.service_id" size="small"
-                                       placeholder="Chọn dịch vụ"
-                                       filterable style="width: 100% !important">
-                                <el-option
-                                    v-for="item in listService"
-                                    :key="'sex'+ item.id"
-                                    :label="item.name"
-                                    :value="item.id">
-                                </el-option>
 
-                            </el-select>
-                        </el-form-item>
-                    </div>
                     <div class="col-sm-6">
                         <el-form-item label="Nguồn dữ liệu" >
                             <el-select v-model="search_data.from_source" size="small"
@@ -168,6 +154,22 @@
                                 </el-option>
 
                             </el-select>
+                        </el-form-item>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <el-form-item label="Dịch vụ" >
+                            <div style="max-height: 60vh !important; overflow: scroll">
+                                <el-tree
+                                    :data="tree_data"
+                                    show-checkbox
+                                    node-key="id"
+                                    ref="tree_service"
+                                    @check-change="changeService"
+
+                                    :props="defaultProps">
+                                </el-tree>
+                            </div>
                         </el-form-item>
                     </div>
                 </div>
@@ -204,6 +206,7 @@
                     result_by: null,
                     service_type: null,
                     from_source: null,
+                    service_id: []
                 },
                 loadingFilterPatient: false,
                 listServiceType: [],
@@ -247,11 +250,33 @@
                         value: 0,
                         label: 'Nữ'
                     }
-                ]
+                ],
+                tree_data: [],
+                defaultProps: {
+                    children: 'children',
+                    label: 'label'
+                },
 
             };
         },
         methods: {
+            changeService(data, checked, indeterminate) {
+                this.search_data.service_id = this.$refs.tree_service.getCheckedKeys(true)
+            },
+            getServiceOptions() {
+                const properties = {
+                    page: 1,
+                    per_page: 9000,
+                    q: this.searchQuery
+                };
+
+                window.axios.get(route('api.service.tree', properties))
+                    .then((response) => {
+
+                        this.tree_data = response.data
+                    });
+            },
+
             onSearchPatient() {
                 this.$emit("on-filter", this.search_data) ;
             },

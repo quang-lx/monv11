@@ -102,6 +102,11 @@ class EloquentExaminationServiceRepository extends BaseRepository implements Exa
             });
         }
 
+        if ($request->get('service_id') !== null) {
+            $service_id = $request->get('service_id');
+            $query->whereIn('service_id', $service_id);
+        }
+
 
         $created_at = $request->get('created_at');
 
