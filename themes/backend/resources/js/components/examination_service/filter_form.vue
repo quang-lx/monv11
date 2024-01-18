@@ -2,7 +2,7 @@
     <div>
 
         <el-dialog
-
+            top="5vh"
             width="40%"
             :show-close="true"
             title="Lọc danh sách khám bệnh "
