@@ -157,7 +157,7 @@
                         </el-form-item>
                     </div>
 
-                    <div class="col-sm-12">
+                    <div class="col-sm-6">
                         <el-form-item label="Dịch vụ" >
                             <div style="max-height: 60vh !important; overflow: scroll">
                                 <el-tree
