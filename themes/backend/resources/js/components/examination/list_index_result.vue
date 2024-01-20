@@ -227,7 +227,7 @@
 
             addItem() {
                 this.list_index.push({
-                    create_date: '',
+                    create_date: new Date(),
                     height: undefined,
                     weight: undefined,
                     bmi: undefined,
@@ -237,7 +237,7 @@
                     note: null
                 })
                 this.old_data.push({
-                    create_date: '',
+                    create_date: new Date(),
                     height: undefined,
                     weight: undefined,
                     bmi: undefined,
