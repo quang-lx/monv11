@@ -162,7 +162,7 @@
 
             <span slot="footer" class="dialog-footer">
                 <el-button size="small" @click="show_add_service_form = false">{{ $t('common.cancel') }}</el-button>
-                <el-button  size="small" type="primary" @click="confirmAddService">{{ $t('common.add') }}</el-button>
+                <el-button  size="small" type="primary" @click="confirmAddService" :disabled="!allowSave">{{ $t('common.add') }}</el-button>
             </span>
         </el-dialog>
 
@@ -308,7 +308,7 @@ export default {
             }).then(() => {
                 this.removeService(examination_service_id, delete_url)
             }).catch(() => {
-                
+
             });
         },
         removeService(examination_service_id, delete_url) {
@@ -432,6 +432,11 @@ export default {
             this.fetchData();
         }
     },
+    computed: {
+        allowSave() {
+            return this.service_selecteds.length > 0
+        }
+    }
 }
 </script>
 
