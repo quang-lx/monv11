@@ -173,7 +173,8 @@ class EloquentPatientRepository extends BaseRepository implements PatientReposit
                     ->orWhere('phone', 'ilike', "%{$keyword}%")
                     ->orWhere('address', 'ilike', "%{$keyword}%")
                     ->orWhere('papers', 'ilike', "%{$keyword}%")
-                    ->orWhere('job', 'ilike', "%{$keyword}%");
+                    ->orWhere('job', 'ilike', "%{$keyword}%")
+                    ->orWhere('id', 'ilike', "%{$keyword}%");
             });
         }
 
