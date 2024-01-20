@@ -246,8 +246,9 @@
         methods: {
 
             addItem() {
+
                 this.list_index.push({
-                    create_date: '',
+                    create_date: new Date(),
                     height: undefined,
                     weight: undefined,
                     bmi: undefined,
