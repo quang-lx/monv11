@@ -227,7 +227,8 @@ export default {
             if (!this.tableIsLoading) {
                 return index + (this.meta.current_page - 1) * this.meta.per_page + 1;
             }
-        }
+        },
+
 
 
 

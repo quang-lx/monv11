@@ -447,11 +447,11 @@
                     .then((response) => {
                         this.loading = false;
 
-                        this.$notify({
-                            type: 'success',
-                            title: this.$route.params.patientId !== undefined ? 'Cập nhật thành công' : 'Thêm mới thành công',
-                            message: response.message,
-                        });
+                        // this.$notify({
+                        //     type: 'success',
+                        //     title: this.$route.params.patientId !== undefined ? 'Cập nhật thành công' : 'Thêm mới thành công',
+                        //     message: response.message,
+                        // });
                         this.show_same_patient = false;
                         this.$router.push({name: 'admin.patient.index'});
 
