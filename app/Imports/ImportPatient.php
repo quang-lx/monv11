@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithStartRow;
 use Modules\Mon\Entities\Department;
+use PhpOffice\PhpSpreadsheet\Shared\Date;
 
 class ImportPatient implements ToModel, WithHeadingRow, WithStartRow
 {
@@ -24,7 +25,7 @@ class ImportPatient implements ToModel, WithHeadingRow, WithStartRow
       $this->result[] = [
          "name" => $row[1] ?? null,
          "sex" => $row[2] == 'Nữ' ? 0 : 1 ?? null,
-         "birthday" => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[3] ?? null)->format('Y-m-d H:i:s'),
+         "birthday" => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[3] ?? null)->format('Y-m-d'),
          "phone" => $row[4] ?? null,
          "email" => $row[5] ?? null,
          "papers" => $row[6] ?? null,
@@ -42,7 +43,7 @@ class ImportPatient implements ToModel, WithHeadingRow, WithStartRow
 
    public function startRow(): int
    {
-      return 4; // Dòng bắt đầu từ 4
+      return 5; // Dòng bắt đầu từ 5
    }
 
 }

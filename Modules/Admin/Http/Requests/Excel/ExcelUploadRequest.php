@@ -14,7 +14,7 @@ class ExcelUploadRequest extends FormRequest
     public function rules()
     {
         return [
-            'file' => 'file|mimes:xlsx,xls|max:20480|ends_with:.xlsx,.xls', // 5120 kilobytes = 5 megabytes
+            'file' => 'file|mimes:xlsx,xls|max:5120', // 5120 kilobytes = 5 megabytes
         ];
     }
 

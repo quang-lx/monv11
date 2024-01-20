@@ -55,7 +55,8 @@
                                 <div class="sc-table">
 
                                     <el-table :data="lis_data" stripe style="width: 100%" ref="dataTable"
-                                        v-loading.body="tableIsLoading" @sort-change="handleSortChange">
+                                        :cell-class-name="tableCellClassName" v-loading.body="tableIsLoading"
+                                        @sort-change="handleSortChange">
 
                                         <el-table-column :label="$t('common.stt')" width="75" :index="indexMethod"
                                             type="index"></el-table-column>
@@ -254,6 +255,13 @@ export default {
             if (!this.tableIsLoading) {
                 return index + (this.meta.current_page - 1) * this.meta.per_page + 1;
             }
+        },
+
+        tableCellClassName({ row, column, rowIndex, columnIndex }) {
+            if (columnIndex === 11 || columnIndex === 12) {
+                return 'background-pink';
+            }
+            return '';
         }
     },
     mounted() {
@@ -268,5 +276,9 @@ export default {
 .disabled {
     pointer-events: none;
 
+}
+
+.background-pink {
+    background-color: #F2C5C5;
 }
 </style>

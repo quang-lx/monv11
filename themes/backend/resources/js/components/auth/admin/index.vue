@@ -407,6 +407,10 @@ export default {
                         this.getDepartmentList({})
                         this.getDepartmentNotAssign()
 
+                        this.parent_selected = null
+                        this.editModel.id = null
+                        this.editModel.name = null
+
                     } else {
                         this.$notify({
                             type: 'error',
@@ -608,14 +612,34 @@ export default {
             this.showAddDepartment = false
             this.addModel.name = null
             this.form = new Form()
-        }
+        },
+
+        handleDocumentClick(event) {
+            // Check if the clicked element is outside the el-tree component
+            const treeElement = this.$refs.tree.$el;
+            console.log(event.target.class)
+            let classTarget = event.target.classList.value;
+
+            if (!treeElement.contains(event.target) && !['el-icon-plus', 'el-icon-edit', 'el-icon-delete'].find((element) => element == classTarget)) {
+                this.parent_selected = null
+                this.editModel.id = null
+                this.editModel.name = null
+            }
+        },
 
     },
     mounted() {
         this.fetchData();
         this.getDepartmentList({});
         this.getDepartmentNotAssign();
+        // document.addEventListener('click', this.handleDocumentClick);
 
+
+    },
+
+    beforeDestroy() {
+        // Remove the click event listener when the component is destroyed
+        // document.removeEventListener('click', this.handleDocumentClick);
     },
     created() {
 

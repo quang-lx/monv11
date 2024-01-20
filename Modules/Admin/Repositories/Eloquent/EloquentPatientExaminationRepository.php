@@ -64,6 +64,22 @@ class EloquentPatientExaminationRepository extends BaseRepository implements Pat
 
         }
 
+        $disease_id = $request->get('disease_id');
+        if ($disease_id) {
+            $query->where('disease_id', $disease_id);
+            $query->whereHas('patient', function ($query) use ($disease_id) {
+                $query->where('id', $disease_id);
+            });
+        }
+
+        $data_source = $request->get('data_source');
+        if ($data_source) {
+            $query->where('data_source', $data_source);
+            $query->whereHas('patient', function ($query) use ($data_source) {
+                $query->where('data_source', $data_source);
+            });
+        }
+
         if ($request->get('search') !== null) {
             $keyword = $request->get('search');
             $query->where(function ($query) use ($keyword) {
