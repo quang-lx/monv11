@@ -308,11 +308,7 @@ export default {
             }).then(() => {
                 this.removeService(examination_service_id, delete_url)
             }).catch(() => {
-                this.$notify({
-                    type: 'error',
-                    title: 'Xóa dịch vụ thất bại',
-                    message: 'Đã xảy ra lỗi không mong muốn, vui lòng thử lại.'
-                });
+                
             });
         },
         removeService(examination_service_id, delete_url) {
