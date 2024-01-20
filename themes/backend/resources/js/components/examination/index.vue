@@ -59,9 +59,9 @@
                                             <template slot-scope="scope">
                                                 <span v-if="col_selected.col_name == 'patient.sex'">{{
                                                     scope.row.patient.sex_text }}</span>
-                                                <span v-if="col_selected.col_name == 'diagnose'">{{
+                                                <span v-else-if="col_selected.col_name == 'diagnose'">{{
                                                     scope.row.display_text }}</span>
-                                                <span v-if="col_selected.col_name == 'patient.name'"> <a href="#"
+                                                <span v-else-if="col_selected.col_name == 'patient.name'"> <a href="#"
                                                         @click.prevent="gotoPatient(scope.row.patient_id)">{{
                                                             scope.row.patient.name }}</a></span>
                                                 <span v-else-if="col_selected.col_name == 'status'" class="status_border"
@@ -322,6 +322,7 @@ export default {
         },
         onSaveConfigDisplay(config_data) {
             this.list_selected_col = config_data
+            this.queryServer(this.filter_data)
         },
         closeConfig() {
             this.show_config = false;
