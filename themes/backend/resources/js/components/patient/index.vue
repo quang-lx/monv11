@@ -88,7 +88,7 @@
                                             <template slot-scope="scope">
                                                 <el-tooltip placement="top">
                                                     <div slot="content">Tái khám</div>
-                                                    <i @click="onReExamination(scope.row.id, scope.row.name)" role="button"
+                                                    <i @click="onReExamination(scope.row.id, scope.row.name, scope.$index)" role="button"
                                                         class=" mr-2" v-if="scope.row.current_examination.status == 'done'">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="23" height="24"
                                                             viewBox="0 0 23 24" fill="none">
@@ -367,7 +367,7 @@ export default {
                 });
         },
 
-        onReExamination(id, name) {
+        onReExamination(id, name, index) {
             this.$confirm("Bệnh có chắc chắn tái khám bệnh nhân " + name + "?", "Tái khám", {
                 confirmButtonText: "Có",
                 cancelButtonText: "Không",
@@ -384,7 +384,7 @@ export default {
                             });
                             this.show_same_patient = false;
 
-                            // this.$router.push({ name: 'admin.patient.edit', params: { patientId: id } });
+                            this.data[index] = response.data.model;
 
                         } else {
                             this.$notify({

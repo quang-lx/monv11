@@ -128,9 +128,11 @@ class PatientController extends ApiController
     {
         try {
             $this->patientRepository->reExamination($patient, $request->all());
+            $patient->refresh();
             return response()->json([
                 'errors' => false,
                 'id' => $patient->id,
+                'model' =>  new PatientTransformer($patient),
                 'message' => trans('backend::patient.message.reexamination success'),
             ]);
         } catch (\Exception $exception) {
