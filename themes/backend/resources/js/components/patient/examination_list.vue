@@ -51,8 +51,9 @@
                                         <el-table-column prop="status" :label="$t('patient_has_service.label.status')"
                                             align="center" min-width="150">
                                             <template slot-scope="scope">
-                                                <span class="status_border" :style="{ background: scope.row.status_color }">
-                                                    {{ scope.row.status_text }}</span>
+                                                <div class="d-flex justify-content-center" style="width:100%"> <span class="status_border" :style="{ background: scope.row.status_color }">
+                                                    {{ scope.row.status_text }}</span></div>
+
                                             </template>
                                         </el-table-column>
 
