@@ -384,7 +384,7 @@ export default {
                             });
                             this.show_same_patient = false;
 
-                            this.data[index] = response.data.model;
+                            this.data.splice(index, 1, response.data.model)
 
                         } else {
                             this.$notify({
