@@ -432,6 +432,9 @@ export default {
         data: function () {
             this.$emit("update-service-list", this.data);
         },
+        examination_id: function () {
+            this.fetchData();
+        }
     },
 }
 </script>

@@ -320,7 +320,10 @@
                                 <div class="card">
 
                                     <div class="card-body">
-                                        <service-list :patient_id="$route.params.patientId"
+                                        <service-list
+                                            v-if="modelForm.id"
+                                            :patient_id="$route.params.patientId"
+                                                      :examination_id="modelForm.current_examination.id"
                                                       @update-service-list="onUpdateServiceList"></service-list>
                                     </div>
                                 </div>
