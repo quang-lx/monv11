@@ -18,6 +18,8 @@ class PatientExaminationThinTransformer extends JsonResource
             'status_text' => $this->status_text,
             'status_color' => $this->status_color,
             'status_class' => $this->status_class,
+            'from_source' => $this->from_source,
+            'source_text' => $this->source_text,
 
 
 

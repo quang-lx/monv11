@@ -30,6 +30,9 @@ class ExaminationTransformer extends JsonResource
             'disease_id' => $this->disease_id,
             'patient_id' => $this->patient_id,
             'count_service_done' => $this->services->where('status', ExaminationService::STATUS_DONE)->count(),
+            'from_source' => $this->from_source,
+            'source_text' => $this->source_text,
+
             'count_service' => $this->services->count(),
             'patient' => $this->patient? new PatientThinTransformer($this->patient): [],
             'created_by_info' => $user->name . ' - ' . $user->username,

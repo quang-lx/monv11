@@ -285,6 +285,11 @@ export default {
                     name: this.$t('examination.label.service'),
 
                 },
+                {
+                    col_name: 'source_text',
+                    name: this.$t('patient.label.data_sources'),
+
+                },
 
 
             ],

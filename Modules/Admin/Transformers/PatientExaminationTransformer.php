@@ -23,6 +23,8 @@ class PatientExaminationTransformer extends JsonResource
             'diagnose' => $this->diagnose,
             'disease_id' => $this->disease_id,
             'patient_id' => $this->patient_id,
+            'from_source' => $this->from_source,
+            'source_text' => $this->source_text,
             'count_service' => $this->services->count()
 
 

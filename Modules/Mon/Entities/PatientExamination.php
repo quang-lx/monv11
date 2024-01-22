@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property $patient
  * @property $disease_id
  * @property $createdBy
+ * @property $from_source
  * @package Modules\Mon\Entities
  */
 class PatientExamination extends Model
@@ -30,14 +31,17 @@ class PatientExamination extends Model
     const TYPE_NEW = 0;
     const TYPE_AGAIN = 1;
 
-    public $appends = ['status_text', 'status_color', 'status_class', 'type_text'];
+    const SOURCE_LOCAL = 1;
+    const SOURCE_LIS = 2;
+
+    public $appends = ['status_text', 'status_color', 'status_class', 'type_text', 'source_text'];
     protected $casts = [
         'started_at' => 'datetime',
         'finished_at' => 'datetime',
     ];
     protected $table = 'patient_examination';
     protected $fillable = [
-       'patient_id', 'started_at', 'finished_at', 'status', 'diagnose', 'created_by', 'type', 'disease_id'
+       'patient_id', 'started_at', 'finished_at', 'status', 'diagnose', 'created_by', 'type', 'disease_id', 'from_source'
     ];
 
     public function createdBy () {
@@ -128,5 +132,9 @@ class PatientExamination extends Model
 
         }
         return $class;
+    }
+
+    public function getSourceTextAttribute() {
+        return $this->from_source == self::SOURCE_LIS? 'Lis': 'Local';
     }
 }

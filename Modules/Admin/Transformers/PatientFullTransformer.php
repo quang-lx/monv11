@@ -34,6 +34,8 @@ class PatientFullTransformer extends JsonResource
             'created_by_info' => $user->name . ' - ' . $user->username,
             'current_examination' => $this->current_examination? (new PatientExaminationTransformer($this->current_examination)): [],
             'diagnose' => optional($this->current_examination)->diagnose,
+            'from_source' => $this->from_source,
+            'source_text' => $this->source_text,
 
             'urls' => [
                 'delete_url' => route('api.patient.destroy', $this->id),
