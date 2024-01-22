@@ -32,10 +32,12 @@ class DepartmentController extends ApiController
         $not_assign =  User::query()->whereHas('department', function ($query) {
             $query->where('not_assign', 1);
         })->count();
-        $all =  User::query()->count();
+        $assign =   User::query()->whereHas('department', function ($query) {
+            $query->where('not_assign', 0);
+        })->count();;
         return [
           'user_not_assign' => $not_assign,
-          'user_assign' => $all - $not_assign
+          'user_assign' => $assign
         ];
      }
     public function tree(Request $request)
