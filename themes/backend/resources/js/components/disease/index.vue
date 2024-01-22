@@ -149,7 +149,6 @@ export default {
 
 
         queryServer(customProperties) {
-
             const properties = {
                 page: this.meta.current_page,
                 per_page: this.meta.per_page,

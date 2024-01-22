@@ -68,7 +68,7 @@
                                             width="60">
                                         </el-table-column>
                                         <el-table-column v-for="(col_selected, index_col) in list_selected_col"
-                                            :key="col_selected.col_name + index_col" :prop="col_selected.col_name" 
+                                            :key="col_selected.col_name + index_col" :prop="col_selected.col_name"
                                             :label="list_col_label[col_selected.col_name]" min-width="150">
                                             <template slot-scope="scope">
                                                 <span v-if="col_selected.col_name == 'sex'">{{

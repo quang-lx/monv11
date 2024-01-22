@@ -315,6 +315,12 @@ export default {
                         });
                         this.data[index].id = response.data.id
                         this.data[index].is_edit = 0
+                    } else {
+                        vm.$notify({
+                            type: 'error',
+                            title: 'Thất bại',
+                            message: this.getSubmitError(response.data.errors)
+                        });
                     }
                 })
                 .catch((error) => {
