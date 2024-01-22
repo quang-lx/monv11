@@ -90,7 +90,7 @@ export default {
             this.file_name = '.xlsx'
             this.$refs.file.value = null
             this.$emit("close-popup");
-            this.data_export = []
+            // this.data_export = []
         },
 
         handleFileUpload() {
