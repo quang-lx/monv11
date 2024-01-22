@@ -324,11 +324,11 @@ export default {
                     }
                 })
                 .catch((error) => {
-
+console.log(error)
                     vm.$notify({
                         type: 'error',
                         title: 'Thất bại',
-                        message: error.data.message,
+                        message: this.getSubmitError(error.data.errors)
                     });
                 });
         },
