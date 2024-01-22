@@ -100,6 +100,7 @@ class EloquentDepartmentRepository extends BaseRepository implements DepartmentR
     }
     public function getChild($parent_id = null) {
         $data = [];
+        $data[] = $parent_id;
         $query = $this->newQueryBuilder();
         if ($parent_id) {
             $query->where('parent_id', $parent_id);
@@ -109,7 +110,7 @@ class EloquentDepartmentRepository extends BaseRepository implements DepartmentR
         $departments = $query->get();
         foreach ($departments as $department) {
 
-            $data[] = $department->id;
+          
             $data = array_merge($data, $this->getChild($department->id));
 
         }
