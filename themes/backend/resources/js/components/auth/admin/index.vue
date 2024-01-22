@@ -497,12 +497,12 @@ export default {
             this.list_selected_col = config_data
         },
         queryServer(customProperties) {
-            let tree_node = this.$tree.getCurrentNode()
+            let tree_node = this.$refs.tree.getCurrentNode()
             console.log(tree_node)
             if (tree_node) {
                 this.selected_department_id = tree_node.id
             }
-            let tree_not_assign_node = this.$tree_not_assign.getCurrentNode()
+            let tree_not_assign_node = this.$refs.tree_not_assign.getCurrentNode()
             if(tree_not_assign_node) {
                 this.selected_department_id = tree_not_assign_node.id
             }
