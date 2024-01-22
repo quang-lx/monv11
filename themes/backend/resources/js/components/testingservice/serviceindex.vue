@@ -319,7 +319,7 @@ export default {
                         vm.$notify({
                             type: 'error',
                             title: 'Thất bại',
-                            message: this.getSubmitError(response.data.errors)
+                            message: this.getSubmitError(response.data)
                         });
                     }
                 })
@@ -328,7 +328,7 @@ console.log(error)
                     vm.$notify({
                         type: 'error',
                         title: 'Thất bại',
-                        message: this.getSubmitError(error.response.data.errors)
+                        message: this.getSubmitError(error.response.data)
                     });
                 });
         },
