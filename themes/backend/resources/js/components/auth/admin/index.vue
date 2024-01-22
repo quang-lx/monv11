@@ -386,7 +386,7 @@ export default {
             this.parent_selected = data.id
             this.editModel.id = data.id
             this.editModel.name = data.label
-
+            this.queryServer({});
 
         },
         confirmDeleteDepartment() {
@@ -517,7 +517,8 @@ export default {
                 type: 1
             };
 
-            window.axios.get(route('api.users.index', _.merge(properties, customProperties)))
+
+            window.axios.get(route('api.users.index', _.merge(_.merge(properties, customProperties),this.filter_data)))
                 .then((response) => {
                     this.tableIsLoading = false;
                     this.tableIsLoading = false;
