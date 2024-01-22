@@ -36,12 +36,11 @@ class UpdateTestingServiceRequest extends FormRequest
     public function messages()
     {
         return [
-            'code.required' => 'Mã dịch vụ là bắt buộc',
+
             'code.unique' => 'Mã dịch vụ đã tồn tại trên hệ thống',
-            'code_lis.required' => 'Mã gửi LIS là bắt buộc',
+
             'code_lis.unique' => 'Mã gửi LIS đã tồn tại trên hệ thống',
-            'name.required' => 'Tên dịch vụ là bắt buộc',
-            'type.required' => 'Loại dịch vụ là bắt buộc',
+            '*.required' => 'Thông tin này là trường bắt buộc',
 
 
         ];
