@@ -558,3 +558,7 @@ body:not(.layout-fixed) .main-sidebar {
 .el-tree-node__content > .is-disabled {
     display:none !important;;
 }
+
+.el-table .cell {
+    word-break: break-word !important;
+}
