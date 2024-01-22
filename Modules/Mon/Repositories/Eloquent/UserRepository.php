@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Modules\Admin\Repositories\Eloquent\EloquentDepartmentRepository;
 use Modules\Mon\Repositories\UserRepository as UserInterface;
 use Modules\Mon\Events\UserWasCreated;
 use Modules\Mon\Events\UserWasDeleting;
@@ -183,8 +184,9 @@ class UserRepository extends BaseRepository implements UserInterface
 
         $department_id = $request->get('department_id');
         if ($department_id !== null) {
-
-            $query->where('department_id', $department_id);
+            $department_repo = new EloquentDepartmentRepository();
+            $list_parent = $department_repo->getChild($department_id);
+            $query->whereIn('department_id', $list_parent);
         }
 
         $sex = $request->get('sex');

@@ -98,4 +98,21 @@ class EloquentDepartmentRepository extends BaseRepository implements DepartmentR
         }
         return $data;
     }
+    public function getChild($parent_id = null) {
+        $data = [];
+        $query = $this->newQueryBuilder();
+        if ($parent_id) {
+            $query->where('parent_id', $parent_id);
+        } else {
+            $query->whereNull('parent_id');
+        }
+        $departments = $query->get();
+        foreach ($departments as $department) {
+
+            $data[] = $department->id;
+            $data = array_merge($data, $this->getChild($department->id));
+
+        }
+        return $data;
+    }
 }
