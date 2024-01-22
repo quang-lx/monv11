@@ -52,8 +52,8 @@
                                         @selection-change="handleSelectionChange">
                                         <el-table-column :label="$t('disease.label.stt')" :index="indexMethod" type="index"
                                             width="100"></el-table-column>
-                                        <el-table-column v-for="col_selected in list_selected_col"
-                                            :key="col_selected.col_name" :prop="col_selected.col_name"
+                                        <el-table-column v-for="(col_selected, index_col) in list_selected_col"
+                                            :key="col_selected.col_name + index_col" :prop="col_selected.col_name"
                                             :class="{ columnColor: col_selected.col_name == 'ket_luan' || col_selected.col_name == 'ket_qua'}"
                                             :label="list_col_label[col_selected.col_name]" min-width="150">
                                             <template slot-scope="scope">
