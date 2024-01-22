@@ -101,7 +101,7 @@
                                     </span>
                                 </div>
                                 <el-tree class="filter-tree" :data="departmentNotAssignTreeData" :props="treeProps"
-                                         default-expand-all :filter-node-method="filterNode" @node-click="handleNodeClick"
+                                         default-expand-all :filter-node-method="filterNode" @node-click="handleNotAssignNodeClick"
                                          ref="tree_not_assign">
                                     <span class="custom-tree-node" slot-scope="{ node, data }">
                                         <span>{{ node.label }}</span>
@@ -386,6 +386,21 @@ export default {
             this.parent_selected = data.id
             this.editModel.id = data.id
             this.editModel.name = data.label
+
+            let tree_node = this.$refs.tree.getCurrentNode()
+            if (tree_node) {
+                this.selected_department_id = tree_node.id
+            }
+
+            this.queryServer({});
+
+        },
+        handleNotAssignNodeClick(data, checked, indeterminate) {
+
+            let tree_not_assign_node = this.$refs.tree_not_assign.getCurrentNode()
+            if(tree_not_assign_node) {
+                this.selected_department_id = tree_not_assign_node.id
+            }
             this.queryServer({});
 
         },
@@ -497,15 +512,7 @@ export default {
             this.list_selected_col = config_data
         },
         queryServer(customProperties) {
-            let tree_node = this.$refs.tree.getCurrentNode()
-            console.log(tree_node)
-            if (tree_node) {
-                this.selected_department_id = tree_node.id
-            }
-            let tree_not_assign_node = this.$refs.tree_not_assign.getCurrentNode()
-            if(tree_not_assign_node) {
-                this.selected_department_id = tree_not_assign_node.id
-            }
+
 
             const properties = {
                 page: this.meta.current_page,
