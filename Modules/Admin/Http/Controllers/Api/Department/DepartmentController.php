@@ -44,6 +44,10 @@ class DepartmentController extends ApiController
     {
         return $this->departmentRepository->getAllTree(null, $request);
     }
+    public function getNotAssignTree(Request $request)
+    {
+        return $this->departmentRepository->getNotAssignTree(null, $request);
+    }
     public function getAllHierarchy(Request $request)
     {
         return $this->departmentRepository->getAllHierarchy();

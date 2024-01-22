@@ -80,7 +80,7 @@
                                 </el-input>
 
                                 <div class="mb-2">
-                                    <span class="custom-tree-node">
+                                    <span class="custom-tree-node" style="cursor:pointer" @click="">
                                         <span> <inline-svg src="/images/d_all.svg" /> <span class="ml-2"> Tất cả
                                             </span></span>
                                         <span>{{ department_user_total }}</span>
@@ -94,12 +94,20 @@
                                         <span>{{ data.count_user }}</span>
                                     </span>
                                 </el-tree>
-                                <div class="mt-2">
+                                <div class="mt-2 mb-2">
                                     <span class="custom-tree-node">
                                         <span class="ml-2"> Chưa xếp nhóm </span>
                                         <span>{{ count_not_assign }}</span>
                                     </span>
                                 </div>
+                                <el-tree class="filter-tree" :data="departmentNotAssignTreeData" :props="treeProps"
+                                         default-expand-all :filter-node-method="filterNode" @node-click="handleNodeClick"
+                                         ref="tree_not_assign">
+                                    <span class="custom-tree-node" slot-scope="{ node, data }">
+                                        <span>{{ node.label }}</span>
+                                        <span>{{ data.count_user }}</span>
+                                    </span>
+                                </el-tree>
                             </div>
                         </div>
                     </div>
@@ -346,6 +354,7 @@ export default {
             showEditDepartment: false,
             columnsSearch: [],
             departmentTreeData: [],
+            departmentNotAssignTreeData: [],
             departmentLoading: false,
             filterDepartment: '',
             listFilterColumn: [],
@@ -353,7 +362,8 @@ export default {
             file: '',
             loadingImport: 0,
             data_export: [],
-            count_not_assign: 0
+            count_not_assign: 0,
+            selected_department_id: null
 
         };
     },
@@ -375,6 +385,8 @@ export default {
             this.parent_selected = data.id
             this.editModel.id = data.id
             this.editModel.name = data.label
+
+
         },
         confirmDeleteDepartment() {
             if (this.parent_selected) {
@@ -484,6 +496,15 @@ export default {
             this.list_selected_col = config_data
         },
         queryServer(customProperties) {
+            let tree_node = this.$tree.getCurrentNode()
+            console.log(tree_node)
+            if (tree_node) {
+                this.selected_department_id = tree_node.id
+            }
+            let tree_not_assign_node = this.$tree_not_assign.getCurrentNode()
+            if(tree_not_assign_node) {
+                this.selected_department_id = tree_not_assign_node.id
+            }
 
             const properties = {
                 page: this.meta.current_page,
@@ -491,6 +512,7 @@ export default {
                 order_by: this.order_meta.order_by,
                 order: this.order_meta.order,
                 search: this.searchQuery,
+                department_id: this.selected_department_id,
                 type: 1
             };
 
@@ -516,6 +538,19 @@ export default {
                 .then((response) => {
                     this.departmentLoading = false;
                     this.departmentTreeData = response.data;
+
+                });
+        },
+        getDepartmentNotAssignList(customProperties) {
+
+            const properties = {
+
+            };
+            this.departmentLoading = true;
+            window.axios.get(route('api.department.getNotAssignTree', _.merge(properties, customProperties)))
+                .then((response) => {
+                    this.departmentLoading = false;
+                    this.departmentNotAssignTreeData = response.data;
 
                 });
         },
@@ -597,6 +632,7 @@ export default {
         performSearchDepartment: _.debounce(function (query) {
             // this.tableIsLoading = true;
             this.getDepartmentList({ search: query.target.value });
+            this.getDepartmentNotAssignList({ search: query.target.value });
         }, 300),
 
         handleSelectionChange(val) {
@@ -626,6 +662,7 @@ export default {
     mounted() {
         this.fetchData();
         this.getDepartmentList({});
+        this.getDepartmentNotAssignList({});
         this.getDepartmentNotAssign();
         // document.addEventListener('click', this.handleDocumentClick);
 

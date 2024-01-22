@@ -181,6 +181,12 @@ class UserRepository extends BaseRepository implements UserInterface
             $query->where('expired_at', '<', Carbon::now());
         }
 
+        $department_id = $request->get('department_id');
+        if ($department_id !== null) {
+
+            $query->where('department_id', $department_id);
+        }
+
         $sex = $request->get('sex');
         if ($sex !== null) {
 
