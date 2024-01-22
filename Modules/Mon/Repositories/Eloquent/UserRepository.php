@@ -184,7 +184,7 @@ class UserRepository extends BaseRepository implements UserInterface
 
         $department_id = $request->get('department_id');
         if ($department_id !== null) {
-            $department_repo = new EloquentDepartmentRepository();
+            $department_repo = new EloquentDepartmentRepository(new User());
             $list_parent = $department_repo->getChild($department_id);
             $query->whereIn('department_id', $list_parent);
         }
