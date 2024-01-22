@@ -10,6 +10,7 @@ use Modules\Admin\Http\Requests\Department\CreateDepartmentRequest;
 use Modules\Admin\Http\Requests\Department\UpdateDepartmentRequest;
 use Modules\Admin\Repositories\DepartmentRepository;
 use Illuminate\Routing\Controller;
+use Modules\Mon\Entities\User;
 use Modules\Mon\Http\Controllers\ApiController;
 use Modules\Mon\Auth\Contracts\Authentication;
 
@@ -28,8 +29,15 @@ class DepartmentController extends ApiController
     }
 
     public function countNotAssign(Request $request) {
-        return Department::query()->where('not_assign', 0)->count();
-    }
+        $not_assign =  User::query()->whereHas('department', function ($query) {
+            $query->where('not_assign', 1);
+        })->count();
+        $all =  User::query()->count();
+        return [
+          'user_not_assign' => $not_assign,
+          'user_assign' => $all - $not_assign
+        ];
+     }
     public function tree(Request $request)
     {
         return $this->departmentRepository->getAllTree(null, $request);

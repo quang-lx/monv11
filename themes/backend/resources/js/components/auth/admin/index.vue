@@ -243,13 +243,7 @@ export default {
             return this.isShowCol.reduce(
                 (obj, item) => Object.assign(obj, { [item.col_name]: 1 }), {});
         },
-        department_user_total: function () {
-            let total = 0;
-            for (let i = 0; i < this.departmentTreeData.length; i++) {
-                total = total + this.departmentTreeData[i].count_user;
-            }
-            return total;
-        },
+
         list_col_label: function () {
             return this.convertArrayToObject(this.full_col_name, 'col_name', 'name')
 
@@ -541,7 +535,8 @@ export default {
             window.axios.get(route('api.department.countNotAssign', {}))
                 .then((response) => {
 
-                    this.count_not_assign = response.data;
+                    this.count_not_assign = response.data.user_not_assign;
+                    this.department_user_total = response.data.user_assign;
 
                 });
         },
