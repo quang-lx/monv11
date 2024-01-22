@@ -324,7 +324,7 @@
                         <h3 class="title-box">Biểu đồ tỷ lệ giới tính</h3>
                     </div>
                     <div class="col-12">
-                        <Doughnut :data="dataDoughnutSex" type='doughnut' v-if="dataDoughnutSex"  :options="optionsDoughnut"
+                        <Doughnut :data="dataDoughnutSex" type='doughnut' v-if="dataDoughnutSex" :options="optionsDoughnut"
                             :plugins="configPlugins('Tổng số người')" />
                     </div>
                 </div>
@@ -346,8 +346,8 @@
                         <h3 class="title-box">Biểu đồ theo dịch vụ khám</h3>
                     </div>
                     <div class="col-12">
-                        <Doughnut :data="dataDoughnutService"  v-if="dataDoughnutService"  type='doughnut' :options="optionsDoughnut"
-                            :plugins="configPlugins('Tổng số dịch vụ')" />
+                        <Doughnut :data="dataDoughnutService" v-if="dataDoughnutService" type='doughnut'
+                            :options="optionsDoughnut" :plugins="configPlugins('Tổng số dịch vụ')" />
                     </div>
                 </div>
             </div>
@@ -357,8 +357,8 @@
                         <h3 class="title-box">Biểu đồ loại dịch vụ khám</h3>
                     </div>
                     <div class="col-12">
-                        <Doughnut :data="dataDoughnutServiceType" v-if="dataDoughnutServiceType"  type='doughnut' :options="optionsDoughnut"
-                            :plugins="configPlugins('Tổng số dịch vụ')" />
+                        <Doughnut :data="dataDoughnutServiceType" v-if="dataDoughnutServiceType" type='doughnut'
+                            :options="optionsDoughnut" :plugins="configPlugins('Tổng số dịch vụ')" />
                     </div>
                 </div>
             </div>
@@ -400,6 +400,7 @@ import {
 } from 'chart.js'
 import { Bar, Doughnut, Line as LineChart } from 'vue-chartjs'
 import _ from "lodash";
+import moment from 'moment';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement, ChartDataLabels, LineElement, PointElement)
 
@@ -514,7 +515,12 @@ export default {
                             picker.$emit('pick', [start, end]);
                         }
                     },
-                ]
+                ],
+                disabledDate(time) {
+                    time = moment(time).format('YYYY-MM-DD');
+                    const currentDate = moment().format('YYYY-MM-DD');
+                    return time < moment().subtract(1, 'year').format('YYYY-MM-DD') || time > currentDate;
+                }
             },
             dataBar: {
                 labels: [],
@@ -594,6 +600,14 @@ export default {
                             padding: 20,
                         },
                     },
+
+                    tooltip: {
+                        callbacks: {
+                            footer: function (items) {
+                                return 'Total: ' + items.reduce((a, b) => a + b.parsed.y, 0)
+                            }
+                        }
+                    },
                 },
 
                 interaction: {
@@ -616,7 +630,12 @@ export default {
                 }
             },
 
-            barChartServiceInstance: null
+            barChartServiceInstance: null,
+            barChartDiseaseInstance: null,
+            dataBarDisease: {
+                labels: [],
+                data: [],
+            },
         }
     },
     methods: {
@@ -687,10 +706,10 @@ export default {
 
             // Dummy data for demonstration
             const data = {
-                labels: this.dataBar.labels,
+                labels: this.dataBarDisease.labels,
                 datasets: [{
                     label: 'Sample Data',
-                    data: this.dataBar.data,
+                    data: this.dataBarDisease.data,
                     backgroundColor: gradient, // Use the linear gradient as the background color
                     borderColor: 'rgba(75, 192, 192, 1)',
                     borderWidth: 1,
@@ -722,7 +741,7 @@ export default {
             };
 
             // Create the bar chart
-            new ChartJS(ctx, {
+            this.barChartDiseaseInstance = new ChartJS(ctx, {
                 type: 'bar',
                 data: data,
                 options: options
@@ -815,6 +834,17 @@ export default {
                 });
         },
 
+        getBarCharttDisease() {
+            const properties = {
+                date_search: this.date_search,
+            };
+
+            window.axios.get(route('api.dashboard.barChartDisease', properties))
+                .then((response) => {
+                    this.dataBarDisease = response.data;
+                });
+        },
+
         getLineChartNumberExamination() {
             const properties = {
                 date_search: this.date_search,
@@ -875,14 +905,25 @@ export default {
             this.getSummaryService()
             this.getSummaryServiceType()
             this.getBarChartService()
+            this.getBarCharttDisease()
             this.getLineChartNumberExamination()
         },
 
-        destroyChart() {
+        destroyChartService() {
             // Destroy the existing chart instance if it exists
             if (this.barChartServiceInstance) {
                 this.barChartServiceInstance.destroy();
             }
+            
+        },
+
+        destroyChartDisease() {
+            // Destroy the existing chart instance if it exists
+            if (this.barChartDiseaseInstance) {
+                this.barChartDiseaseInstance.destroy();
+            }
+
+            
         },
 
 
@@ -902,9 +943,19 @@ export default {
             deep: true,
             handler(newData) {
                 // Rerender the chart when dataBar changes
- 
-                this.destroyChart();
+
+                this.destroyChartService();
                 this.renderBarChartService();
+            },
+        },
+
+        dataBarDisease: {
+            deep: true,
+            handler(newData) {
+                // Rerender the chart when dataBar changes
+
+                this.destroyChartDisease();
+                this.renderBarChartDisease();
             },
         },
     }
@@ -920,6 +971,7 @@ export default {
     line-height: normal;
     letter-spacing: 0.1px;
     margin-bottom: 20px;
+    font-weight: 700;
 }
 
 .box-dashboard {

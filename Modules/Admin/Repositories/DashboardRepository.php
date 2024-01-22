@@ -9,6 +9,7 @@ use Modules\Mon\Entities\ExaminationService;
 use Modules\Mon\Entities\Patient;
 use Modules\Mon\Entities\PatientExamination;
 use Illuminate\Support\Facades\Log;
+use Modules\Mon\Entities\Disease;
 use Modules\Mon\Entities\TestingService;
 
 class DashboardRepository
@@ -171,10 +172,13 @@ class DashboardRepository
 
         $examination_service = $query->groupBy('service_id')->select('service_id', DB::raw('count(*) as total'))->orderBy(DB::raw('count(*)'))->limit(3)->get();
         foreach ($examination_service as $key => $service) {
-            $labels[] = TestingService::find($service['service_id'])->code;
-            $data[] = $service['total'];
-            $backgroundColor[] = $this->rand_color();
-            $service_id_top_3[] = $service['service_id'];
+            $testing_service = TestingService::find($service['service_id']);
+            if ($testing_service) {
+                $labels[] = $testing_service->code;
+                $data[] = $service['total'];
+                $backgroundColor[] = $this->rand_color();
+                $service_id_top_3[] = $service['service_id'];
+            }
         }
 
         $examination_service_remaining = $query_remaining->whereNotIn('id', $service_id_top_3)->select(DB::raw('count(*) as total'))->first();
@@ -214,10 +218,13 @@ class DashboardRepository
 
         $examination_service = $query->groupBy('service_id')->select('service_id', DB::raw('count(*) as total'))->orderBy(DB::raw('count(*)'))->limit(8)->get();
         foreach ($examination_service as $key => $service) {
-            $labels[] = TestingService::find($service['service_id'])->serviceType->code;
-            $data[] = $service['total'];
-            $backgroundColor[] = $this->rand_color();
-            $service_id_top_3[] = $service['service_id'];
+            $service_type = TestingService::find($service['service_id'])->serviceType;
+            if ($service_type) {
+                $labels[] = $service_type->code;
+                $data[] = $service['total'];
+                $backgroundColor[] = $this->rand_color();
+                $service_id_top_3[] = $service['service_id'];
+            }
         }
 
         $examination_service_remaining = $query_remaining->whereNotIn('id', $service_id_top_3)->select(DB::raw('count(*) as total'))->first();
@@ -254,8 +261,11 @@ class DashboardRepository
 
         $examination_service = $query->groupBy('service_id')->select('service_id', DB::raw('count(*) as total'))->orderBy(DB::raw('count(*)'))->limit(10)->get();
         foreach ($examination_service as $key => $service) {
-            $labels[] = TestingService::find($service['service_id'])->code;
-            $data[] = $service['total'];
+            $testing_service = TestingService::find($service['service_id']);
+            if ($testing_service) {
+                $labels[] = $testing_service->code;
+                $data[] = $service['total'];
+            }
         }
 
         return [
@@ -350,6 +360,33 @@ class DashboardRepository
                 ],
                 'pointHoverRadius' => 6
             ];
+    }
+
+    public function barChartDisease(Request $request)
+    {
+        list($from_date, $to_date) = $request->get('date_search');
+        $from_date = Carbon::createFromFormat('d/m/Y', $from_date);
+        $to_date = Carbon::createFromFormat('d/m/Y', $to_date);
+        $query = PatientExamination::query()->whereBetween('created_at', [$from_date, $to_date])->whereNotNull('disease_id');
+        $labels = [];
+        $data = [];
+
+        $patient_examination = $query->groupBy('disease_id')->select('disease_id', DB::raw('count(*) as total'))->orderBy(DB::raw('count(*)'))->limit(10)->get();
+
+        foreach ($patient_examination as $key => $value) {
+            $disease = Disease::find($value['disease_id']);
+            if ($disease) {
+                $labels[] = $disease->code;
+                $data[] = $value['total'];
+            }
+
+        }
+
+        return [
+            'labels' => $labels,
+            'data' => $data
+        ];
+
     }
 
 

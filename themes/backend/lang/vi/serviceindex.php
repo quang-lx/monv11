@@ -12,6 +12,7 @@ return [
         'create success' => 'Thêm mới chỉ số thành công.',
         'update success' => 'Cập nhật chỉ số thành công.',
         'delete success' => 'Xóa chỉ số thành công.',
+        'import success' => 'Tải lên danh sách chỉ số con thành công.',
     ]
 
 ];
