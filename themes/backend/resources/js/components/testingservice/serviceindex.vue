@@ -328,7 +328,7 @@ console.log(error)
                     vm.$notify({
                         type: 'error',
                         title: 'Thất bại',
-                        message: this.getSubmitError(error.data.errors)
+                        message: this.getSubmitError(error.response.data.errors)
                     });
                 });
         },
