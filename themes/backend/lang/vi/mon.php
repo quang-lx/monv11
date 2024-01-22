@@ -23,7 +23,8 @@ return [
         'Title' => 'Lỗi',
         'Message' => 'Có lỗi xảy ra.',
         'required' => ' không được để trống',
-        'unique' => '  đã tồn tại'
+        'unique' => '  đã tồn tại',
+        'numberic' => ' phải là số.',
     ],
 
     'modal' => [

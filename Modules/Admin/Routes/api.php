@@ -54,6 +54,11 @@ Route::middleware('auth:api')->prefix('/dashboard')->group(function (){
         'uses' => 'DashboardApiController@lineChartNumberExamination',
     ]);
 
+    Route::get('/barChartDisease', [
+        'as' => 'api.dashboard.barChartDisease',
+        'uses' => 'DashboardApiController@barChartDisease',
+    ]);
+
 });
 Route::middleware('auth:api')->get('/admin', function (Request $request) {
     return $request->user();
@@ -406,6 +411,18 @@ Route::middleware('auth:api')->prefix('/serviceindices')->group(function (){
     Route::delete('/{serviceindex}', [
         'as' => 'api.serviceindex.destroy',
         'uses' => 'ServiceIndex\ServiceIndexController@destroy',
+    ]);
+
+    Route::post('exports', [
+        'as' => 'api.serviceindex.exports',
+        'uses' => 'ServiceIndex\ServiceIndexController@exports',
+
+    ]);
+
+    Route::post('imports', [
+        'as' => 'api.serviceindex.imports',
+        'uses' => 'ServiceIndex\ServiceIndexController@imports',
+
     ]);
 });
 Route::middleware('auth:api')->prefix('/diseases')->group(function (){

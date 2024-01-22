@@ -18,12 +18,12 @@
                 </span>
 
 
-                <span class="f-action pl-4 f-pointer">
+                <span class="f-action pl-4 f-pointer" @click="exportServiceIndex">
                     <inline-svg src="/images/download.svg" /> Tải xuống
 
                 </span>
 
-                <span class="f-action pl-4 f-pointer">
+                <span class="f-action pl-4 f-pointer" @click="show_import = true">
                     <inline-svg src="/images/upload.svg" /> Tải lên
 
                 </span>
@@ -242,6 +242,10 @@
         </div>
 
 
+        <popup-import :show_import="show_import" :loadingImport="loadingImport" @on-import="onImportServiceIndex"
+            @close-popup="closeImport" url_template="/excel-template/_ServiceIndex_Template.xlsx"
+            content="Hệ thống sẽ so sánh dữ liệu mà bạn tải lên để thêm mới thiết bị vào hệ thống."
+            :data_export="data_export"></popup-import>
 
 
     </div>
@@ -251,10 +255,12 @@
 import InlineSvg from 'vue-inline-svg';
 import _ from 'lodash';
 import Form from "form-backend-validation";
+import PopupImport from '../utils/PopupImport';
 
 export default {
     components: {
         InlineSvg,
+        PopupImport
 
     },
     props: {
@@ -418,7 +424,62 @@ console.log(error)
             if (!this.tableIsLoading) {
                 return index + (this.meta.current_page - 1) * this.meta.per_page + 1;
             }
-        }
+        },
+
+        closeImport() {
+            this.show_import = false;
+            this.loadingImport = 0;
+            this.data_export = []
+        },
+
+        exportServiceIndex() {
+
+            const properties = {
+                order_by: this.order_meta.order_by,
+                order: this.order_meta.order,
+                service_id: this.service_id
+            };
+
+            window.axios.post(route('api.serviceindex.exports'), {
+                ...properties,
+                ...this.filter_data
+            })
+                .then((response) => {
+                    var link = document.createElement('a');
+
+                    link.href = response.data.fileUrl;
+                    link.target = '_blank';
+                    link.click();
+                });
+        },
+
+        onImportServiceIndex(file) {
+            this.loadingImport = 1;
+            let formData = new FormData();
+            formData.append("file", file);
+            formData.append("service_id", this.service_id);
+            axios
+                .post(route('api.serviceindex.imports'), formData, {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    },
+                })
+                .then((response) => {
+                    this.loadingImport = 2;
+                    this.$message({
+                        type: "success",
+                        message: response.data.message,
+                    });
+                    this.data_export = response.data
+                    this.fetchData();
+
+                })
+                .catch((err) => {
+                    this.loadingImport = 0
+                    this.data_export = err.response.data
+                    this.loading = false;
+                });
+        },
 
 
     },
@@ -442,4 +503,5 @@ console.log(error)
 .disabled {
     pointer-events: none;
 
-}</style>
+}
+</style>
