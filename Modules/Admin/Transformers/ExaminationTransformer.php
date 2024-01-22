@@ -4,6 +4,7 @@ namespace Modules\Admin\Transformers;
 
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Modules\Mon\Entities\ExaminationService;
 
 
 class ExaminationTransformer extends JsonResource
@@ -28,6 +29,7 @@ class ExaminationTransformer extends JsonResource
             'diagnose' => $this->diagnose,
             'disease_id' => $this->disease_id,
             'patient_id' => $this->patient_id,
+            'count_service_done' => $this->services->where('status', ExaminationService::STATUS_DONE)->count(),
             'count_service' => $this->services->count(),
             'patient' => $this->patient? new PatientThinTransformer($this->patient): [],
             'created_by_info' => $user->name . ' - ' . $user->username,

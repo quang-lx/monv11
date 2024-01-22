@@ -61,6 +61,8 @@
                                                     scope.row.patient.sex_text }}</span>
                                                 <span v-else-if="col_selected.col_name == 'diagnose'">{{
                                                     scope.row.display_text }}</span>
+                                                <span v-else-if="col_selected.col_name == 'count_service'">{{
+                                                    scope.row.count_service_done }}/{{scope.row.count_service}}</span>
                                                 <span v-else-if="col_selected.col_name == 'patient.name'"> <a href="#"
                                                         @click.prevent="gotoPatient(scope.row.patient_id)">{{
                                                             scope.row.patient.name }}</a></span>
