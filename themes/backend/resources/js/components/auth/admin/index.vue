@@ -363,6 +363,7 @@ export default {
             loadingImport: 0,
             data_export: [],
             count_not_assign: 0,
+            department_user_total: 0,
             selected_department_id: null
 
         };
