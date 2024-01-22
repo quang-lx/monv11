@@ -23,6 +23,7 @@ class ExaminationTransformer extends JsonResource
             'status_color' => $this->status_color,
             'status_class' => $this->status_class,
             'started_at' => optional($this->started_at)->format('H:i d/m/Y'),
+            'created_at' => optional($this->created_at)->format('H:i d/m/Y'),
             'finished_at' =>  optional($this->finished_at)->format('H:i d/m/Y'),
             'diagnose' => $this->diagnose,
             'disease_id' => $this->disease_id,
