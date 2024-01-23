@@ -125,7 +125,16 @@
                                                                      autocomplete="off"></el-input-number>
                                                 </el-form-item>
                                             </div>
-                                            <div class="col-md-3"></div>
+                                            <div class="col-md-3">
+
+                                                <el-form-item label="SpO2 (%)">
+                                                    <el-input  v-model="item.spo2"
+                                                               size="small"
+
+                                                               :disabled="!item.is_edit"></el-input>
+
+                                                </el-form-item>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-md-5">

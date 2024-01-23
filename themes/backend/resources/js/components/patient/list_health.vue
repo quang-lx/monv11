@@ -104,7 +104,14 @@
                                                                      autocomplete="off"></el-input-number>
                                                 </el-form-item>
                                             </div>
-                                            <div class="col-md-3"></div>
+                                            <div class="col-md-3">
+                                                <el-form-item label="SpO2 (%)">
+                                                    <el-input  v-model="item.spo2"
+                                                               size="small"
+                                                              :disabled="!item.is_edit"></el-input>
+
+                                                </el-form-item>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-md-5">
@@ -190,6 +197,7 @@
                     blood_pressure: undefined,
                     heart_beat: undefined,
                     is_edit: true,
+                    sp02: null,
                     note: null
                 })
                 this.old_data.push({
@@ -200,6 +208,7 @@
                     blood_pressure: undefined,
                     heart_beat: undefined,
                     is_edit: false,
+                    sp02: null,
                     note: null
                 })
             },

@@ -110,7 +110,7 @@ class EloquentDepartmentRepository extends BaseRepository implements DepartmentR
         $departments = $query->get();
         foreach ($departments as $department) {
 
-          
+
             $data = array_merge($data, $this->getChild($department->id));
 
         }
