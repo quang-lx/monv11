@@ -383,7 +383,7 @@ export default {
             this.show_config = false;
         },
         handleNodeClick(data, checked, indeterminate) {
-            this.parent_selected = data.id
+
             this.editModel.id = data.id
             this.editModel.name = data.label
 
@@ -448,6 +448,12 @@ export default {
                 });
         },
         confirmAddDepartment() {
+
+            let tree_node = this.$refs.tree.getCurrentNode()
+            if (tree_node) {
+                this.parent_selected = tree_node.id
+            }
+            
             let params = _.merge(this.addModel);
             params.parent_id = this.parent_selected;
             this.form = new Form(params);
