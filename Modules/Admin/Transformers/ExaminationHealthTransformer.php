@@ -19,7 +19,7 @@ class ExaminationHealthTransformer extends JsonResource
             'create_date' => $this->create_date,
             'height' => $this->height,
             'weight' => $this->weight,
-            'sp02' => $this->sp02,
+            'spo2' => $this->spo2,
             'bmi' => $this->bmi,
             'blood_pressure' => $this->blood_pressure,
             'heart_beat' => $this->heart_beat,
