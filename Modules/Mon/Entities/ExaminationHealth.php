@@ -10,7 +10,7 @@ class ExaminationHealth extends Model
     protected $table = 'examination_health';
     protected $fillable = [
         'patient_id','examination_id', 'create_date', 'height', 'weight', 'bmi', 'blood_pressure', 'heart_beat', 'note',
-        'sp02'
+        'spo2'
     ];
 
     public function patient() {
