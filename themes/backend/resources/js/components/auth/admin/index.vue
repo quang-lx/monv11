@@ -75,7 +75,7 @@
                                 </div>
                             </div><!-- /.card-header -->
                             <div class="card-body">
-                                <el-input class="mb-2" placeholder="Tìm kiếm" @keyup.native="performSearchDepartment"
+                                <el-input class="mb-2" placeholder="Tìm kiếm"
                                     size="mini" v-model="filterDepartment">
                                 </el-input>
 
@@ -692,10 +692,12 @@ export default {
         // Remove the click event listener when the component is destroyed
         // document.removeEventListener('click', this.handleDocumentClick);
     },
-    created() {
-
-
-    }
+    watch: {
+        filterDepartment(val) {
+            this.$refs.tree.filter(val);
+            this.$refs.tree_not_assign.filter(val);
+        }
+    },
 }
 </script>
 
