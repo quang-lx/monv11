@@ -387,7 +387,7 @@ export default {
             this.parent_selected = null
             this.editModel.id = null
             this.editModel.name = null
-            this.selected_department_id = tree_node.id
+            this.selected_department_id = null
             this.queryServer({});
 
         },
