@@ -87,6 +87,7 @@
                                     </span>
                                 </div>
                                 <el-tree class="filter-tree" :data="departmentTreeData" :props="treeProps"
+                                         v-click-outside="removeNodeClick"
                                     default-expand-all :filter-node-method="filterNode" @node-click="handleNodeClick"
                                     ref="tree">
                                     <span class="custom-tree-node" slot-scope="{ node, data }">
@@ -382,8 +383,16 @@ export default {
         closeConfig() {
             this.show_config = false;
         },
-        handleNodeClick(data, checked, indeterminate) {
+        removeNodeClick() {
+            this.parent_selected = null
+            this.editModel.id = null
+            this.editModel.name = null
+            this.selected_department_id = tree_node.id
+            this.queryServer({});
 
+        },
+        handleNodeClick(data, checked, indeterminate) {
+            this.parent_selected = data.id
             this.editModel.id = data.id
             this.editModel.name = data.label
 
@@ -449,11 +458,6 @@ export default {
         },
         confirmAddDepartment() {
 
-            let tree_node = this.$refs.tree.getCurrentNode()
-            if (tree_node) {
-                this.parent_selected = tree_node.id
-            }
-            
             let params = _.merge(this.addModel);
             params.parent_id = this.parent_selected;
             this.form = new Form(params);
