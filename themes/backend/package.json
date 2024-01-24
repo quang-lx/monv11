@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@algoz098/vue-player": "^0.4.3",
+    "@riophae/vue-treeselect": "^0.4.0",
     "admin-lte": "^3.2",
     "animate.css": ">=4.1",
     "bootstrap": "~4.6.2",

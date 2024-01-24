@@ -117,6 +117,20 @@
                                                      v-text="form.errors.first('note')"></div>
                                             </el-form-item>
                                         </div>
+                                        <div class="col-md-12">
+                                            <el-form-item :label="$t('box.label.area_id')"
+                                                          :class="{'el-form-item is-error': form.errors.has('area_id') }">
+                                                <treeselect
+                                                    :options="areaTreeData"
+                                                    :disable-branch-nodes="true"
+                                                    :show-count="false"
+                                                    placeholder="Chọn khu vực"
+                                                />
+                                                <div class="el-form-item__error"
+                                                     v-if="form.errors.has('area_id')"
+                                                     v-text="form.errors.first('area_id')"></div>
+                                            </el-form-item>
+                                        </div>
                                     </div>
 
 
@@ -141,6 +155,7 @@
 
 <script>
     import Form from 'form-backend-validation';
+    import _ from "lodash";
 
     export default {
         props: {
@@ -152,11 +167,15 @@
                 form: new Form(),
                 loading: false,
                 loadingPassword: false,
+                areaTreeData: [],
                 userRules: {
                     code: [
                         { required: true, message: 'Bắt buộc' , trigger: 'submit'}
                     ],
                     name: [
+                        { required: true, message: '' , trigger: 'submit'}
+                    ],
+                    area_id: [
                         { required: true, message: '' , trigger: 'submit'}
                     ],
                     status: [
@@ -267,12 +286,25 @@
 
                     });
             },
+            getAreaList(customProperties) {
+
+                const properties = {
+
+                };
+                this.areaLoading = true;
+                window.axios.get(route('api.boxarea.tree', _.merge(properties, customProperties)))
+                    .then((response) => {
+                        this.areaLoading = false;
+                        this.areaTreeData = response.data;
+
+                    });
+            },
 
 
         },
         mounted() {
             this.fetchData();
-            this.getAreaHierarchy();
+            this.getAreaList({});
 
         },
         computed: {}
