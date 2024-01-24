@@ -30,6 +30,9 @@ import ExaminationForm from './../components/examination/update.vue';
 import ExaminationServiceList from './../components/examination_service/index.vue';
 import ExaminationServiceForm from './../components/examination_service/update.vue';
 
+import BoxList from './../components/box/index.vue';
+import BoxForm from './../components/box/form.vue';
+
 import Dashboard from './../components/dashboard/index.vue';
 
 const currentLocale = '/' + window.MonCMS.currentLocale;
@@ -268,5 +271,27 @@ export default [
     },
 
 
+    {
+        path: '/admin/box',
+        name: 'admin.box.index',
+        component: BoxList,
+    },
+    {
+        path: '/admin/box/create',
+        name: 'admin.box.create',
+        component: BoxForm,
+        props: {
+            pageTitle: 'box.label.create new',
+        },
+    },
+
+    {
+        path: '/admin/box/:boxId/edit',
+        name: 'admin.box.edit',
+        component: BoxForm,
+        props: {
+            pageTitle: 'box.label.update_label',
+        },
+    },
 
 ];

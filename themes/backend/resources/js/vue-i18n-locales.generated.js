@@ -9,6 +9,25 @@ export default {
                 "sign in": "Sign in"
             }
         },
+        "media": {
+            "label": {
+                "media": "Media",
+                "choose_file": "Choose file",
+                "created_at": "Created at",
+                "filename": "Filename",
+                "move": "Move",
+                "upload file": "Upload file",
+                "title": "Title",
+                "description": "Description"
+            },
+            "folders": {
+                "create_resource": "Create folder",
+                "folder_name": "Folder name"
+            },
+            "insert": "Insert image",
+            "remove_media": "Remove media",
+            "Browse": "Browse"
+        },
         "mon": {
             "button": {
                 "save": "Save",
@@ -31,32 +50,26 @@ export default {
                 "permission_denied": "Permission denied...."
             }
         },
-        "user": {
+        "permission": {
             "label": {
                 "id": "ID",
-                "email": "Email",
                 "name": "Name",
-                "phone": "Phone",
+                "guard_name": "Guard name",
                 "created_at": "Created at",
                 "updated_at": "Updated at",
-                "password_confirmation": "Password confirmation",
-                "password": "Password",
-                "create_user": "Create User",
-                "update_user": "Update User",
-                "users": "Users",
-                "roles": "Roles",
-                "change_password": "Change password"
-            },
-            "tabs": {
-                "data": "Info",
-                "roles": "Roles",
-                "new_password": "New password"
+                "create_permission": "Create Permission",
+                "update_permission": "Update Permission",
+                "permissions": "Permissions"
             },
             "message": {
-                "create success": "Create User Success.",
-                "update success": "Update User Success.",
-                "delete success": "Delete User Success.",
-                "change password success": "Change password success."
+                "create success": "Create Permission Success.",
+                "update success": "Update Permission Success.",
+                "delete success": "Delete Permission Success."
+            }
+        },
+        "profile": {
+            "label": {
+                "profile": "Profile"
             }
         },
         "role": {
@@ -88,47 +101,6 @@ export default {
             "allow all": "Allow all",
             "deny all": "Deny all"
         },
-        "profile": {
-            "label": {
-                "profile": "Profile"
-            }
-        },
-        "media": {
-            "label": {
-                "media": "Media",
-                "choose_file": "Choose file",
-                "created_at": "Created at",
-                "filename": "Filename",
-                "move": "Move",
-                "upload file": "Upload file",
-                "title": "Title",
-                "description": "Description"
-            },
-            "folders": {
-                "create_resource": "Create folder",
-                "folder_name": "Folder name"
-            },
-            "insert": "Insert image",
-            "remove_media": "Remove media",
-            "Browse": "Browse"
-        },
-        "permission": {
-            "label": {
-                "id": "ID",
-                "name": "Name",
-                "guard_name": "Guard name",
-                "created_at": "Created at",
-                "updated_at": "Updated at",
-                "create_permission": "Create Permission",
-                "update_permission": "Update Permission",
-                "permissions": "Permissions"
-            },
-            "message": {
-                "create success": "Create Permission Success.",
-                "update success": "Update Permission Success.",
-                "delete success": "Delete Permission Success."
-            }
-        },
         "sidebar": {
             "system administration": "System administration",
             "roles and permission": "Roles and permission",
@@ -145,9 +117,281 @@ export default {
             "constructor": "Constructor",
             "resource": "Resource",
             "partner": "Partner"
+        },
+        "user": {
+            "label": {
+                "id": "ID",
+                "email": "Email",
+                "name": "Name",
+                "phone": "Phone",
+                "created_at": "Created at",
+                "updated_at": "Updated at",
+                "password_confirmation": "Password confirmation",
+                "password": "Password",
+                "create_user": "Create User",
+                "update_user": "Update User",
+                "users": "Users",
+                "roles": "Roles",
+                "change_password": "Change password"
+            },
+            "tabs": {
+                "data": "Info",
+                "roles": "Roles",
+                "new_password": "New password"
+            },
+            "message": {
+                "create success": "Create User Success.",
+                "update success": "Update User Success.",
+                "delete success": "Delete User Success.",
+                "change password success": "Change password success."
+            }
         }
     },
     "vi": {
+        "auth": {
+            "failed": "These credentials do not match our records.",
+            "throttle": "Too many login attempts. Please try again in {seconds} seconds.",
+            "label": {
+                "sign in to start your session": "Đăng nhập để bắt đầu phiên của bạn",
+                "remember me": "Nhớ tài khoản",
+                "sign in": "Đăng nhập"
+            }
+        },
+        "box": {
+            "label": {
+                "title": "Danh sách box thiết bị",
+                "id": "Mã bệnh nhân",
+                "code": "BOX ID",
+                "name": "Tên BOX",
+                "status": "Trạng thái box thiết bị",
+                "created_at": "Thời gian tạo",
+                "created_by": "Người tạo",
+                "update_label": "Chi tiết BOX",
+                "create new": "Tạo mới BOX"
+            },
+            "message": {
+                "create success": "Tạo BOX thành công.",
+                "update success": "Chỉnh sửa BOX thành công.",
+                "delete success": "Xóa BOX thành công."
+            }
+        },
+        "box_area": {
+            "label": {
+                "id": "ID",
+                "name": "Tên",
+                "title": "Khu vực",
+                "add area": "Tạo khu vực mới",
+                "edit area": "Đổi tên khu vực"
+            },
+            "message": {
+                "create success": "Tạo khu vực mới thành công.",
+                "update success": "Cập nhật khu vực thành công.",
+                "delete success": "Xóa khu vực thành công."
+            }
+        },
+        "category": {
+            "label": {
+                "category": "Chuyên mục ",
+                "id": "ID",
+                "title": "Tên",
+                "0": "type",
+                "slug": "Đường dẫn",
+                "1": "parent_id",
+                "2": "order",
+                "description": "Miêu tả",
+                "status": "Trạng thái",
+                "create_device": "Thêm mới thiết bị",
+                "update_device": "Cập nhật thiết bị"
+            },
+            "message": {
+                "create success": "Tạo Chuyên mục  thành công.",
+                "update success": "Cập nhật Chuyên mục  thành công.",
+                "delete success": "Xóa Chuyên mục  thành công."
+            }
+        },
+        "common": {
+            "stt": "STT",
+            "action": "Hành động",
+            "info": "Thông tin chung",
+            "add": "Thêm mới",
+            "cancel": "Huỷ",
+            "search": "Tìm kiếm",
+            "default": "Mặc định",
+            "apply": "Áp dụng",
+            "accept": "Đồng ý",
+            "upload": "Tải lên",
+            "update": "Cập nhật",
+            "created_at": "Ngày tạo",
+            "server error": "Có lỗi xảy ra"
+        },
+        "department": {
+            "label": {
+                "id": "ID",
+                "name": "Tên",
+                "title": "Nhóm",
+                "add department": "Tạo nhóm mới",
+                "edit department": "Đổi tên nhóm"
+            },
+            "message": {
+                "create success": "Tạo nhóm mới thành công.",
+                "update success": "Cập nhật nhóm thành công.",
+                "delete success": "Xóa nhóm thành công."
+            }
+        },
+        "device": {
+            "label": {
+                "id": "ID",
+                "name": "Tên thiết bị",
+                "code": "Mã thiết bị",
+                "type": "Loại thiết bị",
+                "box": "Box thiết bị",
+                "status": "Trạng thái",
+                "status_column": "Trạng thái thiết bị",
+                "serial number": "Serial number",
+                "note": "Ghi chú chi tiết",
+                "title": "Quản lý thiết bị",
+                "create_device": "Thêm mới thiết bị",
+                "button_create": "Thêm mới",
+                "update_device": "Cập nhật thiết bị",
+                "import title": "Tải lên danh sách"
+            },
+            "message": {
+                "create success": "Tạo thiết bị thành công.",
+                "update success": "Cập nhật thiết bị thành công.",
+                "delete success": "Xóa thiết bị thành công.",
+                "import success": "Tải lên danh sách device thành công."
+            }
+        },
+        "disease": {
+            "label": {
+                "id": "ID",
+                "stt": "STT",
+                "code": "Mã bệnh",
+                "name": "Tên bệnh",
+                "created_at": "Ngày tạo",
+                "created_by": "Người tạo",
+                "describe": "Mô tả",
+                "title": "Danh sách bệnh",
+                "create_disease": "Thêm mới",
+                "update_disease": "Cập nhật bệnh",
+                "import title": "Tải lên danh sách"
+            },
+            "message": {
+                "create success": "Bệnh đã được thêm thành công.",
+                "update success": "Bệnh đã được sửa thành công.",
+                "delete success": "Bệnh đã được xoá thành công.",
+                "import success": "Tải lên danh sách bệnh thành công."
+            }
+        },
+        "examination": {
+            "label": {
+                "title": "Danh sách khám bệnh",
+                "id": "Mã bệnh nhân",
+                "diagnose": "Chẩn đoán",
+                "started_at": "Thời gian bắt đầu khám",
+                "finished_at": "Thời gian kết thúc khám",
+                "status": "Trạng thái khám bệnh",
+                "created_at": "Thời gian tạo",
+                "created_by": "Người tạo",
+                "service": "Dịch vụ",
+                "type": "Loại khám",
+                "disease_id": "Chẩn đoán",
+                "create_examination": "Thêm mới",
+                "update_label": "Chi tiết khám bệnh",
+                "create new": "Tạo mới bệnh nhân"
+            },
+            "message": {
+                "start success": "Bắt đầu khám thành công",
+                "finish success": "Hoàn thành khám thành công",
+                "create success": "Tạo bệnh nhân thành công.",
+                "update success": "Chỉnh sửa bệnh nhân thành công.",
+                "delete success": "Xóa bệnh nhân thành công."
+            }
+        },
+        "examinationservice": {
+            "label": {
+                "title": "Kết quả khám",
+                "update_label": "Chi tiết kết quả khám"
+            },
+            "message": {
+                "delete success": "Kết quả khám đã được xóa thành công.",
+                "cancel success": "Huỷ dịch vụ thành công."
+            }
+        },
+        "health": {
+            "label": [],
+            "message": {
+                "create success": "Thêm mới thành công.",
+                "update success": "Cập nhật thành công.",
+                "delete success": "Xóa thành công."
+            }
+        },
+        "media": {
+            "label": {
+                "media": "Media",
+                "choose_file": "Tải file lên",
+                "move": "Move",
+                "upload file": "Upload file",
+                "filename": "Tên tệp",
+                "width": "Chiều rộng",
+                "height": "Chiều cao",
+                "title": "Tiêu đề",
+                "description": "Mô tả",
+                "path": "Đường dẫn",
+                "file size": "Kích thước",
+                "type file": "Loại tệp",
+                "created_at": "Ngày tạo"
+            },
+            "folders": {
+                "create_resource": "Tạo folder",
+                "folder_name": "Tên folder"
+            },
+            "messages": {
+                "selected items deleted": "Tệp vừa được xóa"
+            },
+            "insert": "Insert image",
+            "remove_media": "Remove media",
+            "Browse": "Chọn file"
+        },
+        "mon": {
+            "button": {
+                "save": "Lưu",
+                "create": "Tạo",
+                "cancel": "Hủy",
+                "deleteBtn": "Xóa",
+                "cancelBtn": "Ở lại",
+                "delete": "Xóa",
+                "close": "Đóng",
+                "update": "Cập nhật",
+                "add": "Thêm mới"
+            },
+            "all": "Tất cả",
+            "confirm": "Xác nhận",
+            "delete cancelled": "Bỏ qua",
+            "cancel": {
+                "Are you sure to cancel?": "Bạn có chắc chắn muốn hủy không",
+                "Yes": "Đồng ý",
+                "No": "Không"
+            },
+            "error": {
+                "Title": "Lỗi",
+                "Message": "Có lỗi xảy ra.",
+                "required": " không được để trống",
+                "unique": "  đã tồn tại",
+                "numberic": " phải là số."
+            },
+            "modal": {
+                "confirmation-message": "Bạn có chắc chắn muốn xóa bản ghi này không?",
+                "title": "Xác nhận"
+            },
+            "breadcrumb": {
+                "home": "Trang chủ"
+            },
+            "message": {
+                "permission_denied": "Không có quyền truy cập....",
+                "system error": "Có lỗi xảy ra"
+            }
+        },
         "news": {
             "label": {
                 "news": "Tin tức",
@@ -178,63 +422,157 @@ export default {
                 "delete success": "Xóa tin tức thành công."
             }
         },
-        "category": {
+        "packages": {
             "label": {
-                "category": "Chuyên mục ",
+                "packages": "Gói cước",
                 "id": "ID",
-                "title": "Tên",
-                "0": "type",
-                "slug": "Đường dẫn",
-                "1": "parent_id",
-                "2": "order",
-                "description": "Miêu tả",
+                "name": "Tên",
+                "period_time": "Số tháng",
+                "price": "Số tiền",
                 "status": "Trạng thái",
-                "create_device": "Thêm mới thiết bị",
-                "update_device": "Cập nhật thiết bị"
+                "create_packages": "Tạo gói cước ",
+                "update_packages": "Cập nhật"
             },
             "message": {
-                "create success": "Tạo Chuyên mục  thành công.",
-                "update success": "Cập nhật Chuyên mục  thành công.",
-                "delete success": "Xóa Chuyên mục  thành công."
+                "create success": "Tạo gói cước  thành công.",
+                "update success": "Cập nhật gói cước  thành công.",
+                "delete success": "Xóa gói cước  thành công."
             }
         },
-        "auth": {
-            "failed": "These credentials do not match our records.",
-            "throttle": "Too many login attempts. Please try again in {seconds} seconds.",
+        "patient": {
             "label": {
-                "sign in to start your session": "Đăng nhập để bắt đầu phiên của bạn",
-                "remember me": "Nhớ tài khoản",
-                "sign in": "Đăng nhập"
+                "id": "Mã bệnh nhân",
+                "stt": "STT",
+                "type": "Loại bệnh nhân",
+                "name": "Họ và tên",
+                "sex": "Giới tính",
+                "birthday": "Năm sinh",
+                "phone": "Số điện thoại",
+                "email": "Email",
+                "papers": "Giấy tờ tuỳ thân",
+                "job": "Đơn vị/Nghề nghiệp",
+                "address": "Địa chỉ",
+                "dependant": "Họ tên người nhà",
+                "phone_dependant": "SĐT người nhà",
+                "diagnose": "Chẩn đoán",
+                "examination_start_time": "Thời gian bắt đầu khám",
+                "examination_end_time": "Thời gian kết thúc khám",
+                "data_sources": "Nguồn dữ liệu",
+                "created_at": "Thời gian tạo",
+                "status": "Trạng thái bệnh nhân",
+                "created_by": "Mã nhân viên",
+                "service": "Dịch vụ",
+                "title": "Danh sách bệnh nhân",
+                "select date": "Chọn ngày",
+                "label hegith": "Nhập chiều cao (cm)",
+                "label weight": "Nhập cân nặng (kg)",
+                "bmi": "BMI",
+                "label blood pressure": "Huyết áp (mmHg)",
+                "label heartbeat": "Nhịp tim (bpm)",
+                "label note": "Nhập thông tin sức khoẻ (nếu có)",
+                "label created_at": "Ngày tạo",
+                "created_by_info": "Người tạo",
+                "label data_sources": "Nguồn",
+                "label status": "Trạng thái bệnh nhân",
+                "create_patient": "Thêm mới bệnh nhân",
+                "update_patient": "Chỉnh sửa bệnh nhân",
+                "import title": "Tải lên danh sách",
+                "filter title": "Lọc danh sách bệnh nhân",
+                "create new": "Tạo mới bệnh nhân",
+                "same patient": "Trùng bệnh nhân",
+                "re-examination": "Tái khám"
+            },
+            "message": {
+                "reexamination success": "Tái khám thành công.",
+                "add service success": "Thêm dịch vụ thành công.",
+                "delete service success": "Xoá dịch vụ thành công.",
+                "cancel service success": "Huỷ dịch vụ thành công.",
+                "create success": "Tạo bệnh nhân thành công.",
+                "update success": "Chỉnh sửa bệnh nhân thành công.",
+                "delete success": "Xóa bệnh nhân thành công.",
+                "import success": "Tải lên danh sách bệnh nhân thành công.",
+                "re-examination fail": "Bệnh nhân chưa hoàn thành khám không thể tái khám."
             }
         },
-        "disease": {
+        "patient_has_service": {
+            "label": {
+                "status": "Trạng thái dịch vụ",
+                "created_at": "Ngày kê",
+                "created_by": "Người kê"
+            }
+        },
+        "permission": {
             "label": {
                 "id": "ID",
-                "stt": "STT",
-                "code": "Mã bệnh",
-                "name": "Tên bệnh",
+                "name": "Mã chức năng",
+                "guard_name": "Guard name",
+                "title": "Tên chức năng",
+                "group": "Nhóm",
+                "group_name": "Tên nhóm",
                 "created_at": "Ngày tạo",
-                "created_by": "Người tạo",
-                "describe": "Mô tả",
-                "title": "Danh sách bệnh",
-                "create_disease": "Thêm mới",
-                "update_disease": "Cập nhật bệnh",
-                "import title": "Tải lên danh sách"
+                "updated_at": "Ngày cập nhật",
+                "create_permission": "Thêm mới",
+                "update_permission": "Cập nhật",
+                "permissions": "Danh sách chức năng"
             },
             "message": {
-                "create success": "Bệnh đã được thêm thành công.",
-                "update success": "Bệnh đã được sửa thành công.",
-                "delete success": "Bệnh đã được xoá thành công.",
-                "import success": "Tải lên danh sách bệnh thành công."
+                "create success": "Thêm mới chức năng thành công.",
+                "update success": "Cập nhật chức năng thành công.",
+                "delete success": "Xóa chức năng thành công."
+            },
+            "group_mapping": {
+                "admins": "Quản trị viên",
+                "category": "Danh mục",
+                "dashboard": "Trang admin",
+                "login": "Đăng nhập",
+                "media": "Media",
+                "news": "Tin tức",
+                "roles": "Nhóm quyền",
+                "permissions": "Chức năng",
+                "users": "Người dùng"
             }
         },
-        "health": {
-            "label": [],
-            "message": {
-                "create success": "Thêm mới thành công.",
-                "update success": "Cập nhật thành công.",
-                "delete success": "Xóa thành công."
+        "profile": {
+            "label": {
+                "profile": "Thông tin tài khoản"
             }
+        },
+        "role": {
+            "label": {
+                "id": "ID",
+                "name": "Tên vai trò",
+                "description": "Mô tả",
+                "guard_name": "Guard name",
+                "created_at": "Ngày tạo",
+                "updated_at": "Ngày cập nhật",
+                "create_role": "Thêm mới vai trò",
+                "update_role": "Cập nhật vai trò",
+                "roles": "Danh sách vai trò",
+                "permissions": "Danh sách chức năng",
+                "list_permissions": "Danh sách chức năng",
+                "selected_permissions": "Chức năng đã chọn",
+                "information": "Thông tin nhóm quyền",
+                "assign": "Gán",
+                "remove": "Hủy",
+                "tab user": "Thông tin người dùng",
+                "group name": "Mục phân quyền",
+                "function": "Chức năng",
+                "select all": "Chọn tất cả chức năng",
+                "list users": "Thông tin người dùng",
+                "add user title": "Thêm người dùng",
+                "user": "Người dùng"
+            },
+            "message": {
+                "create success": "Thêm mới nhóm quyền thành công.",
+                "update success": "Cập nhật nhóm quyền thành công.",
+                "delete success": "Vai trò đã được xoá thành công.",
+                "add permissions success": "Gán chức năng thành công",
+                "remove permissions success": "Bỏ chức năng thành công"
+            },
+            "allow": "Chọn",
+            "deny": "Từ chối",
+            "allow all": "Chọn tất cả",
+            "deny all": "Từ chối tất cả"
         },
         "service": {
             "label": {
@@ -268,43 +606,56 @@ export default {
                 "import success": "Tải lên danh sách dịch vụ thành công."
             }
         },
-        "mon": {
-            "button": {
-                "save": "Lưu",
-                "create": "Tạo",
-                "cancel": "Hủy",
-                "deleteBtn": "Xóa",
-                "cancelBtn": "Ở lại",
-                "delete": "Xóa",
-                "close": "Đóng",
-                "update": "Cập nhật",
-                "add": "Thêm mới"
-            },
-            "all": "Tất cả",
-            "confirm": "Xác nhận",
-            "delete cancelled": "Bỏ qua",
-            "cancel": {
-                "Are you sure to cancel?": "Bạn có chắc chắn muốn hủy không",
-                "Yes": "Đồng ý",
-                "No": "Không"
-            },
-            "error": {
-                "Title": "Lỗi",
-                "Message": "Có lỗi xảy ra.",
-                "required": " không được để trống",
-                "unique": "  đã tồn tại"
-            },
-            "modal": {
-                "confirmation-message": "Bạn có chắc chắn muốn xóa bản ghi này không?",
-                "title": "Xác nhận"
-            },
-            "breadcrumb": {
-                "home": "Trang chủ"
+        "serviceindex": {
+            "label": {
+                "create_serviceindex": "Thêm mới dịch vụ",
+                "update_serviceindex": "Cập nhật dịch vụ"
             },
             "message": {
-                "permission_denied": "Không có quyền truy cập....",
-                "system error": "Có lỗi xảy ra"
+                "create success": "Thêm mới chỉ số thành công.",
+                "update success": "Cập nhật chỉ số thành công.",
+                "delete success": "Xóa chỉ số thành công.",
+                "import success": "Tải lên danh sách chỉ số con thành công."
             }
+        },
+        "servicetype": {
+            "label": {
+                "id": "ID",
+                "name": "Tên loại dịch vụ",
+                "code": "Mã loại dịch vụ",
+                "description": "Mô tả",
+                "create_servicetype": "Thêm mới loại dịch vụ",
+                "update_servicetype": "Cập nhật loại dịch vụ",
+                "import title": "Tải lên danh sách",
+                "title": "Danh sách loại dịch vụ"
+            },
+            "message": {
+                "create success": "Loại dịch vụ đã được thêm thành công.",
+                "update success": "Loại dịch vụ đã được sửa thành công.",
+                "delete success": "Loại dịch vụ đã được xoá thành công.",
+                "import success": "Tải lên danh sách loại dịch vụ thành công."
+            }
+        },
+        "sidebar": {
+            "system administration": "Quản trị chung",
+            "roles and permission": "Roles and permission",
+            "admins": "Quản lý tài khoản",
+            "users": "Người dùng",
+            "roles": "Quản lý vai trò tài khoản",
+            "permissions": "Chức năng",
+            "index": "Danh sách",
+            "media": "Media",
+            "category": "Quản lý danh mục",
+            "testing service": "Danh mục dịch vụ xét nghiệm",
+            "examination": "Quản lý lượt khám bệnh",
+            "examination service": "Quản lý kết quả khám",
+            "home": "Trang chủ",
+            "packages": "Gói cước",
+            "device": "Quản lý thiết bị",
+            "disease": "Danh mục bệnh",
+            "service type": "Danh mục loại dịch vụ",
+            "patient": "Quản lý bệnh nhân",
+            "dashboard": "Báo cáo"
         },
         "user": {
             "label": {
@@ -362,323 +713,6 @@ export default {
                 "not allow self delete": "Không cho phép xóa tài khoản bạn đang đăng nhập.",
                 "reset password success": "Reset mật khẩu thành công."
             }
-        },
-        "role": {
-            "label": {
-                "id": "ID",
-                "name": "Tên vai trò",
-                "description": "Mô tả",
-                "guard_name": "Guard name",
-                "created_at": "Ngày tạo",
-                "updated_at": "Ngày cập nhật",
-                "create_role": "Thêm mới vai trò",
-                "update_role": "Cập nhật vai trò",
-                "roles": "Danh sách vai trò",
-                "permissions": "Danh sách chức năng",
-                "list_permissions": "Danh sách chức năng",
-                "selected_permissions": "Chức năng đã chọn",
-                "information": "Thông tin nhóm quyền",
-                "assign": "Gán",
-                "remove": "Hủy",
-                "tab user": "Thông tin người dùng",
-                "group name": "Mục phân quyền",
-                "function": "Chức năng",
-                "select all": "Chọn tất cả chức năng",
-                "list users": "Thông tin người dùng",
-                "add user title": "Thêm người dùng",
-                "user": "Người dùng"
-            },
-            "message": {
-                "create success": "Thêm mới nhóm quyền thành công.",
-                "update success": "Cập nhật nhóm quyền thành công.",
-                "delete success": "Vai trò đã được xoá thành công.",
-                "add permissions success": "Gán chức năng thành công",
-                "remove permissions success": "Bỏ chức năng thành công"
-            },
-            "allow": "Chọn",
-            "deny": "Từ chối",
-            "allow all": "Chọn tất cả",
-            "deny all": "Từ chối tất cả"
-        },
-        "examinationservice": {
-            "label": {
-                "title": "Kết quả khám",
-                "update_label": "Chi tiết kết quả khám"
-            },
-            "message": {
-                "delete success": "Kết quả khám đã được xóa thành công.",
-                "cancel success": "Huỷ dịch vụ thành công."
-            }
-        },
-        "packages": {
-            "label": {
-                "packages": "Gói cước",
-                "id": "ID",
-                "name": "Tên",
-                "period_time": "Số tháng",
-                "price": "Số tiền",
-                "status": "Trạng thái",
-                "create_packages": "Tạo gói cước ",
-                "update_packages": "Cập nhật"
-            },
-            "message": {
-                "create success": "Tạo gói cước  thành công.",
-                "update success": "Cập nhật gói cước  thành công.",
-                "delete success": "Xóa gói cước  thành công."
-            }
-        },
-        "patient_has_service": {
-            "label": {
-                "status": "Trạng thái dịch vụ",
-                "created_at": "Ngày kê",
-                "created_by": "Người kê"
-            }
-        },
-        "examination": {
-            "label": {
-                "title": "Danh sách khám bệnh",
-                "id": "Mã bệnh nhân",
-                "diagnose": "Chẩn đoán",
-                "started_at": "Thời gian bắt đầu khám",
-                "finished_at": "Thời gian kết thúc khám",
-                "status": "Trạng thái khám bệnh",
-                "created_at": "Thời gian tạo",
-                "created_by": "Người tạo",
-                "service": "Dịch vụ",
-                "type": "Loại khám",
-                "disease_id": "Chẩn đoán",
-                "create_examination": "Thêm mới",
-                "update_label": "Chi tiết khám bệnh",
-                "create new": "Tạo mới bệnh nhân"
-            },
-            "message": {
-                "start success": "Bắt đầu khám thành công",
-                "finish success": "Hoàn thành khám thành công",
-                "create success": "Tạo bệnh nhân thành công.",
-                "update success": "Chỉnh sửa bệnh nhân thành công.",
-                "delete success": "Xóa bệnh nhân thành công."
-            }
-        },
-        "department": {
-            "label": {
-                "id": "ID",
-                "name": "Tên",
-                "title": "Nhóm",
-                "add department": "Tạo nhóm mới",
-                "edit department": "Đổi tên nhóm"
-            },
-            "message": {
-                "create success": "Tạo nhóm mới thành công.",
-                "update success": "Cập nhật nhóm thành công.",
-                "delete success": "Xóa nhóm thành công."
-            }
-        },
-        "profile": {
-            "label": {
-                "profile": "Thông tin tài khoản"
-            }
-        },
-        "device": {
-            "label": {
-                "id": "ID",
-                "name": "Tên thiết bị",
-                "code": "Mã thiết bị",
-                "type": "Loại thiết bị",
-                "box": "Box thiết bị",
-                "status": "Trạng thái",
-                "status_column": "Trạng thái thiết bị",
-                "serial number": "Serial number",
-                "note": "Ghi chú chi tiết",
-                "title": "Quản lý thiết bị",
-                "create_device": "Thêm mới thiết bị",
-                "button_create": "Thêm mới",
-                "update_device": "Cập nhật thiết bị",
-                "import title": "Tải lên danh sách"
-            },
-            "message": {
-                "create success": "Tạo thiết bị thành công.",
-                "update success": "Cập nhật thiết bị thành công.",
-                "delete success": "Xóa thiết bị thành công.",
-                "import success": "Tải lên danh sách device thành công."
-            }
-        },
-        "serviceindex": {
-            "label": {
-                "create_serviceindex": "Thêm mới dịch vụ",
-                "update_serviceindex": "Cập nhật dịch vụ"
-            },
-            "message": {
-                "create success": "Thêm mới chỉ số thành công.",
-                "update success": "Cập nhật chỉ số thành công.",
-                "delete success": "Xóa chỉ số thành công."
-            }
-        },
-        "servicetype": {
-            "label": {
-                "id": "ID",
-                "name": "Tên loại dịch vụ",
-                "code": "Mã loại dịch vụ",
-                "description": "Mô tả",
-                "create_servicetype": "Thêm mới loại dịch vụ",
-                "update_servicetype": "Cập nhật loại dịch vụ",
-                "import title": "Tải lên danh sách",
-                "title": "Danh sách loại dịch vụ"
-            },
-            "message": {
-                "create success": "Loại dịch vụ đã được thêm thành công.",
-                "update success": "Loại dịch vụ đã được sửa thành công.",
-                "delete success": "Loại dịch vụ đã được xoá thành công.",
-                "import success": "Tải lên danh sách loại dịch vụ thành công."
-            }
-        },
-        "common": {
-            "stt": "STT",
-            "action": "Hành động",
-            "info": "Thông tin chung",
-            "add": "Thêm mới",
-            "cancel": "Huỷ",
-            "search": "Tìm kiếm",
-            "default": "Mặc định",
-            "apply": "Áp dụng",
-            "accept": "Đồng ý",
-            "upload": "Tải lên",
-            "update": "Cập nhật",
-            "created_at": "Ngày tạo",
-            "server error": "Có lỗi xảy ra"
-        },
-        "patient": {
-            "label": {
-                "id": "Mã bệnh nhân",
-                "stt": "STT",
-                "type": "Loại bệnh nhân",
-                "name": "Họ và tên",
-                "sex": "Giới tính",
-                "birthday": "Năm sinh",
-                "phone": "Số điện thoại",
-                "email": "Email",
-                "papers": "Giấy tờ tuỳ thân",
-                "job": "Đơn vị/Nghề nghiệp",
-                "address": "Địa chỉ",
-                "dependant": "Họ tên người nhà",
-                "phone_dependant": "SĐT người nhà",
-                "diagnose": "Chẩn đoán",
-                "examination_start_time": "Thời gian bắt đầu khám",
-                "examination_end_time": "Thời gian kết thúc khám",
-                "data_sources": "Nguồn dữ liệu",
-                "created_at": "Thời gian tạo",
-                "status": "Trạng thái bệnh nhân",
-                "created_by": "Mã nhân viên",
-                "service": "Dịch vụ",
-                "title": "Danh sách bệnh nhân",
-                "select date": "Chọn ngày",
-                "label hegith": "Nhập chiều cao (cm)",
-                "label weight": "Nhập cân nặng (kg)",
-                "bmi": "BMI",
-                "label blood pressure": "Huyết áp (mmHg)",
-                "label heartbeat": "Nhịp tim (bpm)",
-                "label note": "Nhập thông tin sức khoẻ (nếu có)",
-                "label created_at": "Ngày tạo",
-                "created_by_info": "Người tạo",
-                "label data_sources": "Nguồn",
-                "label status": "Trạng thái bệnh nhân",
-                "create_patient": "Thêm mới bệnh nhân",
-                "update_patient": "Chỉnh sửa bệnh nhân",
-                "import title": "Tải lên danh sách",
-                "filter title": "Lọc danh sách bệnh nhân",
-                "create new": "Tạo mới bệnh nhân",
-                "same patient": "Trùng bệnh nhân",
-                "re-examination": "Tái khám"
-            },
-            "message": {
-                "reexamination success": "Tái khám thành công.",
-                "add service success": "Thêm dịch vụ thành công.",
-                "delete service success": "Xoá dịch vụ thành công.",
-                "cancel service success": "Huỷ dịch vụ thành công.",
-                "create success": "Tạo bệnh nhân thành công.",
-                "update success": "Chỉnh sửa bệnh nhân thành công.",
-                "delete success": "Xóa bệnh nhân thành công.",
-                "import success": "Tải lên danh sách bệnh nhân thành công.",
-                "re-examination fail": "Bệnh nhân chưa hoàn thành khám không thể tái khám."
-            }
-        },
-        "media": {
-            "label": {
-                "media": "Media",
-                "choose_file": "Tải file lên",
-                "move": "Move",
-                "upload file": "Upload file",
-                "filename": "Tên tệp",
-                "width": "Chiều rộng",
-                "height": "Chiều cao",
-                "title": "Tiêu đề",
-                "description": "Mô tả",
-                "path": "Đường dẫn",
-                "file size": "Kích thước",
-                "type file": "Loại tệp",
-                "created_at": "Ngày tạo"
-            },
-            "folders": {
-                "create_resource": "Tạo folder",
-                "folder_name": "Tên folder"
-            },
-            "messages": {
-                "selected items deleted": "Tệp vừa được xóa"
-            },
-            "insert": "Insert image",
-            "remove_media": "Remove media",
-            "Browse": "Chọn file"
-        },
-        "permission": {
-            "label": {
-                "id": "ID",
-                "name": "Mã chức năng",
-                "guard_name": "Guard name",
-                "title": "Tên chức năng",
-                "group": "Nhóm",
-                "group_name": "Tên nhóm",
-                "created_at": "Ngày tạo",
-                "updated_at": "Ngày cập nhật",
-                "create_permission": "Thêm mới",
-                "update_permission": "Cập nhật",
-                "permissions": "Danh sách chức năng"
-            },
-            "message": {
-                "create success": "Thêm mới chức năng thành công.",
-                "update success": "Cập nhật chức năng thành công.",
-                "delete success": "Xóa chức năng thành công."
-            },
-            "group_mapping": {
-                "admins": "Quản trị viên",
-                "category": "Danh mục",
-                "dashboard": "Trang admin",
-                "login": "Đăng nhập",
-                "media": "Media",
-                "news": "Tin tức",
-                "roles": "Nhóm quyền",
-                "permissions": "Chức năng",
-                "users": "Người dùng"
-            }
-        },
-        "sidebar": {
-            "system administration": "Quản trị chung",
-            "roles and permission": "Roles and permission",
-            "admins": "Quản lý tài khoản",
-            "users": "Người dùng",
-            "roles": "Quản lý vai trò tài khoản",
-            "permissions": "Chức năng",
-            "index": "Danh sách",
-            "media": "Media",
-            "category": "Quản lý danh mục",
-            "testing service": "Danh mục dịch vụ xét nghiệm",
-            "examination": "Quản lý lượt khám bệnh",
-            "examination service": "Quản lý kết quả khám",
-            "home": "Trang chủ",
-            "packages": "Gói cước",
-            "device": "Quản lý thiết bị",
-            "disease": "Danh mục bệnh",
-            "service type": "Danh mục loại dịch vụ",
-            "patient": "Quản lý bệnh nhân",
-            "dashboard": "Báo cáo"
         }
     }
 }

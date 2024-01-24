@@ -421,7 +421,51 @@ Route::group(['prefix' => '/examinationindex'], function ( ) {
 
 
 });
+Route::group(['prefix' => '/boxarea'], function ( ) {
+
+    Route::get('/', [
+        'as' => 'admin.boxarea.index',
+        'uses' => 'BoxArea\BoxAreaController@index',
+        'middleware' => 'permission:admin.boxarea.index'
+    ]);
+    Route::get('create', [
+        'as' => 'admin.boxarea.create',
+        'uses' => 'BoxArea\BoxAreaController@create',
+        'middleware' => 'permission:admin.boxarea.create'
+    ]);
+
+    Route::get('{boxarea}/edit', [
+        'as' => 'admin.boxarea.edit',
+        'uses' => 'BoxArea\BoxAreaController@edit',
+        'middleware' => 'permission:admin.boxarea.edit'
+    ]);
+
+
+});
+Route::group(['prefix' => '/box'], function ( ) {
+
+    Route::get('/', [
+        'as' => 'admin.box.index',
+        'uses' => 'Box\BoxController@index',
+        'middleware' => 'permission:admin.box.index'
+    ]);
+    Route::get('create', [
+        'as' => 'admin.box.create',
+        'uses' => 'Box\BoxController@create',
+        'middleware' => 'permission:admin.box.create'
+    ]);
+
+    Route::get('{box}/edit', [
+        'as' => 'admin.box.edit',
+        'uses' => 'Box\BoxController@edit',
+        'middleware' => 'permission:admin.box.edit'
+    ]);
+
+
+});
 // append
+
+
 
 
 

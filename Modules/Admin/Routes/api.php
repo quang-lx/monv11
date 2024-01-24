@@ -681,7 +681,72 @@ Route::middleware('auth:api')->prefix('/examinationindices')->group(function (){
         'uses' => 'ExaminationIndex\ExaminationIndexController@destroy',
     ]);
 });
+Route::middleware('auth:api')->prefix('/boxareas')->group(function (){
+    Route::get('/tree', [
+        'as' => 'api.boxarea.tree',
+        'uses' => 'BoxArea\BoxAreaController@tree',
+    ]);
+    Route::get('/getNotAssignTree', [
+        'as' => 'api.boxarea.getNotAssignTree',
+        'uses' => 'BoxArea\BoxAreaController@getNotAssignTree',
+    ]);
+    Route::get('/hierarchy', [
+        'as' => 'api.boxarea.hierarchy',
+        'uses' => 'BoxArea\BoxAreaController@getAllHierarchy',
+    ]);
+    Route::get('/box/count', [
+        'as' => 'api.boxarea.count',
+        'uses' => 'BoxArea\BoxAreaController@count',
+    ]);
+    Route::get('/', [
+        'as' => 'api.boxarea.index',
+        'uses' => 'BoxArea\BoxAreaController@index',
+    ]);
+    Route::post('/{boxarea}/edit', [
+            'as' => 'api.boxarea.update',
+            'uses' => 'BoxArea\BoxAreaController@update',
+        ]);
+   Route::get('/{boxarea}', [
+              'as' => 'api.boxarea.find',
+              'uses' => 'BoxArea\BoxAreaController@find',
+          ]);
+    Route::post('/', [
+        'as' => 'api.boxarea.store',
+        'uses' => 'BoxArea\BoxAreaController@store',
+    ]);
+
+    Route::delete('/{boxarea}', [
+        'as' => 'api.boxarea.destroy',
+        'uses' => 'BoxArea\BoxAreaController@destroy',
+    ]);
+});
+Route::middleware('auth:api')->prefix('/boxes')->group(function (){
+
+    Route::get('/', [
+        'as' => 'api.box.index',
+        'uses' => 'Box\BoxController@index',
+    ]);
+    Route::post('/{box}/edit', [
+            'as' => 'api.box.update',
+            'uses' => 'Box\BoxController@update',
+        ]);
+   Route::get('/{box}', [
+              'as' => 'api.box.find',
+              'uses' => 'Box\BoxController@find',
+          ]);
+    Route::post('/', [
+        'as' => 'api.box.store',
+        'uses' => 'Box\BoxController@store',
+    ]);
+
+    Route::delete('/{box}', [
+        'as' => 'api.box.destroy',
+        'uses' => 'Box\BoxController@destroy',
+    ]);
+});
 // append
+
+
 
 
 

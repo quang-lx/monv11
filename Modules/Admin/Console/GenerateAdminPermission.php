@@ -47,22 +47,26 @@ class GenerateAdminPermission extends Command
 
 	    foreach ($routeCollection as $route) {
 		    $routeName = $route->getName();
-		    if ($this->startWith($routeName, 'admin')) {
-			    $permission = Permission::findOrCreate($routeName);
-			    $tokens = explode('.', $routeName);
-			    $tokenCount = count($tokens);
-			    if (isset($tokens[$tokenCount-2])) {
-				    $permission->group = $tokens[$tokenCount-2];
-				    $permission->group_name = $tokens[$tokenCount-2];
-			    }
-			    if (!$permission->title && isset($tokens[$tokenCount-1])) {
-			        $action = $tokens[$tokenCount-1];
+            $exists = Permission::query()->where('name', $routeName)->exists();
+            if (!$exists) {
+                if ($this->startWith($routeName, 'admin')) {
+                    $permission = Permission::findOrCreate($routeName);
+                    $tokens = explode('.', $routeName);
+                    $tokenCount = count($tokens);
+                    if (isset($tokens[$tokenCount-2])) {
+                        $permission->group = $tokens[$tokenCount-2];
+                        $permission->group_name = $tokens[$tokenCount-2];
+                    }
+                    if (!$permission->title && isset($tokens[$tokenCount-1])) {
+                        $action = $tokens[$tokenCount-1];
 
-				    $permission->title = $this->getActionName($action);
-			    }
-			    $permission->module = 'admin';
-			    $permission->save();
-		    }
+                        $permission->title = $this->getActionName($action);
+                    }
+                    $permission->module = 'admin';
+                    $permission->save();
+                }
+            }
+
 
 	    }
 

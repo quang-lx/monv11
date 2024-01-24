@@ -38,6 +38,7 @@ return [
     'disease' => 'Danh mục bệnh',
     'service type' => 'Danh mục loại dịch vụ',
     'patient' => 'Quản lý bệnh nhân',
-    'dashboard' => 'Báo cáo'
+    'dashboard' => 'Báo cáo',
+    'box' => 'Danh mục BOX'
 
 ];

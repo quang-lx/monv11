@@ -223,7 +223,23 @@ class AdminServiceProvider extends ServiceProvider
                 return $repository;
             }
         );
+        $this->app->bind(
+            'Modules\Admin\Repositories\BoxAreaRepository',
+            function () {
+                $repository = new \Modules\Admin\Repositories\Eloquent\EloquentBoxAreaRepository(new \Modules\Mon\Entities\BoxArea());
+                return $repository;
+            }
+        );
+        $this->app->bind(
+            'Modules\Admin\Repositories\BoxRepository',
+            function () {
+                $repository = new \Modules\Admin\Repositories\Eloquent\EloquentBoxRepository(new \Modules\Mon\Entities\Box());
+                return $repository;
+            }
+        );
 // add bindings
+
+
 
 
 
