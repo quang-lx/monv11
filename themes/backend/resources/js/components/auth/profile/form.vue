@@ -292,7 +292,7 @@ export default {
                 })
                 .catch((error) => {
 
-                    // this.loading = false;
+                    this.loading = false;
                     // this.$notify.error({
                     //     message: this.getSubmitError(this.form.errors),
                     // });
