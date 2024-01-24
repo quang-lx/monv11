@@ -48,7 +48,7 @@ class BoxAreaController extends ApiController
 
         return response()->json([
             'errors' => false,
-            'message' => trans('backend::boxarea.message.create success'),
+            'message' => trans('backend::box_area.message.create success'),
         ]);
     }
 
@@ -64,7 +64,7 @@ class BoxAreaController extends ApiController
 
         return response()->json([
             'errors' => false,
-            'message' => trans('backend::boxarea.message.update success'),
+            'message' => trans('backend::box_area.message.update success'),
         ]);
     }
 
@@ -74,7 +74,7 @@ class BoxAreaController extends ApiController
 
         return response()->json([
             'errors' => false,
-            'message' => trans('backend::boxarea.message.delete success'),
+            'message' => trans('backend::box_area.message.delete success'),
         ]);
     }
     public function count(Request $request) {

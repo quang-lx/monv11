@@ -14,8 +14,8 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
-                <div class="row justify-content-between mb-2">
-                    <div class="col-md-8   ">
+                <div class="row  mb-2">
+                    <div class="col-md-12 d-flex justify-content-end">
                         <router-link :to="{ name: 'admin.box.create' }" class="f-action ">
                             <i class="el-icon-plus"></i>
 
@@ -35,8 +35,7 @@
 
 
 
-                    </div>
-                    <div class="col-md-4">
+
 
                         <el-input suffix-icon="el-icon-search" @keyup.native="performSearch" placeholder="Tìm kiếm"
                             size="medium" v-model="searchQuery">
@@ -286,11 +285,11 @@ export default {
             this.show_config = false;
         },
         removeNodeClick() {
-            this.parent_selected = null
-            this.editModel.id = null
-            this.editModel.name = null
-            this.selected_department_id = null
-            this.queryServer({});
+            // this.parent_selected = null
+            // this.editModel.id = null
+            // this.editModel.name = null
+            // this.selected_department_id = null
+            // this.queryServer({});
 
         },
         handleNodeClick(data, checked, indeterminate) {
