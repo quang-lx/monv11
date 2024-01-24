@@ -166,8 +166,9 @@ export default {
                 "status": "Trạng thái box thiết bị",
                 "created_at": "Thời gian tạo",
                 "created_by": "Người tạo",
-                "update_label": "Chi tiết BOX",
-                "create new": "Tạo mới BOX"
+                "note": "Ghi chú chi tiết",
+                "update_label": "Cập nhật thiết bị",
+                "create new": "Thêm mới box thiết bị"
             },
             "message": {
                 "create success": "Tạo BOX thành công.",
@@ -655,7 +656,8 @@ export default {
             "disease": "Danh mục bệnh",
             "service type": "Danh mục loại dịch vụ",
             "patient": "Quản lý bệnh nhân",
-            "dashboard": "Báo cáo"
+            "dashboard": "Báo cáo",
+            "box": "Danh mục BOX"
         },
         "user": {
             "label": {

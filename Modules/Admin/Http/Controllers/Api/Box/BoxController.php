@@ -53,7 +53,7 @@ class BoxController extends ApiController
 
     public function find(Box $box)
     {
-        return new  BoxFullTransformer($box);
+        return new  BoxTransformer($box);
     }
 
     public function update(Box $box, UpdateBoxRequest $request)
