@@ -108,7 +108,7 @@
                                         <div class="col-md-12">
                                             <el-form-item :label="$t('box.label.note')"
                                                           :class="{'el-form-item is-error': form.errors.has('note') }">
-                                                <el-input v-model="modelForm.email" size="small"
+                                                <el-input v-model="modelForm.note" size="small"
                                                           placeholder="Nhập ghi chú"
                                                           type="textarea"
                                                           autocomplete="off"></el-input>

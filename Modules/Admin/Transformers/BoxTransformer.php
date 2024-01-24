@@ -17,6 +17,7 @@ class BoxTransformer extends JsonResource
             'area_id' => $this->area_id,
             'name' => $this->name,
             'code' => $this->code,
+            'status' => $this->status,
             'note' => $this->note,
             'status_text' => $this->status_text,
 
