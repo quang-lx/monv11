@@ -15,7 +15,7 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="row  mb-2">
-                    <div class="col-md-12 d-flex justify-content-end">
+                    <div class="col-md-12 d-flex justify-content-end align-items-center">
                         <router-link :to="{ name: 'admin.box.create' }" class="f-action ">
                             <i class="el-icon-plus"></i>
 
@@ -37,7 +37,7 @@
 
 
 
-                        <el-input suffix-icon="el-icon-search" @keyup.native="performSearch" placeholder="Tìm kiếm"
+                        <el-input suffix-icon="el-icon-search" @keyup.native="performSearch" placeholder="Tìm kiếm" style="max-width: 300px" class="ml-5"
                             size="medium" v-model="searchQuery">
                         </el-input>
                     </div>
