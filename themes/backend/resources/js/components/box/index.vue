@@ -19,7 +19,7 @@
                         <router-link :to="{ name: 'admin.box.create' }" class="f-action ">
                             <i class="el-icon-plus"></i>
 
-                            {{ $t('box.label.create new') }}
+                            Thêm mới
 
                         </router-link>
 
@@ -37,7 +37,7 @@
 
 
 
-                        <el-input suffix-icon="el-icon-search" @keyup.native="performSearch" placeholder="Tìm kiếm" style="max-width: 300px" class="ml-5"
+                        <el-input suffix-icon="el-icon-search" @keyup.native="performSearch" placeholder="Tìm kiếm" style="max-width: 300px" class="ml-3"
                             size="medium" v-model="searchQuery">
                         </el-input>
                     </div>

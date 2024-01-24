@@ -5,6 +5,7 @@ return [
         'id' => 'Mã bệnh nhân',
         'code' => 'BOX ID',
         'name' => 'Tên BOX',
+        'area_id' => 'Khu vực',
         'status' => 'Trạng thái box thiết bị',
         'created_at' => 'Thời gian tạo',
         'created_by' => 'Người tạo',

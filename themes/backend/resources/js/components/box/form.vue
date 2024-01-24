@@ -156,8 +156,14 @@
 <script>
     import Form from 'form-backend-validation';
     import _ from "lodash";
+    // import the component
+    import Treeselect from '@riophae/vue-treeselect'
+    // import the styles
+    import '@riophae/vue-treeselect/dist/vue-treeselect.css'
+
 
     export default {
+        components: { Treeselect },
         props: {
             locales: {default: null},
             pageTitle: {default: null, String},
