@@ -68,33 +68,6 @@ class UserSidebarExtender extends AbstractAdminSidebar
 
             });
 
-            $group->item(trans('backend::sidebar.patient'), function (Item $item) {
-                $item->icon('fas custom-icon profile-2user');
-                $item->weight(10);
-                $item->authorize(
-                    $this->auth->hasAccess('admin.patient.index')
-                );
-                $item->route('admin.patient.index');
-
-            });
-            $group->item(trans('backend::sidebar.examination'), function (Item $item) {
-                $item->icon('fas custom-icon route-square');
-                $item->weight(10);
-                $item->authorize(
-                    $this->auth->hasAccess('admin.patientexamination.index')
-                );
-                $item->route('admin.patientexamination.index');
-
-            });
-            $group->item(trans('backend::sidebar.examination service'), function (Item $item) {
-                $item->icon('fas custom-icon warning-2');
-                $item->weight(10);
-                $item->authorize(
-                    $this->auth->hasAccess('admin.examinationservice.index')
-                );
-                $item->route('admin.examinationservice.index');
-
-            });
             $group->item(trans('backend::sidebar.device'), function (Item $item) {
                 $item->icon('fas custom-icon document');
                 $item->weight(10);
@@ -102,55 +75,6 @@ class UserSidebarExtender extends AbstractAdminSidebar
                     $this->auth->hasAccess('admin.device.index')
                 );
                 $item->route('admin.device.index');
-
-            });
-            $group->item(trans('backend::sidebar.category'), function (Item $item) {
-                $item->icon('fas custom-icon setting-icon');
-                $item->weight(10);
-                $item->authorize(
-                    $this->auth->hasAccess('admin.service.index')
-                );
-                $item->item(trans('backend::sidebar.service type'), function (Item $item) {
-
-                    $item->weight(0);
-
-
-                    $item->route('admin.servicetype.index');
-                    $item->authorize(
-                        $this->auth->hasAccess('admin.servicetype.index')
-                    );
-                });
-                $item->item(trans('backend::sidebar.testing service'), function (Item $item) {
-
-                    $item->weight(0);
-
-
-                    $item->route('admin.service.index');
-                    $item->authorize(
-                        $this->auth->hasAccess('admin.service.index')
-                    );
-                });
-
-                $item->item(trans('backend::sidebar.disease'), function (Item $item) {
-
-                    $item->weight(0);
-
-
-                    $item->route('admin.disease.index');
-                    $item->authorize(
-                        $this->auth->hasAccess('admin.disease.index')
-                    );
-                });
-                $item->item(trans('backend::sidebar.box'), function (Item $item) {
-
-                    $item->weight(0);
-
-
-                    $item->route('admin.box.index');
-                    $item->authorize(
-                        $this->auth->hasAccess('admin.box.index')
-                    );
-                });
 
             });
 

@@ -4,9 +4,6 @@ import PermissionForm from './../components/auth/permission/form.vue';
 import Role from './../components/auth/role/index.vue';
 import RoleForm from './../components/auth/role/form.vue';
 
-import ServiceList from './../components/testingservice/index.vue';
-import ServiceForm from './../components/testingservice/form.vue';
-
 import AdminList from './../components/auth/admin/index.vue';
 import AdminForm from './../components/auth/admin/form.vue';
 
@@ -14,24 +11,8 @@ import AdminForm from './../components/auth/admin/form.vue';
 import DeviceList from './../components/device/index.vue';
 import DeviceForm from './../components/device/form.vue';
 
-import DiseaseList from './../components/disease/index.vue';
-import DiseaseForm from './../components/disease/form.vue';
-
-import ServiceTypeList from './../components/servicetype/index.vue';
-import ServiceTypeForm from './../components/servicetype/form.vue';
-import PatientList from './../components/patient/index.vue';
-import PatientCreate from './../components/patient/create.vue';
-import PatientUpdate from './../components/patient/update.vue';
 
 import ProfileForm from './../components/auth/profile/form.vue';
-
-import ExaminationList from './../components/examination/index.vue';
-import ExaminationForm from './../components/examination/update.vue';
-import ExaminationServiceList from './../components/examination_service/index.vue';
-import ExaminationServiceForm from './../components/examination_service/update.vue';
-
-import BoxList from './../components/box/index.vue';
-import BoxForm from './../components/box/form.vue';
 
 import Dashboard from './../components/dashboard/index.vue';
 
@@ -143,154 +124,6 @@ export default [
         component: ProfileForm,
         props: {
             pageTitle: 'user.label.profile',
-        },
-    },
-
-    {
-        path: '/admin/service',
-        name: 'admin.service.index',
-        component: ServiceList,
-    },
-    {
-        path: '/admin/service/create',
-        name: 'admin.service.create',
-        component: ServiceForm,
-        props: {
-            pageTitle: 'service.label.create_service',
-        },
-    },
-
-    {
-        path: '/admin/service/:testingserviceId/edit',
-        name: 'admin.service.edit',
-        component: ServiceForm,
-        props: {
-            pageTitle: 'service.label.update_service',
-        },
-    },
-
-    {
-        path: '/admin/disease',
-        name: 'admin.disease.index',
-        component: DiseaseList,
-    },
-    {
-        path: '/admin/disease/create',
-        name: 'admin.disease.create',
-        component: DiseaseForm,
-        props: {
-            pageTitle: 'disease.label.create_disease',
-        },
-    },
-
-    {
-        path: '/admin/disease/:diseaseId/edit',
-        name: 'admin.disease.edit',
-        component: DiseaseForm,
-        props: {
-            pageTitle: 'disease.label.update_disease',
-        },
-    },
-
-    {
-        path: '/admin/patient',
-        name: 'admin.patient.index',
-        component: PatientList,
-    },
-    {
-        path: '/admin/patient/create',
-        name: 'admin.patient.create',
-        component: PatientCreate,
-        props: {
-            pageTitle: 'patient.label.create_patient',
-        },
-    },
-
-    {
-        path: '/admin/patient/:patientId/edit',
-        name: 'admin.patient.edit',
-        component: PatientUpdate,
-        props: {
-            pageTitle: 'patient.label.update_patient',
-        },
-    },
-
-
-    {
-        path: '/admin/servicetype',
-        name: 'admin.servicetype.index',
-        component: ServiceTypeList,
-    },
-    {
-        path: '/admin/servicetype/create',
-        name: 'admin.servicetype.create',
-        component: ServiceTypeForm,
-        props: {
-            pageTitle: 'servicetype.label.create_servicetype',
-        },
-    },
-
-    {
-        path: '/admin/servicetype/:servicetypeId/edit',
-        name: 'admin.servicetype.edit',
-        component: ServiceTypeForm,
-        props: {
-            pageTitle: 'servicetype.label.update_servicetype',
-        },
-    },
-
-    {
-        path: '/admin/kham-benh',
-        name: 'admin.patientexamination.index',
-        component: ExaminationList,
-    },
-
-
-    {
-        path: '/admin/kham-benh/:patientexaminationId/cap-nhat',
-        name: 'admin.patientexamination.edit',
-        component: ExaminationForm,
-        props: {
-            pageTitle: 'examination.label.update_label',
-        },
-    },
-
-
-    {
-        path: '/admin/ket-qua-kham',
-        name: 'admin.examinationservice.index',
-        component: ExaminationServiceList,
-    },
-    {
-        path: '/admin/ket-qua-kham/:examinationserviceId/cap-nhat',
-        name: 'admin.examinationservice.edit',
-        component: ExaminationServiceForm,
-        props: {
-            pageTitle: 'examinationservice.label.update_label',
-        },
-    },
-
-
-    {
-        path: '/admin/box',
-        name: 'admin.box.index',
-        component: BoxList,
-    },
-    {
-        path: '/admin/box/create',
-        name: 'admin.box.create',
-        component: BoxForm,
-        props: {
-            pageTitle: 'box.label.create new',
-        },
-    },
-
-    {
-        path: '/admin/box/:boxId/edit',
-        name: 'admin.box.edit',
-        component: BoxForm,
-        props: {
-            pageTitle: 'box.label.update_label',
         },
     },
 
