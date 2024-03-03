@@ -242,7 +242,32 @@ Route::middleware('auth:api')->prefix('/devices')->group(function (){
     ]);
 });
 
+Route::middleware('auth:api')->prefix('/posts')->group(function (){
+
+    Route::get('/', [
+        'as' => 'api.post.index',
+        'uses' => 'Post\PostController@index',
+    ]);
+    Route::post('/{post}/edit', [
+            'as' => 'api.post.update',
+            'uses' => 'Post\PostController@update',
+        ]);
+   Route::get('/{post}', [
+              'as' => 'api.post.find',
+              'uses' => 'Post\PostController@find',
+          ]);
+    Route::post('/', [
+        'as' => 'api.post.store',
+        'uses' => 'Post\PostController@store',
+    ]);
+
+    Route::delete('/{post}', [
+        'as' => 'api.post.destroy',
+        'uses' => 'Post\PostController@destroy',
+    ]);
+});
 // append
+
 
 
 

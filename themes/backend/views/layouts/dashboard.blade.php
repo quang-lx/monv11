@@ -104,6 +104,8 @@
 
     };
 
+    console.log({!! json_encode($permissions) !!});
+
 </script>
 
 {!! \Modules\Mon\Support\Facades\Theme::js('vendor/admin-lte/plugins/bootstrap/js/bootstrap.bundle.min.js') !!}

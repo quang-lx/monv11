@@ -169,7 +169,29 @@ Route::group(['prefix' => '/device'], function ( ) {
 
 
 });
+Route::group(['prefix' => '/post'], function ( ) {
+
+    Route::get('/', [
+        'as' => 'admin.post.index',
+        'uses' => 'Post\PostController@index',
+        'middleware' => 'permission:admin.post.index'
+    ]);
+    Route::get('create', [
+        'as' => 'admin.post.create',
+        'uses' => 'Post\PostController@create',
+        'middleware' => 'permission:admin.post.create'
+    ]);
+
+    Route::get('{post}/edit', [
+        'as' => 'admin.post.edit',
+        'uses' => 'Post\PostController@edit',
+        'middleware' => 'permission:admin.post.edit'
+    ]);
+
+
+});
 // append
+
 
 
 

@@ -116,7 +116,7 @@ class LoginController extends WebController
     protected function authenticated(Request $request, $user)
     {
         $token = auth('api')->login($user);
-
+    
         $request->session()->put('jwt_token', $token);
         app(UserRepository::class)->update($user, ['last_login' => date('Y-m-d H:i:s')]);
 

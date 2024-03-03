@@ -16,6 +16,9 @@ import ProfileForm from './../components/auth/profile/form.vue';
 
 import Dashboard from './../components/dashboard/index.vue';
 
+import PostList from './../components/post/index.vue';
+import PostForm from './../components/post/form.vue';
+
 const currentLocale = '/' + window.MonCMS.currentLocale;
 
 export default [
@@ -124,6 +127,29 @@ export default [
         component: ProfileForm,
         props: {
             pageTitle: 'user.label.profile',
+        },
+    },
+
+    {
+        path: '/admin/post',
+        name: 'admin.post.index',
+        component: PostList,
+    },
+    {
+        path: '/admin/post/create',
+        name: 'admin.post.create',
+        component: PostForm,
+        props: {
+            pageTitle: 'post.label.create_post',
+        },
+    },
+
+    {
+        path: '/admin/post/:postId/edit',
+        name: 'admin.post.edit',
+        component: PostForm,
+        props: {
+            pageTitle: 'post.label.update_post',
         },
     },
 
